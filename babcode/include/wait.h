@@ -1,0 +1,68 @@
+// Copyright (c) 2013, Baptiste Burles
+//
+// All rights reserved.
+//
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions are met:
+//
+// * Redistributions of source code must retain the above copyright
+//   notice, this list of conditions and the following disclaimer.
+// * Redistributions in binary form must reproduce the above copyright
+//   notice, this list of conditions and the following disclaimer in the
+//   documentation and/or other materials provided with the distribution.
+// * Neither the name of the University of California, Berkeley nor the
+//   names of its contributors may be used to endorse or promote products
+//   derived from this software without specific prior written permission.
+//
+// THIS SOFTWARE IS PROVIDED BY Baptiste Burles AND CONTRIBUTORS ``AS IS'' AND ANY
+// EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+// WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+// DISCLAIMED. IN NO EVENT SHALL Baptiste Burles AND CONTRIBUTORS BE LIABLE FOR ANY
+// DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+// (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+// ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+// (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+// SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+#ifndef BABCODE_WAIT_H
+#define BABCODE_WAIT_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+
+typedef struct _babcode_time_
+{
+	UInt16 year; /**< Year after Jesus Birth */
+	UInt8 month; /**< Month of this year : 1 to 12 */
+	UInt8 day;   /**< Day of the Month : 1 to 31 */
+
+	UInt16 hour;    /**< Hour of the day : 0 to 23 */
+	UInt16 minute;  /**< Minute of the hour : 0 to 59 */
+	UInt16 second; /**< Seconds of the minute : 0 to 59 */
+
+	UInt16 dayOfYear; /**< Day of the year : 0 to 365 */
+	UInt16 dayOfWeek; /**< Day of the week (depuis dimanche) 0 to 6 */
+	
+	UInt8 weekOfYear; /**< Week of the year */
+
+	UInt8 isBissextile; /**< Year is bissectile or not ? */
+
+} Time ;
+
+extern void GetTime(Time *t);
+
+// Get ticks in millisecond that have elapsed since the program was started.
+extern UInt32 GetTicks(void);
+
+
+extern void Wait(UInt32 milliseconds);
+
+    
+#ifdef __cplusplus
+  }
+#endif
+
+#endif
