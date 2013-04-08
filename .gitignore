@@ -1,0 +1,4 @@
+*.o
+*.obj
+*.DS_Store
+depends
