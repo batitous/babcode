@@ -37,7 +37,7 @@ void ThreadInit( Thread * t, void *(* func)(void *), void *param )
 	int error = pthread_create( t, NULL, func, param );
 	if (error!= 0)
 	{
-		LOG("error: pthread_create failed %d!\n", error);
+		LOG_ERR2("error: pthread_create", error);
 	}
 }
 

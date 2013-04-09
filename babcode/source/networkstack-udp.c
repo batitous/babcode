@@ -121,7 +121,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     int handle = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
     if ( handle <= 0 )
     {
-        LOG("error: udp socket\n");
+        LOG_ERR1("udp socket");
         return 0;
     }
     
@@ -131,7 +131,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     
     if ( bind( handle, (const struct sockaddr*) &address, sizeof(struct sockaddr_in) ) < 0 )
     {
-        LOG("error: bind\n" );
+        LOG_ERR1("bind" );
         return 0;
     }
     
@@ -142,7 +142,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     int nonBlocking = 1;
     if ( fcntl( handle, F_SETFL, O_NONBLOCK, nonBlocking ) == -1 )
     {
-        LOG("error: set non-blocking socket\n" );
+        LOG_ERR1("set non-blocking socket" );
         return 0;
     }
     
@@ -151,7 +151,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     DWORD nonBlocking = 1;
     if ( ioctlsocket( handle, FIONBIO, &nonBlocking ) != 0 )
     {
-        LOG("error: set non-blocking socket\n" );
+        LOG_ERR1("set non-blocking socket" );
         return 0;
     }
     
@@ -181,7 +181,7 @@ Int32 SocketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 
     
     if ( sent_bytes != packet_size )
     {
-        LOG("error: failed to send packet: return value = %ld\n", sent_bytes );
+        LOG_ERR2("failed to send packet:", sent_bytes );
         return 0;
     }
     
@@ -313,7 +313,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     
     if ( bytes_read <= CONNECTION_HEADER_SIZE )
     {
-        LOG("error: Not enough bytes for header (%d)!\n", bytes_read);
+        LOG_ERR2("Not enough bytes for header", bytes_read);
         return 0;
     }
     
@@ -321,7 +321,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     
     if (id!=connection->protocolId)
     {
-        LOG("error: This id is not for this connection %d !\n",id);
+        LOG_ERR2("This id is not for this connection",id);
         return 0;
     }
     

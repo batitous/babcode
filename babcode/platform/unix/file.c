@@ -154,14 +154,14 @@ UInt8 *FileRead( UInt8 *filename, UInt32 *len )
 	buffer =(UInt8*) malloc(size);
 	if( buffer == NULL )
 	{
-		LOG("error: malloc failed !\n");
+		LOG_ERR1("malloc");
 		return NULL ;
 	}
 
 	//read the file and put the data in the target buffer
 	if( read( file, buffer, size ) == -1 )
 	{
-		LOG("error: read failed\n");
+		LOG_ERR1("read");
 		return NULL ;
 	}
 
@@ -189,20 +189,20 @@ UInt8 *FileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
 	buffer = (UInt8 *)malloc( *len_to_read);
 	if( buffer == NULL )
 	{
-		LOG("error: malloc failed");
+		LOG_ERR1("malloc");
 		return NULL ;
 	}
 
 	if(lseek(f,index,SEEK_SET) == -1 )
 	{
-		LOG("error: lseek failed\n");
+		LOG_ERR1("lseek");
 		return NULL ;
 	}
 
 	//read the file and put the data in the target buffer
 	if( (size = (UInt32)read( f, buffer, *len_to_read )) == -1 )
 	{
-		LOG("error: read failed\n");
+		LOG_ERR1("read");
 		return NULL ;
 	}
 

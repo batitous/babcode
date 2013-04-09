@@ -35,7 +35,7 @@ NetworkStatus SocketTcpInit(Socket * s)
     int sock = socket(AF_INET,SOCK_STREAM,0);
 	if( sock < 0 )
 	{
-		LOG("error: socket %d\n",Network_GetLastError());
+		LOG_ERR2("socket",Network_GetLastError());
 		return NETWORK_ERROR;
 	}
     
@@ -57,7 +57,7 @@ NetworkStatus ServerTcpOpen(Socket *s, UInt16 port)
 	
 	if(setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, (char*)&k, sizeof(k)) == -1)
 	{
-		LOG("error: setsockopt(): %d\n", Network_GetLastError());
+		LOG_ERR2("setsockopt", Network_GetLastError());
 		return NETWORK_ERROR;
 	}
     
@@ -68,13 +68,13 @@ NetworkStatus ServerTcpOpen(Socket *s, UInt16 port)
     
 	if( bind( sock, (struct sockaddr *)&addr, sizeof( struct sockaddr) ) < 0 )
 	{
-		LOG("error: bind %d\n", Network_GetLastError() );
+		LOG_ERR2("bind", Network_GetLastError() );
 		return NETWORK_ERROR;
 	}
     
 	if( listen( sock, SOMAXCONN) < 0 )
 	{
-		LOG("error: listen %d\n",Network_GetLastError());
+		LOG_ERR2("listen",Network_GetLastError());
 		return NETWORK_ERROR;
 	}
     
@@ -95,7 +95,7 @@ NetworkStatus ServerTcpWaitConnection(Socket * server, Socket * client, IpAddres
     csock = accept(server->handle, (struct sockaddr *)&addr, (socklen_t *)&size);
     if (csock < 0)
     {
-        LOG("error: accept %d\n", Network_GetLastError());
+        LOG_ERR2("accept", Network_GetLastError());
         return NETWORK_ERROR;
     }
 
@@ -134,17 +134,17 @@ NetworkStatus ClientTcpOpen(Socket * client, IpAddress * server)
 				break;
                 
 			default:
-				LOG("error: connect: %d %s\n", Network_GetLastError(), strerror(errno));
+				LOG_ERR2("connect: %d", Network_GetLastError());
 				return NETWORK_ERROR;
 		}
 	}
-        
+    
 	return NETWORK_OK;
 }
 
 NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended)
 {
-    int result = send(s->handle,packet_data,packet_size,0);
+    int result = (int)send(s->handle,packet_data,packet_size,0);
 
     if (result < 0)
     {
@@ -152,7 +152,7 @@ NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_
         if (errorID==EINTR || errorID==EAGAIN)
             return NETWORK_TIMEOUT;
         
-        LOG("error: send %d\n", errorID);
+        LOG_ERR2("send", errorID);
         return NETWORK_ERROR;
     }
     
@@ -181,7 +181,7 @@ _again_:
             return NETWORK_TIMEOUT;
         }
 		
-        LOG("error: read: %d\n", ErrorID);
+        LOG_ERR2("recv", ErrorID);
 		return NETWORK_ERROR;
 	}
     
@@ -190,42 +190,43 @@ _again_:
 	return NETWORK_OK;
 }
 
-Int32 SocketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
+NetworkStatus SocketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
 {
+    NetworkStatus status;
     UInt32 sended;
-	int toWrite, errWrite;
+	int toWrite;
 	
 	toWrite = buffer_size;
 	while(toWrite > 0)
 	{
-		errWrite = SocketTcpSend(s, buffer + buffer_size - toWrite, toWrite, &sended);
-		if(errWrite <= 0)
+		status = SocketTcpSend(s, buffer + buffer_size - toWrite, toWrite, &sended);
+		if (status == NETWORK_ERROR)
 		{
-			LOG("error: SocketTcpReceiveAll\n");
-			return 0;
+			LOG_ERR1("SocketTcpSendAll");
+			return NETWORK_ERROR;
 		}
-		toWrite -= errWrite;
+		toWrite -= sended;
 	}
 	
-	return 1;
+	return NETWORK_OK;
 }
 
 NetworkStatus SocketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size)
 {
     NetworkStatus status;
+	UInt32 received;
 	int toRead;
-    UInt32 errRead;
-	
+    
 	toRead = buffer_size;
 	while (toRead > 0)
 	{
-		status = SocketTcpReceive(s, buffer + buffer_size - toRead, toRead, &errRead);
+		status = SocketTcpReceive(s, buffer + buffer_size - toRead, toRead, &received);
 		if (status == NETWORK_ERROR)
 		{
-			LOG("error: SocketTcpReceiveAll\n");
+			LOG_ERR1("SocketTcpReceiveAll");
 			return NETWORK_ERROR;
 		}
-		toRead -= errRead;
+		toRead -= received;
 	}
 	
 	return NETWORK_OK;

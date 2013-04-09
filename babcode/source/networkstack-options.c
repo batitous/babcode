@@ -51,7 +51,7 @@ NetworkStatus SocketSetBlock(Socket *s, Bool enable)
     flags = fcntl (s->handle, F_GETFL);
     if (flags < 0)
 	{
-		LOG("error: fcntl(F_GETFL): %d\n", Network_GetLastError());
+		LOG_ERR2("fcntl(F_GETFL)", Network_GetLastError());
 		return NETWORK_ERROR;
 	}
     
@@ -62,7 +62,7 @@ NetworkStatus SocketSetBlock(Socket *s, Bool enable)
     
     if (r < 0)
 	{
-		LOG("error: fcntl(F_SETFL): %d\n", Network_GetLastError());
+		LOG_ERR2("fcntl(F_SETFL)", Network_GetLastError());
 		return NETWORK_ERROR;
 	}
     

@@ -25,29 +25,35 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_LOG_H
-#define BABCODE_LOG_H
+#include "../../include/babcode.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include <windows.h>
+#include <stdio.h>
+#include <winbase.h>
 
-extern void LogOpen(const Int8 *filename);
 
-extern void LogClose(void);
+void ThreadInit(Thread * t, void *(* func)(void *), void *param )
+{
+	t->h = CreateThread( NULL,0,(LPTHREAD_START_ROUTINE)*func,
+						 param,0,&temp->id);
+	if( t->h == NULL )
+	{
+		LOG("Failed to create thread!\n");
+	}
+}
 
-extern void LogError (const Int8 fmt[], ...);
 
-    
-#define LOG(...)        LogError(__VA_ARGS__);
+void ThreadJoin(Thread * t)
+{
+    WaitForSingleObject(t->h,INFINITE);
 
-#define LOG_ERR1(str)	LogError("error in %s at %4d : %s\n",(char *)__FILE__ ,  __LINE__, str)
-#define LOG_ERR2(str,id) LogError("error in %s at %4d : %s %d\n",(char *)__FILE__ ,  __LINE__, str,id)
+	//TerminateThread(t->h , 0 );
+	//CloseHandle( t->h );
+}
 
-    
-    
-#ifdef __cplusplus
- }
-#endif
+void ThreadExit(void)
+{
+	ExitThread(0);
+}
 
-#endif
+

@@ -85,7 +85,7 @@ UInt32 InitUART(const UInt8 *tty_name, UInt32 baudrate)
     tcflush(fd_uart, TCIFLUSH);
     if(tcsetattr(fd_uart, TCSANOW, &options))
     {
-		LOG("error: could not change uart port behaviour (wrong baudrate?)\n");
+		LOG_ERR1("could not change uart port behaviour (wrong baudrate?)");
 		return UART_CONF_FAILED;
     }
 	
