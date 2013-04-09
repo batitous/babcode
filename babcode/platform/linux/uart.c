@@ -25,7 +25,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "../include/babcode.h"
+#include "../../include/babcode.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -48,7 +48,7 @@ static UInt8 tmp1[1];
 
 
 
-UInt8 InitUART(const UInt8 *tty_name, UInt32 baudrate)
+UInt32 InitUART(const UInt8 *tty_name, UInt32 baudrate)
 {
     struct termios  options;
 	static struct termios gOriginalTTYAttrs;
@@ -59,13 +59,10 @@ UInt8 InitUART(const UInt8 *tty_name, UInt32 baudrate)
 	
     if (fd_uart < 0)
     {
-//        int err = errno;
-//        DebugPrintf(1, "Can't open COM-Port %s ! (Error: %dd (0x%X))\n",(Int8 *)tty_name, err, err);
+        LOG("failed to open UART %s!\n",tty_name);
         return UART_OPEN_FAILED;
     }
-	
-//    DebugPrintf(3, "COM-Port %s opened...\n", (Int8 *)tty_name);
-	
+		
     /* clear input & output buffers, then switch to "blocking mode" */
     tcflush(fd_uart, TCOFLUSH);
     tcflush(fd_uart, TCIFLUSH);
@@ -91,7 +88,7 @@ UInt8 InitUART(const UInt8 *tty_name, UInt32 baudrate)
     tcflush(fd_uart, TCIFLUSH);
     if(tcsetattr(fd_uart, TCSANOW, &options))
     {
-//		DebugPrintf(1, "Could not change serial port behaviour (wrong baudrate?)\n");
+		LOG("Could not change serial port behaviour (wrong baudrate?)\n");
 		return UART_CONF_FAILED;
     }
 	
@@ -130,7 +127,7 @@ speed_t UInt32ToSpeed_t(UInt32 baudrate)
     }
 }
 
-UInt8 SendByteToUART(UInt8 Byte)
+UInt32 SendByteToUART(UInt8 Byte)
 {
 	tmp0[0]=Byte;
 
@@ -141,7 +138,7 @@ UInt8 SendByteToUART(UInt8 Byte)
 	return UART_OK;
 }
 
-UInt8 SendBufferToUART(UInt8 *Buffer, UInt32 Count)
+UInt32 SendBufferToUART(UInt8 *Buffer, UInt32 Count)
 {
 	if(write(fd_uart,Buffer,Count)==-1)
 	{
@@ -150,7 +147,7 @@ UInt8 SendBufferToUART(UInt8 *Buffer, UInt32 Count)
 	return UART_OK;
 }
 
-UInt8 GetByteFromUART(UInt8 *data)
+UInt32 GetByteFromUART(UInt8 *data)
 {
 	if(read(fd_uart,tmp1,1)==-1)
 	{
@@ -162,20 +159,21 @@ UInt8 GetByteFromUART(UInt8 *data)
 	return UART_OK;
 }
 
-UInt8 GetByteFromUARTNoWait(UInt8 *data)
+UInt32 GetByteFromUARTNoWait(UInt8 *data)
 {
 	Int32 result = read(fd_uart,tmp1,1);
-	if (result == 0) {
-//printf("result = 0");
+	if (result == 0)
+    {
 		return UART_TIMEOUT_ERROR;
 	}
 	else if(result==-1)
 	{
-		if (errno == EAGAIN) {
-printf("result = -1");
+		if (errno == EAGAIN)
+        {
 			return UART_TIMEOUT_ERROR;
 		}
-		else {
+		else
+        {
 			return UART_READ_FAILED;
 		}
 	}
@@ -184,7 +182,7 @@ printf("result = -1");
 	return UART_OK;
 }
 
-UInt8 GetBufferFromUART(UInt8 *Buffer, UInt32 Count)
+UInt32 GetBufferFromUART(UInt8 *Buffer, UInt32 Count)
 {
 	if(read(fd_uart,Buffer,Count)==-1)
 	{
