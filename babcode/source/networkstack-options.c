@@ -30,39 +30,47 @@
 #include "networkstack-private.h"
 
 
-Int32 SocketSetBlockMode(Socket *s, Int32 Enable)
+NetworkStatus SocketSetBlock(Socket *s, Bool enable)
 {
 #if PLATFORM == PLATFORM_WINDOWS
     
-	u_long ioctl_arg = (Enable == 0);
+	u_long ioctl_arg;
 	
+    if (enable==False)
+        ioctl_arg = 1;
+    else
+        ioctl_arg = 0;
+    
     ioctlsocket(s->handle, FIONBIO, (u_long*)&ioctl_arg);
 
 #else
 
-	int Flags = fcntl(s->handle, F_GETFL);
-	if(Flags < 0)
+    int flags;
+    int r;
+    
+    flags = fcntl (s->handle, F_GETFL);
+    if (flags < 0)
 	{
 		LOG("error: fcntl(F_GETFL): %d\n", Network_GetLastError());
-		return 0;
+		return NETWORK_ERROR;
 	}
-	
-	if(!Enable)
-		Flags |= O_NONBLOCK;
-	else
-		Flags &= ~O_NONBLOCK;
-	
-	if(fcntl(s->handle, F_SETFL, Flags) < 0)
+    
+    if (enable == True)//blocking mode
+        r = fcntl (s->handle, F_SETFL, flags & ~O_NONBLOCK);
+    else//non blocking mode
+        r = fcntl (s->handle, F_SETFL, flags | O_NONBLOCK);
+    
+    if (r < 0)
 	{
 		LOG("error: fcntl(F_SETFL): %d\n", Network_GetLastError());
-		return 0;
+		return NETWORK_ERROR;
 	}
     
 #endif
-	return 1;
+	return NETWORK_OK;
 }
 
-Int32 SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
+NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 {
 	if(RecvTimeout > 0)
 	{
@@ -74,11 +82,11 @@ Int32 SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 		TV.tv_usec = (RecvTimeout % 1000) * 1000;
 		
 		if(setsockopt(s->handle, SOL_SOCKET, SO_RCVTIMEO, (void*)&TV, sizeof(TV)) < 0)
-			return 0;
+			return NETWORK_ERROR;
 #else
         
 		if(setsockopt(Socket, SOL_SOCKET, SO_RCVTIMEO, (void*)&RecvTimeout, sizeof(RecvTimeout)) < 0)
-			return 0;
+			return NETWORK_ERROR;
         
 #endif
 	}
@@ -93,16 +101,16 @@ Int32 SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 		TV.tv_usec = (SendTimeout % 1000) * 1000;
 		
 		if(setsockopt(s->handle, SOL_SOCKET, SO_SNDTIMEO, (void*)&TV, sizeof(TV)) < 0)
-			return 0;
+			return NETWORK_ERROR;
 #else
         
 		if(setsockopt(s->handle, SOL_SOCKET, SO_RCVTIMEO, (void*)&SendTimeout, sizeof(SendTimeout)) < 0)
-			return 0;
+			return NETWORK_ERROR;
         
 #endif
 	}
 	
-	return 1;
+	return NETWORK_OK;
 }
 
 Int32 SocketSetBroadcast(Socket *s, Int32 Enable)

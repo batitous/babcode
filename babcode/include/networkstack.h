@@ -67,6 +67,13 @@ typedef struct _net_connection_
     UInt32      remoteAcks[ACK_MAX]; /**< ack of the last packets received */
 } NetConnection;
 
+typedef enum _network_status_
+{
+    NETWORK_ERROR     = 0,
+    NETWORK_OK        = 1,
+    NETWORK_TIMEOUT   = 2
+} NetworkStatus;
+    
 extern int InitSocketPlatform();
 extern void CloseSocketPlatform();
     
@@ -78,16 +85,17 @@ extern void AddressGetABCD(IpAddress * addr, UInt32 ip);
 
 
 // socket option
-extern Int32 SocketSetBlockMode(Socket *s, Int32 Enable);
-extern Int32 SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
+extern NetworkStatus SocketSetBlock(Socket *s, Bool enable);
+extern NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
     
 // tcp socket
-extern Int32 SocketTcpInit(Socket * s);
-extern Int32 ServerTcpOpen(Socket *s, UInt16 port);
-extern Int32 ServerTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr);
-extern Int32 ClientTcpOpen(Socket * client, IpAddress * server);
-extern Int32 SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size);
-extern Int32 SocketTcpReceive(Socket *s,void * packet_data, UInt32 maximum_packet_size);
+extern NetworkStatus SocketTcpInit(Socket * s);
+extern NetworkStatus ServerTcpOpen(Socket *s, UInt16 port);
+extern NetworkStatus ServerTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr);
+extern NetworkStatus ClientTcpOpen(Socket * client, IpAddress * server);
+    
+extern NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended);
+extern NetworkStatus SocketTcpReceive(Socket *s,void * packet_data, UInt32 maximum_packet_size, UInt32 * received);
     
 // udp socket
 extern Int32 SocketOpen(Socket * s, UInt16 port);

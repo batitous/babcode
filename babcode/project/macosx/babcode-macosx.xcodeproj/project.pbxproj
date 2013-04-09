@@ -28,6 +28,10 @@
 		F485A683171407F300D316B9 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67E171407F300D316B9 /* time.c */; };
 		F485A684171407F300D316B9 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67F171407F300D316B9 /* utils.c */; };
 		F485A68F17140E5A00D316B9 /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A68E17140E5A00D316B9 /* mutex.c */; };
+		F485A6931714164000D316B9 /* networkstack.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A6921714164000D316B9 /* networkstack.h */; };
+		F485A6951714164C00D316B9 /* networkstack-udp.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6941714164C00D316B9 /* networkstack-udp.c */; };
+		F485A69817141CBD00D316B9 /* networkstack-tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69717141CBD00D316B9 /* networkstack-tcp.c */; };
+		F485A69A17143FC500D316B9 /* networkstack-options.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69917143FC500D316B9 /* networkstack-options.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +58,11 @@
 		F485A67F171407F300D316B9 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utils.c; path = ../../source/utils.c; sourceTree = "<group>"; };
 		F485A68D17140D2C00D316B9 /* mutex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mutex.h; path = ../../include/mutex.h; sourceTree = "<group>"; };
 		F485A68E17140E5A00D316B9 /* mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mutex.c; path = ../../platform/unix/mutex.c; sourceTree = "<group>"; };
+		F485A6921714164000D316B9 /* networkstack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = networkstack.h; path = ../../include/networkstack.h; sourceTree = "<group>"; };
+		F485A6941714164C00D316B9 /* networkstack-udp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-udp.c"; path = "../../source/networkstack-udp.c"; sourceTree = "<group>"; };
+		F485A69717141CBD00D316B9 /* networkstack-tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-tcp.c"; path = "../../source/networkstack-tcp.c"; sourceTree = "<group>"; };
+		F485A69917143FC500D316B9 /* networkstack-options.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-options.c"; path = "../../source/networkstack-options.c"; sourceTree = "<group>"; };
+		F485A69B171440AA00D316B9 /* networkstack-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "networkstack-private.h"; path = "../../source/networkstack-private.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +96,10 @@
 		F485A659171407A800D316B9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F485A69B171440AA00D316B9 /* networkstack-private.h */,
+				F485A69917143FC500D316B9 /* networkstack-options.c */,
+				F485A6941714164C00D316B9 /* networkstack-udp.c */,
+				F485A69717141CBD00D316B9 /* networkstack-tcp.c */,
 				F485A67B171407F300D316B9 /* conversion.c */,
 				F485A67C171407F300D316B9 /* log.c */,
 				F485A67D171407F300D316B9 /* random.c */,
@@ -101,6 +114,7 @@
 		F485A65A171407AF00D316B9 /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				F485A6921714164000D316B9 /* networkstack.h */,
 				F485A65B171407BE00D316B9 /* babcode.h */,
 				F485A65C171407BE00D316B9 /* conversion.h */,
 				F485A65D171407BE00D316B9 /* file.h */,
@@ -153,6 +167,7 @@
 				F485A66C171407BE00D316B9 /* uart.h in Headers */,
 				F485A66D171407BE00D316B9 /* utils.h in Headers */,
 				F485A66E171407BE00D316B9 /* wait.h in Headers */,
+				F485A6931714164000D316B9 /* networkstack.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,6 +233,9 @@
 				F485A683171407F300D316B9 /* time.c in Sources */,
 				F485A684171407F300D316B9 /* utils.c in Sources */,
 				F485A68F17140E5A00D316B9 /* mutex.c in Sources */,
+				F485A6951714164C00D316B9 /* networkstack-udp.c in Sources */,
+				F485A69817141CBD00D316B9 /* networkstack-tcp.c in Sources */,
+				F485A69A17143FC500D316B9 /* networkstack-options.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
