@@ -1,14 +1,22 @@
-//
-//  networkstack-private.h
-//  babcode-macosx
-//
-//  Created by Baptiste on 09/04/13.
-//  Copyright (c) 2013 Baptiste. All rights reserved.
-//
 
-#ifndef babcode_macosx_networkstack_private_h
-#define babcode_macosx_networkstack_private_h
-
-
-
+#if PLATFORM == PLATFORM_WINDOWS
+#   include <winsock2.h>
+#elif PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
+#   include <string.h>
+#   include <sys/socket.h>
+#   include <netinet/in.h>
+#   include <netinet/tcp.h>
+#   include <fcntl.h>
+#   include <unistd.h>
+#   include <errno.h>
 #endif
+
+#if PLATFORM == PLATFORM_WINDOWS
+#   pragma comment( lib, "wsock32.lib" )
+#endif
+
+#include <stdlib.h>
+#include <stdio.h>
+
+
+#define Network_GetLastError()	(errno)

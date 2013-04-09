@@ -79,6 +79,7 @@ extern void AddressGetABCD(IpAddress * addr, UInt32 ip);
 
 // socket option
 extern Int32 SocketSetBlockMode(Socket *s, Int32 Enable);
+extern Int32 SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
     
 // tcp socket
 extern Int32 SocketTcpInit(Socket * s);

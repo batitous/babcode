@@ -96,7 +96,7 @@ void AddressGetABCD(IpAddress * addr, UInt32 ip)
 }
 
 
-int InitSocketPlatform()
+Int32 InitSocketPlatform()
 {
 #if PLATFORM == PLATFORM_WINDOWS
     WSADATA WsaData;
@@ -119,10 +119,9 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     struct sockaddr_in address;
     
     int handle = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
-    
     if ( handle <= 0 )
     {
-        printf( "failed to create socket\n" );
+        LOG("error: udp socket\n");
         return 0;
     }
     
@@ -132,7 +131,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     
     if ( bind( handle, (const struct sockaddr*) &address, sizeof(struct sockaddr_in) ) < 0 )
     {
-        printf( "failed to bind socket\n" );
+        LOG("error: bind\n" );
         return 0;
     }
     
@@ -143,7 +142,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     int nonBlocking = 1;
     if ( fcntl( handle, F_SETFL, O_NONBLOCK, nonBlocking ) == -1 )
     {
-        printf( "failed to set non-blocking socket\n" );
+        LOG("error: set non-blocking socket\n" );
         return 0;
     }
     
@@ -152,7 +151,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     DWORD nonBlocking = 1;
     if ( ioctlsocket( handle, FIONBIO, &nonBlocking ) != 0 )
     {
-        printf( "failed to set non-blocking socket\n" );
+        LOG("error: set non-blocking socket\n" );
         return 0;
     }
     
@@ -182,7 +181,7 @@ Int32 SocketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 
     
     if ( sent_bytes != packet_size )
     {
-        printf( "failed to send packet: return value = %ld\n", sent_bytes );
+        LOG("error: failed to send packet: return value = %ld\n", sent_bytes );
         return 0;
     }
     
@@ -314,7 +313,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     
     if ( bytes_read <= CONNECTION_HEADER_SIZE )
     {
-        printf("Not enough bytes for header (%d)!\n", bytes_read);
+        LOG("error: Not enough bytes for header (%d)!\n", bytes_read);
         return 0;
     }
     
@@ -322,7 +321,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     
     if (id!=connection->protocolId)
     {
-        printf("This id is not for this connection %d !\n",id);
+        LOG("error: This id is not for this connection %d !\n",id);
         return 0;
     }
     
@@ -368,7 +367,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     else
     {
         // we receive a packet with a very old ack and we can't check
-        printf("Receive ack %d local %d, too old !\n", ack, connection->localSequence);
+        LOG("error: Receive ack %d local %d, too old !\n", ack, connection->localSequence);
     }
         
     
