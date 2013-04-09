@@ -25,34 +25,24 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
+#include "../../include/babcode.h"
 
-// This file must be included in your main code.
+void MutexInit(Mutex * m)
+{
+    pthread_mutex_init(m, NULL);
+}
 
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
+void MutexLock(Mutex * m)
+{
+    pthread_mutex_lock(m);
+}
 
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
-#endif
+void MutexUnlock(Mutex * m)
+{
+    pthread_mutex_unlock(m);
+}
 
-
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-
-
-#endif
+void MutexDelete(Mutex *m)
+{
+    pthread_mutex_destroy(m);
+}

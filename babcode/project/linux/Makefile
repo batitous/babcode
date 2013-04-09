@@ -7,7 +7,7 @@ EXE=./libbabcode-linux-x86.a
 
 # File source list: Add your source!
 SRC_FILES=conversion.c log.c random.c time.c 
-SRC_FILES+= file.c thread.c wait.c
+SRC_FILES+= file.c thread.c wait.c mutex.c
 SRC_FILES+= uart.c
 
 # Temporary repertory
@@ -18,7 +18,8 @@ SRC_PATH=../../source ../../platform/unix ../../platform/linux
 
 SOURCE_FILES =$(SRC_FILES)
 
-# Application define
+# Library define
+# -Dxxx=1
 COMPILER_DEFINES=
 
 # Include search path
@@ -32,7 +33,7 @@ PATH_TO_GCC=
 GCC_COMPILER=gcc
 
 # Compiler options
-COMPILER_OPTION=-Os -Wall
+COMPILER_OPTION=-O2 -Wall
 
 
 # Archiver 

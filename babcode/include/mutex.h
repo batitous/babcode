@@ -25,34 +25,41 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
+#ifndef BABCODE_MUTEX_H
+#define BABCODE_MUTEX_H
 
-// This file must be included in your main code.
-
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
-
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
+#ifdef __cplusplus
+extern "C" {
 #endif
 
+    
+#if PLATFORM == PLATFORM_WINDOWS
+	
+#   include <windows.h>
+    
+	typedef CRITICAL_SECTION Mutex;
+	
+#elif PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
+    
+#   include <stdio.h>
+#   include <stdlib.h>
+#   include <pthread.h>
+#   include <semaphore.h>
+    
+	typedef pthread_mutex_t Mutex;
+	
+#endif
+    
+extern void MutexInit(Mutex * m);
+    
+extern void MutexLock(Mutex * m);
+    
+extern void MutexUnlock(Mutex * m);
 
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
+extern void MutexDelete(Mutex *m);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif

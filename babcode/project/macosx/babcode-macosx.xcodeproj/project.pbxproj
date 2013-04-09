@@ -27,6 +27,7 @@
 		F485A682171407F300D316B9 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67D171407F300D316B9 /* random.c */; };
 		F485A683171407F300D316B9 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67E171407F300D316B9 /* time.c */; };
 		F485A684171407F300D316B9 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67F171407F300D316B9 /* utils.c */; };
+		F485A68F17140E5A00D316B9 /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A68E17140E5A00D316B9 /* mutex.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,8 @@
 		F485A67D171407F300D316B9 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = ../../source/random.c; sourceTree = "<group>"; };
 		F485A67E171407F300D316B9 /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = time.c; path = ../../source/time.c; sourceTree = "<group>"; };
 		F485A67F171407F300D316B9 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utils.c; path = ../../source/utils.c; sourceTree = "<group>"; };
+		F485A68D17140D2C00D316B9 /* mutex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mutex.h; path = ../../include/mutex.h; sourceTree = "<group>"; };
+		F485A68E17140E5A00D316B9 /* mutex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mutex.c; path = ../../platform/unix/mutex.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +111,7 @@
 				F485A662171407BE00D316B9 /* uart.h */,
 				F485A663171407BE00D316B9 /* utils.h */,
 				F485A664171407BE00D316B9 /* wait.h */,
+				F485A68D17140D2C00D316B9 /* mutex.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";
@@ -118,6 +122,7 @@
 				F485A675171407E600D316B9 /* file.c */,
 				F485A676171407E600D316B9 /* thread.c */,
 				F485A677171407E600D316B9 /* wait.c */,
+				F485A68E17140E5A00D316B9 /* mutex.c */,
 			);
 			name = Unix;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 				F485A682171407F300D316B9 /* random.c in Sources */,
 				F485A683171407F300D316B9 /* time.c in Sources */,
 				F485A684171407F300D316B9 /* utils.c in Sources */,
+				F485A68F17140E5A00D316B9 /* mutex.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
