@@ -53,6 +53,7 @@
 #include "uart.h"
 #include "thread.h"
 #include "mutex.h"
+#include "networkstack.h"
 
 
 #endif

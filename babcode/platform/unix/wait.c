@@ -45,7 +45,7 @@ UInt32 GetTicks(void)
 
 	if (gettimeofday(&tv,NULL)<0)
     {
-        LOG("gettimeofday failed\n");
+        LOG("error: gettimeofday failed\n");
 		return 0;
     }
     

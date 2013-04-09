@@ -54,7 +54,7 @@ UInt32 InitUART(const UInt8 *tty_name, UInt32 baudrate)
 	
     if (fd_uart < 0)
     {
-        LOG("Failed to open UART %s\n", tty_name);
+        LOG("error: open uart %s\n", tty_name);
         return UART_OPEN_FAILED;
     }
 	
@@ -85,7 +85,7 @@ UInt32 InitUART(const UInt8 *tty_name, UInt32 baudrate)
     tcflush(fd_uart, TCIFLUSH);
     if(tcsetattr(fd_uart, TCSANOW, &options))
     {
-		LOG("Could not change serial port behaviour (wrong baudrate?)\n");
+		LOG("error: could not change uart port behaviour (wrong baudrate?)\n");
 		return UART_CONF_FAILED;
     }
 	

@@ -53,14 +53,14 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	file = open( (Int8 *)filename, O_WRONLY | O_CREAT | O_TRUNC, mode );
 	if( file == -1 )
 	{
-		LOG("Error to open file %s !\n", filename);
+		LOG("error: open file %s !\n", filename);
 		return FILE_OPEN_ERROR ;
 	}
 
 	result = (UInt32)write(file,  buffer, size);
 	if( result != size )
 	{
-		LOG("Write error (%d writed instead of %ld).\n",result,size);
+		LOG("error: write (%d writed instead of %ld).\n",result,size);
 		return FILE_IO_ERROR;
 	}
 
@@ -100,7 +100,7 @@ UInt8 *FileMmapRead(UInt8 *filename, UInt32 *len)
     fileDescriptor = open( (char *)filename, O_RDONLY, 0 );
     if( fileDescriptor < 0 )
     {
-        LOG("Error to open file %s\n", filename );
+        LOG("error: open file %s\n", filename );
         return NULL;
     }
     else
@@ -116,7 +116,7 @@ UInt8 *FileMmapRead(UInt8 *filename, UInt32 *len)
             ptr = mmap(NULL,statInfo.st_size,PROT_READ,MAP_SHARED,fileDescriptor,0);
             if( ptr == MAP_FAILED )
             {
-                LOG("Error to mmap file %s\n", filename );
+                LOG("error: mmap file %s\n", filename );
                 return NULL;
             }
             else
@@ -143,7 +143,7 @@ UInt8 *FileRead( UInt8 *filename, UInt32 *len )
 	file = open((Int8 *)filename,O_RDONLY);
 	if( file == -1 )
 	{
-		LOG("Error to open file %s\n", filename );
+		LOG("error: open file %s\n", filename );
 		return NULL ;
 	}
 
@@ -154,14 +154,14 @@ UInt8 *FileRead( UInt8 *filename, UInt32 *len )
 	buffer =(UInt8*) malloc(size);
 	if( buffer == NULL )
 	{
-		LOG("Malloc failed !\n");
+		LOG("error: malloc failed !\n");
 		return NULL ;
 	}
 
 	//read the file and put the data in the target buffer
 	if( read( file, buffer, size ) == -1 )
 	{
-		LOG("Read failed\n");
+		LOG("error: read failed\n");
 		return NULL ;
 	}
 
@@ -182,27 +182,27 @@ UInt8 *FileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
 	f = open( (Int8 *)filename , O_RDONLY);
 	if( f == -1 )
 	{
-		LOG("Error to open file %s!\n",filename);
+		LOG("error: open file %s!\n",filename);
 		return NULL ;
 	}
 
 	buffer = (UInt8 *)malloc( *len_to_read);
 	if( buffer == NULL )
 	{
-		LOG("Malloc failed");
+		LOG("error: malloc failed");
 		return NULL ;
 	}
 
 	if(lseek(f,index,SEEK_SET) == -1 )
 	{
-		LOG("Lseek failed\n");
+		LOG("error: lseek failed\n");
 		return NULL ;
 	}
 
 	//read the file and put the data in the target buffer
 	if( (size = (UInt32)read( f, buffer, *len_to_read )) == -1 )
 	{
-		LOG("Read failed\n");
+		LOG("error: read failed\n");
 		return NULL ;
 	}
 
