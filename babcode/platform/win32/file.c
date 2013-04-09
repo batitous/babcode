@@ -50,16 +50,14 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	file = fopen( filename, "wb" );
 	if( file == NULL )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Error to open file %s !\n", filename );
+        LOG("error open file %s !\n", filename );
 		return FILE_OPEN_ERROR ;
 	}
 
 	result = fwrite(buffer,sizeof(UInt8),size,file);
 	if( result != size )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"I/O Error (write : %d demand : %d) !\n",result,size);
+		LOG("I/O Error (write : %d demand : %d) !\n",result,size);
 		return FILE_IO_ERROR;
 	}
 
@@ -79,15 +77,13 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 
 	if( f == INVALID_HANDLE_VALUE )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Error to open file %s!\n",filename);
+		LOG("Error to open file %s!\n",filename);
 		return NULL ;
 	}
 
 	if( (size = GetFileSize(f,NULL)) == INVALID_FILE_SIZE )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Get file size Failed !\n");
+		LOG_ERR1("get file size");
 		return NULL ;
 	}
 
@@ -95,15 +91,13 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	buffer =(UInt8 *) malloc(size);
 	if( buffer == NULL )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Malloc failed !");
+		LOG_ERR1("malloc");
 		return NULL ;
 	}
 
 	if( ReadFile(f,buffer,size,len,NULL) == 0 )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Read failed");
+		LOG_ERR1("read");
 		return NULL ;
 	}
 	
@@ -155,23 +149,20 @@ UInt8 * FileMmapRead( UInt8 * path, UInt32 *len)
 	f = fopen( filename , "rb");
 	if( f == NULL )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Error to open file %s!\n",filename);
+		LOG("Error to open file %s!\n",filename);
 		return NULL ;
 	}
 
 	buffer = (UInt8 *)malloc( *len_to_read);
 	if( buffer == NULL )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Malloc failed");
+		LOG_ERR1("malloc");
 		return NULL ;
 	}
 
 	if( fseek(f,index,SEEK_SET) != 0 )
 	{
-		LogAdd(1,"In file %s at line %d : ",(char *)__FILE__ ,  __LINE__); 
-		LogAdd(0,"Fseek failed");
+		LOG_ERR1("fseek");
 		return NULL ;
 	}
 	

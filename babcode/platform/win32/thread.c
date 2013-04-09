@@ -38,7 +38,7 @@ void ThreadInit(Thread * t, void *(* func)(void *), void *param )
 						 param,0,&temp->id);
 	if( t->h == NULL )
 	{
-		LOG("Failed to create thread!\n");
+		LOG_ERR1("create thread");
 	}
 }
 
