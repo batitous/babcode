@@ -25,36 +25,25 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
-
-// This file must be included in your main code.
-
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
-
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
-#endif
+#include "../../include/babcode.h"
 
 
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-#include "conditionvar.h"
-#include "networkstack.h"
+void ConditionVarInit(ConditionVar * cv)
+{
+    pthread_cond_init(cv,NULL);
+}
 
+void ConditionVarWait(ConditionVar * cv, Mutex * m)
+{
+    pthread_cond_wait(cv,m);
+}
 
-#endif
+void ConditionVarSignal(ConditionVar * cv)
+{
+    pthread_cond_signal(cv);
+}
+
+void ConditionVarDelete(ConditionVar * cv)
+{
+    pthread_cond_destroy(cv);
+}

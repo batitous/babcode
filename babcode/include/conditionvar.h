@@ -25,36 +25,39 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
+#ifndef BABCODE_CONDITIONVAR_H
+#define BABCODE_CONDITIONVAR_H
 
-// This file must be included in your main code.
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+    
+#if PLATFORM == PLATFORM_WINDOWS
 
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
-
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
+typedef struct _ConditionVar_
+{
+    UInt32 waiters_count_;
+    CRITICAL_SECTION waiters_count_lock_;
+    HANDLE events_[2];
+} ConditionVar;
+	
+#elif PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
+        
+	typedef pthread_cond_t ConditionVar;
+	
 #endif
 
-
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-#include "conditionvar.h"
-#include "networkstack.h"
-
+extern void ConditionVarInit(ConditionVar * cv);
+    
+extern void ConditionVarWait(ConditionVar * cv, Mutex * m);
+    
+extern void ConditionVarSignal(ConditionVar * cv);
+    
+extern void ConditionVarDelete(ConditionVar * cv);
+    
+#ifdef __cplusplus
+}
+#endif
 
 #endif

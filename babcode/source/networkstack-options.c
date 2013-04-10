@@ -127,7 +127,7 @@ Int32 SocketSetKeepAlive(Socket *s, Int32 Enable)
 	return 1;
 }
 
-
+// set TCP_NODELAY before sending short messages that should be sent immediately
 Int32 SocketSetTcpNoDelay(Socket *s, Int32 Enable)
 {
 	if(setsockopt(s->handle, IPPROTO_TCP, TCP_NODELAY, (void*)&Enable, sizeof(Enable)) < 0)
@@ -164,4 +164,5 @@ Int32 SocketSetMulticastMembership(Socket *s, UInt32 faceIP, UInt32 multicastIP)
 	
 	return 1;
 }
+
 
