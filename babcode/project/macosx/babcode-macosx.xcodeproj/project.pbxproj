@@ -33,6 +33,8 @@
 		F485A69817141CBD00D316B9 /* networkstack-tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69717141CBD00D316B9 /* networkstack-tcp.c */; };
 		F485A69A17143FC500D316B9 /* networkstack-options.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69917143FC500D316B9 /* networkstack-options.c */; };
 		F485A6A1171560E000D316B9 /* conditionvar.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A0171560E000D316B9 /* conditionvar.c */; };
+		F485A6A61715A6F600D316B9 /* uart_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A51715A6F600D316B9 /* uart_unix.c */; };
+		F485A6A91715ADAC00D316B9 /* networkstack_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A81715ADAC00D316B9 /* networkstack_osx.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		F485A69B171440AA00D316B9 /* networkstack-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "networkstack-private.h"; path = "../../source/networkstack-private.h"; sourceTree = "<group>"; };
 		F485A6A0171560E000D316B9 /* conditionvar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = conditionvar.c; path = ../../platform/unix/conditionvar.c; sourceTree = "<group>"; };
 		F485A6A2171560FE00D316B9 /* conditionvar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = conditionvar.h; path = ../../include/conditionvar.h; sourceTree = "<group>"; };
+		F485A6A51715A6F600D316B9 /* uart_unix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = uart_unix.c; path = ../../platform/unix/uart_unix.c; sourceTree = "<group>"; };
+		F485A6A81715ADAC00D316B9 /* networkstack_osx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = networkstack_osx.c; path = ../../platform/macosx/networkstack_osx.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +146,7 @@
 				F485A677171407E600D316B9 /* wait.c */,
 				F485A68E17140E5A00D316B9 /* mutex.c */,
 				F485A6A0171560E000D316B9 /* conditionvar.c */,
+				F485A6A51715A6F600D316B9 /* uart_unix.c */,
 			);
 			name = Unix;
 			sourceTree = "<group>";
@@ -149,6 +154,7 @@
 		F485A670171407CB00D316B9 /* MacOSX */ = {
 			isa = PBXGroup;
 			children = (
+				F485A6A81715ADAC00D316B9 /* networkstack_osx.c */,
 				F485A671171407D900D316B9 /* uart.c */,
 				F485A672171407D900D316B9 /* utils_osx.c */,
 			);
@@ -242,6 +248,8 @@
 				F485A69817141CBD00D316B9 /* networkstack-tcp.c in Sources */,
 				F485A69A17143FC500D316B9 /* networkstack-options.c in Sources */,
 				F485A6A1171560E000D316B9 /* conditionvar.c in Sources */,
+				F485A6A61715A6F600D316B9 /* uart_unix.c in Sources */,
+				F485A6A91715ADAC00D316B9 /* networkstack_osx.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

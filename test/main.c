@@ -186,7 +186,7 @@ int main(int argc, const char * argv[])
     printf("Size of Int32: %d\n", (Int32)sizeof(Int32));
     printf("Size of Int64: %ld\n", sizeof(Int64));
     
-    LogOpen("/Users/baptiste/Desktop/Baptiste/projects/babcode/test/test.log");
+    LogOpen(pathTest);
     
     LOG_ERR1("mouarf");
     LOG("COUCOU\n");

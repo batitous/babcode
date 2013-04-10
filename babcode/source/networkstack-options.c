@@ -29,6 +29,24 @@
 
 #include "networkstack-private.h"
 
+void FreeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber)
+{
+	int i;
+    
+	if(!interfaces || interfaceNumber <= 0)
+		return;
+    
+	for(i=0;i<interfaceNumber;i++)
+	{
+		if(interfaces[i].name)
+			free(interfaces[i].name);
+        
+		if(interfaces[i].description)
+			free(interfaces[i].description);
+	}
+    
+	free(interfaces);
+}
 
 NetworkStatus SocketSetBlock(Socket *s, Bool enable)
 {

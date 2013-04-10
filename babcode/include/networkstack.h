@@ -116,6 +116,22 @@ extern Int32 ConnectionSend(NetConnection * connection, const void * data, UInt3
 
 extern Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size);
 
+#define MAC_ADDR_SIZE	6
+    
+typedef struct _interface_info_
+{
+    Int8 *	name;		/**< interface name */
+    Int8 *	description; /**< description (null on linux) */
+    UInt32	ip;			/**< ip address */
+    UInt32	netmask;	/**< ip mask */
+    UInt8	mac[MAC_ADDR_SIZE]; /**< MAC address */
+    UInt32	pkSize;		/**< MTU maximum size */
+} NetInterfaceInfo;
+
+extern Bool GetNetworkInterface(NetInterfaceInfo **interfaces,Int32 * interfaceNumber);
+extern void FreeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber);
+
+
 #ifdef __cplusplus
 }
 #endif

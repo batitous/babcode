@@ -9,7 +9,7 @@ EXE=./libbabcode-linux-x86.a
 SRC_FILES=conversion.c log.c random.c time.c utils.c
 SRC_FILES+= networkstack-udp.c networkstack-tcp.c networkstack-options.c	
 SRC_FILES+= file.c thread.c wait.c mutex.c conditionvar.c
-SRC_FILES+= uart.c uart_unix.c
+SRC_FILES+= uart.c uart_unix.c networkstack_linux.c
 
 # Temporary repertory
 BUILD_PATH=build/
