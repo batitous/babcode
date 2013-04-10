@@ -41,9 +41,15 @@
 #include <errno.h>
 
 static int fd_uart;
+
 static UInt8 tmp0[1];
 static UInt8 tmp1[1];
 static struct termios gOriginalTTYAttrs;
+
+int get_fd_uart()
+{
+    return fd_uart;
+}
 
 UInt32 InitUART(const UInt8 *tty_name, UInt32 baudrate)
 {
@@ -199,132 +205,5 @@ void CloseUART(void)
 	
 }
 
-
-UInt32 GetStatus()
-{
-    int status;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    return status;
-}
-
-void ClearDTR()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    status |= TIOCM_DTR;
-
-    ioctl(fd_uart, TIOCMSET, &status);
-}
-
-void SetDTR()
-{
-    UInt32 status = 0 ;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    status &= ~TIOCM_DTR;
-
-    ioctl(fd_uart, TIOCMSET, &status);
-}
-
-void ClearRTS()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    status |= TIOCM_RTS;
-
-    ioctl(fd_uart, TIOCMSET, &status);
-}
-
-void SetRTS()
-{
-    UInt32 status = 0 ;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    status &= ~TIOCM_RTS;
-
-    ioctl(fd_uart, TIOCMSET, &status);
-}
-
-
-
-UInt8 isDSRset()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    if(status & TIOCM_DSR)
-        return 0;
-    else
-        return 1;
-}
-
-UInt8 isDTRset()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    if(status & TIOCM_DTR)
-        return 0;
-    else
-        return 1;
-}
-
-UInt8 isRTSset()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    if(status & TIOCM_RTS)
-        return 0;
-    else
-        return 1;
-}
-
-UInt8 isCTSset()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    if(status & TIOCM_CTS)
-        return 0;
-    else
-        return 1;
-}
-
-UInt8 isDCDset()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    if(status & TIOCM_CAR)
-        return 0;
-    else
-        return 1;
-}
-
-UInt8 isRNGset()
-{
-    UInt32 status = 0;
-
-    ioctl(fd_uart, TIOCMGET, &status);
-
-    if(status & TIOCM_RNG)
-        return 0;
-    else
-        return 1;
-}
 
 

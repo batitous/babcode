@@ -27,7 +27,7 @@
 
 #include "../include/babcode.h"
 
-#include <strings.h>
+#include <string.h>
 #include <unistd.h>
 
 void Write32bitsToBuffer(UInt8 * buffer, UInt32 integer)

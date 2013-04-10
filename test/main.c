@@ -171,11 +171,13 @@ int main(int argc, const char * argv[])
     char AbsCmd[256];
     int lAbsCmd;
     
-    lAbsCmd = sizeof(AbsCmd);
-    GetRealPath(argv[0], AbsCmd, &lAbsCmd);
+    char * pathTest = "../../../test.log";
     
-    printf("argv0 %s\n",argv[0]);
-    printf("abscmd %s\n", AbsCmd);
+    lAbsCmd = sizeof(AbsCmd);
+    GetRealPath(pathTest, AbsCmd, &lAbsCmd);
+    
+    printf("pathtest %s\n",pathTest);
+    printf("abscmd   %s\n", AbsCmd);
 
     GetTime(&time);
     printf("Time: %d.%d.%d - %d.%d.%d\n", time.day, time.month, time.year, time.hour, time.minute, time.second);
@@ -188,7 +190,6 @@ int main(int argc, const char * argv[])
     
     LOG_ERR1("mouarf");
     LOG("COUCOU\n");
-    
     
     
     MutexInit(&myMutex);

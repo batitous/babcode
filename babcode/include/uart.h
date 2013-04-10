@@ -98,29 +98,29 @@ extern UInt32 GetByteFromUARTNoWait(UInt8 *data);
  */
 extern UInt32  GetBufferFromUART (UInt8 *Buffer,UInt32 Count);
 
+extern void CloseUART(void);
+    
+    
+
+    
 
 // implemented on Linux/Mac OS X
-extern void SetDTR(void);
-extern void ClearDTR(void);
+extern void UARTSetDTR(void);
+extern void UARTClearDTR(void);
 
-extern void SetRTS(void);
-extern void ClearRTS(void);
+extern void UARTSetRTS(void);
+extern void UARTClearRTS(void);
 
-extern UInt32 GetStatus(void);
+extern UInt32 UARTGetStatus(void);
 
-extern UInt8 isDSRset(void);
-extern UInt8 isDTRset(void);
-extern UInt8 isRTSset(void);
-extern UInt8 isCTSset(void);
-extern UInt8 isDCDset(void);
-extern UInt8 isRNGset(void);
+extern UInt8 UARTisDSRset(void);
+extern UInt8 UARTisDTRset(void);
+extern UInt8 UARTisRTSset(void);
+extern UInt8 UARTisCTSset(void);
+extern UInt8 UARTisDCDset(void);
+extern UInt8 UARTisRNGset(void);
 
 
-
-/** @brief Close UART
- *
- */
-extern void CloseUART(void);
 
 #ifdef __cplusplus
  }
