@@ -44,7 +44,9 @@ extern Int16 Read16bitsFromBuffer(UInt8 * buffer);
     
 extern UInt32 GetExecutablePath(Int8 * buff, UInt32 buffSize);
 
+extern Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize);
 
+    
 #ifdef __cplusplus
   }
 #endif

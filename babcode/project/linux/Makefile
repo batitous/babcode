@@ -8,7 +8,7 @@ EXE=./libbabcode-linux-x86.a
 # File source list: Add your source!
 SRC_FILES=conversion.c log.c random.c time.c utils.c
 SRC_FILES+= networkstack-udp.c networkstack-tcp.c networkstack-options.c	
-SRC_FILES+= file.c thread.c wait.c mutex.c
+SRC_FILES+= file.c thread.c wait.c mutex.c conditionvar.c
 SRC_FILES+= uart.c
 
 # Temporary repertory

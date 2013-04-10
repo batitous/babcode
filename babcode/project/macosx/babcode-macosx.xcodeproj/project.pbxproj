@@ -32,6 +32,7 @@
 		F485A6951714164C00D316B9 /* networkstack-udp.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6941714164C00D316B9 /* networkstack-udp.c */; };
 		F485A69817141CBD00D316B9 /* networkstack-tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69717141CBD00D316B9 /* networkstack-tcp.c */; };
 		F485A69A17143FC500D316B9 /* networkstack-options.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69917143FC500D316B9 /* networkstack-options.c */; };
+		F485A6A1171560E000D316B9 /* conditionvar.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A0171560E000D316B9 /* conditionvar.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		F485A69717141CBD00D316B9 /* networkstack-tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-tcp.c"; path = "../../source/networkstack-tcp.c"; sourceTree = "<group>"; };
 		F485A69917143FC500D316B9 /* networkstack-options.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-options.c"; path = "../../source/networkstack-options.c"; sourceTree = "<group>"; };
 		F485A69B171440AA00D316B9 /* networkstack-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "networkstack-private.h"; path = "../../source/networkstack-private.h"; sourceTree = "<group>"; };
+		F485A6A0171560E000D316B9 /* conditionvar.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = conditionvar.c; path = ../../platform/unix/conditionvar.c; sourceTree = "<group>"; };
+		F485A6A2171560FE00D316B9 /* conditionvar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = conditionvar.h; path = ../../include/conditionvar.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +129,7 @@
 				F485A663171407BE00D316B9 /* utils.h */,
 				F485A664171407BE00D316B9 /* wait.h */,
 				F485A68D17140D2C00D316B9 /* mutex.h */,
+				F485A6A2171560FE00D316B9 /* conditionvar.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";
@@ -137,6 +141,7 @@
 				F485A676171407E600D316B9 /* thread.c */,
 				F485A677171407E600D316B9 /* wait.c */,
 				F485A68E17140E5A00D316B9 /* mutex.c */,
+				F485A6A0171560E000D316B9 /* conditionvar.c */,
 			);
 			name = Unix;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				F485A6951714164C00D316B9 /* networkstack-udp.c in Sources */,
 				F485A69817141CBD00D316B9 /* networkstack-tcp.c in Sources */,
 				F485A69A17143FC500D316B9 /* networkstack-options.c in Sources */,
+				F485A6A1171560E000D316B9 /* conditionvar.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

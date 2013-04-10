@@ -158,6 +158,7 @@ void * tcpclient(void *p)
 }
 
 
+
 int main(int argc, const char * argv[])
 {    
     Time time;
@@ -166,6 +167,15 @@ int main(int argc, const char * argv[])
     
     // insert code here...
     printf("Hello, World!\n");
+    
+    char AbsCmd[256];
+    int lAbsCmd;
+    
+    lAbsCmd = sizeof(AbsCmd);
+    GetRealPath(argv[0], AbsCmd, &lAbsCmd);
+    
+    printf("argv0 %s\n",argv[0]);
+    printf("abscmd %s\n", AbsCmd);
 
     GetTime(&time);
     printf("Time: %d.%d.%d - %d.%d.%d\n", time.day, time.month, time.year, time.hour, time.minute, time.second);
