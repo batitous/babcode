@@ -25,37 +25,43 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
+#ifndef BABCODE_HASHTABLE_H
+#define BABCODE_HASHTABLE_H
 
-// This file must be included in your main code.
+#ifdef __cplusplus
+extern "C" {
+#endif
+    
+typedef struct _hashnode_
+{
+    UInt32 key;
+    UInt32 value;
+} HashNode;
 
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
+typedef struct _hashtable_
+{
+    HashNode *  nodes;
+    UInt32      size;
+    UInt32      population;
+} HashTable;
 
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
+    
+extern void HashTableInit(HashTable * table, UInt32 size);
+
+// key MUST BE not egual to 0
+extern HashNode * HashTableInsert(HashTable * table, UInt32 key);
+    
+// key MUST BE not egual to 0
+extern HashNode * HashTableLookup(HashTable * table, UInt32 key);
+    
+extern void HashTableDelete(HashTable * table, HashNode * node);
+    
+#ifdef __cplusplus
+}
 #endif
 
-
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "hashtable.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-#include "conditionvar.h"
-#include "networkstack.h"
-
-
 #endif
+    
+
+
+

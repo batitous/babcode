@@ -158,7 +158,6 @@ void * tcpclient(void *p)
 }
 
 
-
 int main(int argc, const char * argv[])
 {    
     Time time;
@@ -174,11 +173,12 @@ int main(int argc, const char * argv[])
     char * pathTest = "../../../test.log";
     
     lAbsCmd = sizeof(AbsCmd);
-    GetRealPath(pathTest, AbsCmd, &lAbsCmd);
+    if (GetRealPath(pathTest, AbsCmd, &lAbsCmd)==True)
+    {
+        printf("pathtest %s\n",pathTest);
+        printf("abscmd   %s\n", AbsCmd);
+    }
     
-    printf("pathtest %s\n",pathTest);
-    printf("abscmd   %s\n", AbsCmd);
-
     GetTime(&time);
     printf("Time: %d.%d.%d - %d.%d.%d\n", time.day, time.month, time.year, time.hour, time.minute, time.second);
     printf("isBissextile ? %d\n", time.isBissextile);
@@ -221,6 +221,41 @@ int main(int argc, const char * argv[])
 //    testNetworkStack();
     
     LogClose();
+    
+   
+
+    HashTable table;
+    
+    HashTableInit(&table,16);
+
+    int i;
+    int node = 8;
+    HashNode * inserted;
+    int base = 0x00001000;
+    
+    int begin = GetTicks();
+    for( i=0;i<node;i++)
+    {
+        inserted = HashTableInsert(&table, i+base);
+    }
+    int end = GetTicks();
+    
+    printf("Time to insert %d node: %4d\n",node, (end-begin) );
+    
+    for(i=0;i<table.size;i++)
+    {
+        printf("%4d key %4x\n", i, table.nodes[i].key);
+    }
+    
+    inserted = HashTableLookup(&table,base+4);
+    HashTableDelete(&table, inserted);
+    
+    printf("AFTER DELETE:\n");
+    for(i=0;i<table.size;i++)
+    {
+        printf("%4d key %4x\n", i, table.nodes[i].key);
+    }
+    
     
     printf("End of main!\n");
     
