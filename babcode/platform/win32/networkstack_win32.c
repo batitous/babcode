@@ -103,6 +103,10 @@ static UInt8 getIpTable(void)
 
 Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 {
+	UInt16 i16;
+	UInt8  i8;
+	UInt32 len;
+
 	PIP_ADAPTER_ADDRESSES pAddresses = NULL;
 	PIP_ADAPTER_ADDRESSES pCurrAddresses = NULL;
     
@@ -110,15 +114,11 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
     
 	ULONG outBufLen;
 	DWORD dwRetVal = 0;
-	InterfaceInfo *IPInfo = NULL;
+	NetInterfaceInfo *IPInfo = NULL;
 	int szIPInfo = 0;
 	
 	ULONG family = AF_INET;
 	ULONG flags = GAA_FLAG_INCLUDE_PREFIX;
-    
-	UInt16 i16;
-	UInt8  i8;
-	UInt32 len;
     
 	if(getIpTable()!=0)
 		return False;
@@ -170,36 +170,36 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 			
 			if (pCurrAddresses->FirstUnicastAddress != NULL)
 			{
-				IPInfo = realloc(IPInfo, (szIPInfo + 1) * sizeof(InterfaceInfo));
-				memset(&IPInfo[szIPInfo], 0, sizeof(InterfaceInfo));
+				IPInfo = realloc(IPInfo, (szIPInfo + 1) * sizeof(NetInterfaceInfo));
+				memset(&IPInfo[szIPInfo], 0, sizeof(NetInterfaceInfo));
                 
 				ipaddr = (struct sockaddr_in *)pCurrAddresses->FirstUnicastAddress->Address.lpSockaddr;
 				
 				IPInfo[szIPInfo].pkSize = pCurrAddresses->Mtu;
-				IPInfo[szIPInfo].Ip   = ipaddr->sin_addr.s_addr;
+				IPInfo[szIPInfo].ip   = ipaddr->sin_addr.s_addr;
 				
-				IPInfo[szIPInfo].Netmask = GetMask(IPInfo[szIPInfo].Ip);
+				IPInfo[szIPInfo].netmask = GetMask(IPInfo[szIPInfo].ip);
                 
 				if(pCurrAddresses->PhysicalAddressLength == MAC_ADDR_SIZE)
-					memcpy(&IPInfo[szIPInfo].bMAC, pCurrAddresses->PhysicalAddress, MAC_ADDR_SIZE);
+					memcpy(&IPInfo[szIPInfo].mac, pCurrAddresses->PhysicalAddress, MAC_ADDR_SIZE);
                 
 				len = wcslen( pCurrAddresses->FriendlyName);
 				
-				IPInfo[szIPInfo].Name = (UInt8 *)malloc(len+1);
+				IPInfo[szIPInfo].name = (UInt8 *)malloc(len+1);
 				for(i16=0,i8=0;i16<len;i16++,i8++)
 				{
-					IPInfo[szIPInfo].Name[i8]=(Int8)pCurrAddresses->FriendlyName[i16];
+					IPInfo[szIPInfo].name[i8]=(Int8)pCurrAddresses->FriendlyName[i16];
 				}
-				IPInfo[szIPInfo].Name[i8]=0;
+				IPInfo[szIPInfo].name[i8]=0;
                 
 				len = wcslen( pCurrAddresses->Description);
 				
-				IPInfo[szIPInfo].Description = (UInt8 *)malloc(len+1);
+				IPInfo[szIPInfo].description = (UInt8 *)malloc(len+1);
 				for(i16=0,i8=0;i16<len;i16++,i8++)
 				{
-					IPInfo[szIPInfo].Description[i8]=(Int8)pCurrAddresses->Description[i16];
+					IPInfo[szIPInfo].description[i8]=(Int8)pCurrAddresses->Description[i16];
 				}
-				IPInfo[szIPInfo].Description[i8]=0;
+				IPInfo[szIPInfo].description[i8]=0;
                 
 				szIPInfo++;
 			}

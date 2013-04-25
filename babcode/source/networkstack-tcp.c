@@ -85,7 +85,11 @@ NetworkStatus ServerTcpOpen(Socket *s, UInt16 port)
 
 NetworkStatus ServerTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr)
 {
-    int csock = 0;
+#if PLATFORM == PLATFORM_WINDOWS
+    typedef int socklen_t;
+#endif
+
+	int csock = 0;
 	struct sockaddr_in addr ;
     
 	int size = sizeof( struct sockaddr);
@@ -149,7 +153,11 @@ NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_
     if (result < 0)
     {
         int errorID = Network_GetLastError();
+#if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
         if (errorID==EINTR || errorID==EAGAIN)
+#else
+		if (errorID==WSAEINTR || errorID==WSAETIMEDOUT)
+#endif
             return NETWORK_TIMEOUT;
         
         LOG_ERR2("send", errorID);
@@ -176,7 +184,11 @@ _again_:
         if (ErrorID == WSAEINTR)
 #endif
                 goto _again_;
+#if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
         if (ErrorID==EAGAIN)
+#else
+		if (ErrorID==WSAETIMEDOUT)
+#endif
         {
             return NETWORK_TIMEOUT;
         }
@@ -199,7 +211,7 @@ NetworkStatus SocketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
 	toWrite = buffer_size;
 	while(toWrite > 0)
 	{
-		status = SocketTcpSend(s, buffer + buffer_size - toWrite, toWrite, &sended);
+		status = SocketTcpSend(s, (UInt8 *)buffer + buffer_size - toWrite, toWrite, &sended);
 		if (status == NETWORK_ERROR)
 		{
 			LOG_ERR1("SocketTcpSendAll");
@@ -220,7 +232,7 @@ NetworkStatus SocketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size)
 	toRead = buffer_size;
 	while (toRead > 0)
 	{
-		status = SocketTcpReceive(s, buffer + buffer_size - toRead, toRead, &received);
+		status = SocketTcpReceive(s, (UInt8 *)buffer + buffer_size - toRead, toRead, &received);
 		if (status == NETWORK_ERROR)
 		{
 			LOG_ERR1("SocketTcpReceiveAll");

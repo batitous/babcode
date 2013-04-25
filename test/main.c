@@ -7,7 +7,6 @@
 //
 
 #include <stdio.h>
-#include <pthread.h>
 
 #include "../babcode/include/babcode.h"
 
@@ -157,9 +156,50 @@ void * tcpclient(void *p)
     return NULL;
 }
 
+void hashtabletest(void)
+{
+	HashTable table;
+    int begin;
+	int i;
+	int node;
+	HashNode * inserted;
+    int base;
+	int end;
+
+    HashTableInit(&table,16);
+    
+    node = 8;
+    base = 0x00001000;
+    
+    begin = GetTicks();
+    for( i=0;i<node;i++)
+    {
+        inserted = HashTableInsert(&table, i+base);
+    }
+    end = GetTicks();
+    
+    printf("Time to insert %d node: %4d\n",node, (end-begin) );
+    
+    for(i=0;i<table.size;i++)
+    {
+        printf("%4d key %4x\n", i, table.nodes[i].key);
+    }
+    
+    inserted = HashTableLookup(&table,base+4);
+    HashTableDelete(&table, inserted);
+    
+    printf("AFTER DELETE:\n");
+    for(i=0;i<table.size;i++)
+    {
+        printf("%4d key %4x\n", i, table.nodes[i].key);
+    }
+}
 
 int main(int argc, const char * argv[])
-{    
+{   
+	char AbsCmd[256];
+    int lAbsCmd;
+	char * pathTest;
     Time time;
     
     Thread writerT, readerT;
@@ -167,10 +207,7 @@ int main(int argc, const char * argv[])
     // insert code here...
     printf("Hello, World!\n");
     
-    char AbsCmd[256];
-    int lAbsCmd;
-    
-    char * pathTest = "../../../test.log";
+    pathTest = "../../../test.log";
     
     lAbsCmd = sizeof(AbsCmd);
     if (GetRealPath(pathTest, AbsCmd, &lAbsCmd)==True)
@@ -224,37 +261,7 @@ int main(int argc, const char * argv[])
     
    
 
-    HashTable table;
-    
-    HashTableInit(&table,16);
-
-    int i;
-    int node = 8;
-    HashNode * inserted;
-    int base = 0x00001000;
-    
-    int begin = GetTicks();
-    for( i=0;i<node;i++)
-    {
-        inserted = HashTableInsert(&table, i+base);
-    }
-    int end = GetTicks();
-    
-    printf("Time to insert %d node: %4d\n",node, (end-begin) );
-    
-    for(i=0;i<table.size;i++)
-    {
-        printf("%4d key %4x\n", i, table.nodes[i].key);
-    }
-    
-    inserted = HashTableLookup(&table,base+4);
-    HashTableDelete(&table, inserted);
-    
-    printf("AFTER DELETE:\n");
-    for(i=0;i<table.size;i++)
-    {
-        printf("%4d key %4x\n", i, table.nodes[i].key);
-    }
+    hashtabletest();
     
     
     printf("End of main!\n");

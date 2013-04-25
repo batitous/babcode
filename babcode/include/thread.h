@@ -35,8 +35,9 @@ extern "C" {
 
 #if PLATFORM == PLATFORM_WINDOWS
 	
-#   include <windows.h>
-    
+	#define _WINSOCKAPI_
+	#   include <windows.h>
+
 	typedef struct _thread
 	{
 		DWORD id ;

@@ -116,6 +116,10 @@ void CloseSocketPlatform()
 
 Int32 SocketOpen(Socket * s, UInt16 port)
 {
+#if PLATFORM == PLATFORM_WINDOWS
+	DWORD nonBlocking = 1;
+#endif
+
     struct sockaddr_in address;
     
     int handle = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
@@ -148,7 +152,6 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     
 #elif PLATFORM == PLATFORM_WINDOWS
     
-    DWORD nonBlocking = 1;
     if ( ioctlsocket( handle, FIONBIO, &nonBlocking ) != 0 )
     {
         LOG_ERR1("set non-blocking socket" );
@@ -165,6 +168,7 @@ Int32 SocketOpen(Socket * s, UInt16 port)
 
 Int32 SocketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size)
 {
+	long sent_bytes;
     struct sockaddr_in address;
     int handle = s->handle;
     
@@ -176,7 +180,7 @@ Int32 SocketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 
     address.sin_addr.s_addr = htonl( destination_address );
     address.sin_port = htons( destination_port );
     
-    long sent_bytes = sendto( handle, (const char*)packet_data, packet_size,
+    sent_bytes = sendto( handle, (const char*)packet_data, packet_size,
                             0, (struct sockaddr*)&address, sizeof(struct sockaddr_in) );
     
     if ( sent_bytes != packet_size )

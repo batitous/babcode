@@ -36,10 +36,10 @@ static FILE * global_log_file = NULL;
 
 static void log_add(const char fmt[], va_list args)
 {
+	Time time;
+
     if (global_log_file==NULL)
         return;
-    
-    Time time;
     
     GetTime(&time);
     

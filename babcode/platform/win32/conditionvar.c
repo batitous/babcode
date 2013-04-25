@@ -39,7 +39,7 @@ void ConditionVarInit(ConditionVar * cv)
     // Initialize the count to 0.
     cv->waiters_count_ = 0;
     
-    InitializeCriticalSection(cv->waiters_count_lock_);
+    InitializeCriticalSection(&cv->waiters_count_lock_);
     
     // Create an auto-reset event.
     cv->events_[SIGNAL] = CreateEvent (NULL,  // no security
@@ -56,6 +56,9 @@ void ConditionVarInit(ConditionVar * cv)
 
 void ConditionVarWait(ConditionVar * cv, Mutex * m)
 {
+	int result;
+	int last_waiter;
+
     // Avoid race conditions.
     EnterCriticalSection (&cv->waiters_count_lock_);
     cv->waiters_count_++;
@@ -64,17 +67,15 @@ void ConditionVarWait(ConditionVar * cv, Mutex * m)
     // It's ok to release the <external_mutex> here since Win32
     // manual-reset events maintain state when used with
     // <SetEvent>.  This avoids the "lost wakeup" bug...
-    LeaveCriticalSection (external_mutex);
+    LeaveCriticalSection (m);
     
     // Wait for either event to become signaled due to <pthread_cond_signal>
     // being called or <pthread_cond_broadcast> being called.
-    int result = WaitForMultipleObjects (2, ev->events_, FALSE, INFINITE);
+    result = WaitForMultipleObjects (2, cv->events_, FALSE, INFINITE);
     
     EnterCriticalSection (&cv->waiters_count_lock_);
     cv->waiters_count_--;
-    int last_waiter =
-    result == WAIT_OBJECT_0 + BROADCAST
-    && cv->waiters_count_ == 0;
+    last_waiter = result == WAIT_OBJECT_0 + BROADCAST && cv->waiters_count_ == 0;
     LeaveCriticalSection (&cv->waiters_count_lock_);
     
     // Some thread called <pthread_cond_broadcast>.
@@ -84,14 +85,16 @@ void ConditionVarWait(ConditionVar * cv, Mutex * m)
         ResetEvent (cv->events_[BROADCAST]);
     
     // Reacquire the <external_mutex>.
-    EnterCriticalSection (external_mutex, INFINITE);
+    EnterCriticalSection (m);
 }
 
 void ConditionVarSignal(ConditionVar * cv)
 {
+	int have_waiters;
+
     // Avoid race conditions.
     EnterCriticalSection (&cv->waiters_count_lock_);
-    int have_waiters = cv->waiters_count_ > 0;
+    have_waiters = cv->waiters_count_ > 0;
     LeaveCriticalSection (&cv->waiters_count_lock_);
     
     if (have_waiters)
@@ -100,5 +103,5 @@ void ConditionVarSignal(ConditionVar * cv)
 
 void ConditionVarDelete(ConditionVar * cv)
 {
-    DeleteCriticalSection(cv->waiters_count_lock_);
+    DeleteCriticalSection(&cv->waiters_count_lock_);
 }

@@ -28,7 +28,10 @@
 #include "../include/babcode.h"
 
 #include <string.h>
-#include <unistd.h>
+
+#if	PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
+#	include <unistd.h>
+#endif
 
 void Write32bitsToBuffer(UInt8 * buffer, UInt32 integer)
 {
@@ -139,6 +142,10 @@ Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 	}
 	else
 	{
+#if PLATFORM == PLATFORM_WINDOWS
+//#	include <direct.h>
+#	define	getcwd	_getcwd
+#endif
 		//	copy cwd then concatenate string
 		if(!getcwd(AbsPath, sizeof(AbsPath)))
 			return False;

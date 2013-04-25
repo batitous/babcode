@@ -103,7 +103,7 @@ NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 			return NETWORK_ERROR;
 #else
         
-		if(setsockopt(Socket, SOL_SOCKET, SO_RCVTIMEO, (void*)&RecvTimeout, sizeof(RecvTimeout)) < 0)
+		if(setsockopt(s->handle, SOL_SOCKET, SO_RCVTIMEO, (void*)&RecvTimeout, sizeof(RecvTimeout)) < 0)
 			return NETWORK_ERROR;
         
 #endif

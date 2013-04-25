@@ -35,7 +35,7 @@
 void ThreadInit(Thread * t, void *(* func)(void *), void *param )
 {
 	t->h = CreateThread( NULL,0,(LPTHREAD_START_ROUTINE)*func,
-						 param,0,&temp->id);
+						 param,0,&t->id);
 	if( t->h == NULL )
 	{
 		LOG_ERR1("create thread");
