@@ -48,13 +48,13 @@ void FreeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber)
 	free(interfaces);
 }
 
-NetworkStatus SocketSetBlock(Socket *s, Bool enable)
+NetworkStatus SocketSetBlock(Socket *s, bool enable)
 {
 #if PLATFORM == PLATFORM_WINDOWS
     
 	u_long ioctl_arg;
 	
-    if (enable==False)
+    if (enable==false)
         ioctl_arg = 1;
     else
         ioctl_arg = 0;
@@ -73,7 +73,7 @@ NetworkStatus SocketSetBlock(Socket *s, Bool enable)
 		return NETWORK_ERROR;
 	}
     
-    if (enable == True)//blocking mode
+    if (enable == true)//blocking mode
         r = fcntl (s->handle, F_SETFL, flags & ~O_NONBLOCK);
     else//non blocking mode
         r = fcntl (s->handle, F_SETFL, flags | O_NONBLOCK);

@@ -34,7 +34,7 @@
 #include <errno.h>
 
 
-Bool StringToInt(Int8 const * str, Int32 * num)
+bool StringToInt(Int8 const * str, Int32 * num)
 {
     unsigned int pos;
     unsigned int i;
@@ -60,7 +60,7 @@ Bool StringToInt(Int8 const * str, Int32 * num)
 	pval = val;
         val *= 10;
 	if (val/10!=pval) /* check for overflow */
-	    return False;
+	    return false;
 
 	pval = val;
 	switch (str[i])
@@ -98,14 +98,14 @@ Bool StringToInt(Int8 const * str, Int32 * num)
 	    return -1;
 	}
 	if (val<pval) /* check for overflow */
-	    return False;
+	    return false;
     }
 
 	if (neg==1)
 		val = -val;
 
     *num = val;
-    return True;
+    return true;
 }
 
 UInt32 BinToDecimalAscii(Int32 bin,Int8 *result)
@@ -162,7 +162,7 @@ void BinToHex(UInt8 data,Int8 *result)
 	result[1]=temp;
 }
 
-Bool HexToBin(UInt8 *hex,UInt8 *bin)
+bool HexToBin(UInt8 *hex,UInt8 *bin)
 {
 	unsigned char i;
 	unsigned char tmp=0;
@@ -176,7 +176,7 @@ Bool HexToBin(UInt8 *hex,UInt8 *bin)
 		else if(hex[i] >= 'a' && hex[i] <= 'f')
 			tmp += hex[i] - 87; //97 - ... = 10
 		else
-			return False;
+			return false;
 
 		if(i==0)
 			tmp = tmp << 4;
@@ -184,10 +184,10 @@ Bool HexToBin(UInt8 *hex,UInt8 *bin)
 
 	*bin = tmp;
 
-	return True;
+	return true;
 }
 
-Bool StringToFloat(Int8 * str, float* floating)
+bool StringToFloat(Int8 * str, float* floating)
 {
 	int i;
 	int len;
@@ -198,16 +198,16 @@ Bool StringToFloat(Int8 * str, float* floating)
     char* pos = strchr(str, '.');
     if (pos == NULL && StringToInt(str, &integer) == 0) {
         *floating=integer;
-        return True;
+        return true;
     }
     else if (pos == NULL && StringToInt(str, &integer) != 0) {
-        return False;
+        return false;
     }
     
     pos[0]='\0';
     
-    if (StringToInt(str, &integer) != 0) return False;
-    if (StringToInt(pos+1, &decimal) != 0) return False;
+    if (StringToInt(str, &integer) != 0) return false;
+    if (StringToInt(pos+1, &decimal) != 0) return false;
     
     
     len = (int)strlen(pos+1);
@@ -216,10 +216,10 @@ Bool StringToFloat(Int8 * str, float* floating)
     *floating = (float)decimal/(float)divider;
     *floating += integer;
     
-    return True;
+    return true;
 }
 
-Bool StringIsHex(Int8 * str, int* integer)
+bool StringIsHex(Int8 * str, int* integer)
 {
     if (str[0] != '0') return -1;
     if (str[1] != 'x') return -1;
@@ -230,16 +230,16 @@ Bool StringIsHex(Int8 * str, int* integer)
         if (str[i] < '0' || str[i] > '9')
             if (str[i] < 'A' || str[i] > 'F')
                 if (str[i] < 'a' || str[i] > 'f')
-                    return False;
+                    return false;
     }
     
     char* pEnd=NULL;
     int val = (int)strtol(str, &pEnd, 16);
     if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN)) || (errno != 0 && val == 0))
-        return False;
+        return false;
     
     *integer = val;
     
-    return True;
+    return true;
 }
 

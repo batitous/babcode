@@ -226,7 +226,7 @@ void SocketClose(Socket *s)
 
 void ConnectionNew(NetConnection * connection, UInt32 id)
 {
-    connection->isOpen = False;
+    connection->isOpen = false;
     connection->protocolId = id;
     connection->buffer = (unsigned char *)malloc(PACKET_SIZE_MAX);
 }
@@ -235,7 +235,7 @@ Int32 ConnectionStart(NetConnection * connection, UInt16 port)
 {
     unsigned int i;
     
-    if (connection->isOpen==False)
+    if (connection->isOpen==false)
     {
         connection->remoteSequence = 0;
         connection->localSequence = 0;
@@ -246,7 +246,7 @@ Int32 ConnectionStart(NetConnection * connection, UInt16 port)
             connection->remoteAcks[i] = 0;
         }
         
-        connection->isOpen = True;
+        connection->isOpen = true;
         return SocketOpen(&connection->sock, port);
     }
     return 0;
@@ -254,9 +254,9 @@ Int32 ConnectionStart(NetConnection * connection, UInt16 port)
 
 void ConnectionStop(NetConnection * connection)
 {
-    if (connection->isOpen==True)
+    if (connection->isOpen==true)
     {
-        connection->isOpen = False;
+        connection->isOpen = false;
         SocketClose(&connection->sock);
     }
 }

@@ -32,8 +32,9 @@
 #include <net/if_dl.h>
 #include <ifaddrs.h>
 #include <arpa/inet.h>
+#include <string.h>
 
-Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 {
 	struct sockaddr_in *pAddr;
 	int Success = 0;
@@ -110,8 +111,8 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 	}
 	else
 	{
-		return False;
+		return false;
 	}
 	
-	return True;
+	return true;
 }

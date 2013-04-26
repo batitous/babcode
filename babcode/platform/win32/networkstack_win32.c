@@ -101,7 +101,7 @@ static UInt8 getIpTable(void)
 	return 0;
 }
 
-Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 {
 	UInt16 i16;
 	UInt8  i8;
@@ -121,14 +121,14 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 	ULONG flags = GAA_FLAG_INCLUDE_PREFIX;
     
 	if(getIpTable()!=0)
-		return False;
+		return false;
     
 	outBufLen = sizeof (IP_ADAPTER_ADDRESSES);
     pAddresses = (IP_ADAPTER_ADDRESSES *) malloc(outBufLen);
     if (pAddresses == NULL)
 	{
         LOG("Memory allocation failed for IP_ADAPTER_ADDRESSES struct\n");
-        return False;
+        return false;
     }
     
     // Make an initial call to GetAdaptersAddresses to get the
@@ -142,7 +142,7 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
     if (pAddresses == NULL)
 	{
         LOG("Memory allocation failed for IP_ADAPTER_ADDRESSES struct\n");
-        return False;
+        return false;
     }
     
 	
@@ -209,7 +209,7 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 	}
 	else
 	{
-        return False;
+        return false;
 	}
 	
 	free(pAddresses);
@@ -218,5 +218,5 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 	*pIPInfo = IPInfo;
 	*pszIPInfo = szIPInfo;
     
-	return True;
+	return true;
 }

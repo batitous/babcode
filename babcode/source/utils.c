@@ -116,7 +116,7 @@ static int _Path_Cleanup(char *AbsPath)
 }
 
 
-Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
+bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 {
 	char AbsPath[512], *Tokens[512], *pBuf;
 	int i, lPath, lAbsPath, lTokens, lResolvedPath, szResolvedPath;
@@ -124,7 +124,7 @@ Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 	
 	if(!path || !resolvedPath || !resolvePathSize)
 	{
-		return False;
+		return false;
 	}
 	
 	szResolvedPath = *resolvePathSize;
@@ -135,7 +135,7 @@ Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 		// copy string
 		
 		if(lPath >= szResolvedPath - 1)
-			return False;
+			return false;
 		
 		memcpy(AbsPath, path, lPath);
 		AbsPath[lPath] = 0;
@@ -148,11 +148,11 @@ Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 #endif
 		//	copy cwd then concatenate string
 		if(!getcwd(AbsPath, sizeof(AbsPath)))
-			return False;
+			return false;
 		
 		lAbsPath = (int)strlen(AbsPath);
 		if(lAbsPath + lPath + 1 >= sizeof(AbsPath))
-			return False;
+			return false;
 		
 		AbsPath[lAbsPath] = DEFAULT_SLASH;
 		memcpy(&AbsPath[lAbsPath + 1], path, lPath + 1);
@@ -163,7 +163,7 @@ Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 	lAbsPath = _Path_Cleanup(AbsPath);
 	
 	if(lAbsPath >= szResolvedPath - 1)
-		return False;
+		return false;
 	
 	//printf("[%s]\n", AbsPath);
 	
@@ -276,7 +276,7 @@ Bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 	lResolvedPath = _Path_Cleanup(resolvedPath);
 	*resolvePathSize = lResolvedPath;
 	
-	return True;
+	return true;
 }
 
 

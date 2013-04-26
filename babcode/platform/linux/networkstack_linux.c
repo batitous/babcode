@@ -45,7 +45,7 @@
 #include <sys/socket.h>
 #include <netinet/tcp.h>
 
-Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 {
 	int sock;
 	struct ifconf IfConf;
@@ -65,7 +65,7 @@ Bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 	if(sock== -1)
 	{
 		LOG_ERR1("socket");
-		return False;
+		return false;
 	}
     
 	if(ioctl(sock, SIOCGIFCONF, &IfConf) == -1)
@@ -165,8 +165,8 @@ _end_:
 	}
 	else
 	{
-		return False;
+		return false;
 	}
     
-	return True;
+	return true;
 }

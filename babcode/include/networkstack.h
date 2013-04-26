@@ -59,7 +59,7 @@ typedef struct _net_connection_
     IpAddress   remote;         /**< remote address where send data */
     IpAddress   sender;         /**< last address received from sender */
     UInt32      protocolId;     /**< protocol identifier */
-    Bool        isOpen;         /**< is this connection open ? */
+    bool        isOpen;         /**< is this connection open ? */
     UInt8 *     buffer;         /**< temporary buffer */
     UInt32      localSequence;  /**< local sequence number */
     UInt32      localAcks[ACK_MAX]; /**< ack received for my packet send */
@@ -85,7 +85,7 @@ extern void AddressGetABCD(IpAddress * addr, UInt32 ip);
 
 
 // socket option
-extern NetworkStatus SocketSetBlock(Socket *s, Bool enable);
+extern NetworkStatus SocketSetBlock(Socket *s, bool enable);
 extern NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
     
 // tcp socket
@@ -128,7 +128,7 @@ typedef struct _interface_info_
     UInt32	pkSize;		/**< MTU maximum size */
 } NetInterfaceInfo;
 
-extern Bool GetNetworkInterface(NetInterfaceInfo **interfaces,Int32 * interfaceNumber);
+extern bool GetNetworkInterface(NetInterfaceInfo **interfaces,Int32 * interfaceNumber);
 extern void FreeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber);
 
 
