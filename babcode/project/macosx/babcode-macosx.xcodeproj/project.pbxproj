@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C5168A18172AB66300C96B59 /* string.c in Sources */ = {isa = PBXBuildFile; fileRef = C5168A17172AB66300C96B59 /* string.c */; };
-		C5168A1A172AB75B00C96B59 /* bstring.h in Headers */ = {isa = PBXBuildFile; fileRef = C5168A19172AB75B00C96B59 /* bstring.h */; };
+		C5168A1A172AB75B00C96B59 /* string.h in Headers */ = {isa = PBXBuildFile; fileRef = C5168A19172AB75B00C96B59 /* string.h */; };
 		F485A665171407BE00D316B9 /* babcode.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65B171407BE00D316B9 /* babcode.h */; };
 		F485A666171407BE00D316B9 /* conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65C171407BE00D316B9 /* conversion.h */; };
 		F485A667171407BE00D316B9 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65D171407BE00D316B9 /* file.h */; };
@@ -43,7 +43,7 @@
 
 /* Begin PBXFileReference section */
 		C5168A17172AB66300C96B59 /* string.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = string.c; path = ../../source/string.c; sourceTree = "<group>"; };
-		C5168A19172AB75B00C96B59 /* bstring.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = bstring.h; path = ../../include/bstring.h; sourceTree = "<group>"; };
+		C5168A19172AB75B00C96B59 /* string.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = string.h; path = ../../include/string.h; sourceTree = "<group>"; };
 		E409545A172A71C80008BA47 /* conditionvar.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = conditionvar.c; path = ../../platform/win32/conditionvar.c; sourceTree = "<group>"; };
 		E409545B172A71C80008BA47 /* file.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = file.c; path = ../../platform/win32/file.c; sourceTree = "<group>"; };
 		E409545C172A71C80008BA47 /* mutex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = mutex.c; path = ../../platform/win32/mutex.c; sourceTree = "<group>"; };
@@ -165,7 +165,6 @@
 		F485A65A171407AF00D316B9 /* Include */ = {
 			isa = PBXGroup;
 			children = (
-				C5168A19172AB75B00C96B59 /* bstring.h */,
 				F485A65B171407BE00D316B9 /* babcode.h */,
 				F485A6A2171560FE00D316B9 /* conditionvar.h */,
 				F485A65C171407BE00D316B9 /* conversion.h */,
@@ -175,6 +174,7 @@
 				F485A68D17140D2C00D316B9 /* mutex.h */,
 				F485A6921714164000D316B9 /* networkstack.h */,
 				F485A65F171407BE00D316B9 /* random.h */,
+				C5168A19172AB75B00C96B59 /* string.h */,
 				F485A660171407BE00D316B9 /* thread.h */,
 				F485A661171407BE00D316B9 /* types.h */,
 				F485A662171407BE00D316B9 /* uart.h */,
@@ -226,7 +226,7 @@
 				F485A66E171407BE00D316B9 /* wait.h in Headers */,
 				F485A6931714164000D316B9 /* networkstack.h in Headers */,
 				F485A6AE17182AED00D316B9 /* hashtable.h in Headers */,
-				C5168A1A172AB75B00C96B59 /* bstring.h in Headers */,
+				C5168A1A172AB75B00C96B59 /* string.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
