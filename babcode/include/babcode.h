@@ -56,7 +56,7 @@
 #include "mutex.h"
 #include "conditionvar.h"
 #include "networkstack.h"
-#include "string.h"
+#include "str.h"
 
 
 #endif
