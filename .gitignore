@@ -4,3 +4,6 @@
 Build
 DerivedData
 depends
+*.xcuserstate
+*.xcscheme
+xcschememanagement.plist
