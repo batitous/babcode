@@ -49,6 +49,9 @@ static UInt32 integerHash(UInt32 h)
 
 static void HashTableRepopulate(HashTable * table, UInt32 desiredSize)
 {
+	HashNode * node;
+	HashNode * n;
+
     // Get start/end pointers of old array
     HashNode * oldNodes = table->nodes;
     HashNode * end = table->nodes + table->size;
@@ -59,12 +62,12 @@ static void HashTableRepopulate(HashTable * table, UInt32 desiredSize)
     memset(table->nodes, 0, sizeof(HashNode) * table->size);
     
     // Iterate through old array
-    for (HashNode * n = oldNodes; n != end; n++)
+    for (n = oldNodes; n != end; n++)
     {
         if (n->key)
         {
             // Insert this element into new array
-            for (HashNode * node = FIRST_CELL(table,integerHash(n->key));; node = CIRCULAR_NEXT(table,node))
+            for (node = FIRST_CELL(table,integerHash(n->key));; node = CIRCULAR_NEXT(table,node))
             {
                 if (!node->key)
                 {
@@ -91,8 +94,10 @@ void HashTableInit(HashTable * table, UInt32 size)
 
 HashNode * HashTableLookup(HashTable * table, UInt32 key)
 {
+	HashNode * n;
+
     // Check regular cells
-    for (HashNode * n = FIRST_CELL(table,integerHash(key));; n = CIRCULAR_NEXT(table,n))
+    for (n = FIRST_CELL(table,integerHash(key));; n = CIRCULAR_NEXT(table,n))
     {
         if (n->key == key)
             return n;
@@ -105,10 +110,13 @@ HashNode * HashTableLookup(HashTable * table, UInt32 key)
 
 void HashTableDelete(HashTable * table, HashNode * node)
 {
+	HashNode * ideal;
+	HashNode * neighbor;
+
     // Delete from regular cells
     
     // Remove this cell by shuffling neighboring cells so there are no gaps in anyone's probe chain
-    for (HashNode * neighbor = CIRCULAR_NEXT(table,node);; neighbor = CIRCULAR_NEXT(table,neighbor))
+    for (neighbor = CIRCULAR_NEXT(table,node);; neighbor = CIRCULAR_NEXT(table,neighbor))
     {
         if (!neighbor->key)
         {
@@ -118,7 +126,7 @@ void HashTableDelete(HashTable * table, HashNode * node)
             table->population--;
             return;
         }
-        HashNode * ideal = FIRST_CELL(table,integerHash(neighbor->key));
+        ideal = FIRST_CELL(table,integerHash(neighbor->key));
         if (CIRCULAR_OFFSET(table, ideal, node) < CIRCULAR_OFFSET(table, ideal, neighbor))
         {
             // Swap with neighbor, then make neighbor the new cell to remove.
@@ -130,10 +138,12 @@ void HashTableDelete(HashTable * table, HashNode * node)
 
 HashNode * HashTableInsert(HashTable * table, UInt32 key)
 {
+	HashNode* node;
+
     // Check regular cells
     for (;;)
     {
-        for (HashNode* node = FIRST_CELL(table,integerHash(key));; node = CIRCULAR_NEXT(table,node))
+        for (node = FIRST_CELL(table,integerHash(key));; node = CIRCULAR_NEXT(table,node))
         {
             if (node->key == key)
                 return node;        // Found

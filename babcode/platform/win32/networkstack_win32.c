@@ -170,7 +170,7 @@ bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 			
 			if (pCurrAddresses->FirstUnicastAddress != NULL)
 			{
-				IPInfo = realloc(IPInfo, (szIPInfo + 1) * sizeof(NetInterfaceInfo));
+				IPInfo = (NetInterfaceInfo *)realloc(IPInfo, (szIPInfo + 1) * sizeof(NetInterfaceInfo));
 				memset(&IPInfo[szIPInfo], 0, sizeof(NetInterfaceInfo));
                 
 				ipaddr = (struct sockaddr_in *)pCurrAddresses->FirstUnicastAddress->Address.lpSockaddr;
@@ -185,7 +185,7 @@ bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
                 
 				len = wcslen( pCurrAddresses->FriendlyName);
 				
-				IPInfo[szIPInfo].name = (UInt8 *)malloc(len+1);
+				IPInfo[szIPInfo].name = (Int8 *)malloc(len+1);
 				for(i16=0,i8=0;i16<len;i16++,i8++)
 				{
 					IPInfo[szIPInfo].name[i8]=(Int8)pCurrAddresses->FriendlyName[i16];
@@ -194,7 +194,7 @@ bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
                 
 				len = wcslen( pCurrAddresses->Description);
 				
-				IPInfo[szIPInfo].description = (UInt8 *)malloc(len+1);
+				IPInfo[szIPInfo].description = (Int8 *)malloc(len+1);
 				for(i16=0,i8=0;i16<len;i16++,i8++)
 				{
 					IPInfo[szIPInfo].description[i8]=(Int8)pCurrAddresses->Description[i16];

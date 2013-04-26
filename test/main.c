@@ -210,7 +210,7 @@ int main(int argc, const char * argv[])
     pathTest = "../../../test.log";
     
     lAbsCmd = sizeof(AbsCmd);
-    if (GetRealPath(pathTest, AbsCmd, &lAbsCmd)==True)
+    if (GetRealPath(pathTest, AbsCmd, &lAbsCmd)==true)
     {
         printf("pathtest %s\n",pathTest);
         printf("abscmd   %s\n", AbsCmd);

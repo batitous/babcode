@@ -43,7 +43,7 @@ bool StringToInt(Int8 const * str, Int32 * num)
 	int neg = 0;
 
     if (!str || !num)
-        return -1;
+        return false;
     for (pos=0; str[pos]==' ' || str[pos]=='\t'; pos++);
     if (str[pos]=='+')
         pos++;
@@ -95,7 +95,7 @@ bool StringToInt(Int8 const * str, Int32 * num)
 	    val += 9;
 	    break;
 	default:
-	    return -1;
+	    return false;
 	}
 	if (val<pval) /* check for overflow */
 	    return false;
@@ -221,11 +221,16 @@ bool StringToFloat(Int8 * str, float* floating)
 
 bool StringIsHex(Int8 * str, int* integer)
 {
-    if (str[0] != '0') return -1;
-    if (str[1] != 'x') return -1;
+	long size;
+	char* pEnd=NULL;
+	int val;
+	long i;
+
+    if (str[0] != '0') return false;
+    if (str[1] != 'x') return false;
     
-    long size=strlen(str);
-    for (long i=2; i<size; i++)
+    size=strlen(str);
+    for (i=2; i<size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
             if (str[i] < 'A' || str[i] > 'F')
@@ -233,8 +238,7 @@ bool StringIsHex(Int8 * str, int* integer)
                     return false;
     }
     
-    char* pEnd=NULL;
-    int val = (int)strtol(str, &pEnd, 16);
+    val = (int)strtol(str, &pEnd, 16);
     if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN)) || (errno != 0 && val == 0))
         return false;
     

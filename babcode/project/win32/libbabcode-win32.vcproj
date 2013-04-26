@@ -111,6 +111,7 @@
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
+				CompileAs="2"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -180,6 +181,10 @@
 			</File>
 			<File
 				RelativePath="..\..\source\random.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\source\str.c"
 				>
 			</File>
 			<File

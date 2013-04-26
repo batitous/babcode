@@ -33,7 +33,7 @@
 
 static HANDLE hCom ;
 
-static UInt32 getComPortNumber(UInt8 *portcom)
+static UInt32 getComPortNumber(const UInt8 *portcom)
 {
 	UInt32 i,j;
 	Int8 buffer[4];

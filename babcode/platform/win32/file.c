@@ -47,7 +47,7 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
                    FILE_FLAG_OVERLAPPED,   // asynchronous I/O
                    NULL);   */
 
-	file = fopen( filename, "wb" );
+	file = fopen( (const Int8 *)filename, "wb" );
 	if( file == NULL )
 	{
         LOG("error open file %s !\n", filename );
@@ -72,7 +72,7 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	UInt8 *buffer = 0 ;
 	HANDLE f ;
 
-	f = CreateFileA(filename,GENERIC_READ,FILE_SHARE_READ,
+	f = CreateFileA((LPCSTR)filename,GENERIC_READ,FILE_SHARE_READ,
 		NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL, NULL);
 
 	if( f == INVALID_HANDLE_VALUE )
@@ -95,7 +95,7 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 		return NULL ;
 	}
 
-	if( ReadFile(f,buffer,size,len,NULL) == 0 )
+	if( ReadFile(f,buffer,size,(LPDWORD)len,NULL) == 0 )
 	{
 		LOG_ERR1("read");
 		return NULL ;
@@ -109,7 +109,7 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 UInt8 * FileMmapRead( UInt8 * path, UInt32 *len)
 {
    void    *result;
-   HANDLE   file=CreateFileA(path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
+   HANDLE   file=CreateFileA((LPCSTR)path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
    HANDLE   mapping;
 
    if(file==INVALID_HANDLE_VALUE)
@@ -136,7 +136,7 @@ UInt8 * FileMmapRead( UInt8 * path, UInt32 *len)
    CloseHandle(mapping);
    CloseHandle(file);
 
-   return result;
+   return (UInt8 *)result;
 }
 
  UInt8 *FileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
@@ -146,7 +146,7 @@ UInt8 * FileMmapRead( UInt8 * path, UInt32 *len)
 	UInt32 size = 0 ;
 	
 	//open the file
-	f = fopen( filename , "rb");
+	f = fopen( (const Int8 *)filename , "rb");
 	if( f == NULL )
 	{
 		LOG("Error to open file %s!\n",filename);

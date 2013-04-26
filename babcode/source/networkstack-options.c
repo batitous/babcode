@@ -103,7 +103,7 @@ NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 			return NETWORK_ERROR;
 #else
         
-		if(setsockopt(s->handle, SOL_SOCKET, SO_RCVTIMEO, (void*)&RecvTimeout, sizeof(RecvTimeout)) < 0)
+		if(setsockopt(s->handle, SOL_SOCKET, SO_RCVTIMEO, (const char *)&RecvTimeout, sizeof(RecvTimeout)) < 0)
 			return NETWORK_ERROR;
         
 #endif
@@ -122,7 +122,7 @@ NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 			return NETWORK_ERROR;
 #else
         
-		if(setsockopt(s->handle, SOL_SOCKET, SO_RCVTIMEO, (void*)&SendTimeout, sizeof(SendTimeout)) < 0)
+		if(setsockopt(s->handle, SOL_SOCKET, SO_RCVTIMEO, (const char *)&SendTimeout, sizeof(SendTimeout)) < 0)
 			return NETWORK_ERROR;
         
 #endif
@@ -133,14 +133,14 @@ NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 
 Int32 SocketSetBroadcast(Socket *s, Int32 Enable)
 {
-	if(setsockopt(s->handle, SOL_SOCKET, SO_BROADCAST, (void*)&Enable, sizeof(Enable)) < 0)
+	if(setsockopt(s->handle, SOL_SOCKET, SO_BROADCAST, (const char *)&Enable, sizeof(Enable)) < 0)
 		return 0;
 	return 1;
 }
 
 Int32 SocketSetKeepAlive(Socket *s, Int32 Enable)
 {
-	if(setsockopt(s->handle, SOL_SOCKET, SO_KEEPALIVE, (void*)&Enable, sizeof(Enable)) < 0)
+	if(setsockopt(s->handle, SOL_SOCKET, SO_KEEPALIVE, (const char *)&Enable, sizeof(Enable)) < 0)
 		return 0;
 	return 1;
 }
@@ -148,7 +148,7 @@ Int32 SocketSetKeepAlive(Socket *s, Int32 Enable)
 // set TCP_NODELAY before sending short messages that should be sent immediately
 Int32 SocketSetTcpNoDelay(Socket *s, Int32 Enable)
 {
-	if(setsockopt(s->handle, IPPROTO_TCP, TCP_NODELAY, (void*)&Enable, sizeof(Enable)) < 0)
+	if(setsockopt(s->handle, IPPROTO_TCP, TCP_NODELAY, (const char *)&Enable, sizeof(Enable)) < 0)
 		return 0;
 	return 1;
 }
@@ -156,7 +156,7 @@ Int32 SocketSetTcpNoDelay(Socket *s, Int32 Enable)
 
 Int32 SocketSetMulticastTTL(Socket *s, Int32 TTL)
 {
-	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_TTL, (void*)&TTL, sizeof(TTL)) < 0)
+	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_TTL, (const char *)&TTL, sizeof(TTL)) < 0)
 		return 0;
 	return 1;
 }
@@ -164,7 +164,7 @@ Int32 SocketSetMulticastTTL(Socket *s, Int32 TTL)
 
 Int32 SocketSetMulticastIF(Socket *s, UInt32 ip)
 {
-	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_IF, (void*)&ip, sizeof(ip)) < 0)
+	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_IF, (const char *)&ip, sizeof(ip)) < 0)
 		return 0;
 	return 1;
 }
@@ -177,7 +177,7 @@ Int32 SocketSetMulticastMembership(Socket *s, UInt32 faceIP, UInt32 multicastIP)
 	McastAddr.imr_interface.s_addr = faceIP;
 	McastAddr.imr_multiaddr.s_addr = multicastIP;
 	
-	if(setsockopt(s->handle, IPPROTO_IP, IP_ADD_MEMBERSHIP, (void*)&McastAddr, sizeof(struct ip_mreq)) < 0)
+	if(setsockopt(s->handle, IPPROTO_IP, IP_ADD_MEMBERSHIP, (const char *)&McastAddr, sizeof(struct ip_mreq)) < 0)
 		return 0;
 	
 	return 1;

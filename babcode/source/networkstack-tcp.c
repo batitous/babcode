@@ -148,7 +148,7 @@ NetworkStatus ClientTcpOpen(Socket * client, IpAddress * server)
 
 NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended)
 {
-    int result = (int)send(s->handle,packet_data,packet_size,0);
+    int result = (int)send(s->handle,(const char *)packet_data,packet_size,0);
 
     if (result < 0)
     {
