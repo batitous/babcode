@@ -40,6 +40,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E409545A172A71C80008BA47 /* conditionvar.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = conditionvar.c; path = ../../platform/win32/conditionvar.c; sourceTree = "<group>"; };
+		E409545B172A71C80008BA47 /* file.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = file.c; path = ../../platform/win32/file.c; sourceTree = "<group>"; };
+		E409545C172A71C80008BA47 /* mutex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = mutex.c; path = ../../platform/win32/mutex.c; sourceTree = "<group>"; };
+		E409545D172A71C80008BA47 /* networkstack_win32.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = networkstack_win32.c; path = ../../platform/win32/networkstack_win32.c; sourceTree = "<group>"; };
+		E409545E172A71C80008BA47 /* thread.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = thread.c; path = ../../platform/win32/thread.c; sourceTree = "<group>"; };
+		E409545F172A71C80008BA47 /* uart.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = uart.c; path = ../../platform/win32/uart.c; sourceTree = "<group>"; };
+		E4095460172A71C80008BA47 /* wait.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = wait.c; path = ../../platform/win32/wait.c; sourceTree = "<group>"; };
+		E4095462172A71E50008BA47 /* networkstack_linux.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = networkstack_linux.c; path = ../../platform/linux/networkstack_linux.c; sourceTree = "<group>"; };
+		E4095463172A71E50008BA47 /* uart.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = uart.c; path = ../../platform/linux/uart.c; sourceTree = "<group>"; };
 		F485A6521714078C00D316B9 /* libbabcode-macosx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libbabcode-macosx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F485A65B171407BE00D316B9 /* babcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = babcode.h; path = ../../include/babcode.h; sourceTree = "<group>"; };
 		F485A65C171407BE00D316B9 /* conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = conversion.h; path = ../../include/conversion.h; sourceTree = "<group>"; };
@@ -87,6 +96,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4095459172A71B00008BA47 /* Win32 */ = {
+			isa = PBXGroup;
+			children = (
+				E409545A172A71C80008BA47 /* conditionvar.c */,
+				E409545B172A71C80008BA47 /* file.c */,
+				E409545C172A71C80008BA47 /* mutex.c */,
+				E409545D172A71C80008BA47 /* networkstack_win32.c */,
+				E409545E172A71C80008BA47 /* thread.c */,
+				E409545F172A71C80008BA47 /* uart.c */,
+				E4095460172A71C80008BA47 /* wait.c */,
+			);
+			name = Win32;
+			sourceTree = "<group>";
+		};
+		E4095461172A71D50008BA47 /* Linux */ = {
+			isa = PBXGroup;
+			children = (
+				E4095462172A71E50008BA47 /* networkstack_linux.c */,
+				E4095463172A71E50008BA47 /* uart.c */,
+			);
+			name = Linux;
+			sourceTree = "<group>";
+		};
 		F485A6491714078C00D316B9 = {
 			isa = PBXGroup;
 			children = (
@@ -117,7 +149,9 @@
 				F485A67D171407F300D316B9 /* random.c */,
 				F485A67E171407F300D316B9 /* time.c */,
 				F485A67F171407F300D316B9 /* utils.c */,
-				F485A670171407CB00D316B9 /* MacOSX */,
+				E4095459172A71B00008BA47 /* Win32 */,
+				E4095461172A71D50008BA47 /* Linux */,
+				F485A670171407CB00D316B9 /* OSX */,
 				F485A66F171407C200D316B9 /* Unix */,
 			);
 			name = Source;
@@ -157,14 +191,14 @@
 			name = Unix;
 			sourceTree = "<group>";
 		};
-		F485A670171407CB00D316B9 /* MacOSX */ = {
+		F485A670171407CB00D316B9 /* OSX */ = {
 			isa = PBXGroup;
 			children = (
 				F485A6A81715ADAC00D316B9 /* networkstack_osx.c */,
 				F485A671171407D900D316B9 /* uart.c */,
 				F485A672171407D900D316B9 /* utils_osx.c */,
 			);
-			name = MacOSX;
+			name = OSX;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
