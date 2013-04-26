@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Baptiste Burles
+// Copyright (c) 2013, Sylvain Fay-Chatelard
 //
 // All rights reserved.
 //
@@ -14,7 +14,7 @@
 //   names of its contributors may be used to endorse or promote products
 //   derived from this software without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY Baptiste Burles AND CONTRIBUTORS ``AS IS'' AND ANY
+// THIS SOFTWARE IS PROVIDED BY Sylvain Fay-Chatelard AND CONTRIBUTORS ``AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 // DISCLAIMED. IN NO EVENT SHALL Baptiste Burles AND CONTRIBUTORS BE LIABLE FOR ANY
@@ -25,38 +25,25 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
 
-// This file must be included in your main code.
+#ifndef BABCODE_STRING_H
+#define BABCODE_STRING_H
 
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
-
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
+#ifdef __cplusplus
+extern "C" {
 #endif
 
+extern char** StringSplit(char *str, char *token);
 
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "hashtable.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-#include "conditionvar.h"
-#include "networkstack.h"
-#include "bstring.h"
-
+extern char* StringDuplicate(char* src, int size);
+    
+extern char* StringReplace(const char *string, const char *substr, const char *replacement);
+    
+extern char * StringInsert(const char *string, const char *substr, const int offset);
+    
+    
+#ifdef __cplusplus
+}
+#endif
 
 #endif

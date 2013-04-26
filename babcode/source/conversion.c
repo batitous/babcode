@@ -29,9 +29,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <limits.h>
+#include <errno.h>
 
 
-Bool String2Int(Int8 const * str, Int32 * num)
+Bool StringToInt(Int8 const * str, Int32 * num)
 {
     unsigned int pos;
     unsigned int i;
@@ -105,7 +108,7 @@ Bool String2Int(Int8 const * str, Int32 * num)
     return True;
 }
 
-UInt32 Bin2DecimalAscii(Int32 bin,Int8 *result)
+UInt32 BinToDecimalAscii(Int32 bin,Int8 *result)
 {
 	int i=0;
 	char bCount, bPrinted;
@@ -142,7 +145,7 @@ UInt32 Bin2DecimalAscii(Int32 bin,Int8 *result)
 	return i;
 }
 
-void Bin2Hex(UInt8 data,Int8 *result)
+void BinToHex(UInt8 data,Int8 *result)
 {
 	UInt8 temp;
 
@@ -159,7 +162,7 @@ void Bin2Hex(UInt8 data,Int8 *result)
 	result[1]=temp;
 }
 
-Bool Hex2Bin(UInt8 *hex,UInt8 *bin)
+Bool HexToBin(UInt8 *hex,UInt8 *bin)
 {
 	unsigned char i;
 	unsigned char tmp=0;
@@ -182,5 +185,61 @@ Bool Hex2Bin(UInt8 *hex,UInt8 *bin)
 	*bin = tmp;
 
 	return True;
+}
+
+Bool StringToFloat(Int8 * str, float* floating)
+{
+	int i;
+	int len;
+	int divider=1;
+    int integer=0;
+	int decimal=0;
+    
+    char* pos = strchr(str, '.');
+    if (pos == NULL && StringToInt(str, &integer) == 0) {
+        *floating=integer;
+        return True;
+    }
+    else if (pos == NULL && StringToInt(str, &integer) != 0) {
+        return False;
+    }
+    
+    pos[0]='\0';
+    
+    if (StringToInt(str, &integer) != 0) return False;
+    if (StringToInt(pos+1, &decimal) != 0) return False;
+    
+    
+    len = (int)strlen(pos+1);
+    for (i=0; i<len; i++)
+        divider*=10;
+    *floating = (float)decimal/(float)divider;
+    *floating += integer;
+    
+    return True;
+}
+
+Bool StringIsHex(Int8 * str, int* integer)
+{
+    if (str[0] != '0') return -1;
+    if (str[1] != 'x') return -1;
+    
+    long size=strlen(str);
+    for (long i=2; i<size; i++)
+    {
+        if (str[i] < '0' || str[i] > '9')
+            if (str[i] < 'A' || str[i] > 'F')
+                if (str[i] < 'a' || str[i] > 'f')
+                    return False;
+    }
+    
+    char* pEnd=NULL;
+    int val = (int)strtol(str, &pEnd, 16);
+    if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN)) || (errno != 0 && val == 0))
+        return False;
+    
+    *integer = val;
+    
+    return True;
 }
 

@@ -37,10 +37,13 @@ extern "C" {
  *
  * @param str			Ascii string to convert.
  * @param [out] num		Integer's pointer.
- * @return 0 if success.
+ * @return True if success.
  */
 extern Bool String2Int(Int8 const * str, Int32 * num);
 
+extern Bool StringToFloat(Int8 * str, float* floating);
+
+    
 /** @brief Convert binary to decimal ascii.
  *
  * @param bin			Binary to convert.
@@ -60,10 +63,11 @@ extern void Bin2Hex(UInt8 bin,Int8 *result);
  *
  * @param hex		Hexadecimal to convert.
  * @param [out] bin	Byte where store the result.
- * @result 1 if OK, else 0 on error.
+ * @result False on error.
  */
 extern Bool Hex2Bin(UInt8 *hex,UInt8 *bin);
 
+extern Bool StringIsHex(Int8 * str, int* integer);
 
 #ifdef __cplusplus
   }
