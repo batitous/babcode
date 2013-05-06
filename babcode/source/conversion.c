@@ -219,7 +219,7 @@ bool StringToFloat(Int8 * str, float* floating)
     return true;
 }
 
-bool StringIsHex(Int8 * str, int* integer)
+bool StringIsHex(Int8 * str, Int32 * integer)
 {
 	long size;
 	char* pEnd=NULL;

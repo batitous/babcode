@@ -32,7 +32,7 @@
 #include <string.h>
 
 
-char** StringSplit(char *str, char *token)
+Int8 ** StringSplit(Int8 *str, Int8 *token)
 {
 	char *saveptr, *ptr, *start;
 	long length, i;
@@ -67,7 +67,7 @@ char** StringSplit(char *str, char *token)
 	return dst;
 }
 
-char* StringDuplicate(char* src, int size)
+Int8* StringDuplicate(Int8* src, Int32 size)
 {
 	char* str = (char*)calloc(size+1, sizeof(char));
 	
@@ -78,7 +78,7 @@ char* StringDuplicate(char* src, int size)
 	return str;
 }
 
-char* StringReplace(const char *string, const char *substr, const char *replacement)
+Int8* StringReplace(const Int8 *string, const Int8 *substr, const Int8 *replacement)
 {
     char *newstr = NULL;
     
@@ -93,7 +93,7 @@ char* StringReplace(const char *string, const char *substr, const char *replacem
     return newstr;
 }
 
-char * StringInsert(const char *string, const char *substr, const int offset)
+Int8 * StringInsert(const Int8 *string, const Int8 *substr, const Int32 offset)
 {
 	char *newstr = (char*)calloc(strlen(string) + strlen(substr) + 2, sizeof(char));
 	if(newstr == NULL) return NULL;

@@ -57,6 +57,7 @@
 #include "conditionvar.h"
 #include "networkstack.h"
 #include "str.h"
+#include "list.h"
 
 
 #endif

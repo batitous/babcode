@@ -39,7 +39,7 @@ extern "C" {
  * @param [out] num		Integer's pointer.
  * @return true if success.
  */
-extern bool String2Int(Int8 const * str, Int32 * num);
+extern bool StringToInt(Int8 const * str, Int32 * num);
 
 extern bool StringToFloat(Int8 * str, float* floating);
 
@@ -50,14 +50,14 @@ extern bool StringToFloat(Int8 * str, float* floating);
  * @param [out] result  Buffer where store the result. You have to allocated this array.
  * @result	Lenght of converted string.
  */
-extern UInt32 Bin2DecimalAscii(Int32 bin,Int8 *result);
+extern UInt32 BinToDecimalAscii(Int32 bin,Int8 *result);
 
 /** @brief Convert byte to hexadecimal.
  *
  * @param bin		Byte to convert.
  * @param [out] result	Buffer where store the result. You have to allocated this array.
  */
-extern void Bin2Hex(UInt8 bin,Int8 *result);
+extern void BinToHex(UInt8 bin,Int8 *result);
 
 /** @brief Convert a byte in hexadecimal to binary byte.
  *
@@ -65,9 +65,9 @@ extern void Bin2Hex(UInt8 bin,Int8 *result);
  * @param [out] bin	Byte where store the result.
  * @result false on error.
  */
-extern bool Hex2Bin(UInt8 *hex,UInt8 *bin);
+extern bool HexToBin(UInt8 *hex,UInt8 *bin);
 
-extern bool StringIsHex(Int8 * str, int* integer);
+extern bool StringIsHex(Int8 * str, Int32 * integer);
 
 #ifdef __cplusplus
   }

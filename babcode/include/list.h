@@ -25,21 +25,55 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-
-#ifndef BABCODE_STRING_H
-#define BABCODE_STRING_H
+#ifndef babcode_list_h
+#define babcode_list_h
 
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-extern Int8 ** StringSplit(Int8 * str, Int8 * token);
-
-extern Int8 * StringDuplicate(Int8 * src, Int32 size);
     
-extern Int8 * StringReplace(const Int8 * string, const Int8 * substr, const Int8 * replacement);
+/* how to use list
+ 
+ ListNode *n = list->first;
+ while (n != NULL)
+ {
+    void * data = n->data;
     
-extern Int8 * StringInsert(const Int8 * string, const Int8 * substr, const Int32 offset);
+    ...
+ 
+ 
+    n = n->next;
+ }
+ 
+ 
+ */
+    
+typedef struct _list_node_
+{
+    struct _list_node_ *next;
+    struct _list_node_ *prev;
+    void *data;
+} ListNode;
+    
+typedef struct _list_
+{
+    ListNode *first;
+    ListNode *last;
+    int size;
+} List;
+    
+extern void ListInit(List * l);
+
+extern ListNode * ListAddElement(List *l, void *e);
+
+extern void * ListRemoveNode(List *l, ListNode* node);
+
+extern void * ListRemoveLastNode(List *l);
+    
+/** Use with caution */
+extern void * ListGetElementAt(List* l, Int32 index);
+    
+extern void ListRemoveElementAt(List* l, Int32 index);
     
     
 #ifdef __cplusplus
