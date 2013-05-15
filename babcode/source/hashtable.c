@@ -58,8 +58,7 @@ static void HashTableRepopulate(HashTable * table, UInt32 desiredSize)
     
     // Allocate new array
     table->size = desiredSize;
-    table->nodes = (HashNode *)malloc(sizeof(HashNode)*table->size);
-    memset(table->nodes, 0, sizeof(HashNode) * table->size);
+    table->nodes = (HashNode *)calloc(1, sizeof(HashNode)*table->size);
     
     // Iterate through old array
     for (n = oldNodes; n != end; n++)
