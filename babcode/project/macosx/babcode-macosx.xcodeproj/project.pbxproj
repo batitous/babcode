@@ -170,7 +170,6 @@
 		F485A65A171407AF00D316B9 /* Include */ = {
 			isa = PBXGroup;
 			children = (
-				C596404B1737F488008AAC57 /* list.h */,
 				F485A65B171407BE00D316B9 /* babcode.h */,
 				F485A6A2171560FE00D316B9 /* conditionvar.h */,
 				F485A65C171407BE00D316B9 /* conversion.h */,
@@ -180,6 +179,7 @@
 				F485A68D17140D2C00D316B9 /* mutex.h */,
 				F485A6921714164000D316B9 /* networkstack.h */,
 				F485A65F171407BE00D316B9 /* random.h */,
+				C596404B1737F488008AAC57 /* list.h */,
 				C5168A19172AB75B00C96B59 /* str.h */,
 				F485A660171407BE00D316B9 /* thread.h */,
 				F485A661171407BE00D316B9 /* types.h */,
@@ -195,10 +195,10 @@
 			children = (
 				F485A675171407E600D316B9 /* file.c */,
 				F485A676171407E600D316B9 /* thread.c */,
-				F485A677171407E600D316B9 /* wait.c */,
 				F485A68E17140E5A00D316B9 /* mutex.c */,
 				F485A6A0171560E000D316B9 /* conditionvar.c */,
 				F485A6A51715A6F600D316B9 /* uart_unix.c */,
+				F485A677171407E600D316B9 /* wait.c */,
 			);
 			name = Unix;
 			sourceTree = "<group>";

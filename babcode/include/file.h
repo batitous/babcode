@@ -28,24 +28,21 @@
 #ifndef BABCODE_FILE_H
 #define BABCODE_FILE_H
 
-
 #ifdef __cplusplus
 extern "C" {
 #endif
-
 
 #define FILE_OK			0		/**< last operation on file is ok */
 #define FILE_OPEN_ERROR 0x201	/**< failed to open a file */
 #define FILE_IO_ERROR	0x202	/**< failed to read/write byte */
 
+extern UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size );
 
-extern UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size );
+extern UInt8 * fileRead( UInt8 *filename, UInt32 *len );
 
-extern UInt8 * FileRead( UInt8 *filename, UInt32 *len );
-
-extern UInt8 * FileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read );
+extern UInt8 * fileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read );
     
-extern UInt8 * FileMmapRead( UInt8 * filename, UInt32 *len);
+extern UInt8 * fileMmapRead( UInt8 * filename, UInt32 *len);
     
 #ifdef __cplusplus
 }

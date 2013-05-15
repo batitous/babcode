@@ -80,13 +80,13 @@ static void setLocalAckFromBitmap(NetConnection * connection, unsigned int index
     
 }
 
-UInt32 AddressGetIp(IpAddress * addr)
+UInt32 addressGetIp(IpAddress * addr)
 {
     addr->ip = ( addr->a << 24 ) | ( addr->b << 16 ) | ( addr->c << 8 ) | addr->d;
     return addr->ip;
 }
 
-void AddressGetABCD(IpAddress * addr, UInt32 ip)
+void addressGetABCD(IpAddress * addr, UInt32 ip)
 {
     addr->ip = ip;
     addr->a = (addr->ip >> 24) & 0xFF;
@@ -96,7 +96,7 @@ void AddressGetABCD(IpAddress * addr, UInt32 ip)
 }
 
 
-Int32 InitSocketPlatform()
+Int32 initSocketPlatform()
 {
 #if PLATFORM == PLATFORM_WINDOWS
     WSADATA WsaData;
@@ -114,7 +114,7 @@ void CloseSocketPlatform()
 }
 
 
-Int32 SocketOpen(Socket * s, UInt16 port)
+Int32 socketOpen(Socket * s, UInt16 port)
 {
 #if PLATFORM == PLATFORM_WINDOWS
 	DWORD nonBlocking = 1;
@@ -166,13 +166,13 @@ Int32 SocketOpen(Socket * s, UInt16 port)
     return 1;
 }
 
-Int32 SocketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size)
+Int32 socketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size)
 {
 	long sent_bytes;
     struct sockaddr_in address;
     int handle = s->handle;
     
-    unsigned int destination_address = AddressGetIp(addr);
+    unsigned int destination_address = addressGetIp(addr);
     unsigned short destination_port = addr->port;
     
     memset(&address, 0, sizeof(address));
@@ -192,7 +192,7 @@ Int32 SocketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 
     return 1;
 }
 
-Int32 SocketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maximum_packet_size)
+Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maximum_packet_size)
 {
 #if PLATFORM == PLATFORM_WINDOWS
     typedef int socklen_t;
@@ -207,7 +207,7 @@ Int32 SocketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maxim
     if ( received_bytes <= 0 )
         return (Int32)received_bytes;
     
-    AddressGetABCD(addr, ntohl( from.sin_addr.s_addr ));
+    addressGetABCD(addr, ntohl( from.sin_addr.s_addr ));
     
     addr->port = ntohs( from.sin_port );
     
@@ -224,14 +224,14 @@ void SocketClose(Socket *s)
 }
 
 
-void ConnectionNew(NetConnection * connection, UInt32 id)
+void connectionNew(NetConnection * connection, UInt32 id)
 {
     connection->isOpen = false;
     connection->protocolId = id;
     connection->buffer = (unsigned char *)malloc(PACKET_SIZE_MAX);
 }
 
-Int32 ConnectionStart(NetConnection * connection, UInt16 port)
+Int32 connectionStart(NetConnection * connection, UInt16 port)
 {
     unsigned int i;
     
@@ -247,12 +247,12 @@ Int32 ConnectionStart(NetConnection * connection, UInt16 port)
         }
         
         connection->isOpen = true;
-        return SocketOpen(&connection->sock, port);
+        return socketOpen(&connection->sock, port);
     }
     return 0;
 }
 
-void ConnectionStop(NetConnection * connection)
+void connectionStop(NetConnection * connection)
 {
     if (connection->isOpen==true)
     {
@@ -261,12 +261,12 @@ void ConnectionStop(NetConnection * connection)
     }
 }
 
-void ConnectionConnect(NetConnection * connection, IpAddress * addr)
+void connectionConnect(NetConnection * connection, IpAddress * addr)
 {
     memcpy(&connection->remote, addr, sizeof(IpAddress));
 }
 
-Int32 ConnectionSend(NetConnection * connection, const void * data, UInt32 size)
+Int32 connectionSend(NetConnection * connection, const void * data, UInt32 size)
 {
     int result;
     unsigned char * packet = connection->buffer;
@@ -279,10 +279,10 @@ Int32 ConnectionSend(NetConnection * connection, const void * data, UInt32 size)
     // - local packet sequence number
     // - ack : last packet sequence number received
     // - acks bitmap from the receveid packet
-    Write32bitsToBuffer(packet,connection->protocolId);
-    Write32bitsToBuffer(packet+4,connection->localSequence);
-    Write32bitsToBuffer(packet+8,connection->remoteSequence);
-    Write32bitsToBuffer(packet+12,buildAckBitmap(connection->remoteAcks));
+    write32bitsToBuffer(packet,connection->protocolId);
+    write32bitsToBuffer(packet+4,connection->localSequence);
+    write32bitsToBuffer(packet+8,connection->remoteSequence);
+    write32bitsToBuffer(packet+12,buildAckBitmap(connection->remoteAcks));
     
     // move the ack bitmap and don't acknowledge the packet send
     moveAckBitmap(connection->localAcks);
@@ -292,7 +292,7 @@ Int32 ConnectionSend(NetConnection * connection, const void * data, UInt32 size)
     
     memcpy( &packet[CONNECTION_HEADER_SIZE], data, size );
     
-    result = SocketSend(&connection->sock, &connection->remote, packet, size + CONNECTION_HEADER_SIZE );
+    result = socketSend(&connection->sock, &connection->remote, packet, size + CONNECTION_HEADER_SIZE );
     
     return result;
 }
@@ -302,7 +302,7 @@ static int isSequenceMoreRecent(unsigned int s1, unsigned int s2)
     return  (( s1 > s2 ) && ( s1 - s2 <= SEQUENCE_MAX/2 )) || (( s2 > s1 ) && ( s2 - s1 > SEQUENCE_MAX/2  ));
 }
 
-Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
+Int32 connectionReceive(NetConnection * connection, void * data, UInt32 size)
 {
     unsigned int index;
     unsigned int id;
@@ -311,7 +311,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     unsigned int ackBitmap;
     unsigned char * packet = connection->buffer;
     
-    int bytes_read = SocketReceive(&connection->sock, &connection->sender, packet, size + CONNECTION_HEADER_SIZE );
+    int bytes_read = socketReceive(&connection->sock, &connection->sender, packet, size + CONNECTION_HEADER_SIZE );
     if ( bytes_read <= 0 )
         return bytes_read;
     
@@ -321,7 +321,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
         return 0;
     }
     
-    id = (unsigned int)Read32bitsFromBuffer(packet);
+    id = (unsigned int)read32bitsFromBuffer(packet);
     
     if (id!=connection->protocolId)
     {
@@ -337,7 +337,7 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     
     
     // read the remote packet number and check if this number is more recent than the current
-    remote = (unsigned int)Read32bitsFromBuffer(packet+4);
+    remote = (unsigned int)read32bitsFromBuffer(packet+4);
     if (isSequenceMoreRecent(remote,connection->remoteSequence)==1)
     {
         // move the ack bitmap and acknowledge the packet received
@@ -351,13 +351,13 @@ Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size)
     {
         // we receive an old packet
         index = (connection->remoteSequence - remote) & (ACK_MAX-1);
-                
+        
         connection->remoteAcks[index] = 1;
     }
     
     // read the ack (my sequence number from the point of view of the remote)
-    ack = (unsigned int)Read32bitsFromBuffer(packet+8);
-    ackBitmap = (unsigned int)Read32bitsFromBuffer(packet+12);
+    ack = (unsigned int)read32bitsFromBuffer(packet+8);
+    ackBitmap = (unsigned int)read32bitsFromBuffer(packet+12);
     
     
     // and check ack and our local sequence number : local - ACK_MAX < ack < local

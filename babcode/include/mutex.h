@@ -31,7 +31,6 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
     
 #if PLATFORM == PLATFORM_WINDOWS
 	
@@ -45,13 +44,13 @@ extern "C" {
 	
 #endif
     
-extern void MutexInit(Mutex * m);
+extern void mutexInit(Mutex * m);
     
-extern void MutexLock(Mutex * m);
+extern void mutexLock(Mutex * m);
     
-extern void MutexUnlock(Mutex * m);
+extern void mutexUnlock(Mutex * m);
 
-extern void MutexDelete(Mutex *m);
+extern void mutexDelete(Mutex *m);
 
 #ifdef __cplusplus
 }

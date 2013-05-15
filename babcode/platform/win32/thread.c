@@ -32,7 +32,7 @@
 #include <winbase.h>
 
 
-void ThreadInit(Thread * t, void *(* func)(void *), void *param )
+void threadInit(Thread * t, void *(* func)(void *), void *param )
 {
 	t->h = CreateThread( NULL,0,(LPTHREAD_START_ROUTINE)*func,
 						 param,0,&t->id);
@@ -43,7 +43,7 @@ void ThreadInit(Thread * t, void *(* func)(void *), void *param )
 }
 
 
-void ThreadJoin(Thread * t)
+void threadJoin(Thread * t)
 {
     WaitForSingleObject(t->h,INFINITE);
 
@@ -51,7 +51,7 @@ void ThreadJoin(Thread * t)
 	//CloseHandle( t->h );
 }
 
-void ThreadExit(void)
+void threadExit(void)
 {
 	ExitThread(0);
 }

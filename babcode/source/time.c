@@ -117,7 +117,7 @@ int nweek;                                    /* no de semaine */
 }
 
 
-void GetTime( Time *t )
+void getTime( Time *t )
 {
 	time_t tps ;
 	struct tm *tps1 ;

@@ -33,14 +33,13 @@
 extern "C" {
 #endif
 
-extern Int8 ** StringSplit(Int8 * str, Int8 * token);
+extern Int8 ** stringSplit(Int8 * str, Int8 * token);
 
-extern Int8 * StringDuplicate(Int8 * src, Int32 size);
+extern Int8 * stringDuplicate(Int8 * src, Int32 size);
     
-extern Int8 * StringReplace(const Int8 * string, const Int8 * substr, const Int8 * replacement);
+extern Int8 * stringReplace(const Int8 * string, const Int8 * substr, const Int8 * replacement);
     
-extern Int8 * StringInsert(const Int8 * string, const Int8 * substr, const Int32 offset);
-    
+extern Int8 * stringInsert(const Int8 * string, const Int8 * substr, const Int32 offset);
     
 #ifdef __cplusplus
 }

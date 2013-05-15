@@ -28,22 +28,22 @@
 #include "../../include/babcode.h"
 
 
-void ConditionVarInit(ConditionVar * cv)
+void conditionVarInit(ConditionVar * cv)
 {
     pthread_cond_init(cv,NULL);
 }
 
-void ConditionVarWait(ConditionVar * cv, Mutex * m)
+void conditionVarWait(ConditionVar * cv, Mutex * m)
 {
     pthread_cond_wait(cv,m);
 }
 
-void ConditionVarSignal(ConditionVar * cv)
+void conditionVarSignal(ConditionVar * cv)
 {
     pthread_cond_signal(cv);
 }
 
-void ConditionVarDelete(ConditionVar * cv)
+void conditionVarDelete(ConditionVar * cv)
 {
     pthread_cond_destroy(cv);
 }

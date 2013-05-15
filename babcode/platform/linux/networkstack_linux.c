@@ -45,7 +45,7 @@
 #include <sys/socket.h>
 #include <netinet/tcp.h>
 
-bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool getNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 {
 	int sock;
 	struct ifconf IfConf;

@@ -34,13 +34,13 @@
 
 PMIB_IPADDRTABLE pIPAddrTable;
 
-static void FreeIpTable(void)
+static void freeIpTable(void)
 {
 	FREE(pIPAddrTable);
     pIPAddrTable = 0;
 }
 
-static UInt32 GetMask(UInt32 ip)
+static UInt32 getMask(UInt32 ip)
 {
 	UInt32 i;
     
@@ -101,7 +101,7 @@ static UInt8 getIpTable(void)
 	return 0;
 }
 
-bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool getNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 {
 	UInt16 i16;
 	UInt8  i8;

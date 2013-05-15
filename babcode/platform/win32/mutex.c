@@ -27,22 +27,22 @@
 
 #include "../../include/babcode.h"
 
-void MutexInit(Mutex * m)
+void mutexInit(Mutex * m)
 {
     InitializeCriticalSection(m);
 }
 
-void MutexLock(Mutex * m)
+void mutexLock(Mutex * m)
 {
     EnterCriticalSection(m);
 }
 
-void MutexUnlock(Mutex * m)
+void mutexUnlock(Mutex * m)
 {
     LeaveCriticalSection(m);
 }
 
-void MutexDelete(Mutex *m)
+void mutexDelete(Mutex *m)
 {
     DeleteCriticalSection(m);
 }

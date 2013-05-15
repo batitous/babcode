@@ -30,7 +30,7 @@
 #include "networkstack-private.h"
 
 
-NetworkStatus SocketTcpInit(Socket * s)
+NetworkStatus socketTcpInit(Socket * s)
 {
     int sock = socket(AF_INET,SOCK_STREAM,0);
 	if( sock < 0 )
@@ -44,7 +44,7 @@ NetworkStatus SocketTcpInit(Socket * s)
     return NETWORK_OK;
 }
 
-NetworkStatus ServerTcpOpen(Socket *s, UInt16 port)
+NetworkStatus serverTcpOpen(Socket *s, UInt16 port)
 {
     int k = 1;
     int sock = s->handle;
@@ -83,7 +83,7 @@ NetworkStatus ServerTcpOpen(Socket *s, UInt16 port)
 	return NETWORK_OK;
 }
 
-NetworkStatus ServerTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr)
+NetworkStatus serverTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr)
 {
 #if PLATFORM == PLATFORM_WINDOWS
     typedef int socklen_t;
@@ -103,7 +103,7 @@ NetworkStatus ServerTcpWaitConnection(Socket * server, Socket * client, IpAddres
         return NETWORK_ERROR;
     }
 
-    AddressGetABCD(clientAddr, ntohl( addr.sin_addr.s_addr ));
+    addressGetABCD(clientAddr, ntohl( addr.sin_addr.s_addr ));
         
 	clientAddr->port = htons(addr.sin_port);
     client->handle = csock;
@@ -112,14 +112,14 @@ NetworkStatus ServerTcpWaitConnection(Socket * server, Socket * client, IpAddres
 	return NETWORK_OK;
 }
 
-NetworkStatus ClientTcpOpen(Socket * client, IpAddress * server)
+NetworkStatus clientTcpOpen(Socket * client, IpAddress * server)
 {
 	int err;
 	struct sockaddr_in addr ;
     
     memset(&addr,0,sizeof(struct sockaddr_in));
     addr.sin_family			= AF_INET;
-	addr.sin_addr.s_addr	= htonl(AddressGetIp(server));
+	addr.sin_addr.s_addr	= htonl(addressGetIp(server));
 	addr.sin_port			= htons( server->port );
     
     err = connect(client->handle, (struct sockaddr*)&addr, sizeof(struct sockaddr_in));
@@ -146,7 +146,7 @@ NetworkStatus ClientTcpOpen(Socket * client, IpAddress * server)
 	return NETWORK_OK;
 }
 
-NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended)
+NetworkStatus socketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended)
 {
     int result = (int)send(s->handle,(const char *)packet_data,packet_size,0);
 
@@ -169,7 +169,7 @@ NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_
     return NETWORK_OK;
 }
 
-NetworkStatus SocketTcpReceive(Socket *s, void * buffer, UInt32 buffer_size, UInt32 * received)
+NetworkStatus socketTcpReceive(Socket *s, void * buffer, UInt32 buffer_size, UInt32 * received)
 {
 	int result;
 	
@@ -202,7 +202,7 @@ _again_:
 	return NETWORK_OK;
 }
 
-NetworkStatus SocketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
+NetworkStatus socketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
 {
     NetworkStatus status;
     UInt32 sended;
@@ -211,7 +211,7 @@ NetworkStatus SocketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
 	toWrite = buffer_size;
 	while(toWrite > 0)
 	{
-		status = SocketTcpSend(s, (UInt8 *)buffer + buffer_size - toWrite, toWrite, &sended);
+		status = socketTcpSend(s, (UInt8 *)buffer + buffer_size - toWrite, toWrite, &sended);
 		if (status == NETWORK_ERROR)
 		{
 			LOG_ERR1("SocketTcpSendAll");
@@ -223,7 +223,7 @@ NetworkStatus SocketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
 	return NETWORK_OK;
 }
 
-NetworkStatus SocketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size)
+NetworkStatus socketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size)
 {
     NetworkStatus status;
 	UInt32 received;
@@ -232,7 +232,7 @@ NetworkStatus SocketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size)
 	toRead = buffer_size;
 	while (toRead > 0)
 	{
-		status = SocketTcpReceive(s, (UInt8 *)buffer + buffer_size - toRead, toRead, &received);
+		status = socketTcpReceive(s, (UInt8 *)buffer + buffer_size - toRead, toRead, &received);
 		if (status == NETWORK_ERROR)
 		{
 			LOG_ERR1("SocketTcpReceiveAll");

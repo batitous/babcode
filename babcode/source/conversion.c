@@ -34,7 +34,7 @@
 #include <errno.h>
 
 
-bool StringToInt(Int8 const * str, Int32 * num)
+bool stringToInt(Int8 const * str, Int32 * num)
 {
     unsigned int pos;
     unsigned int i;
@@ -108,7 +108,7 @@ bool StringToInt(Int8 const * str, Int32 * num)
     return true;
 }
 
-UInt32 BinToDecimalAscii(Int32 bin,Int8 *result)
+UInt32 binToDecimalAscii(Int32 bin,Int8 *result)
 {
 	int i=0;
 	char bCount, bPrinted;
@@ -145,7 +145,7 @@ UInt32 BinToDecimalAscii(Int32 bin,Int8 *result)
 	return i;
 }
 
-void BinToHex(UInt8 data,Int8 *result)
+void binToHex(UInt8 data,Int8 *result)
 {
 	UInt8 temp;
 
@@ -162,7 +162,7 @@ void BinToHex(UInt8 data,Int8 *result)
 	result[1]=temp;
 }
 
-bool HexToBin(UInt8 *hex,UInt8 *bin)
+bool hexToBin(UInt8 *hex,UInt8 *bin)
 {
 	unsigned char i;
 	unsigned char tmp=0;
@@ -187,7 +187,7 @@ bool HexToBin(UInt8 *hex,UInt8 *bin)
 	return true;
 }
 
-bool StringToFloat(Int8 * str, float* floating)
+bool stringToFloat(Int8 * str, float* floating)
 {
 	int i;
 	int len;
@@ -196,18 +196,18 @@ bool StringToFloat(Int8 * str, float* floating)
 	int decimal=0;
     
     char* pos = strchr(str, '.');
-    if (pos == NULL && StringToInt(str, &integer) == 0) {
+    if (pos == NULL && stringToInt(str, &integer) == 0) {
         *floating=integer;
         return true;
     }
-    else if (pos == NULL && StringToInt(str, &integer) != 0) {
+    else if (pos == NULL && stringToInt(str, &integer) != 0) {
         return false;
     }
     
     pos[0]='\0';
     
-    if (StringToInt(str, &integer) != 0) return false;
-    if (StringToInt(pos+1, &decimal) != 0) return false;
+    if (stringToInt(str, &integer) != 0) return false;
+    if (stringToInt(pos+1, &decimal) != 0) return false;
     
     
     len = (int)strlen(pos+1);
@@ -219,7 +219,7 @@ bool StringToFloat(Int8 * str, float* floating)
     return true;
 }
 
-bool StringIsHex(Int8 * str, Int32 * integer)
+bool stringIsHex(Int8 * str, Int32 * integer)
 {
 	long size;
 	char* pEnd=NULL;

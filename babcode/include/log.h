@@ -32,19 +32,16 @@
 extern "C" {
 #endif
 
-extern void LogOpen(const Int8 *filename);
+extern void logOpen(const Int8 *filename);
 
-extern void LogClose(void);
+extern void logClose(void);
 
-extern void LogError (const Int8 fmt[], ...);
+extern void logError (const Int8 fmt[], ...);
 
-    
-#define LOG(...)        LogError(__VA_ARGS__);
+#define LOG(...)        logError(__VA_ARGS__);
 
-#define LOG_ERR1(str)	LogError("error in %s at %4d : %s\n",(char *)__FILE__ ,  __LINE__, str)
-#define LOG_ERR2(str,id) LogError("error in %s at %4d : %s %d\n",(char *)__FILE__ ,  __LINE__, str,id)
-
-    
+#define LOG_ERR1(str)	logError("error in %s at %4d : %s\n",(char *)__FILE__ ,  __LINE__, str)
+#define LOG_ERR2(str,id) logError("error in %s at %4d : %s %d\n",(char *)__FILE__ ,  __LINE__, str,id)
     
 #ifdef __cplusplus
  }

@@ -29,7 +29,7 @@
 
 #include "networkstack-private.h"
 
-void FreeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber)
+void freeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber)
 {
 	int i;
     
@@ -48,7 +48,7 @@ void FreeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber)
 	free(interfaces);
 }
 
-NetworkStatus SocketSetBlock(Socket *s, bool enable)
+NetworkStatus socketSetBlock(Socket *s, bool enable)
 {
 #if PLATFORM == PLATFORM_WINDOWS
     
@@ -88,7 +88,7 @@ NetworkStatus SocketSetBlock(Socket *s, bool enable)
 	return NETWORK_OK;
 }
 
-NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
+NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 {
 	if(RecvTimeout > 0)
 	{
@@ -131,14 +131,14 @@ NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 	return NETWORK_OK;
 }
 
-Int32 SocketSetBroadcast(Socket *s, Int32 Enable)
+Int32 socketSetBroadcast(Socket *s, Int32 Enable)
 {
 	if(setsockopt(s->handle, SOL_SOCKET, SO_BROADCAST, (const char *)&Enable, sizeof(Enable)) < 0)
 		return 0;
 	return 1;
 }
 
-Int32 SocketSetKeepAlive(Socket *s, Int32 Enable)
+Int32 socketSetKeepAlive(Socket *s, Int32 Enable)
 {
 	if(setsockopt(s->handle, SOL_SOCKET, SO_KEEPALIVE, (const char *)&Enable, sizeof(Enable)) < 0)
 		return 0;
@@ -146,7 +146,7 @@ Int32 SocketSetKeepAlive(Socket *s, Int32 Enable)
 }
 
 // set TCP_NODELAY before sending short messages that should be sent immediately
-Int32 SocketSetTcpNoDelay(Socket *s, Int32 Enable)
+Int32 socketSetTcpNoDelay(Socket *s, Int32 Enable)
 {
 	if(setsockopt(s->handle, IPPROTO_TCP, TCP_NODELAY, (const char *)&Enable, sizeof(Enable)) < 0)
 		return 0;
@@ -154,7 +154,7 @@ Int32 SocketSetTcpNoDelay(Socket *s, Int32 Enable)
 }
 
 
-Int32 SocketSetMulticastTTL(Socket *s, Int32 TTL)
+Int32 socketSetMulticastTTL(Socket *s, Int32 TTL)
 {
 	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_TTL, (const char *)&TTL, sizeof(TTL)) < 0)
 		return 0;
@@ -162,14 +162,14 @@ Int32 SocketSetMulticastTTL(Socket *s, Int32 TTL)
 }
 
 
-Int32 SocketSetMulticastIF(Socket *s, UInt32 ip)
+Int32 socketSetMulticastIF(Socket *s, UInt32 ip)
 {
 	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_IF, (const char *)&ip, sizeof(ip)) < 0)
 		return 0;
 	return 1;
 }
 
-Int32 SocketSetMulticastMembership(Socket *s, UInt32 faceIP, UInt32 multicastIP)
+Int32 socketSetMulticastMembership(Socket *s, UInt32 faceIP, UInt32 multicastIP)
 {
 	struct ip_mreq McastAddr;
 	

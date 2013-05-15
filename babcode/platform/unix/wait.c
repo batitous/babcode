@@ -37,7 +37,7 @@
 
 #include <unistd.h>
 
-UInt32 GetTicks(void)
+UInt32 getTicks(void)
 {
     static int first=1;
     static long beginsec;
@@ -58,7 +58,7 @@ UInt32 GetTicks(void)
     return (unsigned int)((tv.tv_sec-beginsec)*1000+tv.tv_usec/1000);
 }
 
-void Wait(UInt32 msecs )
+void waitMs(UInt32 msecs )
 {
 	usleep(msecs*1000);
 }

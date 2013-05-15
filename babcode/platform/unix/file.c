@@ -43,7 +43,7 @@
 #include <errno.h>
 
 
-UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
+UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 {
 	int file ;
 	UInt32 result ;
@@ -69,7 +69,7 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	return FILE_OK ;
 }
 
-static long int GetFileSize( int fp )
+static long int getFileSize( int fp )
 {
     long int save_pos, size_of_file;
 
@@ -85,7 +85,7 @@ static long int GetFileSize( int fp )
 }
 
 
-UInt8 *FileMmapRead(UInt8 *filename, UInt32 *len)
+UInt8 *fileMmapRead(UInt8 *filename, UInt32 *len)
 {
     UInt8 * ptr;
     int fileDescriptor;
@@ -133,7 +133,7 @@ UInt8 *FileMmapRead(UInt8 *filename, UInt32 *len)
     return ptr;
 }
 
-UInt8 *FileRead( UInt8 *filename, UInt32 *len )
+UInt8 *fileRead( UInt8 *filename, UInt32 *len )
 {
 	UInt32 size ;
 	UInt8 *buffer ;
@@ -148,7 +148,7 @@ UInt8 *FileRead( UInt8 *filename, UInt32 *len )
 	}
 
 	//get its size
-	size=(UInt32)GetFileSize(file);
+	size=(UInt32)getFileSize(file);
 
 	//alloc the size to a target buffer
 	buffer =(UInt8*) malloc(size);
@@ -172,7 +172,7 @@ UInt8 *FileRead( UInt8 *filename, UInt32 *len )
 	return buffer;
 }
 
-UInt8 *FileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
+UInt8 *fileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
 {
 	int f;
 	UInt8 *buffer;

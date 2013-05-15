@@ -32,7 +32,6 @@
 extern "C" {
 #endif
 
-
 #define UART_OK				0		/**< Ok */
 #define UART_OPEN_FAILED	0x101	/**< Failed to open comport */
 #define UART_CONF_FAILED	0x102	/**< Failed to configure comport */
@@ -48,7 +47,7 @@ extern "C" {
  * @return 0 if no error.
  *
  */
-extern UInt32 InitUART(const UInt8 * comport, UInt32 baudrate);
+extern UInt32 initUART(const UInt8 * comport, UInt32 baudrate);
 
     
 #if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
@@ -57,16 +56,13 @@ extern UInt32 InitUART(const UInt8 * comport, UInt32 baudrate);
 
 	speed_t UInt32ToSpeed_t(UInt32 baudrate);
 #endif
-    
-	
-	
 
 /** @brief Send a byte
  *
  * @param byte	Byte to send
  * @return 0 if no error.
  */
-extern UInt32 SendByteToUART(UInt8 byte);
+extern UInt32 sendByteToUART(UInt8 byte);
 
 /** @brief Send a buffer
  *
@@ -74,21 +70,21 @@ extern UInt32 SendByteToUART(UInt8 byte);
  * @param Count		Number of byte to send
  * @return 0 if no error
  */
-extern UInt32 SendBufferToUART (UInt8 *Buffer, UInt32 Count);
+extern UInt32 sendBufferToUART (UInt8 *Buffer, UInt32 Count);
 
 /** @brief Get a byte
  *
  * @param [out] data	Pointer to a byte
  * @return 0 if no error.
  */
-extern UInt32  GetByteFromUART(UInt8 *data);
+extern UInt32  getByteFromUART(UInt8 *data);
 
 /** @brief Get a byte (with timeout)
  *
  * @param [out] data	Pointer to a byte
  * @return 0 if no error.
  */
-extern UInt32 GetByteFromUARTNoWait(UInt8 *data);
+extern UInt32 getByteFromUARTNoWait(UInt8 *data);
 
 /** @brief Get a buffer
  *
@@ -96,13 +92,9 @@ extern UInt32 GetByteFromUARTNoWait(UInt8 *data);
  * @param Count		Number of byte to read
  * @return 0 if no error.
  */
-extern UInt32  GetBufferFromUART (UInt8 *Buffer,UInt32 Count);
+extern UInt32  getBufferFromUART (UInt8 *Buffer,UInt32 Count);
 
-extern void CloseUART(void);
-    
-    
-
-    
+extern void closeUART(void);
 
 // implemented on Linux/Mac OS X
 extern void UARTSetDTR(void);

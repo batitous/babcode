@@ -38,7 +38,7 @@
 #	include <unistd.h>
 #endif
 
-void Write32bitsToBuffer(UInt8 * buffer, UInt32 integer)
+void write32bitsToBuffer(UInt8 * buffer, UInt32 integer)
 {
     buffer[0] = (UInt8) ( ( integer >> 24 ) & 0xFF );
     buffer[1] = (UInt8) ( ( integer >> 16 ) & 0xFF );
@@ -46,27 +46,25 @@ void Write32bitsToBuffer(UInt8 * buffer, UInt32 integer)
     buffer[3] = (UInt8) ( ( integer ) & 0xFF );
 }
 
-Int32 Read32bitsFromBuffer(UInt8 * buffer)
+Int32 read32bitsFromBuffer(UInt8 * buffer)
 {
     Int32 integer = (buffer[0]<<24)| (buffer[1]<<16)|(buffer[2]<<8)|(buffer[3]);
     
     return integer;
 }
 
-void Write16bitsToBuffer(UInt8 * buffer, UInt16 integer)
+void write16bitsToBuffer(UInt8 * buffer, UInt16 integer)
 {
     buffer[0] = (UInt8) ( ( integer >> 8  ) & 0xFF );
     buffer[1] = (UInt8) ( ( integer ) & 0xFF );
 }
 
-Int16 Read16bitsFromBuffer(UInt8 * buffer)
+Int16 read16bitsFromBuffer(UInt8 * buffer)
 {
     Int16 integer = (buffer[0]<<8)|(buffer[1]);
     
     return integer;
 }
-
-
 
 #if PLATFORM == PLATFORM_WINDOWS
 
@@ -121,7 +119,7 @@ static int _Path_Cleanup(char *AbsPath)
 }
 
 
-bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
+bool getRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
 {
 	char AbsPath[512], *Tokens[512], *pBuf;
 	int i, lPath, lAbsPath, lTokens, lResolvedPath, szResolvedPath;

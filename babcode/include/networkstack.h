@@ -74,47 +74,46 @@ typedef enum _network_status_
     NETWORK_TIMEOUT   = 2
 } NetworkStatus;
     
-extern int InitSocketPlatform();
-extern void CloseSocketPlatform();
+extern int initSocketPlatform();
+extern void closeSocketPlatform();
     
 // get ip from a.b.c.d address
-extern UInt32 AddressGetIp(IpAddress * addr);
+extern UInt32 addressGetIp(IpAddress * addr);
 
 // get a.b.c.d from ip
-extern void AddressGetABCD(IpAddress * addr, UInt32 ip);
-
+extern void addressGetABCD(IpAddress * addr, UInt32 ip);
 
 // socket option
-extern NetworkStatus SocketSetBlock(Socket *s, bool enable);
-extern NetworkStatus SocketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
+extern NetworkStatus socketSetBlock(Socket *s, bool enable);
+extern NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
     
 // tcp socket
-extern NetworkStatus SocketTcpInit(Socket * s);
-extern NetworkStatus ServerTcpOpen(Socket *s, UInt16 port);
-extern NetworkStatus ServerTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr);
-extern NetworkStatus ClientTcpOpen(Socket * client, IpAddress * server);
+extern NetworkStatus socketTcpInit(Socket * s);
+extern NetworkStatus serverTcpOpen(Socket *s, UInt16 port);
+extern NetworkStatus serverTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr);
+extern NetworkStatus clientTcpOpen(Socket * client, IpAddress * server);
     
-extern NetworkStatus SocketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended);
-extern NetworkStatus SocketTcpReceive(Socket *s,void * packet_data, UInt32 maximum_packet_size, UInt32 * received);
+extern NetworkStatus socketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended);
+extern NetworkStatus socketTcpReceive(Socket *s,void * packet_data, UInt32 maximum_packet_size, UInt32 * received);
     
 // udp socket
-extern Int32 SocketOpen(Socket * s, UInt16 port);
-extern Int32 SocketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size);
-extern Int32 SocketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maximum_packet_size);
+extern Int32 socketOpen(Socket * s, UInt16 port);
+extern Int32 socketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size);
+extern Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maximum_packet_size);
 
-extern void SocketClose(Socket *s);
+extern void socketClose(Socket *s);
 
 
-extern void ConnectionNew(NetConnection * connection, UInt32 id);
-extern Int32 ConnectionStart(NetConnection * connection, UInt16 port);
-extern void ConnectionStop(NetConnection * connection);
+extern void connectionNew(NetConnection * connection, UInt32 id);
+extern Int32 connectionStart(NetConnection * connection, UInt16 port);
+extern void connectionStop(NetConnection * connection);
 
 // link the address's parameter to the remote connection address
-extern void ConnectionConnect(NetConnection * connection, IpAddress * remoteAddr);
+extern void connectionConnect(NetConnection * connection, IpAddress * remoteAddr);
 
-extern Int32 ConnectionSend(NetConnection * connection, const void * data, UInt32 size);
+extern Int32 connectionSend(NetConnection * connection, const void * data, UInt32 size);
 
-extern Int32 ConnectionReceive(NetConnection * connection, void * data, UInt32 size);
+extern Int32 connectionReceive(NetConnection * connection, void * data, UInt32 size);
 
 #define MAC_ADDR_SIZE	6
     
@@ -128,9 +127,8 @@ typedef struct _interface_info_
     UInt32	pkSize;		/**< MTU maximum size */
 } NetInterfaceInfo;
 
-extern bool GetNetworkInterface(NetInterfaceInfo **interfaces,Int32 * interfaceNumber);
-extern void FreeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber);
-
+extern bool getNetworkInterface(NetInterfaceInfo **interfaces,Int32 * interfaceNumber);
+extern void freeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber);
 
 #ifdef __cplusplus
 }

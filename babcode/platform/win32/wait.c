@@ -31,7 +31,7 @@
 #include <time.h>
 
 
-static LARGE_INTEGER GetFrequency(void)
+static LARGE_INTEGER getFrequency(void)
 {
 	LARGE_INTEGER freq;
 	QueryPerformanceFrequency(&freq);
@@ -39,7 +39,7 @@ static LARGE_INTEGER GetFrequency(void)
 	return freq;
 }
 
-static double  Now(void)
+static double wow(void)
 {
 	LARGE_INTEGER tick, freq;
 	freq = GetFrequency();
@@ -50,7 +50,7 @@ static double  Now(void)
 
 
 
-UInt32 GetTicks(void)
+UInt32 getTicks(void)
 {
 	UInt32 ticks = 0;
 	static UInt8 first = 1;
@@ -70,7 +70,7 @@ UInt32 GetTicks(void)
 	return ticks;
 }
 
-void Wait(UInt32 milliseconds)
+void waitMs(UInt32 milliseconds)
 {
 	Sleep( milliseconds );
 }

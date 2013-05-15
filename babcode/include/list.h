@@ -33,7 +33,7 @@ extern "C" {
 #endif
     
 /* how to use list
- 
+
  ListNode *n = list->first;
  while (n != NULL)
  {
@@ -44,9 +44,7 @@ extern "C" {
  
     n = n->next;
  }
- 
- 
- */
+*/
     
 typedef struct _list_node_
 {
@@ -62,19 +60,18 @@ typedef struct _list_
     int size;
 } List;
     
-extern void ListInit(List * l);
+extern void listInit(List * l);
 
-extern ListNode * ListAddElement(List *l, void *e);
+extern ListNode * listAddElement(List *l, void *e);
 
-extern void * ListRemoveNode(List *l, ListNode* node);
+extern void * listRemoveNode(List *l, ListNode* node);
 
-extern void * ListRemoveLastNode(List *l);
+extern void * listRemoveLastNode(List *l);
     
 /** Use with caution */
-extern void * ListGetElementAt(List* l, Int32 index);
+extern void * listGetElementAt(List* l, Int32 index);
     
-extern void ListRemoveElementAt(List* l, Int32 index);
-    
+extern void listRemoveElementAt(List* l, Int32 index);
     
 #ifdef __cplusplus
 }

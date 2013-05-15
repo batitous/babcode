@@ -30,14 +30,14 @@
 
 #include "../include/babcode.h"
 
-void ListInit(List * l)
+void listInit(List * l)
 {
     l->first = NULL;
     l->last = NULL;
     l->size = 0;
 }
 
-ListNode* ListAddElement(List *l, void *e)
+ListNode* listAddElement(List *l, void *e)
 {
     if (l == NULL) return NULL;
     
@@ -60,7 +60,7 @@ ListNode* ListAddElement(List *l, void *e)
     return node;
 }
 
-void *ListRemoveNode(List *l, ListNode* node)
+void *listRemoveNode(List *l, ListNode* node)
 {
     if (node == NULL) return NULL;
     
@@ -85,18 +85,18 @@ void *ListRemoveNode(List *l, ListNode* node)
     return next;
 }
 
-void *ListRemoveLastNode(List *l)
+void *listRemoveLastNode(List *l)
 {
     ListNode *node = l->last;
     
     if (node == NULL) return NULL;
     
-    ListRemoveNode(l, l->last);
+    listRemoveNode(l, l->last);
     
     return node->data;
 }
 
-void *ListGetElementAt(List* l, Int32 index)
+void *listGetElementAt(List* l, Int32 index)
 {
     int i=0;
     ListNode *n = l->first;
@@ -111,7 +111,7 @@ void *ListGetElementAt(List* l, Int32 index)
     return NULL;
 }
 
-void ListRemoveElementAt(List* l, Int32 index)
+void listRemoveElementAt(List* l, Int32 index)
 {
     int i=0;
     ListNode *n = l->first;
@@ -119,7 +119,7 @@ void ListRemoveElementAt(List* l, Int32 index)
     {
         if (i == index)
         {
-            ListRemoveNode(l, n);
+            listRemoveNode(l, n);
             return;
         }
         

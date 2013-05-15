@@ -32,7 +32,6 @@
 extern "C" {
 #endif
 
-
 typedef struct _babcode_time_
 {
 	UInt16 year; /**< Year after Jesus Birth */
@@ -52,14 +51,12 @@ typedef struct _babcode_time_
 
 } Time ;
 
-extern void GetTime(Time *t);
+extern void getTime(Time *t);
 
 // Get ticks in millisecond that have elapsed since the program was started.
-extern UInt32 GetTicks(void);
+extern UInt32 getTicks(void);
 
-
-extern void Wait(UInt32 milliseconds);
-
+extern void waitMs(UInt32 milliseconds);
     
 #ifdef __cplusplus
   }

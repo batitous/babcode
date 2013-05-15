@@ -33,7 +33,7 @@
 #include <windows.h>
 
 
-UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
+UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 {
 	FILE *file ;
 	unsigned int result ;
@@ -66,7 +66,7 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	return FILE_OK ;
 }
 
- UInt8 *FileRead( UInt8 *filename, UInt32 *len )
+UInt8 * fileRead( UInt8 *filename, UInt32 *len )
 {
 	UInt32 size = 0 ;
 	UInt8 *buffer = 0 ;
@@ -106,7 +106,7 @@ UInt32 FileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	return buffer ;
 }
 
-UInt8 * FileMmapRead( UInt8 * path, UInt32 *len)
+UInt8 * fileMmapRead( UInt8 * path, UInt32 *len)
 {
    void    *result;
    HANDLE   file=CreateFileA((LPCSTR)path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -139,7 +139,7 @@ UInt8 * FileMmapRead( UInt8 * path, UInt32 *len)
    return (UInt8 *)result;
 }
 
- UInt8 *FileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
+UInt8 * fileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
 {
 	FILE *f;
 	UInt8 *buffer;

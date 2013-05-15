@@ -47,7 +47,7 @@ static UInt32 integerHash(UInt32 h)
 	return h;
 }
 
-static void HashTableRepopulate(HashTable * table, UInt32 desiredSize)
+static void hashTableRepopulate(HashTable * table, UInt32 desiredSize)
 {
 	HashNode * node;
 	HashNode * n;
@@ -83,7 +83,7 @@ static void HashTableRepopulate(HashTable * table, UInt32 desiredSize)
 }
 
 
-void HashTableInit(HashTable * table, UInt32 size)
+void hashTableInit(HashTable * table, UInt32 size)
 {
     table->size = size;
     table->population = 0;    
@@ -91,7 +91,7 @@ void HashTableInit(HashTable * table, UInt32 size)
     memset(table->nodes, 0, sizeof(HashNode) * table->size);
 }
 
-HashNode * HashTableLookup(HashTable * table, UInt32 key)
+HashNode * hashTableLookup(HashTable * table, UInt32 key)
 {
 	HashNode * n;
 
@@ -107,7 +107,7 @@ HashNode * HashTableLookup(HashTable * table, UInt32 key)
 
 
 
-void HashTableDelete(HashTable * table, HashNode * node)
+void hashTableDelete(HashTable * table, HashNode * node)
 {
 	HashNode * ideal;
 	HashNode * neighbor;
@@ -135,7 +135,7 @@ void HashTableDelete(HashTable * table, HashNode * node)
     }
 }
 
-HashNode * HashTableInsert(HashTable * table, UInt32 key)
+HashNode * hashTableInsert(HashTable * table, UInt32 key)
 {
 	HashNode* node;
 
@@ -152,7 +152,7 @@ HashNode * HashTableInsert(HashTable * table, UInt32 key)
                 if ((table->population + 1) * 4 >= table->size * 3)
                 {
                     // Time to resize
-                    HashTableRepopulate(table,table->size * 2);
+                    hashTableRepopulate(table,table->size * 2);
                     break;
                 }
                 ++table->population;

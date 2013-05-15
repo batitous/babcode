@@ -51,7 +51,7 @@ int get_fd_uart()
     return fd_uart;
 }
 
-UInt32 InitUART(const UInt8 *tty_name, UInt32 baudrate)
+UInt32 initUART(const UInt8 *tty_name, UInt32 baudrate)
 {
 	struct termios  options;
 	
@@ -130,7 +130,7 @@ speed_t UInt32ToSpeed_t(UInt32 baudrate)
     }
 }
 
-UInt32 SendByteToUART(UInt8 Byte)
+UInt32 sendByteToUART(UInt8 Byte)
 {
 	tmp0[0]=Byte;
 
@@ -141,7 +141,7 @@ UInt32 SendByteToUART(UInt8 Byte)
 	return UART_OK;
 }
 
-UInt32 SendBufferToUART(UInt8 *Buffer, UInt32 Count)
+UInt32 sendBufferToUART(UInt8 *Buffer, UInt32 Count)
 {
 	if(write(fd_uart,Buffer,Count)==-1)
 	{
@@ -150,7 +150,7 @@ UInt32 SendBufferToUART(UInt8 *Buffer, UInt32 Count)
 	return UART_OK;
 }
 
-UInt32 GetByteFromUART(UInt8 *data)
+UInt32 getByteFromUART(UInt8 *data)
 {
 	if(read(fd_uart,tmp1,1)==-1)
 	{
@@ -162,7 +162,7 @@ UInt32 GetByteFromUART(UInt8 *data)
 	return UART_OK;
 }
 
-UInt32 GetByteFromUARTNoWait(UInt8 *data)
+UInt32 getByteFromUARTNoWait(UInt8 *data)
 {
 	*data=0;
 	Int32 result = (Int32)read(fd_uart,tmp1,1);
@@ -184,7 +184,7 @@ UInt32 GetByteFromUARTNoWait(UInt8 *data)
 	return UART_OK;
 }
 
-UInt32 GetBufferFromUART(UInt8 *Buffer, UInt32 Count)
+UInt32 getBufferFromUART(UInt8 *Buffer, UInt32 Count)
 {
 	if(read(fd_uart,Buffer,Count)==-1)
 	{
@@ -194,15 +194,13 @@ UInt32 GetBufferFromUART(UInt8 *Buffer, UInt32 Count)
 	return UART_OK;
 }
 
-void CloseUART(void)
+void closeUART(void)
 {
     close(fd_uart);
     
 	tcflush(fd_uart, TCOFLUSH);
     tcflush(fd_uart, TCIFLUSH);
     tcsetattr(fd_uart, TCSANOW, &gOriginalTTYAttrs);
-	
-	
 }
 
 

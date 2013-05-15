@@ -27,22 +27,22 @@
 
 #include "../../include/babcode.h"
 
-void MutexInit(Mutex * m)
+void mutexInit(Mutex * m)
 {
     pthread_mutex_init(m, NULL);
 }
 
-void MutexLock(Mutex * m)
+void mutexLock(Mutex * m)
 {
     pthread_mutex_lock(m);
 }
 
-void MutexUnlock(Mutex * m)
+void mutexUnlock(Mutex * m)
 {
     pthread_mutex_unlock(m);
 }
 
-void MutexDelete(Mutex *m)
+void mutexDelete(Mutex *m)
 {
     pthread_mutex_destroy(m);
 }

@@ -48,13 +48,13 @@ typedef struct _ConditionVar_
 	
 #endif
 
-extern void ConditionVarInit(ConditionVar * cv);
+extern void conditionVarInit(ConditionVar * cv);
     
-extern void ConditionVarWait(ConditionVar * cv, Mutex * m);
+extern void conditionVarWait(ConditionVar * cv, Mutex * m);
     
-extern void ConditionVarSignal(ConditionVar * cv);
+extern void conditionVarSignal(ConditionVar * cv);
     
-extern void ConditionVarDelete(ConditionVar * cv);
+extern void conditionVarDelete(ConditionVar * cv);
     
 #ifdef __cplusplus
 }

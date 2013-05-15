@@ -34,7 +34,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 
-bool GetNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool getNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 {
 	struct sockaddr_in *pAddr;
 	int Success = 0;

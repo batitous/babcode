@@ -35,7 +35,7 @@ extern "C" {
 /** @brief Init random seed.
  *
  */
-extern void  RandomInit(void);
+extern void  randomInit(void);
 
 /** @brief Get random between low and high boundary.
  *
@@ -43,14 +43,14 @@ extern void  RandomInit(void);
  * @param highBoundary		High.
  * @return A random number.
  */
-extern Int32 GetRandomBetween(Int32 lowBoundary, Int32 highBoundary);
+extern Int32 getRandomBetween(Int32 lowBoundary, Int32 highBoundary);
 
 /** @brief Get a random number between 0 and high boundary.
  *
  * @param highBoundary		High.
  * @return A random number.
  */
-extern Int32 GetRandom(Int32 highBoundary);
+extern Int32 getRandom(Int32 highBoundary);
 
 #ifdef __cplusplus
  }

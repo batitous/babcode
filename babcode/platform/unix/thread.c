@@ -32,7 +32,7 @@
 #include <pthread.h>
 
 
-void ThreadInit( Thread * t, void *(* func)(void *), void *param )
+void threadInit( Thread * t, void *(* func)(void *), void *param )
 {
 	int error = pthread_create( t, NULL, func, param );
 	if (error!= 0)
@@ -41,7 +41,7 @@ void ThreadInit( Thread * t, void *(* func)(void *), void *param )
 	}
 }
 
-void ThreadJoin( Thread *t )
+void threadJoin( Thread *t )
 {
 	void *ret;
 
@@ -49,7 +49,7 @@ void ThreadJoin( Thread *t )
 
 }
 
-void ThreadExit( void )
+void threadExit( void )
 {
 	 pthread_exit(0);
 }

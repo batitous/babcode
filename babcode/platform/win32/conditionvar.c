@@ -34,7 +34,7 @@
 
 // code comes from http://www.cs.wustl.edu/~schmidt/win32-cv-1.html
 
-void ConditionVarInit(ConditionVar * cv)
+void conditionVarInit(ConditionVar * cv)
 {
     // Initialize the count to 0.
     cv->waiters_count_ = 0;
@@ -54,7 +54,7 @@ void ConditionVarInit(ConditionVar * cv)
                                           NULL); // unnamed
 }
 
-void ConditionVarWait(ConditionVar * cv, Mutex * m)
+void conditionVarWait(ConditionVar * cv, Mutex * m)
 {
 	int result;
 	int last_waiter;
@@ -88,7 +88,7 @@ void ConditionVarWait(ConditionVar * cv, Mutex * m)
     EnterCriticalSection (m);
 }
 
-void ConditionVarSignal(ConditionVar * cv)
+void conditionVarSignal(ConditionVar * cv)
 {
 	int have_waiters;
 
@@ -101,7 +101,7 @@ void ConditionVarSignal(ConditionVar * cv)
         SetEvent (cv->events_[SIGNAL]);
 }
 
-void ConditionVarDelete(ConditionVar * cv)
+void conditionVarDelete(ConditionVar * cv)
 {
     DeleteCriticalSection(&cv->waiters_count_lock_);
 }

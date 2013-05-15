@@ -61,7 +61,7 @@ static UInt32 getComPortNumber(const UInt8 *portcom)
 	return port;
 }
 
-UInt32 InitUART(const UInt8 * name, UInt32 baudrate)
+UInt32 initUART(const UInt8 * name, UInt32 baudrate)
 {
 	UInt32 comport;
 	DCB dcb_structure;
@@ -112,7 +112,7 @@ UInt32 InitUART(const UInt8 * name, UInt32 baudrate)
 }
 
 
-UInt32 SendBufferToUART (UInt8 *Buffer, UInt32 Count)
+UInt32 sendBufferToUART (UInt8 *Buffer, UInt32 Count)
 {
 	unsigned long buffer;
 //	FlushFileBuffers(hCom);	
@@ -124,7 +124,7 @@ UInt32 SendBufferToUART (UInt8 *Buffer, UInt32 Count)
 	return UART_OK;
 }
 
-UInt32 SendByteToUART(UInt8 byte)
+UInt32 sendByteToUART(UInt8 byte)
 {
 	unsigned long buffer;		
 //	FlushFileBuffers(hCom);	
@@ -137,7 +137,7 @@ UInt32 SendByteToUART(UInt8 byte)
 }
 
 
-UInt32 GetByteFromUART (UInt8 *Val)
+UInt32 getByteFromUART (UInt8 *Val)
 {
 	unsigned long buffer;
 
@@ -149,7 +149,7 @@ UInt32 GetByteFromUART (UInt8 *Val)
 	return UART_OK;
 }
 
-UInt32 GetByteFromUARTNoWait(UInt8 *mot)
+UInt32 getByteFromUARTNoWait(UInt8 *mot)
 {
 	unsigned long len=0;
 	unsigned long time=0;
@@ -166,7 +166,7 @@ UInt32 GetByteFromUARTNoWait(UInt8 *mot)
 	return UART_OK;
 }
 
-UInt32 GetBufferFromUART (UInt8 *Buffer,UInt32 Count)
+UInt32 getBufferFromUART (UInt8 *Buffer,UInt32 Count)
 {
 	unsigned long buffer;		
 	if(ReadFile(hCom,Buffer,Count,&buffer,NULL)==0)
@@ -180,33 +180,33 @@ UInt32 GetBufferFromUART (UInt8 *Buffer,UInt32 Count)
 }
 
 
-void CloseUART(void)
+void closeUART(void)
 {
 	CloseHandle(hCom);
 }
 
- UInt32 GetStatus(void)
+ UInt32 getStatus(void)
  {
 
     return 0;
 }
 
-void ClearDTR(void)
+void clearDTR(void)
 {
    
 }
 
-void SetDTR(void)
+void setDTR(void)
 {
   
 }
 
-void ClearRTS(void)
+void clearRTS(void)
 {
    
 }
 
-void SetRTS(void)
+void setRTS(void)
 {
    
 }

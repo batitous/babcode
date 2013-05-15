@@ -32,7 +32,6 @@
 extern "C" {
 #endif
 
-
 #if PLATFORM == PLATFORM_WINDOWS
 	
 	#define _WINSOCKAPI_
@@ -55,14 +54,11 @@ extern "C" {
 	
 #endif
 
-extern void ThreadInit( Thread * t, void *(* func)(void *), void *param );
+extern void threadInit( Thread * t, void *(* func)(void *), void *param );
 
-extern void ThreadJoin( Thread * t );
+extern void threadJoin( Thread * t );
 
-extern void ThreadExit( void );
-
-
-
+extern void threadExit( void );
 
 #ifdef __cplusplus
  }

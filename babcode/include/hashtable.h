@@ -44,17 +44,16 @@ typedef struct _hashtable_
     UInt32      size;
     UInt32      population;
 } HashTable;
-
     
-extern void HashTableInit(HashTable * table, UInt32 size);
+extern void hashTableInit(HashTable * table, UInt32 size);
 
 // key MUST BE not egual to 0
-extern HashNode * HashTableInsert(HashTable * table, UInt32 key);
+extern HashNode * hashTableInsert(HashTable * table, UInt32 key);
     
 // key MUST BE not egual to 0
-extern HashNode * HashTableLookup(HashTable * table, UInt32 key);
+extern HashNode * hashTableLookup(HashTable * table, UInt32 key);
     
-extern void HashTableDelete(HashTable * table, HashNode * node);
+extern void hashTableDelete(HashTable * table, HashNode * node);
     
 #ifdef __cplusplus
 }

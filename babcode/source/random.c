@@ -32,7 +32,7 @@
 #include <time.h>
 
 
-void RandomInit(void)
+void randomInit(void)
 {
 	time_t seconds;
 
@@ -40,13 +40,13 @@ void RandomInit(void)
 	srand((unsigned int) seconds);
 }
 
-Int32	GetRandomBetween(Int32 lowBoundary, Int32 highBoundary)
+Int32 getRandomBetween(Int32 lowBoundary, Int32 highBoundary)
 {
 	return (rand() % (highBoundary - lowBoundary + 1) + lowBoundary);
 }
 
 
-Int32	GetRandom(Int32 highBoundary)
+Int32 getRandom(Int32 highBoundary)
 {
 //	assert (0 < n && n <= RAND_MAX);
 

@@ -34,19 +34,18 @@ extern "C" {
 
 #define FREEMEM( ptr )  { free( ptr ) ; ptr = 0 ;}
     
-extern void Write32bitsToBuffer(UInt8 * buffer, UInt32 integer);
+extern void write32bitsToBuffer(UInt8 * buffer, UInt32 integer);
 
-extern Int32 Read32bitsFromBuffer(UInt8 * buffer);
+extern Int32 read32bitsFromBuffer(UInt8 * buffer);
     
-extern void Write16bitsToBuffer(UInt8 * buffer, UInt16 integer);
+extern void write16bitsToBuffer(UInt8 * buffer, UInt16 integer);
 
-extern Int16 Read16bitsFromBuffer(UInt8 * buffer);
+extern Int16 read16bitsFromBuffer(UInt8 * buffer);
     
-extern UInt32 GetExecutablePath(Int8 * buff, UInt32 buffSize);
+extern UInt32 getExecutablePath(Int8 * buff, UInt32 buffSize);
 
-extern bool GetRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize);
+extern bool getRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize);
 
-    
 #ifdef __cplusplus
   }
 #endif

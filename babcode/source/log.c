@@ -41,7 +41,7 @@ static void log_add(const char fmt[], va_list args)
     if (global_log_file==NULL)
         return;
     
-    GetTime(&time);
+    getTime(&time);
     
     fprintf( global_log_file,"%02u:%02u:%02u ",time.hour,time.minute,time.second);
     vfprintf(global_log_file,fmt,args);
@@ -49,14 +49,14 @@ static void log_add(const char fmt[], va_list args)
     fflush(global_log_file);
 }
 
-void LogOpen(const Int8 * filename)
+void logOpen(const Int8 * filename)
 {
     global_log_file = fopen((Int8 *)filename,"w+");
 	if (global_log_file==0)
 		return;
 }
 
-void LogClose(void)
+void logClose(void)
 {
     if (global_log_file!=NULL)
     {
@@ -66,7 +66,7 @@ void LogClose(void)
     }
 }
 
-void LogError (const char fmt[], ...)
+void logError (const char fmt[], ...)
 {
     va_list args;
     va_start(args, fmt);
