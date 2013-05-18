@@ -106,7 +106,7 @@ Int32 initSocketPlatform()
 #endif
 }
 
-void CloseSocketPlatform()
+void closeSocketPlatform()
 {
 #if PLATFORM == PLATFORM_WINDOWS
     WSACleanup();
@@ -214,7 +214,7 @@ Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maxim
     return (Int32)received_bytes;
 }
 
-void SocketClose(Socket *s)
+void socketClose(Socket *s)
 {
 #if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
     close( s->handle );
@@ -257,7 +257,7 @@ void connectionStop(NetConnection * connection)
     if (connection->isOpen==true)
     {
         connection->isOpen = false;
-        SocketClose(&connection->sock);
+        socketClose(&connection->sock);
     }
 }
 

@@ -1,5 +1,6 @@
 
 #include <stdio.h>
+#include <strings.h>
 
 #include "../babcode/include/babcode.h"
 
@@ -12,9 +13,9 @@ void test1(void)
     
     unsigned char buffer[16];
     
-    InitSocketPlatform();
+    initSocketPlatform();
     
-    if (SocketOpen(&sock, 10003)==0)
+    if (socketOpen(&sock, 10003)==0)
     {
         printf("failed to create socket !\n");
         return;
@@ -34,7 +35,7 @@ void test1(void)
          counter++;
          sleep(1);
          */
-        counter = SocketReceive(&sock, &addr, buffer, 16);
+        counter = socketReceive(&sock, &addr, buffer, 16);
         if (counter>0)
         {
             printf("Receive %d bytes from %d.%d.%d.%d:%d\n",counter,addr.a,addr.b,addr.c,addr.d,addr.port);
@@ -42,9 +43,9 @@ void test1(void)
         
     }
     
-    SocketClose(&sock);
+    socketClose(&sock);
     
-    CloseSocketPlatform();
+    closeSocketPlatform();
     
 }
 
@@ -67,8 +68,8 @@ void * server(void *p)
     IpAddress remote;
     NetConnection server;
     
-    ConnectionNew(&server, 10);
-    ConnectionStart(&server, PORT_SERVER);
+    connectionNew(&server, 10);
+    connectionStart(&server, PORT_SERVER);
     
 /*    remote.a = 127;
     remote.b = 0;
@@ -79,7 +80,7 @@ void * server(void *p)
 */
     while (run!=0)
     {
-        result = ConnectionReceive(&server, rcv, 16);
+        result = connectionReceive(&server, rcv, 16);
         if( result > 0)
         {
             //printf("[SERVER] received %d bytes re %d l %d\n", result,server.remoteSequence, server.localSequence);
@@ -98,7 +99,7 @@ void * server(void *p)
             if (counter>8)
             {
                 memcpy(&server.remote,&server.sender, sizeof(IpAddress));
-                ConnectionSend(&server,send,counter);
+                connectionSend(&server,send,counter);
                 counter = 1;
             }
         }
@@ -118,8 +119,8 @@ void * server(void *p)
     }
     
     
-    ConnectionStop(&server);
-    ThreadExit();
+    connectionStop(&server);
+    threadExit();
     return 0;
 }
 
@@ -136,20 +137,20 @@ void *client(void *p)
     IpAddress remote;
     NetConnection client;
     
-    ConnectionNew(&client, 10);
-    ConnectionStart(&client, PORT_CLIENT);
+    connectionNew(&client, 10);
+    connectionStart(&client, PORT_CLIENT);
     
     remote.a = 127;
     remote.b = 0;
     remote.c = 0;
     remote.d = 1;
     remote.port = PORT_SERVER;
-    ConnectionConnect(&client,&remote);
+    connectionConnect(&client,&remote);
     
     while (run!=0)
     {
         send[0] = counter;
-        ConnectionSend(&client, send, counter);
+        connectionSend(&client, send, counter);
         
         counter++;
         if (counter>15)
@@ -157,7 +158,7 @@ void *client(void *p)
             counter = 1;
         }
         
-        result = ConnectionReceive(&client, rcv, 16);
+        result = connectionReceive(&client, rcv, 16);
         if( result > 0)
         {
             /*            printf("----\n");
@@ -186,12 +187,12 @@ void *client(void *p)
             }
         }
         
-        Wait(100);
+        waitMs(100);
     }
     
     
-    ConnectionStop(&client);
-    ThreadExit();
+    connectionStop(&client);
+    threadExit();
     return 0;
 }
 
@@ -205,10 +206,10 @@ int testNetworkStack(void)
     //test1();
     
     
-    InitSocketPlatform();
+    initSocketPlatform();
     
-    ThreadInit(&tServer, server, 0);
-    ThreadInit(&tClient,client,0);
+    threadInit(&tServer, server, 0);
+    threadInit(&tClient,client,0);
     
     
     while(run!=0)
@@ -231,7 +232,7 @@ int testNetworkStack(void)
     
     
     
-    CloseSocketPlatform();
+    closeSocketPlatform();
     
     return 0;
 }

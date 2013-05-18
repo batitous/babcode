@@ -18,35 +18,35 @@ static ConditionVar myCondition;
 int myRead(char * buffer, int size)
 {
     int s;
-    MutexLock(&myMutex);
+    mutexLock(&myMutex);
     
     while(dataAvailable==0)
     {
-        ConditionVarWait(&myCondition, &myMutex);
+        conditionVarWait(&myCondition, &myMutex);
     }
     
     s = dataAvailable;
     dataAvailable = 0;
     
-    MutexUnlock(&myMutex);
-    ConditionVarSignal(&myCondition);
+    mutexUnlock(&myMutex);
+    conditionVarSignal(&myCondition);
     
     return s;
 }
 
 int myWrite(const char * buffer, int size)
 {
-    MutexLock(&myMutex);
+    mutexLock(&myMutex);
     
     while (dataAvailable!=0)
     {
-        ConditionVarWait(&myCondition, &myMutex);
+        conditionVarWait(&myCondition, &myMutex);
     }
     
     dataAvailable = size;
     
-    MutexUnlock(&myMutex);
-    ConditionVarSignal(&myCondition);
+    mutexUnlock(&myMutex);
+    conditionVarSignal(&myCondition);
     
     return size;
 }
@@ -66,7 +66,7 @@ void * reader(void *param)
       //  sleep(1);
     }
     
-    ThreadExit();
+    threadExit();
     return NULL;
 }
 
@@ -80,10 +80,10 @@ void * writer(void *param)
     {
         myWrite(0, 3+i);
         
-        Wait(200);
+        waitMs(200);
     }
     
-    ThreadExit();
+    threadExit();
     return NULL;
 }
 
@@ -94,21 +94,21 @@ void * tcpserver(void *p)
     IpAddress clientAddr;
     UInt32 sended;
         
-    SocketTcpInit(&server);
-    ServerTcpOpen(&server, 1234);
-    ServerTcpWaitConnection(&server, &client, &clientAddr);
+    socketTcpInit(&server);
+    serverTcpOpen(&server, 1234);
+    serverTcpWaitConnection(&server, &client, &clientAddr);
     
     printf("Client connected: from %d.%d.%d.%d:%d\n", clientAddr.a,clientAddr.b,clientAddr.c,clientAddr.d,clientAddr.port);
     
-    Wait(2000);
-    SocketTcpSend(&client, "toto", 5, &sended);
+    waitMs(2000);
+    socketTcpSend(&client, "toto", 5, &sended);
     
-    SocketClose(&server);
-    SocketClose(&client);
+    socketClose(&server);
+    socketClose(&client);
     
     printf("-> end tcp server\n");
     
-    ThreadExit();
+    threadExit();
     return NULL;
 }
 
@@ -126,33 +126,33 @@ void * tcpclient(void *p)
     serverAddr.d = 1;
     serverAddr.port = 1234;
     
-    SocketTcpInit(&client);
+    socketTcpInit(&client);
 
-    SocketSetTimeout(&client, 100, 100);
+    socketSetTimeout(&client, 100, 100);
     
     do
     {
-        status=ClientTcpOpen(&client,&serverAddr);
-        Wait(1);
+        status=clientTcpOpen(&client,&serverAddr);
+        waitMs(1);
     } while (status==NETWORK_TIMEOUT);
     
     printf("Client connection status: %d\n", status);
     
     do
     {
-        status = SocketTcpReceive(&client, buffer, 16, &received);
-        Wait(1);
+        status = socketTcpReceive(&client, buffer, 16, &received);
+        waitMs(1);
     } while (status==NETWORK_TIMEOUT);
         
     printf("Receive: %d bytes %s\n", received, buffer);
     
-    Wait(300);
+    wait(300);
     
-    SocketClose(&client);
+    socketClose(&client);
     
     printf("-> end tcp client\n");
     
-    ThreadExit();
+    threadExit();
     return NULL;
 }
 
@@ -166,17 +166,17 @@ void hashtabletest(void)
     int base;
 	int end;
 
-    HashTableInit(&table,16);
+    hashTableInit(&table,16);
     
     node = 8;
     base = 0x00001000;
     
-    begin = GetTicks();
+    begin = getTicks();
     for( i=0;i<node;i++)
     {
-        inserted = HashTableInsert(&table, i+base);
+        inserted = hashTableInsert(&table, i+base);
     }
-    end = GetTicks();
+    end = getTicks();
     
     printf("Time to insert %d node: %4d\n",node, (end-begin) );
     
@@ -185,8 +185,8 @@ void hashtabletest(void)
         printf("%4d key %4x\n", i, table.nodes[i].key);
     }
     
-    inserted = HashTableLookup(&table,base+4);
-    HashTableDelete(&table, inserted);
+    inserted = hashTableLookup(&table,base+4);
+    hashTableDelete(&table, inserted);
     
     printf("AFTER DELETE:\n");
     for(i=0;i<table.size;i++)
@@ -210,54 +210,54 @@ int main(int argc, const char * argv[])
     pathTest = "../../../test.log";
     
     lAbsCmd = sizeof(AbsCmd);
-    if (GetRealPath(pathTest, AbsCmd, &lAbsCmd)==true)
+    if (getRealPath(pathTest, AbsCmd, &lAbsCmd)==true)
     {
         printf("pathtest %s\n",pathTest);
         printf("abscmd   %s\n", AbsCmd);
     }
     
-    GetTime(&time);
+    getTime(&time);
     printf("Time: %d.%d.%d - %d.%d.%d\n", time.day, time.month, time.year, time.hour, time.minute, time.second);
     printf("isBissextile ? %d\n", time.isBissextile);
     
     printf("Size of Int32: %d\n", (Int32)sizeof(Int32));
     printf("Size of Int64: %ld\n", sizeof(Int64));
     
-    LogOpen(pathTest);
+    logOpen(pathTest);
     
     LOG_ERR1("mouarf");
     LOG("COUCOU\n");
     
     
-    MutexInit(&myMutex);
-    ConditionVarInit(&myCondition);
+    mutexInit(&myMutex);
+    conditionVarInit(&myCondition);
     
 
-    ThreadInit(&writerT,writer,NULL);
-    ThreadInit(&readerT,reader,NULL);
+    threadInit(&writerT,writer,NULL);
+    threadInit(&readerT,reader,NULL);
     
-    ThreadJoin(&writerT);
-    ThreadJoin(&readerT);
+    threadJoin(&writerT);
+    threadJoin(&readerT);
     
     printf("---> test socket...\n");
     
-    InitSocketPlatform();
+    initSocketPlatform();
     
-    ThreadInit(&writerT,tcpserver,NULL);
-    ThreadInit(&readerT,tcpclient,NULL);
+    threadInit(&writerT,tcpserver,NULL);
+    threadInit(&readerT,tcpclient,NULL);
     
     
 
     
-    ThreadJoin(&writerT);
-    ThreadJoin(&readerT);
+    threadJoin(&writerT);
+    threadJoin(&readerT);
 
     
-    CloseSocketPlatform();
+    closeSocketPlatform();
 
 //    testNetworkStack();
     
-    LogClose();
+    logClose();
     
    
 

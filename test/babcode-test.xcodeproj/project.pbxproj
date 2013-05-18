@@ -1,0 +1,272 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F485A68C171408A200D316B9 /* libbabcode-macosx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F485A68B171408A200D316B9 /* libbabcode-macosx.a */; };
+		F485A691171414D500D316B9 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A690171414D500D316B9 /* main.c */; };
+		F485A69E17155E4300D316B9 /* test-networkstack.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69D17155E4300D316B9 /* test-networkstack.c */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F485A6891714087F00D316B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F485A6851714087F00D316B9 /* babcode-macosx.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F485A6521714078C00D316B9;
+			remoteInfo = "babcode-macosx";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F41813911712F0350092D1B0 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F41813931712F0350092D1B0 /* babcode-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "babcode-test"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F485A6851714087F00D316B9 /* babcode-macosx.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "babcode-macosx.xcodeproj"; path = "../babcode/project/macosx/babcode-macosx.xcodeproj"; sourceTree = "<group>"; };
+		F485A68B171408A200D316B9 /* libbabcode-macosx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libbabcode-macosx.a"; path = "../babcode/project/macosx/Build/Products/Debug/libbabcode-macosx.a"; sourceTree = "<group>"; };
+		F485A690171414D500D316B9 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = SOURCE_ROOT; };
+		F485A69D17155E4300D316B9 /* test-networkstack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = "test-networkstack.c"; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F41813901712F0350092D1B0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F485A68C171408A200D316B9 /* libbabcode-macosx.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F418138A1712F0350092D1B0 = {
+			isa = PBXGroup;
+			children = (
+				F485A68B171408A200D316B9 /* libbabcode-macosx.a */,
+				F485A6851714087F00D316B9 /* babcode-macosx.xcodeproj */,
+				F41813951712F0350092D1B0 /* babcode-test */,
+				F41813941712F0350092D1B0 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F41813941712F0350092D1B0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F41813931712F0350092D1B0 /* babcode-test */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F41813951712F0350092D1B0 /* babcode-test */ = {
+			isa = PBXGroup;
+			children = (
+				F485A690171414D500D316B9 /* main.c */,
+				F485A69D17155E4300D316B9 /* test-networkstack.c */,
+			);
+			path = "babcode-test";
+			sourceTree = "<group>";
+		};
+		F485A6861714087F00D316B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F485A68A1714087F00D316B9 /* libbabcode-macosx.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F41813921712F0350092D1B0 /* babcode-test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F418139C1712F0350092D1B0 /* Build configuration list for PBXNativeTarget "babcode-test" */;
+			buildPhases = (
+				F418138F1712F0350092D1B0 /* Sources */,
+				F41813901712F0350092D1B0 /* Frameworks */,
+				F41813911712F0350092D1B0 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "babcode-test";
+			productName = "babcode-test";
+			productReference = F41813931712F0350092D1B0 /* babcode-test */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F418138B1712F0350092D1B0 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = Baptiste;
+			};
+			buildConfigurationList = F418138E1712F0350092D1B0 /* Build configuration list for PBXProject "babcode-test" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F418138A1712F0350092D1B0;
+			productRefGroup = F41813941712F0350092D1B0 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F485A6861714087F00D316B9 /* Products */;
+					ProjectRef = F485A6851714087F00D316B9 /* babcode-macosx.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				F41813921712F0350092D1B0 /* babcode-test */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F485A68A1714087F00D316B9 /* libbabcode-macosx.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libbabcode-macosx.a";
+			remoteRef = F485A6891714087F00D316B9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F418138F1712F0350092D1B0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F485A691171414D500D316B9 /* main.c in Sources */,
+				F485A69E17155E4300D316B9 /* test-networkstack.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F418139A1712F0350092D1B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F418139B1712F0350092D1B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F418139D1712F0350092D1B0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../babcode/project/macosx/Build/Products/Debug\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F418139E1712F0350092D1B0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../babcode/project/macosx/Build/Products/Debug\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F418138E1712F0350092D1B0 /* Build configuration list for PBXProject "babcode-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F418139A1712F0350092D1B0 /* Debug */,
+				F418139B1712F0350092D1B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F418139C1712F0350092D1B0 /* Build configuration list for PBXNativeTarget "babcode-test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F418139D1712F0350092D1B0 /* Debug */,
+				F418139E1712F0350092D1B0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F418138B1712F0350092D1B0 /* Project object */;
+}
