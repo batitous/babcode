@@ -91,10 +91,10 @@ void hashTableInit(HashTable * table, UInt32 size)
     memset(table->nodes, 0, sizeof(HashNode) * table->size);
 }
 
-HashNode * hashTableLookup(HashTable * table, UInt32 key)
+HashNode * _hashTableLookup(HashTable * table, UInt32 key)
 {
-	HashNode * n;
-
+    HashNode * n;
+    
     // Check regular cells
     for (n = FIRST_CELL(table,integerHash(key));; n = CIRCULAR_NEXT(table,n))
     {
@@ -105,12 +105,20 @@ HashNode * hashTableLookup(HashTable * table, UInt32 key)
     }
 }
 
+void * hashTableLookup(HashTable * table, UInt32 key)
+{
+    HashNode* node = _hashTableLookup(table, key);
+    if (node != NULL)
+        return node->value;
+	return NULL;
+}
 
-
-void hashTableDelete(HashTable * table, HashNode * node)
+void hashTableDelete(HashTable * table, UInt32 key)
 {
 	HashNode * ideal;
 	HashNode * neighbor;
+    
+    HashNode * node = _hashTableLookup(table, key);
 
     // Delete from regular cells
     
@@ -135,7 +143,7 @@ void hashTableDelete(HashTable * table, HashNode * node)
     }
 }
 
-HashNode * hashTableInsert(HashTable * table, UInt32 key)
+void hashTableInsert(HashTable * table, UInt32 key, void *value)
 {
 	HashNode* node;
 
@@ -145,7 +153,10 @@ HashNode * hashTableInsert(HashTable * table, UInt32 key)
         for (node = FIRST_CELL(table,integerHash(key));; node = CIRCULAR_NEXT(table,node))
         {
             if (node->key == key)
-                return node;        // Found
+            {
+                node->value = value; // So overload value
+                return;
+            }
             if (node->key == 0)
             {
                 // Insert here
@@ -157,7 +168,8 @@ HashNode * hashTableInsert(HashTable * table, UInt32 key)
                 }
                 ++table->population;
                 node->key = key;
-                return node;
+                node->value = value;
+                return;
             }
         }
     }

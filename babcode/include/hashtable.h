@@ -35,7 +35,7 @@ extern "C" {
 typedef struct _hashnode_
 {
     UInt32 key;
-    UInt32 value;
+    void *value;
 } HashNode;
 
 typedef struct _hashtable_
@@ -48,12 +48,12 @@ typedef struct _hashtable_
 extern void hashTableInit(HashTable * table, UInt32 size);
 
 // key MUST BE not egual to 0
-extern HashNode * hashTableInsert(HashTable * table, UInt32 key);
+extern void hashTableInsert(HashTable * table, UInt32 key, void *value);
     
 // key MUST BE not egual to 0
-extern HashNode * hashTableLookup(HashTable * table, UInt32 key);
+extern void * hashTableLookup(HashTable * table, UInt32 key);
     
-extern void hashTableDelete(HashTable * table, HashNode * node);
+extern void hashTableDelete(HashTable * table, UInt32 key);
     
 #ifdef __cplusplus
 }
