@@ -11,6 +11,7 @@
 		C5168A1A172AB75B00C96B59 /* str.h in Headers */ = {isa = PBXBuildFile; fileRef = C5168A19172AB75B00C96B59 /* str.h */; };
 		C596404C1737F488008AAC57 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = C596404B1737F488008AAC57 /* list.h */; };
 		C596404E1737F517008AAC57 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = C596404D1737F517008AAC57 /* list.c */; };
+		E42C268F1771B19A00875136 /* libbabcode-macosx.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = F485A6521714078C00D316B9 /* libbabcode-macosx.a */; };
 		F485A665171407BE00D316B9 /* babcode.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65B171407BE00D316B9 /* babcode.h */; };
 		F485A666171407BE00D316B9 /* conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65C171407BE00D316B9 /* conversion.h */; };
 		F485A667171407BE00D316B9 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65D171407BE00D316B9 /* file.h */; };
@@ -42,6 +43,19 @@
 		F485A6AE17182AED00D316B9 /* hashtable.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A6AD17182AED00D316B9 /* hashtable.h */; };
 		F485A6B017182AF600D316B9 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6AF17182AF600D316B9 /* hashtable.c */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E42C268E1771B18C00875136 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = ../../../../../../../../lib;
+			dstSubfolderSpec = 16;
+			files = (
+				E42C268F1771B19A00875136 /* libbabcode-macosx.a in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C5168A17172AB66300C96B59 /* str.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = str.c; path = ../../source/str.c; sourceTree = "<group>"; };
@@ -247,6 +261,7 @@
 				F485A64E1714078C00D316B9 /* Sources */,
 				F485A64F1714078C00D316B9 /* Frameworks */,
 				F485A6501714078C00D316B9 /* Headers */,
+				E42C268E1771B18C00875136 /* CopyFiles */,
 			);
 			buildRules = (
 			);

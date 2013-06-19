@@ -1,4 +1,5 @@
 *.o
+*.a
 *.obj
 *.DS_Store
 Build
