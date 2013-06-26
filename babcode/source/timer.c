@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Baptiste Burles
+// Copyright (c) 2013, Baptiste Burles, Sylvain Fay-Chatelard
 //
 // All rights reserved.
 //
@@ -14,7 +14,7 @@
 //   names of its contributors may be used to endorse or promote products
 //   derived from this software without specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY Baptiste Burles AND CONTRIBUTORS ``AS IS'' AND ANY
+// THIS SOFTWARE IS PROVIDED BY Sylvain Fay-Chatelard AND CONTRIBUTORS ``AS IS'' AND ANY
 // EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
 // WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
 // DISCLAIMED. IN NO EVENT SHALL Baptiste Burles AND CONTRIBUTORS BE LIABLE FOR ANY
@@ -25,40 +25,36 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
+#include "../include/babcode.h"
 
-// This file must be included in your main code.
+static void * timerThread(Timer * t)
+{
+    waitMs(t->start);
+    
+    while(t->interval!= 0)
+    {
+        t->callback(t->p);
+        
+        waitMs(t->interval);
+    }
+    
+    threadExit();
+    return 0;
+}
 
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
+void timerInit(Timer * t, UInt32 startMs, UInt32 intervalMs, TimerCallback callback)
+{
+    t->start = startMs;
+    t->interval = intervalMs;
+    t->callback = callback;
+}
 
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
-#endif
+void timerStart(Timer * t)
+{
+    threadInit(&t->thread, timerThread, t);
+}
 
-
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "hashtable.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-#include "conditionvar.h"
-#include "networkstack.h"
-#include "str.h"
-#include "list.h"
-#include "timer.h"
-
-
-#endif
+void timerStop(Timer *t)
+{
+    t->interval = 0;
+}

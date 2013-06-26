@@ -162,7 +162,6 @@ void hashtabletest(void)
     int begin;
 	int i;
 	int node;
-	HashNode * inserted;
     int base;
 	int end;
 
@@ -171,10 +170,12 @@ void hashtabletest(void)
     node = 8;
     base = 0x00001000;
     
+    UInt32 data;
     begin = getTicks();
     for( i=0;i<node;i++)
     {
-        inserted = hashTableInsert(&table, i+base);
+        data = i * 111;
+        hashTableInsert(&table, i+base, (void *)data);
     }
     end = getTicks();
     
@@ -185,8 +186,8 @@ void hashtabletest(void)
         printf("%4d key %4x\n", i, table.nodes[i].key);
     }
     
-    inserted = hashTableLookup(&table,base+4);
-    hashTableDelete(&table, inserted);
+    data = (UInt32)hashTableLookup(&table,base+4);
+//    hashTableDelete(&table, inserted);
     
     printf("AFTER DELETE:\n");
     for(i=0;i<table.size;i++)
@@ -195,8 +196,33 @@ void hashtabletest(void)
     }
 }
 
+void callback(void *p)
+{
+    printf("callback %d\n", getTicks());
+}
+
+void timerTest(void)
+{
+    printf("=== Timer test ===\n");
+    
+    printf("Timer current: %d\n", getTicks());
+    
+    
+    Timer timer;
+    
+    timerInit(&timer,300,500,callback);
+    timerStart(&timer);
+    
+    waitMs(10000);
+    
+    
+    timerStop(&timer);
+    
+    printf("Timer current: %d\n", getTicks());
+}
+
 int main(int argc, const char * argv[])
-{   
+{
 	char AbsCmd[256];
     int lAbsCmd;
 	char * pathTest;
@@ -264,7 +290,9 @@ int main(int argc, const char * argv[])
     hashtabletest();
     
     
-    printf("End of main!\n");
+    timerTest();
+    
+    printf("End of main at %d!\n", getTicks());
     
     return 0;
 }
