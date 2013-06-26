@@ -33,7 +33,7 @@ static void * timerThread(Timer * t)
     
     while(t->interval!= 0)
     {
-        t->callback(t->p);
+        t->callback(t->callbackParam);
         
         waitMs(t->interval);
     }
@@ -42,11 +42,12 @@ static void * timerThread(Timer * t)
     return 0;
 }
 
-void timerInit(Timer * t, UInt32 startMs, UInt32 intervalMs, TimerCallback callback)
+void timerInit(Timer * t, UInt32 startMs, UInt32 intervalMs, TimerCallback callback, void * callbackParam)
 {
     t->start = startMs;
     t->interval = intervalMs;
     t->callback = callback;
+    t->callbackParam = callbackParam;
 }
 
 void timerStart(Timer * t)

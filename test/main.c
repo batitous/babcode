@@ -210,7 +210,7 @@ void timerTest(void)
     
     Timer timer;
     
-    timerInit(&timer,300,500,callback);
+    timerInit(&timer,300,500,callback,0);
     timerStart(&timer);
     
     waitMs(10000);
