@@ -96,6 +96,9 @@ extern NetworkStatus clientTcpOpen(Socket * client, IpAddress * server);
 extern NetworkStatus socketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended);
 extern NetworkStatus socketTcpReceive(Socket *s,void * packet_data, UInt32 maximum_packet_size, UInt32 * received);
     
+extern NetworkStatus socketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size);
+extern NetworkStatus socketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size);
+    
 // udp socket
 extern Int32 socketOpen(Socket * s, UInt16 port);
 extern Int32 socketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size);
