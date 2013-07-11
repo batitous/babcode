@@ -25,40 +25,43 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
+#ifndef BABCODE_BYTESTREAM_H
+#define BABCODE_BYTESTREAM_H
 
-// This file must be included in your main code.
-
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
-
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
+#ifdef __cplusplus
+extern "C" {
 #endif
 
+typedef struct _byte_stream_
+{
+    unsigned char * buffer;
+    unsigned char * current;
+} ByteStream;
 
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "hashtable.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-#include "conditionvar.h"
-#include "networkstack.h"
-#include "str.h"
-#include "list.h"
-#include "timer.h"
-#include "bytestream.h"
+extern void set4ToBuffer(unsigned char *buffer, unsigned int integer);
+
+
+extern ByteStream * newByteStream(unsigned char * input);
+
+extern void resetByteStream(ByteStream * stream);
+
+extern unsigned int getByteStreamSize(ByteStream * stream);
+
+extern void write1ToByteStream(ByteStream * stream, unsigned char data);
+
+extern void write2ToByteStream(ByteStream * stream, unsigned short data);
+
+extern void write4ToByteStream(ByteStream * stream, unsigned int data);
+
+extern void writeBufferToByteStream(ByteStream * stream, unsigned char * input, unsigned int size);
+
+
+extern unsigned char read1FromByteStream(ByteStream * stream);
+extern unsigned int read4FromByteStream(ByteStream * stream);
+extern void readBufferFromByteStream(ByteStream * stream, unsigned char * output, unsigned int size);
+    
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -13,6 +13,7 @@
 		C596404E1737F517008AAC57 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = C596404D1737F517008AAC57 /* list.c */; };
 		C5CB5724177B082F003125AA /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = C5CB5723177B082F003125AA /* timer.c */; };
 		E42C268F1771B19A00875136 /* libbabcode-macosx.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = F485A6521714078C00D316B9 /* libbabcode-macosx.a */; };
+		E44C27B8178ED7AA0031BC79 /* bytestream.c in Sources */ = {isa = PBXBuildFile; fileRef = E44C27B7178ED7A50031BC79 /* bytestream.c */; };
 		F485A665171407BE00D316B9 /* babcode.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65B171407BE00D316B9 /* babcode.h */; };
 		F485A666171407BE00D316B9 /* conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65C171407BE00D316B9 /* conversion.h */; };
 		F485A667171407BE00D316B9 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65D171407BE00D316B9 /* file.h */; };
@@ -74,6 +75,8 @@
 		E4095460172A71C80008BA47 /* wait.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = wait.c; path = ../../platform/win32/wait.c; sourceTree = "<group>"; };
 		E4095462172A71E50008BA47 /* networkstack_linux.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = networkstack_linux.c; path = ../../platform/linux/networkstack_linux.c; sourceTree = "<group>"; };
 		E4095463172A71E50008BA47 /* uart.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = uart.c; path = ../../platform/linux/uart.c; sourceTree = "<group>"; };
+		E44C27B6178ED78D0031BC79 /* bytestream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bytestream.h; path = ../../include/bytestream.h; sourceTree = "<group>"; };
+		E44C27B7178ED7A50031BC79 /* bytestream.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = bytestream.c; path = ../../source/bytestream.c; sourceTree = "<group>"; };
 		F485A6521714078C00D316B9 /* libbabcode-macosx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libbabcode-macosx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F485A65B171407BE00D316B9 /* babcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = babcode.h; path = ../../include/babcode.h; sourceTree = "<group>"; };
 		F485A65C171407BE00D316B9 /* conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = conversion.h; path = ../../include/conversion.h; sourceTree = "<group>"; };
@@ -164,6 +167,7 @@
 		F485A659171407A800D316B9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				E44C27B7178ED7A50031BC79 /* bytestream.c */,
 				C596404D1737F517008AAC57 /* list.c */,
 				C5168A17172AB66300C96B59 /* str.c */,
 				F485A6AF17182AF600D316B9 /* hashtable.c */,
@@ -189,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				F485A65B171407BE00D316B9 /* babcode.h */,
+				E44C27B6178ED78D0031BC79 /* bytestream.h */,
 				F485A6A2171560FE00D316B9 /* conditionvar.h */,
 				F485A65C171407BE00D316B9 /* conversion.h */,
 				F485A65D171407BE00D316B9 /* file.h */,
@@ -309,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F485A673171407D900D316B9 /* uart.c in Sources */,
+				E44C27B8178ED7AA0031BC79 /* bytestream.c in Sources */,
 				F485A674171407D900D316B9 /* utils_osx.c in Sources */,
 				F485A678171407E600D316B9 /* file.c in Sources */,
 				F485A679171407E600D316B9 /* thread.c in Sources */,
