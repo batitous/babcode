@@ -102,6 +102,9 @@ speed_t UInt32ToSpeed_t(UInt32 baudrate)
 {
 	switch (baudrate)
     {
+#ifdef B1000000
+        case 1000000: return B1000000; break;
+#endif
 #ifdef B1152000
 		case 1152000: return B1152000; break;
 #endif // B1152000
