@@ -18,3 +18,6 @@ Release
 *.exe
 
 *.pdb
+zeromq-test
+*.log
+test/test
