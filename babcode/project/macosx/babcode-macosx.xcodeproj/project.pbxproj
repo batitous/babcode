@@ -14,6 +14,7 @@
 		C5CB5724177B082F003125AA /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = C5CB5723177B082F003125AA /* timer.c */; };
 		E42C268F1771B19A00875136 /* libbabcode-macosx.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = F485A6521714078C00D316B9 /* libbabcode-macosx.a */; };
 		E44C27B8178ED7AA0031BC79 /* bytestream.c in Sources */ = {isa = PBXBuildFile; fileRef = E44C27B7178ED7A50031BC79 /* bytestream.c */; };
+		F4567181184DEB7B0043A32C /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = F4567180184DEB7B0043A32C /* array.c */; };
 		F485A665171407BE00D316B9 /* babcode.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65B171407BE00D316B9 /* babcode.h */; };
 		F485A666171407BE00D316B9 /* conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65C171407BE00D316B9 /* conversion.h */; };
 		F485A667171407BE00D316B9 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65D171407BE00D316B9 /* file.h */; };
@@ -77,6 +78,8 @@
 		E4095463172A71E50008BA47 /* uart.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = uart.c; path = ../../platform/linux/uart.c; sourceTree = "<group>"; };
 		E44C27B6178ED78D0031BC79 /* bytestream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bytestream.h; path = ../../include/bytestream.h; sourceTree = "<group>"; };
 		E44C27B7178ED7A50031BC79 /* bytestream.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = bytestream.c; path = ../../source/bytestream.c; sourceTree = "<group>"; };
+		F456717F184DEB0A0043A32C /* array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = array.h; path = ../../include/array.h; sourceTree = "<group>"; };
+		F4567180184DEB7B0043A32C /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = array.c; path = ../../source/array.c; sourceTree = "<group>"; };
 		F485A6521714078C00D316B9 /* libbabcode-macosx.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libbabcode-macosx.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F485A65B171407BE00D316B9 /* babcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = babcode.h; path = ../../include/babcode.h; sourceTree = "<group>"; };
 		F485A65C171407BE00D316B9 /* conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = conversion.h; path = ../../include/conversion.h; sourceTree = "<group>"; };
@@ -151,8 +154,8 @@
 			isa = PBXGroup;
 			children = (
 				F485A65A171407AF00D316B9 /* Include */,
-				F485A659171407A800D316B9 /* Source */,
 				F485A6531714078C00D316B9 /* Products */,
+				F485A659171407A800D316B9 /* Source */,
 			);
 			sourceTree = "<group>";
 		};
@@ -167,24 +170,25 @@
 		F485A659171407A800D316B9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F4567180184DEB7B0043A32C /* array.c */,
 				E44C27B7178ED7A50031BC79 /* bytestream.c */,
-				C596404D1737F517008AAC57 /* list.c */,
-				C5168A17172AB66300C96B59 /* str.c */,
-				F485A6AF17182AF600D316B9 /* hashtable.c */,
-				F485A69B171440AA00D316B9 /* networkstack-private.h */,
-				F485A69917143FC500D316B9 /* networkstack-options.c */,
-				F485A6941714164C00D316B9 /* networkstack-udp.c */,
-				F485A69717141CBD00D316B9 /* networkstack-tcp.c */,
 				F485A67B171407F300D316B9 /* conversion.c */,
+				F485A6AF17182AF600D316B9 /* hashtable.c */,
+				E4095461172A71D50008BA47 /* Linux */,
+				C596404D1737F517008AAC57 /* list.c */,
 				F485A67C171407F300D316B9 /* log.c */,
+				F485A69917143FC500D316B9 /* networkstack-options.c */,
+				F485A69B171440AA00D316B9 /* networkstack-private.h */,
+				F485A69717141CBD00D316B9 /* networkstack-tcp.c */,
+				F485A6941714164C00D316B9 /* networkstack-udp.c */,
+				F485A670171407CB00D316B9 /* OSX */,
 				F485A67D171407F300D316B9 /* random.c */,
+				C5168A17172AB66300C96B59 /* str.c */,
 				F485A67E171407F300D316B9 /* time.c */,
 				C5CB5723177B082F003125AA /* timer.c */,
+				F485A66F171407C200D316B9 /* Unix */,
 				F485A67F171407F300D316B9 /* utils.c */,
 				E4095459172A71B00008BA47 /* Win32 */,
-				E4095461172A71D50008BA47 /* Linux */,
-				F485A670171407CB00D316B9 /* OSX */,
-				F485A66F171407C200D316B9 /* Unix */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -192,24 +196,25 @@
 		F485A65A171407AF00D316B9 /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				F456717F184DEB0A0043A32C /* array.h */,
 				F485A65B171407BE00D316B9 /* babcode.h */,
 				E44C27B6178ED78D0031BC79 /* bytestream.h */,
 				F485A6A2171560FE00D316B9 /* conditionvar.h */,
 				F485A65C171407BE00D316B9 /* conversion.h */,
 				F485A65D171407BE00D316B9 /* file.h */,
 				F485A6AD17182AED00D316B9 /* hashtable.h */,
+				C596404B1737F488008AAC57 /* list.h */,
 				F485A65E171407BE00D316B9 /* log.h */,
 				F485A68D17140D2C00D316B9 /* mutex.h */,
 				F485A6921714164000D316B9 /* networkstack.h */,
 				F485A65F171407BE00D316B9 /* random.h */,
-				C596404B1737F488008AAC57 /* list.h */,
 				C5168A19172AB75B00C96B59 /* str.h */,
 				F485A660171407BE00D316B9 /* thread.h */,
+				C5CB5725177B0880003125AA /* timer.h */,
 				F485A661171407BE00D316B9 /* types.h */,
 				F485A662171407BE00D316B9 /* uart.h */,
 				F485A663171407BE00D316B9 /* utils.h */,
 				F485A664171407BE00D316B9 /* wait.h */,
-				C5CB5725177B0880003125AA /* timer.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";
@@ -317,6 +322,7 @@
 				E44C27B8178ED7AA0031BC79 /* bytestream.c in Sources */,
 				F485A674171407D900D316B9 /* utils_osx.c in Sources */,
 				F485A678171407E600D316B9 /* file.c in Sources */,
+				F4567181184DEB7B0043A32C /* array.c in Sources */,
 				F485A679171407E600D316B9 /* thread.c in Sources */,
 				F485A67A171407E600D316B9 /* wait.c in Sources */,
 				F485A680171407F300D316B9 /* conversion.c in Sources */,

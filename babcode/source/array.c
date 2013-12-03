@@ -25,41 +25,47 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef BABCODE_H
-#define BABCODE_H
+#include "../include/babcode.h"
 
-// This file must be included in your main code.
+#define DEFAULT_CAPACITY    32
+#define CAPACITY_INCREMENT  2
 
-#define PLATFORM_WINDOWS  1
-#define PLATFORM_MAC      2
-#define PLATFORM_UNIX     3
+void arrayInit(Array *a)
+{
+    a->size = 0;
+    a->capacity = DEFAULT_CAPACITY;
+    a->array = (unsigned long *)malloc(a->capacity*sizeof(unsigned long));
+}
 
-#if defined(_WIN32)
-#   define PLATFORM PLATFORM_WINDOWS
-#elif defined(__APPLE__)
-#   define PLATFORM PLATFORM_MAC
-#else
-#   define PLATFORM PLATFORM_UNIX
-#endif
+void arrayFree(Array *a)
+{
+    free(a->array);
+    a->array = 0;
+    a->size = 0;
+}
 
+void arrayAppend(Array *a, unsigned long element)
+{
+    if (a->size == a->capacity)
+    {
+        a->capacity = a->capacity * CAPACITY_INCREMENT;
+        a->array = (unsigned long *)realloc( a->array, a->capacity*sizeof(unsigned long));
+    }
+    
+    a->array[a->size] = element;
+    a->size++;
+}
 
-#include "types.h"
-#include "log.h"
-#include "utils.h"
-#include "hashtable.h"
-#include "conversion.h"
-#include "random.h"
-#include "file.h"
-#include "wait.h"
-#include "uart.h"
-#include "thread.h"
-#include "mutex.h"
-#include "conditionvar.h"
-#include "networkstack.h"
-#include "str.h"
-#include "list.h"
-#include "timer.h"
-#include "bytestream.h"
-#include "array.h"
-
-#endif
+void arrayRemove(Array *a, unsigned long element)
+{
+    unsigned long i;
+    
+    for (i=0; i < a->size; i++)
+    {
+        if (a->array[i] == element)
+        {
+            a->array[i] = 0;
+        }
+    }
+    
+}
