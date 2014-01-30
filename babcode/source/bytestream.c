@@ -111,6 +111,14 @@ unsigned char read1FromByteStream(ByteStream * stream)
     return data;
 }
 
+unsigned short read2FromByteStream(ByteStream * stream)
+{
+    uint16_t integer = (stream->current[0]<<8)| (stream->current[1]);
+    
+	stream->current +=2;
+    return integer;
+}
+
 unsigned int read4FromByteStream(ByteStream * stream)
 {
     int integer = (stream->current[0]<<24)| (stream->current[1]<<16)|(stream->current[2]<<8)|(stream->current[3]);
