@@ -74,6 +74,7 @@ typedef enum _network_status_
     NETWORK_TIMEOUT   = 2
 } NetworkStatus;
     
+// initialize / close the socket layer
 extern int initSocketPlatform();
 extern void closeSocketPlatform();
     
@@ -86,6 +87,11 @@ extern void addressGetABCD(IpAddress * addr, UInt32 ip);
 // socket option
 extern NetworkStatus socketSetBlock(Socket *s, bool enable);
 extern NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
+extern NetworkStatus socketSetBroadcast(Socket *s, bool Enable);
+extern NetworkStatus socketSetKeepAlive(Socket *s, bool Enable);
+extern NetworkStatus socketSetTcpNoDelay(Socket *s, bool Enable);
+
+    
     
 // tcp socket
 extern NetworkStatus socketTcpInit(Socket * s);
@@ -106,7 +112,7 @@ extern Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt3
 
 extern void socketClose(Socket *s);
 
-
+// connection object
 extern void connectionNew(NetConnection * connection, UInt32 id);
 extern Int32 connectionStart(NetConnection * connection, UInt16 port);
 extern void connectionStop(NetConnection * connection);

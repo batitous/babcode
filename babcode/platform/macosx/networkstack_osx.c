@@ -71,7 +71,7 @@ bool getNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
 			}
 			
 			pAddr = (struct sockaddr_in*)if_addr->ifa_addr;
-			dwIP = pAddr->sin_addr.s_addr;
+			dwIP = ntohl(pAddr->sin_addr.s_addr);
             
 			if(dwIP==0)
 			{
