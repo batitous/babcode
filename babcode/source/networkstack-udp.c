@@ -248,6 +248,23 @@ void socketClose(Socket *s)
 #endif
 }
 
+NetworkStatus socketGetLastError(void)
+{
+    int ErrorID = Network_GetLastError();
+
+#if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
+    if (ErrorID==EAGAIN)
+#else
+    if (ErrorID==WSAETIMEDOUT)
+#endif
+    {
+        return NETWORK_TIMEOUT;
+    }
+    
+    LOG_ERR2("get last error", ErrorID);
+
+    return NETWORK_ERROR;
+}
 
 void connectionNew(NetConnection * connection, UInt32 id)
 {

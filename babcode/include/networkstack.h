@@ -91,7 +91,7 @@ extern NetworkStatus socketSetBroadcast(Socket *s, int Enable);
 extern NetworkStatus socketSetKeepAlive(Socket *s, bool Enable);
 extern NetworkStatus socketSetTcpNoDelay(Socket *s, bool Enable);
 
-    
+extern NetworkStatus socketGetLastError(void);
     
 // tcp socket
 extern NetworkStatus socketTcpInit(Socket * s);
