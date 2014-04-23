@@ -131,7 +131,7 @@ NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 	return NETWORK_OK;
 }
 
-NetworkStatus socketSetBroadcast(Socket *s, bool Enable)
+NetworkStatus socketSetBroadcast(Socket *s, Int32 Enable)
 {
 	if(setsockopt(s->handle, SOL_SOCKET, SO_BROADCAST, (const char *)&Enable, sizeof(Enable)) < 0)
 		return NETWORK_ERROR;

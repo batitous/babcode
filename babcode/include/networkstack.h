@@ -87,7 +87,7 @@ extern void addressGetABCD(IpAddress * addr, UInt32 ip);
 // socket option
 extern NetworkStatus socketSetBlock(Socket *s, bool enable);
 extern NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
-extern NetworkStatus socketSetBroadcast(Socket *s, bool Enable);
+extern NetworkStatus socketSetBroadcast(Socket *s, int Enable);
 extern NetworkStatus socketSetKeepAlive(Socket *s, bool Enable);
 extern NetworkStatus socketSetTcpNoDelay(Socket *s, bool Enable);
 

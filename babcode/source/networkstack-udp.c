@@ -124,7 +124,7 @@ Int32 socketOpenInBroadcastMode(Socket * s)
     
     s->handle = handle;
     
-    if (socketSetTimeout(s,300,0)!=NETWORK_OK)
+    if (socketSetTimeout(s,30,0)!=NETWORK_OK)
     {
         LOG_ERR1("udp socket: set timeout");
         return 0;
