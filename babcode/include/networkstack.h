@@ -107,6 +107,7 @@ extern NetworkStatus socketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_
     
 // udp socket
 extern Int32 socketOpen(Socket * s, UInt16 port);
+extern Int32 socketOpenInBroadcastMode(Socket * s);
 extern Int32 socketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size);
 extern Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maximum_packet_size);
 

@@ -113,6 +113,31 @@ void closeSocketPlatform()
 #endif
 }
 
+Int32 socketOpenInBroadcastMode(Socket * s)
+{
+    int handle = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
+    if ( handle <= 0 )
+    {
+        LOG_ERR1("udp socket");
+        return 0;
+    }
+    
+    s->handle = handle;
+    
+    if (socketSetTimeout(s,300,0)!=NETWORK_OK)
+    {
+        LOG_ERR1("udp socket: set timeout");
+        return 0;
+    }
+    
+    if (socketSetBroadcast(s,1)!=NETWORK_OK)
+    {
+        LOG_ERR1("udp socket: set broadcast");
+        return 0;
+    }
+    
+    return 1;
+}
 
 Int32 socketOpen(Socket * s, UInt16 port)
 {
