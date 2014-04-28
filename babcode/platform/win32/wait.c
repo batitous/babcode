@@ -39,10 +39,10 @@ static LARGE_INTEGER getFrequency(void)
 	return freq;
 }
 
-static double wow(void)
+static double Now(void)
 {
 	LARGE_INTEGER tick, freq;
-	freq = GetFrequency();
+	freq = getFrequency();
 	QueryPerformanceCounter(&tick);
 
 	return (double)(tick.QuadPart) / (double)(freq.QuadPart);

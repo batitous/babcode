@@ -1,9 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbabcode-win32", "babcode\project\win32\libbabcode-win32.vcproj", "{0E20E904-32EA-45CF-9927-C916600B64A9}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C++ Express 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libbabcode-win32", "babcode\project\win32\libbabcode-win32.vcxproj", "{0E20E904-32EA-45CF-9927-C916600B64A9}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcproj", "{89E76336-A689-4B5E-B31B-41E633678B4A}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj", "{89E76336-A689-4B5E-B31B-41E633678B4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

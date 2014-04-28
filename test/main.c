@@ -164,13 +164,15 @@ void hashtabletest(void)
 	int node;
     int base;
 	int end;
+	
+	uint32_t data;
 
     hashTableInit(&table,16);
     
     node = 8;
     base = 0x00001000;
     
-    uint32_t data;
+    
     begin = getTicks();
     for( i=0;i<node;i++)
     {
@@ -203,12 +205,12 @@ void callback(void *p)
 
 void timerTest(void)
 {
+	Timer timer;
+
     printf("=== Timer test ===\n");
     
     printf("Timer current: %d\n", getTicks());
     
-    
-    Timer timer;
     
     timerInit(&timer,300,500,callback,0);
     timerStart(&timer);
@@ -235,7 +237,9 @@ void *udpclient(void *p)
     IpAddress addr;
     uint8_t * buffer = malloc(CAMERA_SIZE);
     int32_t result;
-    
+    uint32_t start;
+	uint32_t end;
+
     addr.a = 127;
     addr.b = 0;
     addr.c = 0;
@@ -248,7 +252,7 @@ void *udpclient(void *p)
         printf("udpserver socket open failed\n");
     }
     
-    uint32_t start = getTicks();
+    start = getTicks();
     
     for(i=0;i<PACKET_NUMBER;i++)
     {
@@ -265,7 +269,7 @@ void *udpclient(void *p)
         
     }
     
-    uint32_t end = getTicks();
+    end = getTicks();
     
     printf("Time to received %d packets of %d bytes : %d\n", PACKET_NUMBER, CAMERA_SIZE, (end-start));
     
@@ -328,7 +332,8 @@ void * tcpclient1(void *p)
     IpAddress addr;
     uint8_t * buffer = malloc(CAMERA_SIZE);
     int32_t result;
-    
+    uint32_t start, end;
+
     addr.a = 127;
     addr.b = 0;
     addr.c = 0;
@@ -339,7 +344,7 @@ void * tcpclient1(void *p)
     clientTcpOpen(&socket,&addr);
     
     
-    uint32_t start = getTicks();
+    start = getTicks();
     
     for(i=0;i<PACKET_NUMBER;i++)
     {
@@ -356,7 +361,7 @@ void * tcpclient1(void *p)
         }
     }
     
-    uint32_t end = getTicks();
+    end = getTicks();
     
     printf("Time to received %d packets of %d bytes : %d\n", PACKET_NUMBER, CAMERA_SIZE, (end-start));
     

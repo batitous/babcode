@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#include <strings.h>
+#include <string.h>
 
 #include "../babcode/include/babcode.h"
 
