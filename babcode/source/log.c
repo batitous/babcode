@@ -49,9 +49,9 @@ static void log_add(const char fmt[], va_list args)
     fflush(global_log_file);
 }
 
-void logOpen(const Int8 * filename)
+void logOpen(const char * filename)
 {
-    global_log_file = fopen((Int8 *)filename,"w+");
+    global_log_file = fopen(filename,"w+");
 	if (global_log_file==0)
 		return;
 }

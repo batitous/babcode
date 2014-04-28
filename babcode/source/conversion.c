@@ -34,7 +34,7 @@
 #include <errno.h>
 
 
-bool stringToInt(Int8 const * str, Int32 * num)
+bool stringToInt(const char * str, int32_t * num)
 {
     unsigned int pos;
     unsigned int i;
@@ -108,11 +108,11 @@ bool stringToInt(Int8 const * str, Int32 * num)
     return true;
 }
 
-UInt32 binToDecimalAscii(Int32 bin,Int8 *result)
+uint32_t binToDecimalAscii(int32_t bin,int8_t *result)
 {
 	int i=0;
 	char bCount, bPrinted;
-	UInt32 lTmp,lDigit;
+	uint32_t lTmp,lDigit;
 
 	bPrinted = 0;
 	if(bin < 0)
@@ -145,9 +145,9 @@ UInt32 binToDecimalAscii(Int32 bin,Int8 *result)
 	return i;
 }
 
-void binToHex(UInt8 data,Int8 *result)
+void binToHex(uint8_t data,int8_t *result)
 {
-	UInt8 temp;
+	uint8_t temp;
 
 	temp = ((data >> 4) & 0x0f) + '0';
 	if(temp>'9')
@@ -162,7 +162,7 @@ void binToHex(UInt8 data,Int8 *result)
 	result[1]=temp;
 }
 
-bool hexToBin(UInt8 *hex,UInt8 *bin)
+bool hexToBin(uint8_t *hex,uint8_t *bin)
 {
 	unsigned char i;
 	unsigned char tmp=0;
@@ -187,7 +187,7 @@ bool hexToBin(UInt8 *hex,UInt8 *bin)
 	return true;
 }
 
-bool stringToFloat(Int8 * str, float* floating)
+bool stringToFloat(const char * str, float* floating)
 {
 	int i;
 	int len;
@@ -219,7 +219,7 @@ bool stringToFloat(Int8 * str, float* floating)
     return true;
 }
 
-bool stringIsHex(Int8 * str, Int32 * integer)
+bool stringIsHex(const char * str, int32_t * integer)
 {
 	long size;
 	char* pEnd=NULL;

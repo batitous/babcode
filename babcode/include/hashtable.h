@@ -34,26 +34,26 @@ extern "C" {
     
 typedef struct _hashnode_
 {
-    UInt32 key;
+    uint32_t key;
     void *value;
 } HashNode;
 
 typedef struct _hashtable_
 {
     HashNode *  nodes;
-    UInt32      size;
-    UInt32      population;
+    uint32_t      size;
+    uint32_t      population;
 } HashTable;
     
-extern void hashTableInit(HashTable * table, UInt32 size);
+extern void hashTableInit(HashTable * table, uint32_t size);
 
 // key MUST BE not egual to 0
-extern void hashTableInsert(HashTable * table, UInt32 key, void *value);
+extern void hashTableInsert(HashTable * table, uint32_t key, void *value);
     
 // key MUST BE not egual to 0
-extern void * hashTableLookup(HashTable * table, UInt32 key);
+extern void * hashTableLookup(HashTable * table, uint32_t key);
     
-extern void hashTableDelete(HashTable * table, UInt32 key);
+extern void hashTableDelete(HashTable * table, uint32_t key);
     
 #ifdef __cplusplus
 }

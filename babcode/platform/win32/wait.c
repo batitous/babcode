@@ -50,10 +50,10 @@ static double wow(void)
 
 
 
-UInt32 getTicks(void)
+uint32_t getTicks(void)
 {
-	UInt32 ticks = 0;
-	static UInt8 first = 1;
+	uint32_t ticks = 0;
+	static uint8_t first = 1;
 	static double t0;
 	double t1;
 
@@ -65,12 +65,12 @@ UInt32 getTicks(void)
 
 	t1 = (Now() - t0) * 1000;
 
-	ticks = (UInt32)t1;
+	ticks = (uint32_t)t1;
 
 	return ticks;
 }
 
-void waitMs(UInt32 milliseconds)
+void waitMs(uint32_t milliseconds)
 {
 	Sleep( milliseconds );
 }

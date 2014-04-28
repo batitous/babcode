@@ -80,13 +80,13 @@ static void setLocalAckFromBitmap(NetConnection * connection, unsigned int index
     
 }
 
-UInt32 addressGetIp(IpAddress * addr)
+uint32_t addressGetIp(IpAddress * addr)
 {
     addr->ip = ( addr->a << 24 ) | ( addr->b << 16 ) | ( addr->c << 8 ) | addr->d;
     return addr->ip;
 }
 
-void addressGetABCD(IpAddress * addr, UInt32 ip)
+void addressGetABCD(IpAddress * addr, uint32_t ip)
 {
     addr->ip = ip;
     addr->a = (addr->ip >> 24) & 0xFF;
@@ -96,7 +96,7 @@ void addressGetABCD(IpAddress * addr, UInt32 ip)
 }
 
 
-Int32 initSocketPlatform()
+int32_t initSocketPlatform()
 {
 #if PLATFORM == PLATFORM_WINDOWS
     WSADATA WsaData;
@@ -113,7 +113,7 @@ void closeSocketPlatform()
 #endif
 }
 
-Int32 socketOpenInBroadcastMode(Socket * s)
+int32_t socketOpenInBroadcastMode(Socket * s)
 {
     int handle = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
     if ( handle <= 0 )
@@ -139,7 +139,7 @@ Int32 socketOpenInBroadcastMode(Socket * s)
     return 1;
 }
 
-Int32 socketOpen(Socket * s, UInt16 port)
+int32_t socketOpen(Socket * s, uint16_t port)
 {
 #if PLATFORM == PLATFORM_WINDOWS
 	DWORD nonBlocking = 1;
@@ -191,7 +191,7 @@ Int32 socketOpen(Socket * s, UInt16 port)
     return 1;
 }
 
-Int32 socketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size)
+int32_t socketSend(Socket * s, IpAddress * addr, const void * packet_data, uint32_t packet_size)
 {
 	long sent_bytes;
     struct sockaddr_in address;
@@ -217,7 +217,7 @@ Int32 socketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 
     return 1;
 }
 
-Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maximum_packet_size)
+int32_t socketReceive(Socket *s, IpAddress *addr, void * packet_data, uint32_t maximum_packet_size)
 {
 #if PLATFORM == PLATFORM_WINDOWS
     typedef int socklen_t;
@@ -230,13 +230,13 @@ Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maxim
                                   0, (struct sockaddr*)&from, &fromLength );
     
     if ( received_bytes <= 0 )
-        return (Int32)received_bytes;
+        return (int32_t)received_bytes;
     
     addressGetABCD(addr, ntohl( from.sin_addr.s_addr ));
     
     addr->port = ntohs( from.sin_port );
     
-    return (Int32)received_bytes;
+    return (int32_t)received_bytes;
 }
 
 void socketClose(Socket *s)
@@ -266,14 +266,14 @@ NetworkStatus socketGetLastError(void)
     return NETWORK_ERROR;
 }
 
-void connectionNew(NetConnection * connection, UInt32 id)
+void connectionNew(NetConnection * connection, uint32_t id)
 {
     connection->isOpen = false;
     connection->protocolId = id;
     connection->buffer = (unsigned char *)malloc(PACKET_SIZE_MAX);
 }
 
-Int32 connectionStart(NetConnection * connection, UInt16 port)
+int32_t connectionStart(NetConnection * connection, uint16_t port)
 {
     unsigned int i;
     
@@ -308,7 +308,7 @@ void connectionConnect(NetConnection * connection, IpAddress * addr)
     memcpy(&connection->remote, addr, sizeof(IpAddress));
 }
 
-Int32 connectionSend(NetConnection * connection, const void * data, UInt32 size)
+int32_t connectionSend(NetConnection * connection, const void * data, uint32_t size)
 {
     int result;
     unsigned char * packet = connection->buffer;
@@ -344,7 +344,7 @@ static int isSequenceMoreRecent(unsigned int s1, unsigned int s2)
     return  (( s1 > s2 ) && ( s1 - s2 <= SEQUENCE_MAX/2 )) || (( s2 > s1 ) && ( s2 - s1 > SEQUENCE_MAX/2  ));
 }
 
-Int32 connectionReceive(NetConnection * connection, void * data, UInt32 size)
+int32_t connectionReceive(NetConnection * connection, void * data, uint32_t size)
 {
     unsigned int index;
     unsigned int id;

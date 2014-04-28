@@ -29,7 +29,7 @@
 
 #include <mach-o/dyld.h>
 
-UInt32 getExecutablePath(Int8 * buff, UInt32 buffSize)
+uint32_t getExecutablePath(char * buff, uint32_t buffSize)
 {
     if (_NSGetExecutablePath(buff, &buffSize) == -1)
         return -1;

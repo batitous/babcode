@@ -33,7 +33,7 @@
 #include <windows.h>
 
 
-UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
+uint32_t fileWrite(uint8_t *filename, uint8_t *buffer, uint32_t size )
 {
 	FILE *file ;
 	unsigned int result ;
@@ -47,14 +47,14 @@ UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
                    FILE_FLAG_OVERLAPPED,   // asynchronous I/O
                    NULL);   */
 
-	file = fopen( (const Int8 *)filename, "wb" );
+	file = fopen( (const int8_t *)filename, "wb" );
 	if( file == NULL )
 	{
         LOG("error open file %s !\n", filename );
 		return FILE_OPEN_ERROR ;
 	}
 
-	result = fwrite(buffer,sizeof(UInt8),size,file);
+	result = fwrite(buffer,sizeof(uint8_t),size,file);
 	if( result != size )
 	{
 		LOG("I/O Error (write : %d demand : %d) !\n",result,size);
@@ -66,10 +66,10 @@ UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
 	return FILE_OK ;
 }
 
-UInt8 * fileRead( UInt8 *filename, UInt32 *len )
+uint8_t * fileRead( uint8_t *filename, uint32_t *len )
 {
-	UInt32 size = 0 ;
-	UInt8 *buffer = 0 ;
+	uint32_t size = 0 ;
+	uint8_t *buffer = 0 ;
 	HANDLE f ;
 
 	f = CreateFileA((LPCSTR)filename,GENERIC_READ,FILE_SHARE_READ,
@@ -88,7 +88,7 @@ UInt8 * fileRead( UInt8 *filename, UInt32 *len )
 	}
 
 	//allow the size to a target buffer
-	buffer =(UInt8 *) malloc(size);
+	buffer =(uint8_t *) malloc(size);
 	if( buffer == NULL )
 	{
 		LOG_ERR1("malloc");
@@ -106,7 +106,7 @@ UInt8 * fileRead( UInt8 *filename, UInt32 *len )
 	return buffer ;
 }
 
-UInt8 * fileMmapRead( UInt8 * path, UInt32 *len)
+uint8_t * fileMmapRead( uint8_t * path, uint32_t *len)
 {
    void    *result;
    HANDLE   file=CreateFileA((LPCSTR)path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -136,24 +136,24 @@ UInt8 * fileMmapRead( UInt8 * path, UInt32 *len)
    CloseHandle(mapping);
    CloseHandle(file);
 
-   return (UInt8 *)result;
+   return (uint8_t *)result;
 }
 
-UInt8 * fileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
+uint8_t * fileReadAtIndex( uint8_t *filename, uint32_t index, uint32_t *len_to_read )
 {
 	FILE *f;
-	UInt8 *buffer;
-	UInt32 size = 0 ;
+	uint8_t *buffer;
+	uint32_t size = 0 ;
 	
 	//open the file
-	f = fopen( (const Int8 *)filename , "rb");
+	f = fopen( (const int8_t *)filename , "rb");
 	if( f == NULL )
 	{
 		LOG("Error to open file %s!\n",filename);
 		return NULL ;
 	}
 
-	buffer = (UInt8 *)malloc( *len_to_read);
+	buffer = (uint8_t *)malloc( *len_to_read);
 	if( buffer == NULL )
 	{
 		LOG_ERR1("malloc");

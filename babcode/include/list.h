@@ -69,9 +69,9 @@ extern void * listRemoveNode(List *l, ListNode* node);
 extern void * listRemoveLastNode(List *l);
     
 /** Use with caution */
-extern void * listGetElementAt(List* l, Int32 index);
+extern void * listGetElementAt(List* l, int32_t index);
     
-extern void listRemoveElementAt(List* l, Int32 index);
+extern void listRemoveElementAt(List* l, int32_t index);
     
 #ifdef __cplusplus
 }

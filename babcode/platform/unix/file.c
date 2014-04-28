@@ -43,21 +43,21 @@
 #include <errno.h>
 
 
-UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size )
+uint32_t fileWrite(const char *filename, uint8_t *buffer, uint32_t size )
 {
 	int file ;
-	UInt32 result ;
+	uint32_t result ;
 
     mode_t mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH;
 
-	file = open( (Int8 *)filename, O_WRONLY | O_CREAT | O_TRUNC, mode );
+	file = open( filename, O_WRONLY | O_CREAT | O_TRUNC, mode );
 	if( file == -1 )
 	{
 		LOG("error: open file %s !\n", filename);
 		return FILE_OPEN_ERROR ;
 	}
 
-	result = (UInt32)write(file,  buffer, size);
+	result = (uint32_t)write(file,  buffer, size);
 	if( result != size )
 	{
 		LOG("error: write (%d writed instead of %ld).\n",result,size);
@@ -85,9 +85,9 @@ static long int getFileSize( int fp )
 }
 
 
-UInt8 *fileMmapRead(UInt8 *filename, UInt32 *len)
+uint8_t *fileMmapRead(const char *filename, uint32_t *len)
 {
-    UInt8 * ptr;
+    uint8_t * ptr;
     int fileDescriptor;
     struct stat statInfo;
 
@@ -122,7 +122,7 @@ UInt8 *fileMmapRead(UInt8 *filename, UInt32 *len)
             else
             {
                 // On success, return the size of the mapped file.
-                *len = (UInt32)statInfo.st_size;
+                *len = (uint32_t)statInfo.st_size;
             }
         }
         
@@ -133,14 +133,14 @@ UInt8 *fileMmapRead(UInt8 *filename, UInt32 *len)
     return ptr;
 }
 
-UInt8 *fileRead( UInt8 *filename, UInt32 *len )
+uint8_t *fileRead( const char *filename, uint32_t *len )
 {
-	UInt32 size ;
-	UInt8 *buffer ;
+	uint32_t size ;
+	uint8_t *buffer ;
 	int file ;
 
 	//open the file
-	file = open((Int8 *)filename,O_RDONLY);
+	file = open(filename,O_RDONLY);
 	if( file == -1 )
 	{
 		LOG("error: open file %s\n", filename );
@@ -148,10 +148,10 @@ UInt8 *fileRead( UInt8 *filename, UInt32 *len )
 	}
 
 	//get its size
-	size=(UInt32)getFileSize(file);
+	size=(uint32_t)getFileSize(file);
 
 	//alloc the size to a target buffer
-	buffer =(UInt8*) malloc(size);
+	buffer =(uint8_t*) malloc(size);
 	if( buffer == NULL )
 	{
 		LOG_ERR1("malloc");
@@ -172,21 +172,21 @@ UInt8 *fileRead( UInt8 *filename, UInt32 *len )
 	return buffer;
 }
 
-UInt8 *fileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
+uint8_t *fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to_read )
 {
 	int f;
-	UInt8 *buffer;
-	UInt32 size = 0 ;
+	uint8_t *buffer;
+	uint32_t size = 0 ;
 
 	//open the file
-	f = open( (Int8 *)filename , O_RDONLY);
+	f = open( filename , O_RDONLY);
 	if( f == -1 )
 	{
 		LOG("error: open file %s!\n",filename);
 		return NULL ;
 	}
 
-	buffer = (UInt8 *)malloc( *len_to_read);
+	buffer = (uint8_t *)malloc( *len_to_read);
 	if( buffer == NULL )
 	{
 		LOG_ERR1("malloc");
@@ -200,7 +200,7 @@ UInt8 *fileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read )
 	}
 
 	//read the file and put the data in the target buffer
-	if( (size = (UInt32)read( f, buffer, *len_to_read )) == -1 )
+	if( (size = (uint32_t)read( f, buffer, *len_to_read )) == -1 )
 	{
 		LOG_ERR1("read");
 		return NULL ;

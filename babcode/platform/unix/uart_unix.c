@@ -32,7 +32,7 @@
 
 extern int get_fd_uart(void);
 
-UInt32 UARTGetStatus()
+uint32_t UARTGetStatus()
 {
     int status;
     
@@ -43,7 +43,7 @@ UInt32 UARTGetStatus()
 
 void UARTClearDTR()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -54,7 +54,7 @@ void UARTClearDTR()
 
 void UARTSetDTR()
 {
-    UInt32 status = 0 ;
+    uint32_t status = 0 ;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -65,7 +65,7 @@ void UARTSetDTR()
 
 void UARTClearRTS()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -76,7 +76,7 @@ void UARTClearRTS()
 
 void UARTSetRTS()
 {
-    UInt32 status = 0 ;
+    uint32_t status = 0 ;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -87,9 +87,9 @@ void UARTSetRTS()
 
 
 
-UInt8 UARTisDSRset()
+uint8_t UARTisDSRset()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -99,9 +99,9 @@ UInt8 UARTisDSRset()
         return 1;
 }
 
-UInt8 UARTisDTRset()
+uint8_t UARTisDTRset()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -111,9 +111,9 @@ UInt8 UARTisDTRset()
         return 1;
 }
 
-UInt8 UARTisRTSset()
+uint8_t UARTisRTSset()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -123,9 +123,9 @@ UInt8 UARTisRTSset()
         return 1;
 }
 
-UInt8 UARTisCTSset()
+uint8_t UARTisCTSset()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -135,9 +135,9 @@ UInt8 UARTisCTSset()
         return 1;
 }
 
-UInt8 UARTisDCDset()
+uint8_t UARTisDCDset()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     
@@ -147,9 +147,9 @@ UInt8 UARTisDCDset()
         return 1;
 }
 
-UInt8 UARTisRNGset()
+uint8_t UARTisRNGset()
 {
-    UInt32 status = 0;
+    uint32_t status = 0;
     
     ioctl(get_fd_uart(), TIOCMGET, &status);
     

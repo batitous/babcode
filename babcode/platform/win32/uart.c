@@ -33,11 +33,11 @@
 
 static HANDLE hCom ;
 
-static UInt32 getComPortNumber(const UInt8 *portcom)
+static uint32_t getComPortNumber(const uint8_t *portcom)
 {
-	UInt32 i,j;
-	Int8 buffer[4];
-    Int32 port;
+	uint32_t i,j;
+	int8_t buffer[4];
+    int32_t port;
 
 	i=0;
 	while(portcom[i]!='M')
@@ -61,9 +61,9 @@ static UInt32 getComPortNumber(const UInt8 *portcom)
 	return port;
 }
 
-UInt32 initUART(const UInt8 * name, UInt32 baudrate)
+uint32_t initUART(const uint8_t * name, uint32_t baudrate)
 {
-	UInt32 comport;
+	uint32_t comport;
 	DCB dcb_structure;
 	COMMTIMEOUTS commtimeouts;
 
@@ -112,7 +112,7 @@ UInt32 initUART(const UInt8 * name, UInt32 baudrate)
 }
 
 
-UInt32 sendBufferToUART (UInt8 *Buffer, UInt32 Count)
+uint32_t sendBufferToUART (uint8_t *Buffer, uint32_t Count)
 {
 	unsigned long buffer;
 //	FlushFileBuffers(hCom);	
@@ -124,7 +124,7 @@ UInt32 sendBufferToUART (UInt8 *Buffer, UInt32 Count)
 	return UART_OK;
 }
 
-UInt32 sendByteToUART(UInt8 byte)
+uint32_t sendByteToUART(uint8_t byte)
 {
 	unsigned long buffer;		
 //	FlushFileBuffers(hCom);	
@@ -137,7 +137,7 @@ UInt32 sendByteToUART(UInt8 byte)
 }
 
 
-UInt32 getByteFromUART (UInt8 *Val)
+uint32_t getByteFromUART (uint8_t *Val)
 {
 	unsigned long buffer;
 
@@ -149,7 +149,7 @@ UInt32 getByteFromUART (UInt8 *Val)
 	return UART_OK;
 }
 
-UInt32 getByteFromUARTNoWait(UInt8 *mot)
+uint32_t getByteFromUARTNoWait(uint8_t *mot)
 {
 	unsigned long len=0;
 	unsigned long time=0;
@@ -166,7 +166,7 @@ UInt32 getByteFromUARTNoWait(UInt8 *mot)
 	return UART_OK;
 }
 
-UInt32 getBufferFromUART (UInt8 *Buffer,UInt32 Count)
+uint32_t getBufferFromUART (uint8_t *Buffer,uint32_t Count)
 {
 	unsigned long buffer;		
 	if(ReadFile(hCom,Buffer,Count,&buffer,NULL)==0)
@@ -185,7 +185,7 @@ void closeUART(void)
 	CloseHandle(hCom);
 }
 
- UInt32 getStatus(void)
+ uint32_t getStatus(void)
  {
 
     return 0;
@@ -213,32 +213,32 @@ void setRTS(void)
 
 
 
-UInt8 isDSRset(void)
+uint8_t isDSRset(void)
 {
    return 1;
 }
 
-UInt8 isDTRset(void)
+uint8_t isDTRset(void)
 {
     return 1;
 }
 
-UInt8 isRTSset(void)
+uint8_t isRTSset(void)
 {
    return 1;
 }
 
-UInt8 isCTSset(void)
+uint8_t isCTSset(void)
 {
    return 1;
 }
 
-UInt8 isDCDset(void)
+uint8_t isDCDset(void)
 {
    return 1;
 }
 
-UInt8 isRNGset(void)
+uint8_t isRNGset(void)
 {
    return 1;
 }

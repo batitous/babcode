@@ -34,29 +34,29 @@ extern "C" {
 
 typedef struct _babcode_time_
 {
-	UInt16 year; /**< Year after Jesus Birth */
-	UInt8 month; /**< Month of this year : 1 to 12 */
-	UInt8 day;   /**< Day of the Month : 1 to 31 */
+	uint16_t year; /**< Year after Jesus Birth */
+	uint8_t month; /**< Month of this year : 1 to 12 */
+	uint8_t day;   /**< Day of the Month : 1 to 31 */
 
-	UInt16 hour;    /**< Hour of the day : 0 to 23 */
-	UInt16 minute;  /**< Minute of the hour : 0 to 59 */
-	UInt16 second; /**< Seconds of the minute : 0 to 59 */
+	uint16_t hour;    /**< Hour of the day : 0 to 23 */
+	uint16_t minute;  /**< Minute of the hour : 0 to 59 */
+	uint16_t second; /**< Seconds of the minute : 0 to 59 */
 
-	UInt16 dayOfYear; /**< Day of the year : 0 to 365 */
-	UInt16 dayOfWeek; /**< Day of the week (depuis dimanche) 0 to 6 */
+	uint16_t dayOfYear; /**< Day of the year : 0 to 365 */
+	uint16_t dayOfWeek; /**< Day of the week (depuis dimanche) 0 to 6 */
 	
-	UInt8 weekOfYear; /**< Week of the year */
+	uint8_t weekOfYear; /**< Week of the year */
 
-	UInt8 isBissextile; /**< Year is bissectile or not ? */
+	uint8_t isBissextile; /**< Year is bissectile or not ? */
 
 } Time ;
 
 extern void getTime(Time *t);
 
 // Get ticks in millisecond that have elapsed since the program was started.
-extern UInt32 getTicks(void);
+extern uint32_t getTicks(void);
 
-extern void waitMs(UInt32 milliseconds);
+extern void waitMs(uint32_t milliseconds);
     
 #ifdef __cplusplus
   }

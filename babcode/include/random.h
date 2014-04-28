@@ -43,14 +43,14 @@ extern void  randomInit(void);
  * @param highBoundary		High.
  * @return A random number.
  */
-extern Int32 getRandomBetween(Int32 lowBoundary, Int32 highBoundary);
+extern int32_t getRandomBetween(int32_t lowBoundary, int32_t highBoundary);
 
 /** @brief Get a random number between 0 and high boundary.
  *
  * @param highBoundary		High.
  * @return A random number.
  */
-extern Int32 getRandom(Int32 highBoundary);
+extern int32_t getRandom(int32_t highBoundary);
 
 #ifdef __cplusplus
  }

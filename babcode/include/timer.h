@@ -38,15 +38,15 @@ typedef void (*TimerCallback)(void * p);
 
 typedef struct _timer_
 {
-    UInt32      start;
-    UInt32      interval;
+    uint32_t      start;
+    uint32_t      interval;
     void *      callbackParam;
     TimerCallback   callback;
     Thread      thread;    
 } Timer;
 
 
-extern void timerInit(Timer * t, UInt32 startMs, UInt32 intervalMs, TimerCallback callback, void * callbackParam);
+extern void timerInit(Timer * t, uint32_t startMs, uint32_t intervalMs, TimerCallback callback, void * callbackParam);
 
 extern void timerStart(Timer * t);
 

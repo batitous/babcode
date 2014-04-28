@@ -40,13 +40,13 @@ void randomInit(void)
 	srand((unsigned int) seconds);
 }
 
-Int32 getRandomBetween(Int32 lowBoundary, Int32 highBoundary)
+int32_t getRandomBetween(int32_t lowBoundary, int32_t highBoundary)
 {
 	return (rand() % (highBoundary - lowBoundary + 1) + lowBoundary);
 }
 
 
-Int32 getRandom(Int32 highBoundary)
+int32_t getRandom(int32_t highBoundary)
 {
 //	assert (0 < n && n <= RAND_MAX);
 

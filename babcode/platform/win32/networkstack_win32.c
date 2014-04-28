@@ -40,9 +40,9 @@ static void freeIpTable(void)
     pIPAddrTable = 0;
 }
 
-static UInt32 getMask(UInt32 ip)
+static uint32_t getMask(uint32_t ip)
 {
-	UInt32 i;
+	uint32_t i;
     
 	for(i=0; i< pIPAddrTable->dwNumEntries;i++)
 	{
@@ -54,7 +54,7 @@ static UInt32 getMask(UInt32 ip)
 	return 0;
 }
 
-static UInt8 getIpTable(void)
+static uint8_t getIpTable(void)
 {
 	// Variables used by GetIpAddrTable
     DWORD dwSize = 0;
@@ -101,11 +101,11 @@ static UInt8 getIpTable(void)
 	return 0;
 }
 
-bool getNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool getNetworkInterface(NetInterfaceInfo **pIPInfo,int32_t *pszIPInfo)
 {
-	UInt16 i16;
-	UInt8  i8;
-	UInt32 len;
+	uint16_t i16;
+	uint8_t  i8;
+	uint32_t len;
 
 	PIP_ADAPTER_ADDRESSES pAddresses = NULL;
 	PIP_ADAPTER_ADDRESSES pCurrAddresses = NULL;
@@ -185,19 +185,19 @@ bool getNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
                 
 				len = wcslen( pCurrAddresses->FriendlyName);
 				
-				IPInfo[szIPInfo].name = (Int8 *)malloc(len+1);
+				IPInfo[szIPInfo].name = (int8_t *)malloc(len+1);
 				for(i16=0,i8=0;i16<len;i16++,i8++)
 				{
-					IPInfo[szIPInfo].name[i8]=(Int8)pCurrAddresses->FriendlyName[i16];
+					IPInfo[szIPInfo].name[i8]=(int8_t)pCurrAddresses->FriendlyName[i16];
 				}
 				IPInfo[szIPInfo].name[i8]=0;
                 
 				len = wcslen( pCurrAddresses->Description);
 				
-				IPInfo[szIPInfo].description = (Int8 *)malloc(len+1);
+				IPInfo[szIPInfo].description = (int8_t *)malloc(len+1);
 				for(i16=0,i8=0;i16<len;i16++,i8++)
 				{
-					IPInfo[szIPInfo].description[i8]=(Int8)pCurrAddresses->Description[i16];
+					IPInfo[szIPInfo].description[i8]=(int8_t)pCurrAddresses->Description[i16];
 				}
 				IPInfo[szIPInfo].description[i8]=0;
                 

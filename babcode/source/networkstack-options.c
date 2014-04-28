@@ -29,7 +29,7 @@
 
 #include "networkstack-private.h"
 
-void freeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber)
+void freeNetworkInterface(NetInterfaceInfo *interfaces, int32_t interfaceNumber)
 {
 	int i;
     
@@ -88,7 +88,7 @@ NetworkStatus socketSetBlock(Socket *s, bool enable)
 	return NETWORK_OK;
 }
 
-NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
+NetworkStatus socketSetTimeout(Socket *s, int32_t RecvTimeout, int32_t SendTimeout)
 {
 	if(RecvTimeout > 0)
 	{
@@ -131,7 +131,7 @@ NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout)
 	return NETWORK_OK;
 }
 
-NetworkStatus socketSetBroadcast(Socket *s, Int32 Enable)
+NetworkStatus socketSetBroadcast(Socket *s, int32_t Enable)
 {
 	if(setsockopt(s->handle, SOL_SOCKET, SO_BROADCAST, (const char *)&Enable, sizeof(Enable)) < 0)
 		return NETWORK_ERROR;
@@ -154,7 +154,7 @@ NetworkStatus socketSetTcpNoDelay(Socket *s, bool Enable)
 }
 
 
-NetworkStatus socketSetMulticastTTL(Socket *s, Int32 TTL)
+NetworkStatus socketSetMulticastTTL(Socket *s, int32_t TTL)
 {
 	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_TTL, (const char *)&TTL, sizeof(TTL)) < 0)
 		return NETWORK_ERROR;
@@ -162,14 +162,14 @@ NetworkStatus socketSetMulticastTTL(Socket *s, Int32 TTL)
 }
 
 
-NetworkStatus socketSetMulticastIF(Socket *s, UInt32 ip)
+NetworkStatus socketSetMulticastIF(Socket *s, uint32_t ip)
 {
 	if(setsockopt(s->handle, IPPROTO_IP, IP_MULTICAST_IF, (const char *)&ip, sizeof(ip)) < 0)
 		return NETWORK_ERROR;
 	return NETWORK_OK;
 }
 
-NetworkStatus socketSetMulticastMembership(Socket *s, UInt32 faceIP, UInt32 multicastIP)
+NetworkStatus socketSetMulticastMembership(Socket *s, uint32_t faceIP, uint32_t multicastIP)
 {
 	struct ip_mreq McastAddr;
 	

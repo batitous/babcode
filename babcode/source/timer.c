@@ -42,7 +42,7 @@ static void * timerThread(Timer * t)
     return 0;
 }
 
-void timerInit(Timer * t, UInt32 startMs, UInt32 intervalMs, TimerCallback callback, void * callbackParam)
+void timerInit(Timer * t, uint32_t startMs, uint32_t intervalMs, TimerCallback callback, void * callbackParam)
 {
     t->start = startMs;
     t->interval = intervalMs;

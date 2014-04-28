@@ -32,11 +32,11 @@
 extern "C" {
 #endif
 
-extern void logOpen(const Int8 *filename);
+extern void logOpen(const char *filename);
 
 extern void logClose(void);
 
-extern void logError (const Int8 fmt[], ...);
+extern void logError (const char fmt[], ...);
 
 #define LOG(...)        logError(__VA_ARGS__);
 

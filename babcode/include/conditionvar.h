@@ -37,7 +37,7 @@ extern "C" {
 
 typedef struct _ConditionVar_
 {
-    UInt32 waiters_count_;
+    uint32_t waiters_count_;
     CRITICAL_SECTION waiters_count_lock_;
     HANDLE events_[2];
 } ConditionVar;

@@ -34,12 +34,12 @@
 #include <arpa/inet.h>
 #include <string.h>
 
-bool getNetworkInterface(NetInterfaceInfo **pIPInfo,Int32 *pszIPInfo)
+bool getNetworkInterface(NetInterfaceInfo **pIPInfo,int32_t *pszIPInfo)
 {
 	struct sockaddr_in *pAddr;
 	int Success = 0;
-	UInt32 dwIP, dwNetmask;
-	UInt8 bMAC[MAC_ADDR_SIZE];
+	uint32_t dwIP, dwNetmask;
+	uint8_t bMAC[MAC_ADDR_SIZE];
 	NetInterfaceInfo *IPInfo = NULL;
 	int szIPInfo = 0;
 	

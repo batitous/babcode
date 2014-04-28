@@ -35,17 +35,17 @@ extern "C" {
 typedef struct _bab_socket_
 {
     int handle;     /**< internal socket descriptor */
-    UInt16 port;    /**< local socket port */
+    uint16_t port;    /**< local socket port */
 } Socket;
 
 typedef struct _bab_ip_address_
 {
-    UInt32 a;
-    UInt32 b;
-    UInt32 c;
-    UInt32 d;
-    UInt32 ip;
-    UInt16 port;
+    uint32_t a;
+    uint32_t b;
+    uint32_t c;
+    uint32_t d;
+    uint32_t ip;
+    uint16_t port;
 } IpAddress;
 
 #define PACKET_SIZE_MAX         1024
@@ -58,13 +58,13 @@ typedef struct _net_connection_
     Socket      sock;           /**< connection's socket */
     IpAddress   remote;         /**< remote address where send data */
     IpAddress   sender;         /**< last address received from sender */
-    UInt32      protocolId;     /**< protocol identifier */
+    uint32_t      protocolId;     /**< protocol identifier */
     bool        isOpen;         /**< is this connection open ? */
-    UInt8 *     buffer;         /**< temporary buffer */
-    UInt32      localSequence;  /**< local sequence number */
-    UInt32      localAcks[ACK_MAX]; /**< ack received for my packet send */
-    UInt32      remoteSequence; /**< remote sequence number: last packet number received (more recent) */
-    UInt32      remoteAcks[ACK_MAX]; /**< ack of the last packets received */
+    uint8_t *     buffer;         /**< temporary buffer */
+    uint32_t      localSequence;  /**< local sequence number */
+    uint32_t      localAcks[ACK_MAX]; /**< ack received for my packet send */
+    uint32_t      remoteSequence; /**< remote sequence number: last packet number received (more recent) */
+    uint32_t      remoteAcks[ACK_MAX]; /**< ack of the last packets received */
 } NetConnection;
 
 typedef enum _network_status_
@@ -79,14 +79,14 @@ extern int initSocketPlatform();
 extern void closeSocketPlatform();
     
 // get ip from a.b.c.d address
-extern UInt32 addressGetIp(IpAddress * addr);
+extern uint32_t addressGetIp(IpAddress * addr);
 
 // get a.b.c.d from ip
-extern void addressGetABCD(IpAddress * addr, UInt32 ip);
+extern void addressGetABCD(IpAddress * addr, uint32_t ip);
 
 // socket option
 extern NetworkStatus socketSetBlock(Socket *s, bool enable);
-extern NetworkStatus socketSetTimeout(Socket *s, Int32 RecvTimeout, Int32 SendTimeout);
+extern NetworkStatus socketSetTimeout(Socket *s, int32_t RecvTimeout, int32_t SendTimeout);
 extern NetworkStatus socketSetBroadcast(Socket *s, int Enable);
 extern NetworkStatus socketSetKeepAlive(Socket *s, bool Enable);
 extern NetworkStatus socketSetTcpNoDelay(Socket *s, bool Enable);
@@ -95,50 +95,50 @@ extern NetworkStatus socketGetLastError(void);
     
 // tcp socket
 extern NetworkStatus socketTcpInit(Socket * s);
-extern NetworkStatus serverTcpOpen(Socket *s, UInt16 port);
+extern NetworkStatus serverTcpOpen(Socket *s, uint16_t port);
 extern NetworkStatus serverTcpWaitConnection(Socket * server, Socket * client, IpAddress * clientAddr);
 extern NetworkStatus clientTcpOpen(Socket * client, IpAddress * server);
     
-extern NetworkStatus socketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended);
-extern NetworkStatus socketTcpReceive(Socket *s,void * packet_data, UInt32 maximum_packet_size, UInt32 * received);
+extern NetworkStatus socketTcpSend(Socket * s, const void * packet_data, uint32_t packet_size, uint32_t * sended);
+extern NetworkStatus socketTcpReceive(Socket *s,void * packet_data, uint32_t maximum_packet_size, uint32_t * received);
     
-extern NetworkStatus socketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size);
-extern NetworkStatus socketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size);
+extern NetworkStatus socketTcpSendAll(Socket *s, void *buffer, uint32_t buffer_size);
+extern NetworkStatus socketTcpReceiveAll(Socket *s, void *buffer, uint32_t buffer_size);
     
 // udp socket
-extern Int32 socketOpen(Socket * s, UInt16 port);
-extern Int32 socketOpenInBroadcastMode(Socket * s);
-extern Int32 socketSend(Socket * s, IpAddress * addr, const void * packet_data, UInt32 packet_size);
-extern Int32 socketReceive(Socket *s, IpAddress *addr, void * packet_data, UInt32 maximum_packet_size);
+extern int32_t socketOpen(Socket * s, uint16_t port);
+extern int32_t socketOpenInBroadcastMode(Socket * s);
+extern int32_t socketSend(Socket * s, IpAddress * addr, const void * packet_data, uint32_t packet_size);
+extern int32_t socketReceive(Socket *s, IpAddress *addr, void * packet_data, uint32_t maximum_packet_size);
 
 extern void socketClose(Socket *s);
 
 // connection object
-extern void connectionNew(NetConnection * connection, UInt32 id);
-extern Int32 connectionStart(NetConnection * connection, UInt16 port);
+extern void connectionNew(NetConnection * connection, uint32_t id);
+extern int32_t connectionStart(NetConnection * connection, uint16_t port);
 extern void connectionStop(NetConnection * connection);
 
 // link the address's parameter to the remote connection address
 extern void connectionConnect(NetConnection * connection, IpAddress * remoteAddr);
 
-extern Int32 connectionSend(NetConnection * connection, const void * data, UInt32 size);
+extern int32_t connectionSend(NetConnection * connection, const void * data, uint32_t size);
 
-extern Int32 connectionReceive(NetConnection * connection, void * data, UInt32 size);
+extern int32_t connectionReceive(NetConnection * connection, void * data, uint32_t size);
 
 #define MAC_ADDR_SIZE	6
     
 typedef struct _interface_info_
 {
-    Int8 *	name;		/**< interface name */
-    Int8 *	description; /**< description (null on linux) */
-    UInt32	ip;			/**< ip address */
-    UInt32	netmask;	/**< ip mask */
-    UInt8	mac[MAC_ADDR_SIZE]; /**< MAC address */
-    UInt32	pkSize;		/**< MTU maximum size */
+    char *	name;		/**< interface name */
+    int8_t *	description; /**< description (null on linux) */
+    uint32_t	ip;			/**< ip address */
+    uint32_t	netmask;	/**< ip mask */
+    uint8_t	mac[MAC_ADDR_SIZE]; /**< MAC address */
+    uint32_t	pkSize;		/**< MTU maximum size */
 } NetInterfaceInfo;
 
-extern bool getNetworkInterface(NetInterfaceInfo **interfaces,Int32 * interfaceNumber);
-extern void freeNetworkInterface(NetInterfaceInfo *interfaces, Int32 interfaceNumber);
+extern bool getNetworkInterface(NetInterfaceInfo **interfaces,int32_t * interfaceNumber);
+extern void freeNetworkInterface(NetInterfaceInfo *interfaces, int32_t interfaceNumber);
 
 #ifdef __cplusplus
 }

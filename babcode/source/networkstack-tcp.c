@@ -44,7 +44,7 @@ NetworkStatus socketTcpInit(Socket * s)
     return NETWORK_OK;
 }
 
-NetworkStatus serverTcpOpen(Socket *s, UInt16 port)
+NetworkStatus serverTcpOpen(Socket *s, uint16_t port)
 {
     int k = 1;
     int sock = s->handle;
@@ -146,7 +146,7 @@ NetworkStatus clientTcpOpen(Socket * client, IpAddress * server)
 	return NETWORK_OK;
 }
 
-NetworkStatus socketTcpSend(Socket * s, const void * packet_data, UInt32 packet_size, UInt32 * sended)
+NetworkStatus socketTcpSend(Socket * s, const void * packet_data, uint32_t packet_size, uint32_t * sended)
 {
     int result = (int)send(s->handle,(const char *)packet_data,packet_size,0);
 
@@ -169,7 +169,7 @@ NetworkStatus socketTcpSend(Socket * s, const void * packet_data, UInt32 packet_
     return NETWORK_OK;
 }
 
-NetworkStatus socketTcpReceive(Socket *s, void * buffer, UInt32 buffer_size, UInt32 * received)
+NetworkStatus socketTcpReceive(Socket *s, void * buffer, uint32_t buffer_size, uint32_t * received)
 {
 	int result;
 	
@@ -202,16 +202,16 @@ _again_:
 	return NETWORK_OK;
 }
 
-NetworkStatus socketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
+NetworkStatus socketTcpSendAll(Socket *s, void *buffer, uint32_t buffer_size)
 {
     NetworkStatus status;
-    UInt32 sended;
+    uint32_t sended;
 	int toWrite;
 	
 	toWrite = buffer_size;
 	while(toWrite > 0)
 	{
-		status = socketTcpSend(s, (UInt8 *)buffer + buffer_size - toWrite, toWrite, &sended);
+		status = socketTcpSend(s, (uint8_t *)buffer + buffer_size - toWrite, toWrite, &sended);
 		if (status == NETWORK_ERROR)
 		{
 			LOG_ERR1("SocketTcpSendAll");
@@ -223,16 +223,16 @@ NetworkStatus socketTcpSendAll(Socket *s, void *buffer, UInt32 buffer_size)
 	return NETWORK_OK;
 }
 
-NetworkStatus socketTcpReceiveAll(Socket *s, void *buffer, UInt32 buffer_size)
+NetworkStatus socketTcpReceiveAll(Socket *s, void *buffer, uint32_t buffer_size)
 {
     NetworkStatus status;
-	UInt32 received;
+	uint32_t received;
 	int toRead;
     
 	toRead = buffer_size;
 	while (toRead > 0)
 	{
-		status = socketTcpReceive(s, (UInt8 *)buffer + buffer_size - toRead, toRead, &received);
+		status = socketTcpReceive(s, (uint8_t *)buffer + buffer_size - toRead, toRead, &received);
 		if (status == NETWORK_ERROR)
 		{
 			LOG_ERR1("SocketTcpReceiveAll");

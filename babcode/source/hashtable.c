@@ -37,7 +37,7 @@
 #define CIRCULAR_OFFSET(table, a, b) ((b) >= (a) ? (b) - (a) : table->size + (b) - (a))
 
 
-static UInt32 integerHash(UInt32 h)
+static uint32_t integerHash(uint32_t h)
 {
 	h ^= h >> 16;
 	h *= 0x85ebca6b;
@@ -47,7 +47,7 @@ static UInt32 integerHash(UInt32 h)
 	return h;
 }
 
-static void hashTableRepopulate(HashTable * table, UInt32 desiredSize)
+static void hashTableRepopulate(HashTable * table, uint32_t desiredSize)
 {
 	HashNode * node;
 	HashNode * n;
@@ -83,7 +83,7 @@ static void hashTableRepopulate(HashTable * table, UInt32 desiredSize)
 }
 
 
-void hashTableInit(HashTable * table, UInt32 size)
+void hashTableInit(HashTable * table, uint32_t size)
 {
     table->size = size;
     table->population = 0;    
@@ -91,7 +91,7 @@ void hashTableInit(HashTable * table, UInt32 size)
     memset(table->nodes, 0, sizeof(HashNode) * table->size);
 }
 
-HashNode * _hashTableLookup(HashTable * table, UInt32 key)
+HashNode * _hashTableLookup(HashTable * table, uint32_t key)
 {
     HashNode * n;
     
@@ -105,7 +105,7 @@ HashNode * _hashTableLookup(HashTable * table, UInt32 key)
     }
 }
 
-void * hashTableLookup(HashTable * table, UInt32 key)
+void * hashTableLookup(HashTable * table, uint32_t key)
 {
     HashNode* node = _hashTableLookup(table, key);
     if (node != NULL)
@@ -113,7 +113,7 @@ void * hashTableLookup(HashTable * table, UInt32 key)
 	return NULL;
 }
 
-void hashTableDelete(HashTable * table, UInt32 key)
+void hashTableDelete(HashTable * table, uint32_t key)
 {
 	HashNode * ideal;
 	HashNode * neighbor;
@@ -143,7 +143,7 @@ void hashTableDelete(HashTable * table, UInt32 key)
     }
 }
 
-void hashTableInsert(HashTable * table, UInt32 key, void *value)
+void hashTableInsert(HashTable * table, uint32_t key, void *value)
 {
 	HashNode* node;
 

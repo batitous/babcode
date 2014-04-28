@@ -47,14 +47,14 @@ extern "C" {
  * @return 0 if no error.
  *
  */
-extern UInt32 initUART(const UInt8 * comport, UInt32 baudrate);
+extern uint32_t initUART(const char * comport, uint32_t baudrate);
 
     
 #if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
 
 	#include <termios.h>
 
-	speed_t UInt32ToSpeed_t(UInt32 baudrate);
+	speed_t uint32_tToSpeed_t(uint32_t baudrate);
 #endif
 
 /** @brief Send a byte
@@ -62,7 +62,7 @@ extern UInt32 initUART(const UInt8 * comport, UInt32 baudrate);
  * @param byte	Byte to send
  * @return 0 if no error.
  */
-extern UInt32 sendByteToUART(UInt8 byte);
+extern uint32_t sendByteToUART(uint8_t byte);
 
 /** @brief Send a buffer
  *
@@ -70,21 +70,21 @@ extern UInt32 sendByteToUART(UInt8 byte);
  * @param Count		Number of byte to send
  * @return 0 if no error
  */
-extern UInt32 sendBufferToUART (UInt8 *Buffer, UInt32 Count);
+extern uint32_t sendBufferToUART (uint8_t *Buffer, uint32_t Count);
 
 /** @brief Get a byte
  *
  * @param [out] data	Pointer to a byte
  * @return 0 if no error.
  */
-extern UInt32  getByteFromUART(UInt8 *data);
+extern uint32_t  getByteFromUART(uint8_t *data);
 
 /** @brief Get a byte (with timeout)
  *
  * @param [out] data	Pointer to a byte
  * @return 0 if no error.
  */
-extern UInt32 getByteFromUARTNoWait(UInt8 *data);
+extern uint32_t getByteFromUARTNoWait(uint8_t *data);
 
 /** @brief Get a buffer
  *
@@ -92,7 +92,7 @@ extern UInt32 getByteFromUARTNoWait(UInt8 *data);
  * @param Count		Number of byte to read
  * @return 0 if no error.
  */
-extern UInt32  getBufferFromUART (UInt8 *Buffer,UInt32 Count);
+extern uint32_t  getBufferFromUART (uint8_t *Buffer,uint32_t Count);
 
 extern void closeUART(void);
 
@@ -103,14 +103,14 @@ extern void UARTClearDTR(void);
 extern void UARTSetRTS(void);
 extern void UARTClearRTS(void);
 
-extern UInt32 UARTGetStatus(void);
+extern uint32_t UARTGetStatus(void);
 
-extern UInt8 UARTisDSRset(void);
-extern UInt8 UARTisDTRset(void);
-extern UInt8 UARTisRTSset(void);
-extern UInt8 UARTisCTSset(void);
-extern UInt8 UARTisDCDset(void);
-extern UInt8 UARTisRNGset(void);
+extern uint8_t UARTisDSRset(void);
+extern uint8_t UARTisDTRset(void);
+extern uint8_t UARTisRTSset(void);
+extern uint8_t UARTisCTSset(void);
+extern uint8_t UARTisDCDset(void);
+extern uint8_t UARTisRNGset(void);
 
 
 

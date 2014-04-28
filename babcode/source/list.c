@@ -96,7 +96,7 @@ void *listRemoveLastNode(List *l)
     return node->data;
 }
 
-void *listGetElementAt(List* l, Int32 index)
+void *listGetElementAt(List* l, int32_t index)
 {
     int i=0;
     ListNode *n = l->first;
@@ -111,7 +111,7 @@ void *listGetElementAt(List* l, Int32 index)
     return NULL;
 }
 
-void listRemoveElementAt(List* l, Int32 index)
+void listRemoveElementAt(List* l, int32_t index)
 {
     int i=0;
     ListNode *n = l->first;

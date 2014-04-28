@@ -36,13 +36,13 @@ extern "C" {
 #define FILE_OPEN_ERROR 0x201	/**< failed to open a file */
 #define FILE_IO_ERROR	0x202	/**< failed to read/write byte */
 
-extern UInt32 fileWrite(UInt8 *filename, UInt8 *buffer, UInt32 size );
+extern uint32_t fileWrite(const char *filename, uint8_t *buffer, uint32_t size );
 
-extern UInt8 * fileRead( UInt8 *filename, UInt32 *len );
+extern uint8_t * fileRead( const char *filename, uint32_t *len );
 
-extern UInt8 * fileReadAtIndex( UInt8 *filename, UInt32 index, UInt32 *len_to_read );
+extern uint8_t * fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to_read );
     
-extern UInt8 * fileMmapRead( UInt8 * filename, UInt32 *len);
+extern uint8_t * fileMmapRead( const char *filename, uint32_t *len);
     
 #ifdef __cplusplus
 }

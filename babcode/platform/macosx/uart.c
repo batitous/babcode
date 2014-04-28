@@ -42,8 +42,8 @@
 
 static int fd_uart;
 
-static UInt8 tmp0[1];
-static UInt8 tmp1[1];
+static uint8_t tmp0[1];
+static uint8_t tmp1[1];
 static struct termios gOriginalTTYAttrs;
 
 int get_fd_uart()
@@ -51,12 +51,12 @@ int get_fd_uart()
     return fd_uart;
 }
 
-UInt32 initUART(const UInt8 *tty_name, UInt32 baudrate)
+uint32_t initUART(const char *tty_name, uint32_t baudrate)
 {
 	struct termios  options;
 	
 	
-	fd_uart = open((Int8 *)tty_name, O_RDWR | O_NOCTTY | O_NONBLOCK);
+	fd_uart = open((char *)tty_name, O_RDWR | O_NOCTTY | O_NONBLOCK);
 	
     if (fd_uart < 0)
     {
@@ -64,7 +64,7 @@ UInt32 initUART(const UInt8 *tty_name, UInt32 baudrate)
         return UART_OPEN_FAILED;
     }
 	
-    //DebugPrintf(3, "COM-Port %s opened...\n", (Int8 *)tty_name);
+    //DebugPrintf(3, "COM-Port %s opened...\n", (int8_t *)tty_name);
 	
     /* clear input & output buffers, then switch to "blocking mode" */
     tcflush(fd_uart, TCOFLUSH);
@@ -86,7 +86,7 @@ UInt32 initUART(const UInt8 *tty_name, UInt32 baudrate)
     options.c_cc[VTIME]    = 1;   /* inter-character timer used */
     options.c_cc[VMIN]     = 0;   /* blocking read until 0 chars received */
 	
-	cfsetspeed(&options, UInt32ToSpeed_t(baudrate));
+	cfsetspeed(&options, uint32_tToSpeed_t(baudrate));
 	
     tcflush(fd_uart, TCIFLUSH);
     if(tcsetattr(fd_uart, TCSANOW, &options))
@@ -98,7 +98,7 @@ UInt32 initUART(const UInt8 *tty_name, UInt32 baudrate)
 	return UART_OK;
 }
 
-speed_t UInt32ToSpeed_t(UInt32 baudrate)
+speed_t uint32_tToSpeed_t(uint32_t baudrate)
 {
 	switch (baudrate)
     {
@@ -130,7 +130,7 @@ speed_t UInt32ToSpeed_t(UInt32 baudrate)
     }
 }
 
-UInt32 sendByteToUART(UInt8 Byte)
+uint32_t sendByteToUART(uint8_t Byte)
 {
 	tmp0[0]=Byte;
 
@@ -141,7 +141,7 @@ UInt32 sendByteToUART(UInt8 Byte)
 	return UART_OK;
 }
 
-UInt32 sendBufferToUART(UInt8 *Buffer, UInt32 Count)
+uint32_t sendBufferToUART(uint8_t *Buffer, uint32_t Count)
 {
 	if(write(fd_uart,Buffer,Count)==-1)
 	{
@@ -150,7 +150,7 @@ UInt32 sendBufferToUART(UInt8 *Buffer, UInt32 Count)
 	return UART_OK;
 }
 
-UInt32 getByteFromUART(UInt8 *data)
+uint32_t getByteFromUART(uint8_t *data)
 {
 	if(read(fd_uart,tmp1,1)==-1)
 	{
@@ -162,10 +162,10 @@ UInt32 getByteFromUART(UInt8 *data)
 	return UART_OK;
 }
 
-UInt32 getByteFromUARTNoWait(UInt8 *data)
+uint32_t getByteFromUARTNoWait(uint8_t *data)
 {
 	*data=0;
-	Int32 result = (Int32)read(fd_uart,tmp1,1);
+	int32_t result = (int32_t)read(fd_uart,tmp1,1);
 	if (result == 0) {
 		return UART_TIMEOUT_ERROR;
 	}
@@ -184,7 +184,7 @@ UInt32 getByteFromUARTNoWait(UInt8 *data)
 	return UART_OK;
 }
 
-UInt32 getBufferFromUART(UInt8 *Buffer, UInt32 Count)
+uint32_t getBufferFromUART(uint8_t *Buffer, uint32_t Count)
 {
 	if(read(fd_uart,Buffer,Count)==-1)
 	{

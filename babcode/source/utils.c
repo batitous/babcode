@@ -38,30 +38,30 @@
 #	include <unistd.h>
 #endif
 
-void write32bitsToBuffer(UInt8 * buffer, UInt32 integer)
+void write32bitsToBuffer(uint8_t * buffer, uint32_t integer)
 {
-    buffer[0] = (UInt8) ( ( integer >> 24 ) & 0xFF );
-    buffer[1] = (UInt8) ( ( integer >> 16 ) & 0xFF );
-    buffer[2] = (UInt8) ( ( integer >> 8  ) & 0xFF );
-    buffer[3] = (UInt8) ( ( integer ) & 0xFF );
+    buffer[0] = (uint8_t) ( ( integer >> 24 ) & 0xFF );
+    buffer[1] = (uint8_t) ( ( integer >> 16 ) & 0xFF );
+    buffer[2] = (uint8_t) ( ( integer >> 8  ) & 0xFF );
+    buffer[3] = (uint8_t) ( ( integer ) & 0xFF );
 }
 
-Int32 read32bitsFromBuffer(UInt8 * buffer)
+int32_t read32bitsFromBuffer(uint8_t * buffer)
 {
-    Int32 integer = (buffer[0]<<24)| (buffer[1]<<16)|(buffer[2]<<8)|(buffer[3]);
+    int32_t integer = (buffer[0]<<24)| (buffer[1]<<16)|(buffer[2]<<8)|(buffer[3]);
     
     return integer;
 }
 
-void write16bitsToBuffer(UInt8 * buffer, UInt16 integer)
+void write16bitsToBuffer(uint8_t * buffer, uint16_t integer)
 {
-    buffer[0] = (UInt8) ( ( integer >> 8  ) & 0xFF );
-    buffer[1] = (UInt8) ( ( integer ) & 0xFF );
+    buffer[0] = (uint8_t) ( ( integer >> 8  ) & 0xFF );
+    buffer[1] = (uint8_t) ( ( integer ) & 0xFF );
 }
 
-Int16 read16bitsFromBuffer(UInt8 * buffer)
+int16_t read16bitsFromBuffer(uint8_t * buffer)
 {
-    Int16 integer = (buffer[0]<<8)|(buffer[1]);
+    int16_t integer = (buffer[0]<<8)|(buffer[1]);
     
     return integer;
 }
@@ -119,7 +119,7 @@ static int _Path_Cleanup(char *AbsPath)
 }
 
 
-bool getRealPath(const Int8 *path, Int8 *resolvedPath, Int32 * resolvePathSize)
+bool getRealPath(const char *path, char *resolvedPath, int32_t * resolvePathSize)
 {
 	char AbsPath[512], *Tokens[512], *pBuf;
 	int i, lPath, lAbsPath, lTokens, lResolvedPath, szResolvedPath;

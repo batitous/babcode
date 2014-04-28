@@ -33,13 +33,13 @@
 extern "C" {
 #endif
 
-extern Int8 ** stringSplit(Int8 * str, Int8 * token);
+extern char ** stringSplit(char * str, char * token);
 
-extern Int8 * stringDuplicate(Int8 * src, Int32 size);
+extern char * stringDuplicate(char * src, int32_t size);
     
-extern Int8 * stringReplace(const Int8 * string, const Int8 * substr, const Int8 * replacement);
+extern char * stringReplace(const char * string, const char * substr, const char * replacement);
     
-extern Int8 * stringInsert(const Int8 * string, const Int8 * substr, const Int32 offset);
+extern char * stringInsert(const char * string, const char * substr, const int32_t offset);
     
 #ifdef __cplusplus
 }
