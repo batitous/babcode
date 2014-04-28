@@ -92,7 +92,7 @@ void * tcpserver(void *p)
     Socket server;
     Socket client;
     IpAddress clientAddr;
-    UInt32 sended;
+    uint32_t sended;
         
     socketTcpInit(&server);
     serverTcpOpen(&server, 1234);
@@ -116,8 +116,8 @@ void * tcpclient(void *p)
 {
     Socket client;
     IpAddress serverAddr;
-    UInt8 buffer[16];
-    UInt32 received;
+    uint8_t buffer[16];
+    uint32_t received;
     NetworkStatus status;
     
     serverAddr.a = 127;
@@ -146,7 +146,7 @@ void * tcpclient(void *p)
         
     printf("Receive: %d bytes %s\n", received, buffer);
     
-    wait(300);
+    waitMs(300);
     
     socketClose(&client);
     
@@ -170,7 +170,7 @@ void hashtabletest(void)
     node = 8;
     base = 0x00001000;
     
-    UInt32 data;
+    uint32_t data;
     begin = getTicks();
     for( i=0;i<node;i++)
     {
@@ -186,7 +186,7 @@ void hashtabletest(void)
         printf("%4d key %4x\n", i, table.nodes[i].key);
     }
     
-    data = (UInt32)hashTableLookup(&table,base+4);
+    data = (uint32_t)hashTableLookup(&table,base+4);
 //    hashTableDelete(&table, inserted);
     
     printf("AFTER DELETE:\n");
@@ -233,8 +233,8 @@ void *udpclient(void *p)
     Socket socket;
     int i;
     IpAddress addr;
-    UInt8 * buffer = malloc(CAMERA_SIZE);
-    Int32 result;
+    uint8_t * buffer = malloc(CAMERA_SIZE);
+    int32_t result;
     
     addr.a = 127;
     addr.b = 0;
@@ -248,7 +248,7 @@ void *udpclient(void *p)
         printf("udpserver socket open failed\n");
     }
     
-    UInt32 start = getTicks();
+    uint32_t start = getTicks();
     
     for(i=0;i<PACKET_NUMBER;i++)
     {
@@ -265,7 +265,7 @@ void *udpclient(void *p)
         
     }
     
-    UInt32 end = getTicks();
+    uint32_t end = getTicks();
     
     printf("Time to received %d packets of %d bytes : %d\n", PACKET_NUMBER, CAMERA_SIZE, (end-start));
     
@@ -282,11 +282,11 @@ void *udpserver(void *p)
 {
     int i;
     Socket socket;
-    Int32 result;
-    UInt8 command[16];
+    int32_t result;
+    uint8_t command[16];
     IpAddress addr;
     
-    UInt8 * camera = (UInt8 *)malloc(CAMERA_SIZE);
+    uint8_t * camera = (uint8_t *)malloc(CAMERA_SIZE);
     
     if (socketOpen(&socket, UDP_SRV_PORT)==0)
     {
@@ -326,8 +326,8 @@ void * tcpclient1(void *p)
     Socket socket;
     int i;
     IpAddress addr;
-    UInt8 * buffer = malloc(CAMERA_SIZE);
-    Int32 result;
+    uint8_t * buffer = malloc(CAMERA_SIZE);
+    int32_t result;
     
     addr.a = 127;
     addr.b = 0;
@@ -339,7 +339,7 @@ void * tcpclient1(void *p)
     clientTcpOpen(&socket,&addr);
     
     
-    UInt32 start = getTicks();
+    uint32_t start = getTicks();
     
     for(i=0;i<PACKET_NUMBER;i++)
     {
@@ -356,7 +356,7 @@ void * tcpclient1(void *p)
         }
     }
     
-    UInt32 end = getTicks();
+    uint32_t end = getTicks();
     
     printf("Time to received %d packets of %d bytes : %d\n", PACKET_NUMBER, CAMERA_SIZE, (end-start));
     
@@ -372,14 +372,13 @@ void * tcpclient1(void *p)
 
 void *tcpserver1(void *p)
 {
-    int i;
     Socket socket;
     Socket client;
-    Int32 result;
-    UInt8 command[16];
+    uint32_t result;
+    uint8_t command[16];
     IpAddress clientAddr;
     
-    UInt8 * camera = (UInt8 *)malloc(CAMERA_SIZE);
+    uint8_t * camera = (uint8_t *)malloc(CAMERA_SIZE);
     
     socketTcpInit(&socket);
     serverTcpOpen(&socket, UDP_SRV_PORT);
@@ -459,8 +458,8 @@ int main(int argc, const char * argv[])
     printf("Time: %d.%d.%d - %d.%d.%d\n", time.day, time.month, time.year, time.hour, time.minute, time.second);
     printf("isBissextile ? %d\n", time.isBissextile);
     
-    printf("Size of Int32: %d\n", (Int32)sizeof(Int32));
-    printf("Size of Int64: %ld\n", sizeof(Int64));
+    printf("Size of Int32: %d\n", (int32_t)sizeof(int32_t));
+    printf("Size of Int64: %ld\n", sizeof(int64_t));
     
     logOpen(pathTest);
     
