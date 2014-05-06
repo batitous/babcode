@@ -51,11 +51,13 @@ extern "C" {
 
 
 #if PLATFORM == PLATFORM_WINDOWS
-#	undef bool
-#	define bool int
-#	define true 1
-#	define false 0
-
+#   if defined(__MINGW32__)
+#       include <stdint.h>
+#   else
+#       undef bool
+#       define bool int
+#       define true 1
+#       define false 0
 typedef unsigned char   uint8_t;
 typedef unsigned short  uint16_t;
 typedef unsigned int    uint32_t;
@@ -64,6 +66,7 @@ typedef char            int8_t;
 typedef short           int16_t;
 typedef int				int32_t;
 typedef long            int64_t;
+#   endif
 #else
 #	include <stdint.h>
 #endif

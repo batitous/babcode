@@ -96,6 +96,11 @@
     <ClCompile Include="..\..\platform\win32\wait.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\array.h" />
+    <ClInclude Include="..\..\include\bytestream.h" />
+    <ClInclude Include="..\..\include\list.h" />
+    <ClInclude Include="..\..\include\str.h" />
+    <ClInclude Include="..\..\include\timer.h" />
     <ClInclude Include="..\..\source\networkstack-private.h" />
     <ClInclude Include="..\..\include\babcode.h" />
     <ClInclude Include="..\..\include\conditionvar.h" />

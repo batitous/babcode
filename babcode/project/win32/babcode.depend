@@ -1,0 +1,180 @@
+# depslib dependency file v1.0
+1386071060 source:z:\projects\babcode\babcode\source\array.c
+	"../include/babcode.h"
+
+1399366060 z:\projects\babcode\babcode\include\babcode.h
+	"types.h"
+	"log.h"
+	"utils.h"
+	"hashtable.h"
+	"conversion.h"
+	"random.h"
+	"file.h"
+	"wait.h"
+	"uart.h"
+	"thread.h"
+	"mutex.h"
+	"conditionvar.h"
+	"networkstack.h"
+	"str.h"
+	"list.h"
+	"timer.h"
+	"bytestream.h"
+	"array.h"
+
+1399364457 z:\projects\babcode\babcode\include\types.h
+	<stdint.h>
+	<stdint.h>
+
+1398696547 z:\projects\babcode\babcode\include\log.h
+
+1398704300 z:\projects\babcode\babcode\include\utils.h
+
+1398696145 z:\projects\babcode\babcode\include\hashtable.h
+
+1398696531 z:\projects\babcode\babcode\include\conversion.h
+
+1398696225 z:\projects\babcode\babcode\include\random.h
+
+1398696427 z:\projects\babcode\babcode\include\file.h
+
+1398696145 z:\projects\babcode\babcode\include\wait.h
+
+1398696340 z:\projects\babcode\babcode\include\uart.h
+	<termios.h>
+
+1383655831 z:\projects\babcode\babcode\include\thread.h
+	<windows.h>
+	<stdio.h>
+	<stdlib.h>
+	<pthread.h>
+	<semaphore.h>
+
+1383655832 z:\projects\babcode\babcode\include\mutex.h
+	<windows.h>
+
+1398696145 z:\projects\babcode\babcode\include\conditionvar.h
+
+1398696593 z:\projects\babcode\babcode\include\networkstack.h
+
+1398696295 z:\projects\babcode\babcode\include\str.h
+
+1398696225 z:\projects\babcode\babcode\include\list.h
+
+1398696145 z:\projects\babcode\babcode\include\timer.h
+
+1391080738 z:\projects\babcode\babcode\include\bytestream.h
+
+1386070491 z:\projects\babcode\babcode\include\array.h
+
+1399366329 source:z:\projects\babcode\babcode\source\bytestream.c
+	<stdlib.h>
+	<string.h>
+	"../include/babcode.h"
+
+1398696524 source:z:\projects\babcode\babcode\source\conversion.c
+	"../include/babcode.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<errno.h>
+
+1398696145 source:z:\projects\babcode\babcode\source\hashtable.c
+	"../include/babcode.h"
+	<string.h>
+
+1398696225 source:z:\projects\babcode\babcode\source\list.c
+	<stdlib.h>
+	<stdio.h>
+	"../include/babcode.h"
+
+1398696547 source:z:\projects\babcode\babcode\source\log.c
+	"../include/babcode.h"
+	<stdarg.h>
+	<stdio.h>
+	<stdlib.h>
+
+1398696225 source:z:\projects\babcode\babcode\source\networkstack-options.c
+	"../include/babcode.h"
+	"networkstack-private.h"
+
+1399367046 z:\projects\babcode\babcode\source\networkstack-private.h
+	<windef.h>
+	<winsock2.h>
+	<ws2tcpip.h>
+	<IPHlpApi.h>
+	<string.h>
+	<sys/socket.h>
+	<netinet/in.h>
+	<netinet/tcp.h>
+	<fcntl.h>
+	<unistd.h>
+	<errno.h>
+	<stdlib.h>
+	<stdio.h>
+
+1398696146 source:z:\projects\babcode\babcode\source\networkstack-tcp.c
+	"../include/babcode.h"
+	"networkstack-private.h"
+
+1398696225 source:z:\projects\babcode\babcode\source\networkstack-udp.c
+	"../include/babcode.h"
+	"networkstack-private.h"
+
+1398696225 source:z:\projects\babcode\babcode\source\random.c
+	"../include/babcode.h"
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+
+1398696318 source:z:\projects\babcode\babcode\source\str.c
+	"../include/babcode.h"
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
+1383655832 source:z:\projects\babcode\babcode\source\time.c
+	"../include/babcode.h"
+	<math.h>
+	<sys/timeb.h>
+	<time.h>
+	<stdlib.h>
+
+1398696145 source:z:\projects\babcode\babcode\source\timer.c
+	"../include/babcode.h"
+
+1398696573 source:z:\projects\babcode\babcode\source\utils.c
+	"../include/babcode.h"
+	<string.h>
+	<direct.h>
+	<unistd.h>
+
+1383655828 source:z:\projects\babcode\babcode\platform\win32\conditionvar.c
+	"../../include/babcode.h"
+
+1383655831 source:z:\projects\babcode\babcode\platform\win32\mutex.c
+	"../../include/babcode.h"
+
+1399366561 source:z:\projects\babcode\babcode\platform\win32\file.c
+	"../../include/babcode.h"
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+	<windows.h>
+
+1399367106 source:z:\projects\babcode\babcode\platform\win32\networkstack_win32.c
+	"../../include/babcode.h"
+	"../../source/networkstack-private.h"
+
+1383655832 source:z:\projects\babcode\babcode\platform\win32\thread.c
+	"../../include/babcode.h"
+	<windows.h>
+	<stdio.h>
+	<winbase.h>
+
+1398704427 source:z:\projects\babcode\babcode\platform\win32\wait.c
+	"../../include/babcode.h"
+	<windows.h>
+	<time.h>
+

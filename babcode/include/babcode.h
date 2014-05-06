@@ -36,6 +36,8 @@
 
 #if defined(_WIN32)
 #   define PLATFORM PLATFORM_WINDOWS
+#elif defined(__MINGW32__)
+#   define PLATFORM PLATFORM_WINDOWS
 #elif defined(__APPLE__)
 #   define PLATFORM PLATFORM_MAC
 #else

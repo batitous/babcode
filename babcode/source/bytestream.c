@@ -28,12 +28,12 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../include/bytestream.h"
+#include "../include/babcode.h"
 
 unsigned int get4FromBuffer(unsigned char *buffer)
 {
 	unsigned int integer = ((buffer)[0]<<24)| ((buffer)[1]<<16)|((buffer)[2]<<8)|((buffer)[3]);
-    
+
 	return integer;
 }
 
@@ -48,7 +48,7 @@ void set4ToBuffer(unsigned char *buffer, unsigned int integer)
 unsigned short get2FromBuffer(unsigned char *buffer)
 {
 	unsigned short integer = ((buffer)[0]<<8)|((buffer)[1]);
-    
+
 	return integer;
 }
 
@@ -62,10 +62,10 @@ void set2ToBuffer(unsigned char *buffer, unsigned short integer)
 ByteStream * newByteStream(unsigned char * input)
 {
     ByteStream * stream = (ByteStream *)malloc(sizeof(ByteStream));
-    
+
     stream->buffer = input;
     stream->current = stream->buffer;
-    
+
     return stream;
 }
 
@@ -107,14 +107,14 @@ unsigned char read1FromByteStream(ByteStream * stream)
 {
     unsigned char data = *stream->current;
     stream->current++;
-    
+
     return data;
 }
 
 unsigned short read2FromByteStream(ByteStream * stream)
 {
     uint16_t integer = (stream->current[0]<<8)| (stream->current[1]);
-    
+
 	stream->current +=2;
     return integer;
 }
@@ -122,7 +122,7 @@ unsigned short read2FromByteStream(ByteStream * stream)
 unsigned int read4FromByteStream(ByteStream * stream)
 {
     int integer = (stream->current[0]<<24)| (stream->current[1]<<16)|(stream->current[2]<<8)|(stream->current[3]);
-	    
+
 	stream->current +=4;
     return integer;
 }

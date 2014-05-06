@@ -32,8 +32,7 @@
 #include <malloc.h>
 #include <windows.h>
 
-
-uint32_t fileWrite(uint8_t *filename, uint8_t *buffer, uint32_t size )
+uint32_t fileWrite(const char *filename, uint8_t *buffer, uint32_t size )
 {
 	FILE *file ;
 	unsigned int result ;
@@ -47,7 +46,7 @@ uint32_t fileWrite(uint8_t *filename, uint8_t *buffer, uint32_t size )
                    FILE_FLAG_OVERLAPPED,   // asynchronous I/O
                    NULL);   */
 
-	file = fopen( (const int8_t *)filename, "wb" );
+	file = fopen( (const char *)filename, "wb" );
 	if( file == NULL )
 	{
         LOG("error open file %s !\n", filename );
@@ -62,11 +61,11 @@ uint32_t fileWrite(uint8_t *filename, uint8_t *buffer, uint32_t size )
 	}
 
 	fclose( file );
-	
+
 	return FILE_OK ;
 }
 
-uint8_t * fileRead( uint8_t *filename, uint32_t *len )
+uint8_t * fileRead( const char *filename, uint32_t *len )
 {
 	uint32_t size = 0 ;
 	uint8_t *buffer = 0 ;
@@ -100,13 +99,13 @@ uint8_t * fileRead( uint8_t *filename, uint32_t *len )
 		LOG_ERR1("read");
 		return NULL ;
 	}
-	
+
 	CloseHandle(f);
 
 	return buffer ;
 }
 
-uint8_t * fileMmapRead( uint8_t * path, uint32_t *len)
+uint8_t * fileMmapRead( const char * path, uint32_t *len)
 {
    void    *result;
    HANDLE   file=CreateFileA((LPCSTR)path,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL);
@@ -139,14 +138,14 @@ uint8_t * fileMmapRead( uint8_t * path, uint32_t *len)
    return (uint8_t *)result;
 }
 
-uint8_t * fileReadAtIndex( uint8_t *filename, uint32_t index, uint32_t *len_to_read )
+uint8_t * fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to_read )
 {
 	FILE *f;
 	uint8_t *buffer;
 	uint32_t size = 0 ;
-	
+
 	//open the file
-	f = fopen( (const int8_t *)filename , "rb");
+	f = fopen( (const char *)filename , "rb");
 	if( f == NULL )
 	{
 		LOG("Error to open file %s!\n",filename);
@@ -165,7 +164,7 @@ uint8_t * fileReadAtIndex( uint8_t *filename, uint32_t index, uint32_t *len_to_r
 		LOG_ERR1("fseek");
 		return NULL ;
 	}
-	
+
 
 	//read the file and put the data in the target buffer
 	size = fread( buffer, *len_to_read ,sizeof(unsigned char),f);

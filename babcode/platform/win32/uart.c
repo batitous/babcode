@@ -33,10 +33,10 @@
 
 static HANDLE hCom ;
 
-static uint32_t getComPortNumber(const uint8_t *portcom)
+static uint32_t getComPortNumber(const char *portcom)
 {
 	uint32_t i,j;
-	int8_t buffer[4];
+	char buffer[4];
     int32_t port;
 
 	i=0;
@@ -56,12 +56,12 @@ static uint32_t getComPortNumber(const uint8_t *portcom)
 
 	buffer[j] = 0;
 
-	String2Int(buffer,&port);
+	stringToInt(buffer,&port);
 
 	return port;
 }
 
-uint32_t initUART(const uint8_t * name, uint32_t baudrate)
+uint32_t initUART(const char * name, uint32_t baudrate)
 {
 	uint32_t comport;
 	DCB dcb_structure;
@@ -98,13 +98,13 @@ uint32_t initUART(const uint8_t * name, uint32_t baudrate)
 		return UART_CONF_FAILED ;
 	}
 
-	
+
 	commtimeouts.ReadIntervalTimeout         =MAXDWORD;
     commtimeouts.ReadTotalTimeoutMultiplier  =0;
     commtimeouts.ReadTotalTimeoutConstant    =1;
     commtimeouts.WriteTotalTimeoutMultiplier =0;
     commtimeouts.WriteTotalTimeoutConstant   =0;
-    SetCommTimeouts(hCom, &commtimeouts);	
+    SetCommTimeouts(hCom, &commtimeouts);
 
 	PurgeComm(hCom,PURGE_TXCLEAR | PURGE_RXCLEAR | PURGE_TXABORT  | PURGE_TXABORT );
 
@@ -115,8 +115,8 @@ uint32_t initUART(const uint8_t * name, uint32_t baudrate)
 uint32_t sendBufferToUART (uint8_t *Buffer, uint32_t Count)
 {
 	unsigned long buffer;
-//	FlushFileBuffers(hCom);	
-	if (!WriteFile(hCom,Buffer,Count,&buffer,NULL)) 
+//	FlushFileBuffers(hCom);
+	if (!WriteFile(hCom,Buffer,Count,&buffer,NULL))
 	{
 		return UART_WRITE_FAILED;
 	}
@@ -126,8 +126,8 @@ uint32_t sendBufferToUART (uint8_t *Buffer, uint32_t Count)
 
 uint32_t sendByteToUART(uint8_t byte)
 {
-	unsigned long buffer;		
-//	FlushFileBuffers(hCom);	
+	unsigned long buffer;
+//	FlushFileBuffers(hCom);
 	if (!WriteFile(hCom,&byte,1,&buffer,NULL))
 	{
 		return UART_WRITE_FAILED;
@@ -160,7 +160,7 @@ uint32_t getByteFromUARTNoWait(uint8_t *mot)
 		if (!len) time++;
 
 		if (time>50) return UART_TIMEOUT_ERROR;
-		
+
 	}while(!len);
 
 	return UART_OK;
@@ -168,7 +168,7 @@ uint32_t getByteFromUARTNoWait(uint8_t *mot)
 
 uint32_t getBufferFromUART (uint8_t *Buffer,uint32_t Count)
 {
-	unsigned long buffer;		
+	unsigned long buffer;
 	if(ReadFile(hCom,Buffer,Count,&buffer,NULL)==0)
 	{
 		return UART_READ_FAILED;
@@ -193,22 +193,22 @@ void closeUART(void)
 
 void clearDTR(void)
 {
-   
+
 }
 
 void setDTR(void)
 {
-  
+
 }
 
 void clearRTS(void)
 {
-   
+
 }
 
 void setRTS(void)
 {
-   
+
 }
 
 

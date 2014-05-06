@@ -3,10 +3,12 @@
 
 #   pragma comment( lib, "wsock32.lib" )
 
+#   define WINVER 0x0600
+
+#   include <windef.h>
 #   include <winsock2.h>
 #	include <ws2tcpip.h>
 #	include <IPHlpApi.h>
-
 #   define Network_GetLastError()	(WSAGetLastError())
 
 #elif PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
