@@ -176,7 +176,7 @@ bool getNetworkInterface(NetInterfaceInfo **pIPInfo,int32_t *pszIPInfo)
 				ipaddr = (struct sockaddr_in *)pCurrAddresses->FirstUnicastAddress->Address.lpSockaddr;
 
 				IPInfo[szIPInfo].pkSize = pCurrAddresses->Mtu;
-				IPInfo[szIPInfo].ip   = ipaddr->sin_addr.s_addr;
+				IPInfo[szIPInfo].ip   = ntohl(ipaddr->sin_addr.s_addr);
 
 				IPInfo[szIPInfo].netmask = getMask(IPInfo[szIPInfo].ip);
 
