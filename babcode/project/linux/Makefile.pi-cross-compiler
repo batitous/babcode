@@ -6,9 +6,9 @@
 EXE=./libbabcode-linux-pi.a
 
 # File source list: Add your source!
-SRC_FILES=array.c bytestream.c conversion.c hashtable.c list.c log.c random.c str.c time.c timer.c utils.c
+SRC_FILES=conversion.c log.c random.c time.c utils.c
 SRC_FILES+= networkstack-udp.c networkstack-tcp.c networkstack-options.c	
-SRC_FILES+= file.c thread.c mutex.c conditionvar.c wait.c
+SRC_FILES+= file.c thread.c wait.c mutex.c conditionvar.c
 SRC_FILES+= uart.c uart_unix.c networkstack_linux.c
 
 # Temporary repertory
@@ -28,13 +28,13 @@ COMPILER_DEFINES=
 BAB_INCLUDE=
 
 # Path to Gcc compiler:
-PATH_TO_GCC=
+PATH_TO_GCC=/opt/bsquask/host/usr/bin/
 
 # Gcc Compiler
-GCC_COMPILER=$(PATH_TO_GCC)gcc
+GCC_COMPILER=$(PATH_TO_GCC)arm-raspberrypi-linux-gnueabi-gcc
 
 # Compiler options
-COMPILER_OPTION=-O2 -Wall -march=armv6 -mfpu=vfp -mfloat-abi=hard
+COMPILER_OPTION=-O2 -Wall
 
 
 # Archiver 
@@ -67,6 +67,6 @@ $(BUILD_PATH)/%.o : %.c
 	$(COMPILER) -o $@ $<
 	
 clean:
-	rm -f $(BUILD_PATH)/*.o $(EXE)
+	rm -f $(BUILD_PATH)/*.o
 	
 ##### END OF FILE

@@ -51,14 +51,14 @@ int get_fd_uart()
     return fd_uart;
 }
 
-uint32_t initUART(const uint8_t *tty_name, uint32_t baudrate)
+uint32_t initUART(const char *tty_name, uint32_t baudrate)
 {
     struct termios  options;
 	static struct termios gOriginalTTYAttrs;
 	
 	
 	
-	fd_uart = open((int8_t *)tty_name, O_RDWR | O_NOCTTY | O_NONBLOCK);
+	fd_uart = open(tty_name, O_RDWR | O_NOCTTY | O_NONBLOCK);
 	
     if (fd_uart < 0)
     {
