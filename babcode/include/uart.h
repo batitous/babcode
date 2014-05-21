@@ -39,6 +39,14 @@ extern "C" {
 #define UART_TIMEOUT_ERROR	0x104	/**< Last operation timeout */
 #define UART_READ_FAILED	0x105	/**< Read failed */
 
+typedef struct _Uart
+{
+#if PLATFORM == PLATFORM_WINDOWS
+    HANDLE  handle;
+#else
+    int     handle;
+#endif
+} Uart;
 
 /** @brief Init UART
  *
@@ -47,7 +55,7 @@ extern "C" {
  * @return 0 if no error.
  *
  */
-extern uint32_t initUART(const char * comport, uint32_t baudrate);
+extern uint32_t initUART(Uart * uart, const char * comport, uint32_t baudrate);
 
     
 #if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
@@ -62,7 +70,7 @@ extern uint32_t initUART(const char * comport, uint32_t baudrate);
  * @param byte	Byte to send
  * @return 0 if no error.
  */
-extern uint32_t sendByteToUART(uint8_t byte);
+extern uint32_t sendByteToUART(Uart * uart, uint8_t byte);
 
 /** @brief Send a buffer
  *
@@ -70,21 +78,21 @@ extern uint32_t sendByteToUART(uint8_t byte);
  * @param Count		Number of byte to send
  * @return 0 if no error
  */
-extern uint32_t sendBufferToUART (uint8_t *Buffer, uint32_t Count);
+extern uint32_t sendBufferToUART (Uart * uart, uint8_t *Buffer, uint32_t Count);
 
 /** @brief Get a byte
  *
  * @param [out] data	Pointer to a byte
  * @return 0 if no error.
  */
-extern uint32_t  getByteFromUART(uint8_t *data);
+extern uint32_t  getByteFromUART(Uart * uart, uint8_t *data);
 
 /** @brief Get a byte (with timeout)
  *
  * @param [out] data	Pointer to a byte
  * @return 0 if no error.
  */
-extern uint32_t getByteFromUARTNoWait(uint8_t *data);
+extern uint32_t getByteFromUARTNoWait(Uart * uart, uint8_t *data);
 
 /** @brief Get a buffer
  *
@@ -92,25 +100,25 @@ extern uint32_t getByteFromUARTNoWait(uint8_t *data);
  * @param Count		Number of byte to read
  * @return 0 if no error.
  */
-extern uint32_t  getBufferFromUART (uint8_t *Buffer,uint32_t Count);
+extern uint32_t  getBufferFromUART (Uart * uart, uint8_t *Buffer,uint32_t Count);
 
-extern void closeUART(void);
+extern void closeUART(Uart * uart);
 
 // implemented on Linux/Mac OS X
-extern void UARTSetDTR(void);
-extern void UARTClearDTR(void);
+extern void UARTSetDTR(Uart * uart);
+extern void UARTClearDTR(Uart * uart );
 
-extern void UARTSetRTS(void);
-extern void UARTClearRTS(void);
+extern void UARTSetRTS(Uart * uart);
+extern void UARTClearRTS(Uart * uart);
 
-extern uint32_t UARTGetStatus(void);
+extern uint32_t UARTGetStatus(Uart * uart);
 
-extern uint8_t UARTisDSRset(void);
-extern uint8_t UARTisDTRset(void);
-extern uint8_t UARTisRTSset(void);
-extern uint8_t UARTisCTSset(void);
-extern uint8_t UARTisDCDset(void);
-extern uint8_t UARTisRNGset(void);
+extern uint8_t UARTisDSRset(Uart * uart);
+extern uint8_t UARTisDTRset(Uart * uart);
+extern uint8_t UARTisRTSset(Uart * uart);
+extern uint8_t UARTisCTSset(Uart * uart);
+extern uint8_t UARTisDCDset(Uart * uart);
+extern uint8_t UARTisRNGset(Uart * uart);
 
 
 

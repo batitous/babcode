@@ -30,68 +30,66 @@
 #include <sys/ioctl.h>
 
 
-extern int get_fd_uart(void);
-
-uint32_t UARTGetStatus()
+uint32_t UARTGetStatus(Uart * uart)
 {
     int status;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     return status;
 }
 
-void UARTClearDTR()
+void UARTClearDTR(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     status |= TIOCM_DTR;
     
-    ioctl(get_fd_uart(), TIOCMSET, &status);
+    ioctl(uart->handle, TIOCMSET, &status);
 }
 
-void UARTSetDTR()
+void UARTSetDTR(Uart * uart)
 {
     uint32_t status = 0 ;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     status &= ~TIOCM_DTR;
     
-    ioctl(get_fd_uart(), TIOCMSET, &status);
+    ioctl(uart->handle, TIOCMSET, &status);
 }
 
-void UARTClearRTS()
+void UARTClearRTS(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     status |= TIOCM_RTS;
     
-    ioctl(get_fd_uart(), TIOCMSET, &status);
+    ioctl(uart->handle, TIOCMSET, &status);
 }
 
-void UARTSetRTS()
+void UARTSetRTS(Uart * uart)
 {
     uint32_t status = 0 ;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     status &= ~TIOCM_RTS;
     
-    ioctl(get_fd_uart(), TIOCMSET, &status);
+    ioctl(uart->handle, TIOCMSET, &status);
 }
 
 
 
-uint8_t UARTisDSRset()
+uint8_t UARTisDSRset(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     if(status & TIOCM_DSR)
         return 0;
@@ -99,11 +97,11 @@ uint8_t UARTisDSRset()
         return 1;
 }
 
-uint8_t UARTisDTRset()
+uint8_t UARTisDTRset(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     if(status & TIOCM_DTR)
         return 0;
@@ -111,11 +109,11 @@ uint8_t UARTisDTRset()
         return 1;
 }
 
-uint8_t UARTisRTSset()
+uint8_t UARTisRTSset(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     if(status & TIOCM_RTS)
         return 0;
@@ -123,11 +121,11 @@ uint8_t UARTisRTSset()
         return 1;
 }
 
-uint8_t UARTisCTSset()
+uint8_t UARTisCTSset(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     if(status & TIOCM_CTS)
         return 0;
@@ -135,11 +133,11 @@ uint8_t UARTisCTSset()
         return 1;
 }
 
-uint8_t UARTisDCDset()
+uint8_t UARTisDCDset(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     if(status & TIOCM_CAR)
         return 0;
@@ -147,11 +145,11 @@ uint8_t UARTisDCDset()
         return 1;
 }
 
-uint8_t UARTisRNGset()
+uint8_t UARTisRNGset(Uart * uart)
 {
     uint32_t status = 0;
     
-    ioctl(get_fd_uart(), TIOCMGET, &status);
+    ioctl(uart->handle, TIOCMGET, &status);
     
     if(status & TIOCM_RNG)
         return 0;

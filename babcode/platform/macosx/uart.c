@@ -40,21 +40,15 @@
 #include <getopt.h>
 #include <errno.h>
 
-static int fd_uart;
 
-static uint8_t tmp0[1];
-static uint8_t tmp1[1];
+
 static struct termios gOriginalTTYAttrs;
 
-int get_fd_uart()
-{
-    return fd_uart;
-}
 
-uint32_t initUART(const char *tty_name, uint32_t baudrate)
+uint32_t initUART(Uart * uart, const char *tty_name, uint32_t baudrate)
 {
 	struct termios  options;
-	
+	int fd_uart;
 	
 	fd_uart = open((char *)tty_name, O_RDWR | O_NOCTTY | O_NONBLOCK);
 	
@@ -94,7 +88,9 @@ uint32_t initUART(const char *tty_name, uint32_t baudrate)
 		LOG_ERR1("could not change uart port behaviour (wrong baudrate?)");
 		return UART_CONF_FAILED;
     }
-	
+    
+    uart->handle = fd_uart;
+    
 	return UART_OK;
 }
 
@@ -130,29 +126,33 @@ speed_t uint32_tToSpeed_t(uint32_t baudrate)
     }
 }
 
-uint32_t sendByteToUART(uint8_t Byte)
+uint32_t sendByteToUART(Uart * uart, uint8_t Byte)
 {
+    uint8_t tmp0[1];
+    
 	tmp0[0]=Byte;
 
-	if(write(fd_uart,tmp0,1)==-1)
+	if(write(uart->handle,tmp0,1)==-1)
 	{
 		return UART_WRITE_FAILED;
 	}
 	return UART_OK;
 }
 
-uint32_t sendBufferToUART(uint8_t *Buffer, uint32_t Count)
+uint32_t sendBufferToUART(Uart * uart, uint8_t *Buffer, uint32_t Count)
 {
-	if(write(fd_uart,Buffer,Count)==-1)
+	if(write(uart->handle,Buffer,Count)==-1)
 	{
 		return UART_WRITE_FAILED;
 	}
 	return UART_OK;
 }
 
-uint32_t getByteFromUART(uint8_t *data)
+uint32_t getByteFromUART(Uart * uart, uint8_t *data)
 {
-	if(read(fd_uart,tmp1,1)==-1)
+    uint8_t tmp1[1];
+    
+	if(read(uart->handle,tmp1,1)==-1)
 	{
 		return UART_READ_FAILED;
 	}
@@ -162,10 +162,13 @@ uint32_t getByteFromUART(uint8_t *data)
 	return UART_OK;
 }
 
-uint32_t getByteFromUARTNoWait(uint8_t *data)
+uint32_t getByteFromUARTNoWait(Uart * uart, uint8_t *data)
 {
+    uint8_t tmp1[1];
+    
 	*data=0;
-	int32_t result = (int32_t)read(fd_uart,tmp1,1);
+	
+    int32_t result = (int32_t)read(uart->handle,tmp1,1);
 	if (result == 0) {
 		return UART_TIMEOUT_ERROR;
 	}
@@ -184,9 +187,9 @@ uint32_t getByteFromUARTNoWait(uint8_t *data)
 	return UART_OK;
 }
 
-uint32_t getBufferFromUART(uint8_t *Buffer, uint32_t Count)
+uint32_t getBufferFromUART(Uart * uart, uint8_t *Buffer, uint32_t Count)
 {
-	if(read(fd_uart,Buffer,Count)==-1)
+	if(read(uart->handle,Buffer,Count)==-1)
 	{
 		return UART_READ_FAILED;
 	}
@@ -194,13 +197,13 @@ uint32_t getBufferFromUART(uint8_t *Buffer, uint32_t Count)
 	return UART_OK;
 }
 
-void closeUART(void)
+void closeUART(Uart * uart )
 {
-    close(fd_uart);
+    close(uart->handle);
     
-	tcflush(fd_uart, TCOFLUSH);
-    tcflush(fd_uart, TCIFLUSH);
-    tcsetattr(fd_uart, TCSANOW, &gOriginalTTYAttrs);
+	tcflush(uart->handle, TCOFLUSH);
+    tcflush(uart->handle, TCIFLUSH);
+    tcsetattr(uart->handle, TCSANOW, &gOriginalTTYAttrs);
 }
 
 

@@ -123,6 +123,10 @@ void getTime( Time *t )
 	struct tm *tps1 ;
     
 	tps = time(&tps);
+    if (tps==(time_t)-1)
+    {
+        return;
+    }
 	tps1 = localtime(&tps);
 
 	t->year = tps1->tm_year + 1900;
