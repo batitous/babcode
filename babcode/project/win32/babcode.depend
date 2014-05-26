@@ -40,7 +40,8 @@
 
 1398696145 z:\projects\babcode\babcode\include\wait.h
 
-1398696340 z:\projects\babcode\babcode\include\uart.h
+1401106282 z:\projects\babcode\babcode\include\uart.h
+	<windows.h>
 	<termios.h>
 
 1383655831 z:\projects\babcode\babcode\include\thread.h
@@ -163,7 +164,7 @@
 	<malloc.h>
 	<windows.h>
 
-1399367106 source:z:\projects\babcode\babcode\platform\win32\networkstack_win32.c
+1399371109 source:z:\projects\babcode\babcode\platform\win32\networkstack_win32.c
 	"../../include/babcode.h"
 	"../../source/networkstack-private.h"
 
@@ -177,4 +178,9 @@
 	"../../include/babcode.h"
 	<windows.h>
 	<time.h>
+
+1399367197 source:z:\projects\babcode\babcode\platform\win32\uart.c
+	"../../include/babcode.h"
+	<windows.h>
+	<stdio.h>
 

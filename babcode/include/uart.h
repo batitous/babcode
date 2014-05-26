@@ -39,6 +39,10 @@ extern "C" {
 #define UART_TIMEOUT_ERROR	0x104	/**< Last operation timeout */
 #define UART_READ_FAILED	0x105	/**< Read failed */
 
+#if PLATFORM == PLATFORM_WINDOWS
+#include <windows.h>
+#endif
+    
 typedef struct _Uart
 {
 #if PLATFORM == PLATFORM_WINDOWS
@@ -57,7 +61,7 @@ typedef struct _Uart
  */
 extern uint32_t initUART(Uart * uart, const char * comport, uint32_t baudrate);
 
-    
+
 #if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
 
 	#include <termios.h>
