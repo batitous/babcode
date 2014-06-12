@@ -144,7 +144,7 @@ int32_t socketOpen(Socket * s, uint16_t port)
 #if PLATFORM == PLATFORM_WINDOWS
 	DWORD nonBlocking = 1;
 #endif
-
+    int k;
     struct sockaddr_in address;
     
     int handle = socket( AF_INET, SOCK_DGRAM, IPPROTO_UDP );
@@ -153,6 +153,20 @@ int32_t socketOpen(Socket * s, uint16_t port)
         LOG_ERR1("udp socket");
         return 0;
     }
+    
+#if PLATFORM == PLATFORM_MAC || PLATFORM == PLATFORM_UNIX
+    // set the close-on-exec flag to 1
+	fcntl(handle, F_SETFD, 1);
+#endif
+    
+    //http://stackoverflow.com/questions/14388706/socket-options-so-reuseaddr-and-so-reuseport-how-do-they-differ-do-they-mean-t
+    k = 1;
+	if(setsockopt(handle, SOL_SOCKET, SO_REUSEADDR, (char*)&k, sizeof(k)) == -1)
+	{
+		LOG_ERR1("setsockopt");
+		return 0;
+	}
+    
     
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
