@@ -94,7 +94,7 @@ bool getNetworkInterface(NetInterfaceInfo **pIPInfo,int32_t *pszIPInfo)
 		}
         
 		pAddr = (struct sockaddr_in*)&IfReq.ifr_addr;
-		dwIP = pAddr->sin_addr.s_addr;
+		dwIP = ntohl(pAddr->sin_addr.s_addr);
 		//printf("%s %s", IfReq.ifr_name, inet_ntoa(sock->sin_addr));
         
 		/*

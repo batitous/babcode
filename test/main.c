@@ -63,6 +63,8 @@ void * reader(void *param)
         result = myRead(0, 0);
         printf("%d result %d\n",i,result);
         
+        waitMs(1500);
+        
       //  sleep(1);
     }
     
@@ -78,10 +80,14 @@ void * writer(void *param)
     
     for(i=0; i < 4; i++)
     {
+//        dataAvailable = 3+i;
+        
         myWrite(0, 3+i);
         
-        waitMs(200);
+       // waitMs(600);
     }
+    
+    printf("end of write\n");
     
     threadExit();
     return NULL;
