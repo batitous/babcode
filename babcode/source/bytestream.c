@@ -59,12 +59,13 @@ void set2ToBuffer(unsigned char *buffer, unsigned short integer)
 }
 
 
-ByteStream * newByteStream(unsigned char * input)
+ByteStream * newByteStream(unsigned char * input, unsigned int size)
 {
     ByteStream * stream = (ByteStream *)malloc(sizeof(ByteStream));
 
     stream->buffer = input;
     stream->current = stream->buffer;
+    stream->end = input + size;
 
     return stream;
 }
@@ -72,6 +73,16 @@ ByteStream * newByteStream(unsigned char * input)
 void resetByteStream(ByteStream * stream)
 {
     stream->current = stream->buffer;
+}
+
+bool isEndOfStream(ByteStream * stream)
+{
+    if (stream->current == stream->end)
+    {
+        return true;
+    }
+    
+    return false;
 }
 
 unsigned int getByteStreamSize(ByteStream * stream)

@@ -36,15 +36,18 @@ typedef struct _byte_stream_
 {
     unsigned char * buffer;
     unsigned char * current;
+    unsigned char * end;
 } ByteStream;
 
 extern void set4ToBuffer(unsigned char *buffer, unsigned int integer);
 
 
-extern ByteStream * newByteStream(unsigned char * input);
+extern ByteStream * newByteStream(unsigned char * input, unsigned int size);
 
 extern void resetByteStream(ByteStream * stream);
 
+extern bool isEndOfStream(ByteStream * stream);
+    
 extern unsigned int getByteStreamSize(ByteStream * stream);
 
 extern void write1ToByteStream(ByteStream * stream, unsigned char data);

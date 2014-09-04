@@ -156,8 +156,8 @@
 		F485A659171407A800D316B9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				F4567180184DEB7B0043A32C /* array.c */,
 				E44C27B7178ED7A50031BC79 /* bytestream.c */,
+				F4567180184DEB7B0043A32C /* array.c */,
 				F485A67B171407F300D316B9 /* conversion.c */,
 				F485A6AF17182AF600D316B9 /* hashtable.c */,
 				E4095461172A71D50008BA47 /* Linux */,
