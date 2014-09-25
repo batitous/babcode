@@ -278,7 +278,7 @@
 		F485A64A1714078C00D316B9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Baptiste;
 			};
 			buildConfigurationList = F485A64D1714078C00D316B9 /* Build configuration list for PBXProject "babcode-macosx" */;
@@ -392,6 +392,7 @@
 		F485A6571714078C00D316B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -401,6 +402,7 @@
 		F485A6581714078C00D316B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

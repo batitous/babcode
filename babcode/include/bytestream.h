@@ -34,35 +34,28 @@ extern "C" {
 
 typedef struct _byte_stream_
 {
-    unsigned char * buffer;
-    unsigned char * current;
-    unsigned char * end;
+    uint8_t * buffer;
+    uint8_t * current;
+    uint8_t * end;
 } ByteStream;
 
-extern void set4ToBuffer(unsigned char *buffer, unsigned int integer);
-
-
-extern ByteStream * newByteStream(unsigned char * input, unsigned int size);
-
-extern void resetByteStream(ByteStream * stream);
-
-extern bool isEndOfStream(ByteStream * stream);
+extern ByteStream * newByteStream(uint8_t * input, uint32_t size);
     
-extern unsigned int getByteStreamSize(ByteStream * stream);
+extern void resetByteStream(ByteStream * stream);
+extern bool isEndOfStream(ByteStream * stream);
+extern uint32_t getByteStreamSize(ByteStream * stream);
 
-extern void write1ToByteStream(ByteStream * stream, unsigned char data);
+extern void write8BitsToStream(ByteStream * stream, uint8_t data);
+extern void write16BitsToStream(ByteStream * stream, uint16_t data);
+extern void write32BitsToStream(ByteStream * stream, uint32_t data);
+extern void writeRawBytesToStream(ByteStream * stream, uint8_t * input, uint32_t size);
 
-extern void write2ToByteStream(ByteStream * stream, unsigned short data);
-
-extern void write4ToByteStream(ByteStream * stream, unsigned int data);
-
-extern void writeBufferToByteStream(ByteStream * stream, unsigned char * input, unsigned int size);
-
-
-extern unsigned char read1FromByteStream(ByteStream * stream);
-extern unsigned short read2FromByteStream(ByteStream * stream);
-extern unsigned int read4FromByteStream(ByteStream * stream);
-extern void readBufferFromByteStream(ByteStream * stream, unsigned char * output, unsigned int size);
+extern uint8_t read8BitsFromStream(ByteStream * stream);
+extern uint16_t read16BitsFromStream(ByteStream * stream);
+extern uint32_t read32BitsFromStream(ByteStream * stream);
+extern void readRawBytesFromStream(ByteStream * stream, uint8_t * output, uint32_t size);
+    
+    
     
 #ifdef __cplusplus
 }

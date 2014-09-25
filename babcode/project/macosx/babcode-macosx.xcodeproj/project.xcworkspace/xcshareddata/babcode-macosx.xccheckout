@@ -2,35 +2,37 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>05013E80-6B54-42FB-B91E-EDED8ED66480</string>
 	<key>IDESourceControlProjectName</key>
 	<string>babcode-macosx</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0671625F-4C4F-4F79-98D7-0097EF8E2452</key>
+		<key>A7233FA59DD74EEAC29E82B76C5C4F00CFE7D671</key>
 		<string>https://github.com/batitous/babcode.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>babcode/project/macosx/babcode-macosx.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0671625F-4C4F-4F79-98D7-0097EF8E2452</key>
+		<key>A7233FA59DD74EEAC29E82B76C5C4F00CFE7D671</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/batitous/babcode.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0671625F-4C4F-4F79-98D7-0097EF8E2452</string>
+	<string>A7233FA59DD74EEAC29E82B76C5C4F00CFE7D671</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0671625F-4C4F-4F79-98D7-0097EF8E2452</string>
+			<string>A7233FA59DD74EEAC29E82B76C5C4F00CFE7D671</string>
 			<key>IDESourceControlWCCName</key>
 			<string>babcode</string>
 		</dict>

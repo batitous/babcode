@@ -36,11 +36,11 @@ extern "C" {
     
 extern void write32bitsToBuffer(uint8_t * buffer, uint32_t integer);
 
-extern int32_t read32bitsFromBuffer(uint8_t * buffer);
+extern uint32_t read32bitsFromBuffer(uint8_t * buffer);
     
 extern void write16bitsToBuffer(uint8_t * buffer, uint16_t integer);
 
-extern int16_t read16bitsFromBuffer(uint8_t * buffer);
+extern uint16_t read16bitsFromBuffer(uint8_t * buffer);
     
 extern uint32_t getExecutablePath(char * buff, uint32_t buffSize);
 

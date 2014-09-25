@@ -30,36 +30,8 @@
 
 #include "../include/babcode.h"
 
-unsigned int get4FromBuffer(unsigned char *buffer)
-{
-	unsigned int integer = ((buffer)[0]<<24)| ((buffer)[1]<<16)|((buffer)[2]<<8)|((buffer)[3]);
 
-	return integer;
-}
-
-void set4ToBuffer(unsigned char *buffer, unsigned int integer)
-{
-	buffer[0] = (integer>>24);
-	buffer[1] = (integer>>16);
-	buffer[2] = (integer>>8);
-	buffer[3] = (integer);
-}
-
-unsigned short get2FromBuffer(unsigned char *buffer)
-{
-	unsigned short integer = ((buffer)[0]<<8)|((buffer)[1]);
-
-	return integer;
-}
-
-void set2ToBuffer(unsigned char *buffer, unsigned short integer)
-{
-	buffer[0] = (integer>>8);
-	buffer[1] = (unsigned char)(integer);
-}
-
-
-ByteStream * newByteStream(unsigned char * input, unsigned int size)
+ByteStream * newByteStream(uint8_t * input, uint32_t size)
 {
     ByteStream * stream = (ByteStream *)malloc(sizeof(ByteStream));
 
@@ -85,60 +57,77 @@ bool isEndOfStream(ByteStream * stream)
     return false;
 }
 
-unsigned int getByteStreamSize(ByteStream * stream)
+uint32_t getByteStreamSize(ByteStream * stream)
 {
-    return (unsigned int)(stream->current - stream->buffer);
+    return (uint32_t)(stream->current - stream->buffer);
 }
 
-void write1ToByteStream(ByteStream * stream, unsigned char data)
+void write8BitsToStream(ByteStream * stream, uint8_t data)
 {
     *stream->current = data;
     stream->current++;
 }
 
-void write2ToByteStream(ByteStream * stream, unsigned short data)
+void write16BitsToStream(ByteStream * stream, uint16_t data)
 {
-    set2ToBuffer(stream->current, data);
+    *stream->current = (uint16_t)(data);
+    *(stream->current+1) = (data>>8UL);
     stream->current += 2;
 }
 
-void write4ToByteStream(ByteStream * stream, unsigned int data)
+void write32BitsToStream(ByteStream * stream, uint32_t data)
 {
-    set4ToBuffer(stream->current, data);
+    *stream->current = (data);
+    *(stream->current+1) = (data>>8UL);
+    *(stream->current+2) = (data>>16UL);
+    *(stream->current+3) = (data>>24UL);
     stream->current += 4;
 }
 
-void writeBufferToByteStream(ByteStream * stream, unsigned char * input, unsigned int size)
+void writeRawBytesToStream(ByteStream * stream, uint8_t * input, uint32_t size)
 {
     memcpy(stream->current, input,size);
     stream->current += size;
 }
 
-unsigned char read1FromByteStream(ByteStream * stream)
+uint8_t read8BitsFromStream(ByteStream * stream)
 {
-    unsigned char data = *stream->current;
+    uint8_t data = *stream->current;
     stream->current++;
 
     return data;
 }
 
-unsigned short read2FromByteStream(ByteStream * stream)
+uint16_t read16BitsFromStream(ByteStream * stream)
 {
-    uint16_t integer = (stream->current[0]<<8)| (stream->current[1]);
-
-	stream->current +=2;
+    uint16_t integer = (stream->current[1]<<8UL)| (stream->current[0]);
+    
+    stream->current +=2;
     return integer;
 }
 
-unsigned int read4FromByteStream(ByteStream * stream)
+uint32_t read32BitsFromStream(ByteStream * stream)
 {
-    int integer = (stream->current[0]<<24)| (stream->current[1]<<16)|(stream->current[2]<<8)|(stream->current[3]);
-
-	stream->current +=4;
+    uint32_t integer;
+    uint32_t temp;
+    
+    temp = stream->current[3];
+    integer = temp << 24UL;
+    
+    temp = stream->current[2];
+    integer = (temp << 16UL) | integer;
+    
+    temp = stream->current[1];
+    integer = (temp << 8UL) | integer;
+    
+    temp = stream->current[0];
+    integer = (temp) | integer;
+    
+    stream->current +=4;
     return integer;
 }
 
-void readBufferFromByteStream(ByteStream * stream, unsigned char * output, unsigned int size)
+void readRawBytesFromStream(ByteStream * stream, uint8_t * output, uint32_t size)
 {
     memcpy(output, stream->current,size);
     stream->current += size;

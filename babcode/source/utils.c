@@ -40,28 +40,41 @@
 
 void write32bitsToBuffer(uint8_t * buffer, uint32_t integer)
 {
-    buffer[0] = (uint8_t) ( ( integer >> 24 ) & 0xFF );
-    buffer[1] = (uint8_t) ( ( integer >> 16 ) & 0xFF );
-    buffer[2] = (uint8_t) ( ( integer >> 8  ) & 0xFF );
-    buffer[3] = (uint8_t) ( ( integer ) & 0xFF );
+    buffer[0] = (uint8_t)(integer & 0xFF);
+    buffer[1] = (uint8_t)((integer>>8UL) & 0xFF);
+    buffer[2] = (uint8_t)((integer>>16UL) & 0xFF);
+    buffer[3] = (uint8_t)((integer>>24UL) & 0xFF);
 }
 
-int32_t read32bitsFromBuffer(uint8_t * buffer)
+uint32_t read32bitsFromBuffer(uint8_t * buffer)
 {
-    int32_t integer = (buffer[0]<<24)| (buffer[1]<<16)|(buffer[2]<<8)|(buffer[3]);
+    uint32_t integer;
+    uint32_t temp;
+    
+    temp = buffer[3];
+    integer = temp << 24UL;
+    
+    temp = buffer[2];
+    integer = (temp << 16UL) | integer;
+    
+    temp = buffer[1];
+    integer = (temp << 8UL) | integer;
+    
+    temp = buffer[0];
+    integer = (temp) | integer;
     
     return integer;
 }
 
 void write16bitsToBuffer(uint8_t * buffer, uint16_t integer)
 {
-    buffer[0] = (uint8_t) ( ( integer >> 8  ) & 0xFF );
-    buffer[1] = (uint8_t) ( ( integer ) & 0xFF );
+    buffer[0] = (uint8_t)(integer);
+    buffer[1] = (integer>>8UL);
 }
 
-int16_t read16bitsFromBuffer(uint8_t * buffer)
+uint16_t read16bitsFromBuffer(uint8_t * buffer)
 {
-    int16_t integer = (buffer[0]<<8)|(buffer[1]);
+    uint16_t integer = (buffer[1]<<8UL)| (buffer[0]);
     
     return integer;
 }

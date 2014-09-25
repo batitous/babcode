@@ -51,6 +51,7 @@ bool getNetworkInterface(NetInterfaceInfo **pIPInfo,int32_t *pszIPInfo)
 	
 	memset(bMAC,0,MAC_ADDR_SIZE);
 	
+    //todo free if_addrs
 	if (0 == getifaddrs(&if_addrs))
 	{
 		for (if_addr = if_addrs; if_addr != NULL; if_addr = if_addr->ifa_next)
