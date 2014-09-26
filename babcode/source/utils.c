@@ -38,6 +38,39 @@
 #	include <unistd.h>
 #endif
 
+
+uint16_t crc16_adjust(uint16_t crc16, uint8_t data)
+{
+    for(uint32_t n = 0; n < 8; n++)
+    {
+        if((crc16 & 1) ^ (data & 1))
+        {
+            crc16 = (crc16 >> 1) ^ 0x8408;
+        }
+        else
+        {
+            crc16 >>= 1;
+        }
+        
+        data >>= 1;
+    }
+    
+    return crc16;
+}
+
+uint16_t crc16Compute(const uint8_t* data, uint32_t length)
+{
+    uint16_t crc16 = ~0;
+
+    for(uint32_t n = 0; n < length; n++)
+    {
+        crc16 = crc16_adjust(crc16, data[n]);
+    }
+    
+    return ~crc16;
+}
+
+
 void write32bitsToBuffer(uint8_t * buffer, uint32_t integer)
 {
     buffer[0] = (uint8_t)(integer & 0xFF);

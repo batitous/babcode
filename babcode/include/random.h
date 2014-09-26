@@ -52,6 +52,23 @@ extern int32_t getRandomBetween(int32_t lowBoundary, int32_t highBoundary);
  */
 extern int32_t getRandom(int32_t highBoundary);
 
+    
+//Galois LFSR using CRC64 polynomials
+    
+typedef struct _lfsr_crc64_
+{
+    uint64_t lfsr;
+} RandomLfsr;
+
+extern void lfsrInit(RandomLfsr * lfsr);
+
+extern uint64_t lsfrRandom(RandomLfsr * lfsr);
+
+extern void lfSrSeed(RandomLfsr * lfsr, const uint64_t seed);
+    
+extern void lfsrSeedWithTime(RandomLfsr * lfsr);
+    
+    
 #ifdef __cplusplus
  }
 #endif

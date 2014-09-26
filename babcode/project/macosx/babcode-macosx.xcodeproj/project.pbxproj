@@ -44,6 +44,7 @@
 		F485A6A91715ADAC00D316B9 /* networkstack_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A81715ADAC00D316B9 /* networkstack_osx.c */; };
 		F485A6AE17182AED00D316B9 /* hashtable.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A6AD17182AED00D316B9 /* hashtable.h */; };
 		F485A6B017182AF600D316B9 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6AF17182AF600D316B9 /* hashtable.c */; };
+		F49191A519D5953300725C3A /* randomLfsr.c in Sources */ = {isa = PBXBuildFile; fileRef = F49191A419D5953300725C3A /* randomLfsr.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		F485A6A81715ADAC00D316B9 /* networkstack_osx.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = networkstack_osx.c; path = ../../platform/macosx/networkstack_osx.c; sourceTree = "<group>"; };
 		F485A6AD17182AED00D316B9 /* hashtable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hashtable.h; path = ../../include/hashtable.h; sourceTree = "<group>"; };
 		F485A6AF17182AF600D316B9 /* hashtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hashtable.c; path = ../../source/hashtable.c; sourceTree = "<group>"; };
+		F49191A419D5953300725C3A /* randomLfsr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = randomLfsr.c; path = ../../source/randomLfsr.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,8 +158,8 @@
 		F485A659171407A800D316B9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				E44C27B7178ED7A50031BC79 /* bytestream.c */,
 				F4567180184DEB7B0043A32C /* array.c */,
+				E44C27B7178ED7A50031BC79 /* bytestream.c */,
 				F485A67B171407F300D316B9 /* conversion.c */,
 				F485A6AF17182AF600D316B9 /* hashtable.c */,
 				E4095461172A71D50008BA47 /* Linux */,
@@ -169,6 +171,7 @@
 				F485A6941714164C00D316B9 /* networkstack-udp.c */,
 				F485A670171407CB00D316B9 /* OSX */,
 				F485A67D171407F300D316B9 /* random.c */,
+				F49191A419D5953300725C3A /* randomLfsr.c */,
 				C5168A17172AB66300C96B59 /* str.c */,
 				F485A67E171407F300D316B9 /* time.c */,
 				C5CB5723177B082F003125AA /* timer.c */,
@@ -308,6 +311,7 @@
 				F485A674171407D900D316B9 /* utils_osx.c in Sources */,
 				F485A678171407E600D316B9 /* file.c in Sources */,
 				F4567181184DEB7B0043A32C /* array.c in Sources */,
+				F49191A519D5953300725C3A /* randomLfsr.c in Sources */,
 				F485A679171407E600D316B9 /* thread.c in Sources */,
 				F485A67A171407E600D316B9 /* wait.c in Sources */,
 				F485A680171407F300D316B9 /* conversion.c in Sources */,

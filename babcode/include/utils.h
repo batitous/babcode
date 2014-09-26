@@ -33,19 +33,22 @@ extern "C" {
 #endif
 
 #define FREEMEM( ptr )  { free( ptr ) ; ptr = 0 ;}
+
+    
+extern uint16_t crc16Compute(const uint8_t* data, uint32_t length);
+    
     
 extern void write32bitsToBuffer(uint8_t * buffer, uint32_t integer);
-
 extern uint32_t read32bitsFromBuffer(uint8_t * buffer);
     
 extern void write16bitsToBuffer(uint8_t * buffer, uint16_t integer);
-
 extern uint16_t read16bitsFromBuffer(uint8_t * buffer);
     
+    
 extern uint32_t getExecutablePath(char * buff, uint32_t buffSize);
-
 extern bool getRealPath(const char *path, char *resolvedPath, int32_t * resolvePathSize);
 
+    
 #ifdef __cplusplus
   }
 #endif
