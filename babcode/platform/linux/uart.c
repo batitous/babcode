@@ -138,7 +138,7 @@ uint32_t sendByteToUART(Uart * uart, uint8_t Byte)
 	return UART_OK;
 }
 
-uint32_t sendBufferToUART(Uart * uart, uint8_t *Buffer, uint32_t Count)
+uint32_t sendBufferToUART(Uart * uart, const uint8_t *Buffer, uint32_t Count)
 {
 	if(write(uart->handle,Buffer,Count)==-1)
 	{

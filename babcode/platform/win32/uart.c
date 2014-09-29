@@ -114,7 +114,7 @@ uint32_t initUART(Uart * uart, const char * name, uint32_t baudrate)
 }
 
 
-uint32_t sendBufferToUART (Uart * uart, uint8_t *Buffer, uint32_t Count)
+uint32_t sendBufferToUART (Uart * uart, const uint8_t *Buffer, uint32_t Count)
 {
 	unsigned long buffer;
 //	FlushFileBuffers(hCom);

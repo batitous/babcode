@@ -82,7 +82,7 @@ extern uint32_t sendByteToUART(Uart * uart, uint8_t byte);
  * @param Count		Number of byte to send
  * @return 0 if no error
  */
-extern uint32_t sendBufferToUART (Uart * uart, uint8_t *Buffer, uint32_t Count);
+extern uint32_t sendBufferToUART (Uart * uart, const uint8_t *Buffer, uint32_t Count);
 
 /** @brief Get a byte
  *

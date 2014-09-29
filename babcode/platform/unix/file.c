@@ -97,7 +97,7 @@ uint8_t *fileMmapRead(const char *filename, uint32_t *len)
     *len = 0;
     
     // Open the file.
-    fileDescriptor = open( (char *)filename, O_RDONLY, 0 );
+    fileDescriptor = open( filename, O_RDONLY, 0 );
     if( fileDescriptor < 0 )
     {
         LOG("error: open file %s\n", filename );
