@@ -11,7 +11,9 @@
 
 static uint16_t crc16_adjust(uint16_t crc16, uint8_t data)
 {
-    for(uint32_t n = 0; n < 8; n++)
+    uint32_t n;
+    
+    for(n = 0; n < 8; n++)
     {
         if((crc16 & 1) ^ (data & 1))
         {
@@ -31,8 +33,9 @@ static uint16_t crc16_adjust(uint16_t crc16, uint8_t data)
 uint16_t crc16Compute(const uint8_t* data, const uint32_t length)
 {
     uint16_t crc16 = ~0;
+    uint32_t n;
     
-    for(uint32_t n = 0; n < length; n++)
+    for(n = 0; n < length; n++)
     {
         crc16 = crc16_adjust(crc16, data[n]);
     }

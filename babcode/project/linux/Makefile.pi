@@ -9,7 +9,7 @@ EXE=./libbabcode-linux-pi.a
 SRC_FILES=array.c bytestream.c conversion.c hashtable.c list.c log.c random.c str.c time.c timer.c utils.c
 SRC_FILES+= networkstack-udp.c networkstack-tcp.c networkstack-options.c	
 SRC_FILES+= file.c thread.c mutex.c conditionvar.c wait.c
-SRC_FILES+= uart.c uart_unix.c networkstack_linux.c
+SRC_FILES+= uart.c uart_unix.c networkstack_linux.c crc.c
 
 # Temporary repertory
 BUILD_PATH=build/
