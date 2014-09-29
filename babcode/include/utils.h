@@ -35,14 +35,14 @@ extern "C" {
 #define FREEMEM( ptr )  { free( ptr ) ; ptr = 0 ;}
 
     
-extern uint16_t crc16Compute(const uint8_t* data, uint32_t length);
-    
+extern uint16_t crc16Compute(const uint8_t* data, const uint32_t length);
+extern uint32_t crc32Compute(const uint8_t* data, const uint32_t length);
     
 extern void write32bitsToBuffer(uint8_t * buffer, uint32_t integer);
-extern uint32_t read32bitsFromBuffer(uint8_t * buffer);
+extern uint32_t read32bitsFromBuffer(const uint8_t * buffer);
     
 extern void write16bitsToBuffer(uint8_t * buffer, uint16_t integer);
-extern uint16_t read16bitsFromBuffer(uint8_t * buffer);
+extern uint16_t read16bitsFromBuffer(const uint8_t * buffer);
     
     
 extern uint32_t getExecutablePath(char * buff, uint32_t buffSize);
