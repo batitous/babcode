@@ -45,8 +45,10 @@ uint64_t lsfrRandom(RandomLfsr * lfsr)
 
 void lfSrSeed(RandomLfsr * lfsr, const uint64_t seed)
 {
+    uint32_t n;
+
     lfsr->lfsr = seed;
-    for(uint32_t n = 0; n < 8; n++)
+    for (n = 0; n < 8; n++)
     {
         lsfrRandom(lfsr);
     }
