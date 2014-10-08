@@ -76,7 +76,14 @@ uint32_t initUART(Uart * uart, const char *tty_name, uint32_t baudrate)
     cfmakeraw(&options);
     options.c_cc[VTIME]    = 1;   /* inter-character timer used */
     options.c_cc[VMIN]     = 0;   /* blocking read until 0 chars received */
-	cfsetspeed(&options, uint32_tToSpeed_t(baudrate));
+
+#ifdef ANDROID
+    //https://github.com/tias/android-busybox-ndk/blob/master/patches/020-microcom.patch
+    cfsetispeed (&options, uint32_tToSpeed_t(baudrate));
+    cfsetospeed (&options, uint32_tToSpeed_t(baudrate));
+#else
+    cfsetspeed(&options, uint32_tToSpeed_t(baudrate));
+#endif
 
     tcflush(fd_uart, TCIFLUSH);
     if(tcsetattr(fd_uart, TCSANOW, &options))

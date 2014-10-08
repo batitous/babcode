@@ -43,5 +43,5 @@ SOURCES +=  $$BABCODE_PATH/platform/linux/networkstack_linux.c \
             $$BABCODE_PATH/platform/unix/wait.c
 
 # currently android ndk dont support cfsetspeed
-#            $$BABCODE_PATH/platform/unix/uart_unix.c \
-#            $$BABCODE_PATH/platform/linux/uart.c \
+SOURCES +=  $$BABCODE_PATH/platform/unix/uart_unix.c \
+            $$BABCODE_PATH/platform/linux/uart.c
