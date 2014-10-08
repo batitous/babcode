@@ -176,7 +176,7 @@ uint8_t *fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to
 {
 	int f;
 	uint8_t *buffer;
-	uint32_t size = 0 ;
+    int32_t size = 0 ;
 
 	//open the file
 	f = open( filename , O_RDONLY);
@@ -200,7 +200,7 @@ uint8_t *fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to
 	}
 
 	//read the file and put the data in the target buffer
-	if( (size = (uint32_t)read( f, buffer, *len_to_read )) == -1 )
+    if( (size = read( f, buffer, *len_to_read )) == -1 )
 	{
 		LOG_ERR1("read");
 		return NULL ;
@@ -208,7 +208,7 @@ uint8_t *fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to
 
 	close(f);
 
-	*len_to_read = size ;
+    *len_to_read = (uint32_t)size ;
 
 	return buffer ;
 }
