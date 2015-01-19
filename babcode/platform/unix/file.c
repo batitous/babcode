@@ -200,7 +200,7 @@ uint8_t *fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to
 	}
 
 	//read the file and put the data in the target buffer
-    if( (size = read( f, buffer, *len_to_read )) == -1 )
+    if( (size = (int32_t)read( f, buffer, *len_to_read )) == -1 )
 	{
 		LOG_ERR1("read");
 		return NULL ;

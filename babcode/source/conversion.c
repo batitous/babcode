@@ -223,7 +223,7 @@ bool stringIsHex(const char * str, int32_t * integer)
 {
 	long size;
 	char* pEnd=NULL;
-	int val;
+	long val;
 	long i;
 
     if (str[0] != '0') return false;
@@ -242,7 +242,7 @@ bool stringIsHex(const char * str, int32_t * integer)
     if ((errno == ERANGE && (val == LONG_MAX || val == LONG_MIN)) || (errno != 0 && val == 0))
         return false;
     
-    *integer = val;
+    *integer = (int32_t)val;
     
     return true;
 }

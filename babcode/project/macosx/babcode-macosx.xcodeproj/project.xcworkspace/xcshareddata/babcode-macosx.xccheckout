@@ -11,17 +11,17 @@
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>A7233FA59DD74EEAC29E82B76C5C4F00CFE7D671</key>
-		<string>https://github.com/batitous/babcode.git</string>
+		<string>github.com:batitous/babcode.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>babcode/project/macosx/babcode-macosx.xcodeproj/project.xcworkspace</string>
+	<string>babcode/project/macosx/babcode-macosx.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>A7233FA59DD74EEAC29E82B76C5C4F00CFE7D671</key>
 		<string>../../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/batitous/babcode.git</string>
+	<string>github.com:batitous/babcode.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>

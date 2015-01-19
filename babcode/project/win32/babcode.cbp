@@ -71,6 +71,9 @@
 		<Unit filename="../../source/conversion.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="../../source/crc.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="../../source/hashtable.c">
 			<Option compilerVar="CC" />
 		</Unit>
