@@ -55,10 +55,58 @@
 		F42D0DE51A6D0BE500FF8421 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD21A6D0BE500FF8421 /* utils.h */; };
 		F42D0DE61A6D0BE500FF8421 /* wait.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD31A6D0BE500FF8421 /* wait.h */; };
 		F42D0DE91A6D0C5200FF8421 /* fsm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DE81A6D0C5200FF8421 /* fsm.cpp */; };
+		F42D0DED1A6D0DC600FF8421 /* utils_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DAF1A6D0B3800FF8421 /* utils_osx.c */; };
+		F42D0DEE1A6D0DC600FF8421 /* str.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D961A6D0B0A00FF8421 /* str.c */; };
+		F42D0DEF1A6D0DC600FF8421 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8F1A6D0B0A00FF8421 /* log.c */; };
+		F42D0DF01A6D0DC600FF8421 /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB61A6D0B5600FF8421 /* mutex.c */; };
+		F42D0DF11A6D0DC600FF8421 /* networkstack-udp.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D931A6D0B0A00FF8421 /* networkstack-udp.c */; };
+		F42D0DF21A6D0DC600FF8421 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D991A6D0B0A00FF8421 /* utils.c */; };
+		F42D0DF31A6D0DC600FF8421 /* networkstack-tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D921A6D0B0A00FF8421 /* networkstack-tcp.c */; };
+		F42D0DF41A6D0DC600FF8421 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB51A6D0B5600FF8421 /* file.c */; };
+		F42D0DF51A6D0DC600FF8421 /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8C1A6D0B0A00FF8421 /* crc.c */; };
+		F42D0DF61A6D0DC600FF8421 /* networkstack-options.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D901A6D0B0A00FF8421 /* networkstack-options.c */; };
+		F42D0DF71A6D0DC600FF8421 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D971A6D0B0A00FF8421 /* time.c */; };
+		F42D0DF81A6D0DC600FF8421 /* networkstack_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DAD1A6D0B3800FF8421 /* networkstack_osx.c */; };
+		F42D0DF91A6D0DC600FF8421 /* wait.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB91A6D0B5600FF8421 /* wait.c */; };
+		F42D0DFA1A6D0DC600FF8421 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D981A6D0B0A00FF8421 /* timer.c */; };
+		F42D0DFB1A6D0DC600FF8421 /* fsm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DE81A6D0C5200FF8421 /* fsm.cpp */; };
+		F42D0DFC1A6D0DC600FF8421 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D891A6D0B0A00FF8421 /* array.c */; };
+		F42D0DFD1A6D0DC600FF8421 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */; };
+		F42D0DFE1A6D0DC600FF8421 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8E1A6D0B0A00FF8421 /* list.c */; };
+		F42D0DFF1A6D0DC600FF8421 /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8B1A6D0B0A00FF8421 /* conversion.c */; };
+		F42D0E001A6D0DC600FF8421 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB71A6D0B5600FF8421 /* thread.c */; };
+		F42D0E011A6D0DC600FF8421 /* randomLfsr.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D951A6D0B0A00FF8421 /* randomLfsr.c */; };
+		F42D0E021A6D0DC600FF8421 /* uart.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DAE1A6D0B3800FF8421 /* uart.c */; };
+		F42D0E031A6D0DC600FF8421 /* bytestream.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8A1A6D0B0A00FF8421 /* bytestream.c */; };
+		F42D0E041A6D0DC600FF8421 /* uart_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB81A6D0B5600FF8421 /* uart_unix.c */; };
+		F42D0E051A6D0DC600FF8421 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D941A6D0B0A00FF8421 /* random.c */; };
+		F42D0E061A6D0DC600FF8421 /* queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D831A6D0A4500FF8421 /* queue.cpp */; };
+		F42D0E071A6D0DC600FF8421 /* synchronizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D861A6D0AB700FF8421 /* synchronizer.cpp */; };
+		F42D0E081A6D0DC600FF8421 /* conditionvar.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB41A6D0B5600FF8421 /* conditionvar.c */; };
+		F42D0E0B1A6D0DC600FF8421 /* str.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCD1A6D0BE500FF8421 /* str.h */; };
+		F42D0E0C1A6D0DC600FF8421 /* conditionvar.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC41A6D0BE500FF8421 /* conditionvar.h */; };
+		F42D0E0D1A6D0DC600FF8421 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD01A6D0BE500FF8421 /* types.h */; };
+		F42D0E0E1A6D0DC600FF8421 /* babcode.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC21A6D0BE500FF8421 /* babcode.h */; };
+		F42D0E0F1A6D0DC600FF8421 /* conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC51A6D0BE500FF8421 /* conversion.h */; };
+		F42D0E101A6D0DC600FF8421 /* wait.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD31A6D0BE500FF8421 /* wait.h */; };
+		F42D0E111A6D0DC600FF8421 /* array.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC11A6D0BE500FF8421 /* array.h */; };
+		F42D0E121A6D0DC600FF8421 /* networkstack.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCB1A6D0BE500FF8421 /* networkstack.h */; };
+		F42D0E131A6D0DC600FF8421 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCA1A6D0BE500FF8421 /* mutex.h */; };
+		F42D0E141A6D0DC600FF8421 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC81A6D0BE500FF8421 /* list.h */; };
+		F42D0E151A6D0DC600FF8421 /* bytestream.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC31A6D0BE500FF8421 /* bytestream.h */; };
+		F42D0E161A6D0DC600FF8421 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD21A6D0BE500FF8421 /* utils.h */; };
+		F42D0E171A6D0DC600FF8421 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCC1A6D0BE500FF8421 /* random.h */; };
+		F42D0E181A6D0DC600FF8421 /* hashtable.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC71A6D0BE500FF8421 /* hashtable.h */; };
+		F42D0E191A6D0DC600FF8421 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC91A6D0BE500FF8421 /* log.h */; };
+		F42D0E1A1A6D0DC600FF8421 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCE1A6D0BE500FF8421 /* thread.h */; };
+		F42D0E1B1A6D0DC600FF8421 /* uart.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD11A6D0BE500FF8421 /* uart.h */; };
+		F42D0E1C1A6D0DC600FF8421 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC61A6D0BE500FF8421 /* file.h */; };
+		F42D0E1D1A6D0DC600FF8421 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCF1A6D0BE500FF8421 /* timer.h */; };
+		F42D0E1E1A6D0DC600FF8421 /* networkstack-private.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F42D0D781A6D09B000FF8421 /* libbabextended.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextended.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F42D0D781A6D09B000FF8421 /* libbabextendedd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextendedd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F42D0D811A6D09F400FF8421 /* babextended.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = babextended.h; path = ../../include/babextended.h; sourceTree = "<group>"; };
 		F42D0D821A6D0A2C00FF8421 /* queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../include/queue.h; sourceTree = "<group>"; };
 		F42D0D831A6D0A4500FF8421 /* queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = queue.cpp; path = ../../source/queue.cpp; sourceTree = "<group>"; };
@@ -111,10 +159,19 @@
 		F42D0DD31A6D0BE500FF8421 /* wait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = wait.h; path = ../../../babcode/include/wait.h; sourceTree = "<group>"; };
 		F42D0DE71A6D0C3C00FF8421 /* fsm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = fsm.h; path = ../../include/fsm.h; sourceTree = "<group>"; };
 		F42D0DE81A6D0C5200FF8421 /* fsm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fsm.cpp; path = ../../source/fsm.cpp; sourceTree = "<group>"; };
+		F42D0DEA1A6D0CF700FF8421 /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vector.h; path = ../../include/vector.h; sourceTree = "<group>"; };
+		F42D0E221A6D0DC600FF8421 /* libbabextended.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextended.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		F42D0D751A6D09B000FF8421 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F42D0E091A6D0DC600FF8421 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -137,7 +194,8 @@
 		F42D0D791A6D09B000FF8421 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				F42D0D781A6D09B000FF8421 /* libbabextended.a */,
+				F42D0D781A6D09B000FF8421 /* libbabextendedd.a */,
+				F42D0E221A6D0DC600FF8421 /* libbabextended.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -150,6 +208,7 @@
 				F42D0D821A6D0A2C00FF8421 /* queue.h */,
 				F42D0D851A6D0A9E00FF8421 /* synchronizer.h */,
 				F42D0DE71A6D0C3C00FF8421 /* fsm.h */,
+				F42D0DEA1A6D0CF700FF8421 /* vector.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";
@@ -277,12 +336,39 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F42D0E0A1A6D0DC600FF8421 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42D0E0B1A6D0DC600FF8421 /* str.h in Headers */,
+				F42D0E0C1A6D0DC600FF8421 /* conditionvar.h in Headers */,
+				F42D0E0D1A6D0DC600FF8421 /* types.h in Headers */,
+				F42D0E0E1A6D0DC600FF8421 /* babcode.h in Headers */,
+				F42D0E0F1A6D0DC600FF8421 /* conversion.h in Headers */,
+				F42D0E101A6D0DC600FF8421 /* wait.h in Headers */,
+				F42D0E111A6D0DC600FF8421 /* array.h in Headers */,
+				F42D0E121A6D0DC600FF8421 /* networkstack.h in Headers */,
+				F42D0E131A6D0DC600FF8421 /* mutex.h in Headers */,
+				F42D0E141A6D0DC600FF8421 /* list.h in Headers */,
+				F42D0E151A6D0DC600FF8421 /* bytestream.h in Headers */,
+				F42D0E161A6D0DC600FF8421 /* utils.h in Headers */,
+				F42D0E171A6D0DC600FF8421 /* random.h in Headers */,
+				F42D0E181A6D0DC600FF8421 /* hashtable.h in Headers */,
+				F42D0E191A6D0DC600FF8421 /* log.h in Headers */,
+				F42D0E1A1A6D0DC600FF8421 /* thread.h in Headers */,
+				F42D0E1B1A6D0DC600FF8421 /* uart.h in Headers */,
+				F42D0E1C1A6D0DC600FF8421 /* file.h in Headers */,
+				F42D0E1D1A6D0DC600FF8421 /* timer.h in Headers */,
+				F42D0E1E1A6D0DC600FF8421 /* networkstack-private.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		F42D0D771A6D09B000FF8421 /* babextended */ = {
+		F42D0D771A6D09B000FF8421 /* babextendedd */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F42D0D7C1A6D09B000FF8421 /* Build configuration list for PBXNativeTarget "babextended" */;
+			buildConfigurationList = F42D0D7C1A6D09B000FF8421 /* Build configuration list for PBXNativeTarget "babextendedd" */;
 			buildPhases = (
 				F42D0D741A6D09B000FF8421 /* Sources */,
 				F42D0D751A6D09B000FF8421 /* Frameworks */,
@@ -292,9 +378,26 @@
 			);
 			dependencies = (
 			);
+			name = babextendedd;
+			productName = babextended;
+			productReference = F42D0D781A6D09B000FF8421 /* libbabextendedd.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		F42D0DEB1A6D0DC600FF8421 /* babextended */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F42D0E1F1A6D0DC600FF8421 /* Build configuration list for PBXNativeTarget "babextended" */;
+			buildPhases = (
+				F42D0DEC1A6D0DC600FF8421 /* Sources */,
+				F42D0E091A6D0DC600FF8421 /* Frameworks */,
+				F42D0E0A1A6D0DC600FF8421 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
 			name = babextended;
 			productName = babextended;
-			productReference = F42D0D781A6D09B000FF8421 /* libbabextended.a */;
+			productReference = F42D0E221A6D0DC600FF8421 /* libbabextended.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -323,7 +426,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F42D0D771A6D09B000FF8421 /* babextended */,
+				F42D0D771A6D09B000FF8421 /* babextendedd */,
+				F42D0DEB1A6D0DC600FF8421 /* babextended */,
 			);
 		};
 /* End PBXProject section */
@@ -361,6 +465,41 @@
 				F42D0D841A6D0A4500FF8421 /* queue.cpp in Sources */,
 				F42D0D871A6D0AB700FF8421 /* synchronizer.cpp in Sources */,
 				F42D0DBA1A6D0B5600FF8421 /* conditionvar.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F42D0DEC1A6D0DC600FF8421 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42D0DED1A6D0DC600FF8421 /* utils_osx.c in Sources */,
+				F42D0DEE1A6D0DC600FF8421 /* str.c in Sources */,
+				F42D0DEF1A6D0DC600FF8421 /* log.c in Sources */,
+				F42D0DF01A6D0DC600FF8421 /* mutex.c in Sources */,
+				F42D0DF11A6D0DC600FF8421 /* networkstack-udp.c in Sources */,
+				F42D0DF21A6D0DC600FF8421 /* utils.c in Sources */,
+				F42D0DF31A6D0DC600FF8421 /* networkstack-tcp.c in Sources */,
+				F42D0DF41A6D0DC600FF8421 /* file.c in Sources */,
+				F42D0DF51A6D0DC600FF8421 /* crc.c in Sources */,
+				F42D0DF61A6D0DC600FF8421 /* networkstack-options.c in Sources */,
+				F42D0DF71A6D0DC600FF8421 /* time.c in Sources */,
+				F42D0DF81A6D0DC600FF8421 /* networkstack_osx.c in Sources */,
+				F42D0DF91A6D0DC600FF8421 /* wait.c in Sources */,
+				F42D0DFA1A6D0DC600FF8421 /* timer.c in Sources */,
+				F42D0DFB1A6D0DC600FF8421 /* fsm.cpp in Sources */,
+				F42D0DFC1A6D0DC600FF8421 /* array.c in Sources */,
+				F42D0DFD1A6D0DC600FF8421 /* hashtable.c in Sources */,
+				F42D0DFE1A6D0DC600FF8421 /* list.c in Sources */,
+				F42D0DFF1A6D0DC600FF8421 /* conversion.c in Sources */,
+				F42D0E001A6D0DC600FF8421 /* thread.c in Sources */,
+				F42D0E011A6D0DC600FF8421 /* randomLfsr.c in Sources */,
+				F42D0E021A6D0DC600FF8421 /* uart.c in Sources */,
+				F42D0E031A6D0DC600FF8421 /* bytestream.c in Sources */,
+				F42D0E041A6D0DC600FF8421 /* uart_unix.c in Sources */,
+				F42D0E051A6D0DC600FF8421 /* random.c in Sources */,
+				F42D0E061A6D0DC600FF8421 /* queue.cpp in Sources */,
+				F42D0E071A6D0DC600FF8421 /* synchronizer.cpp in Sources */,
+				F42D0E081A6D0DC600FF8421 /* conditionvar.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,6 +596,22 @@
 			};
 			name = Release;
 		};
+		F42D0E201A6D0DC600FF8421 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = babextended;
+			};
+			name = Debug;
+		};
+		F42D0E211A6D0DC600FF8421 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				EXECUTABLE_PREFIX = lib;
+				PRODUCT_NAME = babextended;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -469,11 +624,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		F42D0D7C1A6D09B000FF8421 /* Build configuration list for PBXNativeTarget "babextended" */ = {
+		F42D0D7C1A6D09B000FF8421 /* Build configuration list for PBXNativeTarget "babextendedd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F42D0D7D1A6D09B000FF8421 /* Debug */,
 				F42D0D7E1A6D09B000FF8421 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F42D0E1F1A6D0DC600FF8421 /* Build configuration list for PBXNativeTarget "babextended" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F42D0E201A6D0DC600FF8421 /* Debug */,
+				F42D0E211A6D0DC600FF8421 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
