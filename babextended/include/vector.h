@@ -28,6 +28,10 @@
 #ifndef babextended_vector_h
 #define babextended_vector_h
 
+
+#include <strings.h>
+
+
 /** Minimal vector object
  *
  */

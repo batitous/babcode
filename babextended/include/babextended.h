@@ -33,6 +33,9 @@
 
 
 #include "queue.h"
+#include "synchronizer.h"
+#include "fsm.h"
+#include "vector.h"
 
 
 
