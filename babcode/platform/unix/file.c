@@ -113,7 +113,7 @@ uint8_t *fileMmapRead(const char *filename, uint32_t *len)
         else
         {
             // Map the file into a read-only memory region.
-            ptr = mmap(NULL,statInfo.st_size,PROT_READ,MAP_SHARED,fileDescriptor,0);
+            ptr = (uint8_t *)mmap(NULL,statInfo.st_size,PROT_READ,MAP_SHARED,fileDescriptor,0);
             if( ptr == MAP_FAILED )
             {
                 LOG("error: mmap file %s\n", filename );

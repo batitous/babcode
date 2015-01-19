@@ -139,7 +139,7 @@ bool getNetworkInterface(NetInterfaceInfo **pIPInfo,int32_t *pszIPInfo)
          printf(" %d\n", IfReq.ifr_qlen);
          */
         
-		IPInfo = realloc(IPInfo, (szIPInfo + 1) * sizeof(NetInterfaceInfo));
+		IPInfo = (NetInterfaceInfo *)realloc(IPInfo, (szIPInfo + 1) * sizeof(NetInterfaceInfo));
 		memset(&IPInfo[szIPInfo], 0, sizeof(NetInterfaceInfo));
 		IPInfo[szIPInfo].name = strdup(IfReq.ifr_name);
 		IPInfo[szIPInfo].description = NULL;		// not for linux

@@ -29,7 +29,7 @@
 #define babextended_vector_h
 
 
-#include <strings.h>
+#include <string.h>
 
 
 /** Minimal vector object

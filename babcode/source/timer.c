@@ -52,7 +52,7 @@ void timerInit(Timer * t, uint32_t startMs, uint32_t intervalMs, TimerCallback c
 
 void timerStart(Timer * t)
 {
-    threadInit(&t->thread, timerThread, t);
+    threadInit(&t->thread, (void *(*)(void *))timerThread, t);
 }
 
 void timerStop(Timer *t)

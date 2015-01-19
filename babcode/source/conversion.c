@@ -195,7 +195,7 @@ bool stringToFloat(const char * str, float* floating)
     int integer=0;
 	int decimal=0;
     
-    char* pos = strchr(str, '.');
+    char* pos = strchr((char *)str, '.');
     if (pos == NULL && stringToInt(str, &integer) == 0) {
         *floating=integer;
         return true;
