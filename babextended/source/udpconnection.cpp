@@ -80,7 +80,7 @@ Socket * UdpConnection::getSocket()
     return &mSock;
 }
 
-const IpAddress & UdpConnection::ipReceiver()
+const IpAddress & UdpConnection::getIpReceiver()
 {
     return mSender;
 }
@@ -282,6 +282,8 @@ int32_t UdpConnection::waitAndReceive(void * data, uint32_t size)
     
     if (FD_ISSET(mSock.handle, &mReadSocketDescriptor))
     {
+        printf("wait %d \n", size);
+        
         return receive(data, size);
     }
     

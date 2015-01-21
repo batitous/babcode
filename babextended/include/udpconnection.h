@@ -93,10 +93,9 @@ public:
      */
     Socket * getSocket();
     
-    
     /** Get the last ip address received
      */
-    const IpAddress & ipReceiver();
+    const IpAddress & getIpReceiver();
     
     uint32_t getReceiverTime();
     
