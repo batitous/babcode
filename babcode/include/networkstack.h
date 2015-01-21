@@ -48,25 +48,6 @@ typedef struct _bab_ip_address_
     uint16_t port;
 } IpAddress;
 
-#define PACKET_SIZE_MAX         1024
-#define CONNECTION_HEADER_SIZE  16
-#define SEQUENCE_MAX            0xFFFFFFFF
-#define ACK_MAX                 32
-
-typedef struct _net_connection_
-{
-    Socket      sock;           /**< connection's socket */
-    IpAddress   remote;         /**< remote address where send data */
-    IpAddress   sender;         /**< last address received from sender */
-    uint32_t      protocolId;     /**< protocol identifier */
-    bool        isOpen;         /**< is this connection open ? */
-    uint8_t *     buffer;         /**< temporary buffer */
-    uint32_t      localSequence;  /**< local sequence number */
-    uint32_t      localAcks[ACK_MAX]; /**< ack received for my packet send */
-    uint32_t      remoteSequence; /**< remote sequence number: last packet number received (more recent) */
-    uint32_t      remoteAcks[ACK_MAX]; /**< ack of the last packets received */
-} NetConnection;
-
 typedef enum _network_status_
 {
     NETWORK_ERROR     = 0,
@@ -113,17 +94,6 @@ extern int32_t socketReceive(Socket *s, IpAddress *addr, void * packet_data, uin
 
 extern void socketClose(Socket *s);
 
-// connection object
-extern void connectionNew(NetConnection * connection, uint32_t id);
-extern int32_t connectionStart(NetConnection * connection, uint16_t port);
-extern void connectionStop(NetConnection * connection);
-
-// link the address's parameter to the remote connection address
-extern void connectionConnect(NetConnection * connection, IpAddress * remoteAddr);
-
-extern int32_t connectionSend(NetConnection * connection, const void * data, uint32_t size);
-
-extern int32_t connectionReceive(NetConnection * connection, void * data, uint32_t size);
 
 #define MAC_ADDR_SIZE	6
     

@@ -36,6 +36,7 @@
 #include "synchronizer.h"
 #include "fsm.h"
 #include "vector.h"
+#include "udpconnection.h"
 
 
 
