@@ -10,6 +10,8 @@
 #include "../include/udpconnection.h"
 
 #include <string.h>
+#include <unistd.h>
+#include <errno.h>
 
 
 UdpConnection::UdpConnection(uint32_t id)
@@ -50,9 +52,53 @@ void UdpConnection::stop()
     }
 }
 
+Socket * UdpConnection::getSocket()
+{
+    return &mSock;
+}
+
+const IpAddress & UdpConnection::ipReceiver()
+{
+    return mSender;
+}
+
 void UdpConnection::connect(const IpAddress * addr)
 {
     memcpy(&mRemote, addr, sizeof(IpAddress));
+}
+
+bool UdpConnection::sendLargePacket(const void* data, uint32_t size)
+{
+    uint32_t pkSize = UDP_CONNECTION_PACKET_DATA_MAX;
+    uint32_t pkNumber = size / pkSize;
+    uint32_t remind = size - (pkNumber * pkSize);
+    
+    uint32_t i;
+    uint8_t * ptr;
+    
+    ptr = (uint8_t *)data;
+    
+    
+    
+    for (i=0; i < pkNumber; i++)
+    {
+        if (send((const void *)ptr, pkSize) != NETWORK_OK)
+        {
+            return false;
+        }
+        
+        ptr += pkSize;
+    }
+    
+    if (remind!=0)
+    {
+        if (send((const void *)ptr, remind) != NETWORK_OK)
+        {
+            return false;
+        }
+    }
+    
+    return true;
 }
 
 int32_t UdpConnection::send(const void * data, uint32_t size)
@@ -168,6 +214,37 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
     return (bytes_read-CONNECTION_HEADER_SIZE);
 }
 
+
+int32_t UdpConnection::waitAndReceive(void * data, uint32_t size)
+{
+    int max_sd;
+    int s;
+    int activity;
+    
+    // clear the socket set
+    FD_ZERO(&mReadSocketDescriptor);
+    
+    // add socket to set
+    s = mSock.handle;
+    FD_SET(s, &mReadSocketDescriptor);
+    max_sd = s;
+    
+    // wait for an activity on one of the sockets , timeout is NULL , so wait indefinitely
+    activity = select( max_sd + 1 , &mReadSocketDescriptor , NULL , NULL , NULL);
+    
+    if ((activity < 0) && (errno!=EINTR))
+    {
+        LOG("error: on select");
+        return 0;
+    }
+    
+    if (FD_ISSET(mSock.handle, &mReadSocketDescriptor))
+    {
+        receive(data, size);
+    }
+    
+    return 0;
+}
 
 int UdpConnection::isSequenceMoreRecent(unsigned int s1, unsigned int s2)
 {
