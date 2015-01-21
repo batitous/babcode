@@ -85,9 +85,14 @@ const IpAddress & UdpConnection::getIpReceiver()
     return mSender;
 }
 
+uint32_t UdpConnection::getSenderTime()
+{
+    return mSenderDeltaTime;
+}
+
 uint32_t UdpConnection::getReceiverTime()
 {
-    return mRemoteDeltaTime;
+    return mReceiverDeltaTime;
 }
 
 void UdpConnection::connect(const IpAddress * addr)
@@ -136,7 +141,7 @@ int32_t UdpConnection::send(const void * data, uint32_t size)
     int result;
     unsigned char * packet = mBuffer;
     
-    if (size>(UDP_CONNECTION_PACKET_SIZE_MAX-CONNECTION_HEADER_SIZE))
+    if (size>UDP_CONNECTION_PACKET_DATA_MAX)
     {
         return 0;
     }
@@ -204,6 +209,15 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
         return 0;
     }
     
+    
+    uint32_t last = getTicks();
+    if (mReceiverLastTime!=0)
+    {
+        mReceiverDeltaTime = last - mReceiverLastTime;
+    }
+    
+    mReceiverLastTime = last;
+    
     // todo state listen and check address between sender and address ?
     
     // si server mode, alors verifier address sender
@@ -233,7 +247,7 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
     // read the ack (my sequence number from the point of view of the remote)
     ack = (unsigned int)read32bitsFromBuffer(packet+8);
     ackBitmap = (unsigned int)read32bitsFromBuffer(packet+12);
-    mRemoteDeltaTime = (uint32_t)read32bitsFromBuffer(packet+16);
+    mSenderDeltaTime = (uint32_t)read32bitsFromBuffer(packet+16);
     
     
     // and check ack and our local sequence number : local - ACK_MAX < ack < local
@@ -282,8 +296,6 @@ int32_t UdpConnection::waitAndReceive(void * data, uint32_t size)
     
     if (FD_ISSET(mSock.handle, &mReadSocketDescriptor))
     {
-        printf("wait %d \n", size);
-        
         return receive(data, size);
     }
     

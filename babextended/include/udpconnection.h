@@ -97,6 +97,7 @@ public:
      */
     const IpAddress & getIpReceiver();
     
+    uint32_t getSenderTime();
     uint32_t getReceiverTime();
     
     
@@ -111,8 +112,10 @@ private:
     uint32_t    mLocalAcks[ACK_MAX]; /**< ack received for my packet send */
     uint32_t    mRemoteSequence;    /**< remote sequence number: last packet number received (more recent) */
     uint32_t    mRemoteAcks[ACK_MAX]; /**< ack of the last packets received */
-    uint32_t    mSendDeltaTime;
-    uint32_t    mRemoteDeltaTime;
+    uint32_t    mSendDeltaTime;     /**< Time between 2 send */
+    uint32_t    mSenderDeltaTime;   /**< Time received from the remote */
+    uint32_t    mReceiverDeltaTime; /**< Time between 2 receive */
+    uint32_t    mReceiverLastTime;
     fd_set      mReadSocketDescriptor;/**< wait selector */
     
     int isSequenceMoreRecent(unsigned int s1, unsigned int s2);
