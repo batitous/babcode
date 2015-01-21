@@ -21,6 +21,28 @@ UdpConnection::UdpConnection(uint32_t id)
     mBuffer = new uint8_t[UDP_CONNECTION_PACKET_SIZE_MAX];
 }
 
+void UdpConnection::startWithSocket(Socket *s)
+{
+    mSock.handle = s->handle;
+    mSock.port = s->port;
+    
+    if (mIsOpen==false)
+    {
+        mRemoteSequence = 0;
+        mLocalSequence = 0;
+        mSendDeltaTime = 0;
+        
+        for(int i=0;i<ACK_MAX;i++)
+        {
+            mLocalAcks[i] = 0;
+            mRemoteAcks[i] = 0;
+        }
+        
+        mIsOpen = true;
+    }
+    
+}
+
 int32_t UdpConnection::start(uint16_t port)
 {
     unsigned int i;
@@ -29,6 +51,7 @@ int32_t UdpConnection::start(uint16_t port)
     {
         mRemoteSequence = 0;
         mLocalSequence = 0;
+        mSendDeltaTime = 0;
         
         for(i=0;i<ACK_MAX;i++)
         {
@@ -60,6 +83,11 @@ Socket * UdpConnection::getSocket()
 const IpAddress & UdpConnection::ipReceiver()
 {
     return mSender;
+}
+
+uint32_t UdpConnection::getReceiverTime()
+{
+    return mRemoteDeltaTime;
 }
 
 void UdpConnection::connect(const IpAddress * addr)
@@ -103,6 +131,8 @@ bool UdpConnection::sendLargePacket(const void* data, uint32_t size)
 
 int32_t UdpConnection::send(const void * data, uint32_t size)
 {
+    uint32_t last;
+    uint32_t delta = 0;
     int result;
     unsigned char * packet = mBuffer;
     
@@ -111,15 +141,26 @@ int32_t UdpConnection::send(const void * data, uint32_t size)
         return 0;
     }
     
+    last = getTicks();
+    if (mSendDeltaTime!=0)
+    {
+        delta = last - mSendDeltaTime;
+    }
+    
+    mSendDeltaTime = last;
+    
+    
     // create packet header with :
     // - protocol identifier
     // - local packet sequence number
     // - ack : last packet sequence number received
     // - acks bitmap from the receveid packet
+    // - timestamp between 2 send call
     write32bitsToBuffer(packet,mProtocolId);
     write32bitsToBuffer(packet+4,mLocalSequence);
     write32bitsToBuffer(packet+8,mRemoteSequence);
     write32bitsToBuffer(packet+12,buildAckBitmap(mRemoteAcks));
+    write32bitsToBuffer(packet+16, delta);
     
     // move the ack bitmap and don't acknowledge the packet send
     moveAckBitmap(mLocalAcks);
@@ -192,6 +233,7 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
     // read the ack (my sequence number from the point of view of the remote)
     ack = (unsigned int)read32bitsFromBuffer(packet+8);
     ackBitmap = (unsigned int)read32bitsFromBuffer(packet+12);
+    mRemoteDeltaTime = (uint32_t)read32bitsFromBuffer(packet+16);
     
     
     // and check ack and our local sequence number : local - ACK_MAX < ack < local
@@ -234,13 +276,13 @@ int32_t UdpConnection::waitAndReceive(void * data, uint32_t size)
     
     if ((activity < 0) && (errno!=EINTR))
     {
-        LOG("error: on select");
+        LOG_ERR1("error: on select");
         return 0;
     }
     
     if (FD_ISSET(mSock.handle, &mReadSocketDescriptor))
     {
-        receive(data, size);
+        return receive(data, size);
     }
     
     return 0;

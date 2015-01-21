@@ -10,9 +10,9 @@
 #define babextended_udpconnection_h
 
 
-#define UDP_CONNECTION_PACKET_SIZE_MAX      1040        /**< Size of UDP packet */
-#define CONNECTION_HEADER_SIZE              16          /**< Size of connection header */
-#define UDP_CONNECTION_PACKET_DATA_MAX      (UDP_CONNECTION_PACKET_SIZE_MAX - CONNECTION_HEADER_SIZE)
+#define UDP_CONNECTION_PACKET_SIZE_MAX      (UDP_CONNECTION_PACKET_DATA_MAX+CONNECTION_HEADER_SIZE)        /**< Size of UDP packet */
+#define CONNECTION_HEADER_SIZE              20          /**< Size of connection header */
+#define UDP_CONNECTION_PACKET_DATA_MAX      1024        /**< Size of connection payload */
 #define SEQUENCE_MAX                        0xFFFFFFFF
 #define ACK_MAX                             32          /**< Number of ack maximum we can check */
 
@@ -30,6 +30,14 @@ public:
     UdpConnection(uint32_t id);
     ~UdpConnection();
     
+    /** Start the local connection with the specified socket
+     *
+     * The specified socket MUST BE ready to use (binded to local port)
+     *
+     * @param socket
+     */
+    void startWithSocket(Socket* socket);
+   
     
     /** Start the local connection on the specified port
      *
@@ -90,6 +98,8 @@ public:
      */
     const IpAddress & ipReceiver();
     
+    uint32_t getReceiverTime();
+    
     
 private:
     Socket      mSock;              /**< connection's socket */
@@ -102,6 +112,8 @@ private:
     uint32_t    mLocalAcks[ACK_MAX]; /**< ack received for my packet send */
     uint32_t    mRemoteSequence;    /**< remote sequence number: last packet number received (more recent) */
     uint32_t    mRemoteAcks[ACK_MAX]; /**< ack of the last packets received */
+    uint32_t    mSendDeltaTime;
+    uint32_t    mRemoteDeltaTime;
     fd_set      mReadSocketDescriptor;/**< wait selector */
     
     int isSequenceMoreRecent(unsigned int s1, unsigned int s2);
