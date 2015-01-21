@@ -16,24 +16,53 @@
 #define ACK_MAX                             32
 
 
-
+/** An UDP Connection object
+ *
+ */
 class UdpConnection
 {
 public:
+    /** Create a new UDP connection with the specified protocol identifier
+     *
+     * @param id    Protocol identifier
+     */
     UdpConnection(uint32_t id);
     ~UdpConnection();
     
-    // success: NETWORK_OK
-    // else error code
-    int32_t start(uint16_t port);
-    void stop();
     
-    // link the address's parameter to the remote connection address
+    /** Start the local connection on the specified port
+     *
+     * @param port      Local connection port
+     * @return On success: NETWORK_OK, else error code.
+     */
+    int32_t start(uint16_t port);
+    
+    
+    /** Stop the connection
+     */
+    void stop();
+
+    
+    /** Connect the local connection to the specified remote address
+     *
+     * @param remoteAddr        Remote address
+     */
     void connect(const IpAddress * remoteAddr);
     
-    
+    /** Send bytes to the remote connection
+     *
+     * @param data
+     * @param size
+     * @return NETWORK_OK on success.
+     */
     int32_t send(const void * data, uint32_t size);
     
+    /** Receive bytes from the remote connection
+     *
+     * @param data      Array where store the incoming bytes
+     * @param size      Array size
+     * @param Size of data received, else error code
+     */
     int32_t receive(void * data, uint32_t size);
     
     
