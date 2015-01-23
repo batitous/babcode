@@ -11,7 +11,7 @@ SRC_FILES+= networkstack-udp.c networkstack-tcp.c networkstack-options.c
 SRC_FILES+= file.c thread.c mutex.c conditionvar.c wait.c
 SRC_FILES+= uart.c uart_unix.c networkstack_linux.c crc.c
 
-SRC_CPP_FILES= fsm.cpp queue.cpp synchronizer.cpp
+SRC_CPP_FILES= fsm.cpp queue.cpp synchronizer.cpp udpconnection.cpp
 
 # Temporary repertory
 BUILD_PATH=build/
