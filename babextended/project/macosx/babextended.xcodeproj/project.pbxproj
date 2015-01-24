@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F402C6F41A6FBAC7002F6DE4 /* udpconnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F402C6F31A6FBAC7002F6DE4 /* udpconnection.cpp */; };
 		F402C6F51A6FBD81002F6DE4 /* udpconnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F402C6F31A6FBAC7002F6DE4 /* udpconnection.cpp */; };
-		F42D0D841A6D0A4500FF8421 /* queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D831A6D0A4500FF8421 /* queue.cpp */; };
+		F42D0D841A6D0A4500FF8421 /* bytearrayqueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */; };
 		F42D0D871A6D0AB700FF8421 /* synchronizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D861A6D0AB700FF8421 /* synchronizer.cpp */; };
 		F42D0D9A1A6D0B0A00FF8421 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D891A6D0B0A00FF8421 /* array.c */; };
 		F42D0D9B1A6D0B0A00FF8421 /* bytestream.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8A1A6D0B0A00FF8421 /* bytestream.c */; };
@@ -82,7 +82,7 @@
 		F42D0E031A6D0DC600FF8421 /* bytestream.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8A1A6D0B0A00FF8421 /* bytestream.c */; };
 		F42D0E041A6D0DC600FF8421 /* uart_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB81A6D0B5600FF8421 /* uart_unix.c */; };
 		F42D0E051A6D0DC600FF8421 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D941A6D0B0A00FF8421 /* random.c */; };
-		F42D0E061A6D0DC600FF8421 /* queue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D831A6D0A4500FF8421 /* queue.cpp */; };
+		F42D0E061A6D0DC600FF8421 /* bytearrayqueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */; };
 		F42D0E071A6D0DC600FF8421 /* synchronizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D861A6D0AB700FF8421 /* synchronizer.cpp */; };
 		F42D0E081A6D0DC600FF8421 /* conditionvar.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB41A6D0B5600FF8421 /* conditionvar.c */; };
 		F42D0E0B1A6D0DC600FF8421 /* str.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCD1A6D0BE500FF8421 /* str.h */; };
@@ -113,7 +113,7 @@
 		F42D0D781A6D09B000FF8421 /* libbabextendedd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextendedd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F42D0D811A6D09F400FF8421 /* babextended.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = babextended.h; path = ../../include/babextended.h; sourceTree = "<group>"; };
 		F42D0D821A6D0A2C00FF8421 /* queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../include/queue.h; sourceTree = "<group>"; };
-		F42D0D831A6D0A4500FF8421 /* queue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = queue.cpp; path = ../../source/queue.cpp; sourceTree = "<group>"; };
+		F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = bytearrayqueue.cpp; path = ../../source/bytearrayqueue.cpp; sourceTree = "<group>"; };
 		F42D0D851A6D0A9E00FF8421 /* synchronizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = synchronizer.h; path = ../../include/synchronizer.h; sourceTree = "<group>"; };
 		F42D0D861A6D0AB700FF8421 /* synchronizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = synchronizer.cpp; path = ../../source/synchronizer.cpp; sourceTree = "<group>"; };
 		F42D0D891A6D0B0A00FF8421 /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = array.c; path = ../../../babcode/source/array.c; sourceTree = "<group>"; };
@@ -166,6 +166,7 @@
 		F42D0DEA1A6D0CF700FF8421 /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vector.h; path = ../../include/vector.h; sourceTree = "<group>"; };
 		F42D0E221A6D0DC600FF8421 /* libbabextended.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextended.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CC96221A73A80E003F43BB /* queueimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queueimpl.h; path = ../../include/queueimpl.h; sourceTree = "<group>"; };
+		F4CC96231A73AD1E003F43BB /* bytearrayqueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bytearrayqueue.h; path = ../../include/bytearrayqueue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +211,7 @@
 			children = (
 				F42D0DC01A6D0BD300FF8421 /* Include-Babcode */,
 				F42D0D811A6D09F400FF8421 /* babextended.h */,
+				F4CC96231A73AD1E003F43BB /* bytearrayqueue.h */,
 				F42D0DE71A6D0C3C00FF8421 /* fsm.h */,
 				F42D0D821A6D0A2C00FF8421 /* queue.h */,
 				F4CC96221A73A80E003F43BB /* queueimpl.h */,
@@ -223,8 +225,8 @@
 		F42D0D801A6D09DC00FF8421 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */,
 				F42D0DE81A6D0C5200FF8421 /* fsm.cpp */,
-				F42D0D831A6D0A4500FF8421 /* queue.cpp */,
 				F42D0D861A6D0AB700FF8421 /* synchronizer.cpp */,
 				F402C6F31A6FBAC7002F6DE4 /* udpconnection.cpp */,
 			);
@@ -471,7 +473,7 @@
 				F42D0D9B1A6D0B0A00FF8421 /* bytestream.c in Sources */,
 				F42D0DBE1A6D0B5600FF8421 /* uart_unix.c in Sources */,
 				F42D0DA51A6D0B0A00FF8421 /* random.c in Sources */,
-				F42D0D841A6D0A4500FF8421 /* queue.cpp in Sources */,
+				F42D0D841A6D0A4500FF8421 /* bytearrayqueue.cpp in Sources */,
 				F42D0D871A6D0AB700FF8421 /* synchronizer.cpp in Sources */,
 				F42D0DBA1A6D0B5600FF8421 /* conditionvar.c in Sources */,
 			);
@@ -507,7 +509,7 @@
 				F42D0E031A6D0DC600FF8421 /* bytestream.c in Sources */,
 				F42D0E041A6D0DC600FF8421 /* uart_unix.c in Sources */,
 				F42D0E051A6D0DC600FF8421 /* random.c in Sources */,
-				F42D0E061A6D0DC600FF8421 /* queue.cpp in Sources */,
+				F42D0E061A6D0DC600FF8421 /* bytearrayqueue.cpp in Sources */,
 				F42D0E071A6D0DC600FF8421 /* synchronizer.cpp in Sources */,
 				F42D0E081A6D0DC600FF8421 /* conditionvar.c in Sources */,
 			);

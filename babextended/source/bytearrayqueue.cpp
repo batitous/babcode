@@ -25,3 +25,82 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+#include "../../babcode/include/babcode.h"
+#include "../include/bytearrayqueue.h"
+#include <string.h>
+
+
+ByteArrayQueue::ByteArrayQueue(uint32_t queueSize, uint32_t arraySize)
+{
+    mHead = 0;
+    mTail = 0;
+    mSize = queueSize;
+    mArraySize = arraySize;
+    mPending = new uint8_t*[mSize];
+    
+    for (int i=0 ; i < mSize; i++)
+    {
+        mPending[i] = new uint8_t[mArraySize];
+    }
+}
+
+ByteArrayQueue::~ByteArrayQueue()
+{
+    for (int i=0 ; i < mSize ; i++)
+    {
+        delete mPending[i];
+    }
+    delete mPending;
+}
+
+void ByteArrayQueue::reset()
+{
+    mHead = 0;
+    mTail = 0;
+}
+
+uint32_t ByteArrayQueue::elementNumber()
+{
+    return mTail - mHead;
+}
+
+bool ByteArrayQueue::write(const uint8_t * array, uint32_t arraySize)
+{
+    uint32_t size = mSize-1;
+    if ( ((mTail+1) & (size)) == ((mHead) & (size)) )
+    {
+        return false;
+    }
+    
+    memcpy(mPending[mTail & (size)], array, arraySize);
+    mTail++;
+    
+    return true;
+}
+
+bool ByteArrayQueue::write(const uint8_t * value)
+{
+    uint32_t size = mSize-1;
+    if ( ((mTail+1) & (size)) == ((mHead) & (size)) )
+    {
+        return false;
+    }
+    
+    memcpy(mPending[mTail & (size)], value, mArraySize);
+    mTail++;
+    
+    return true;
+}
+
+uint8_t * ByteArrayQueue::read()
+{
+    if (mHead == mTail)
+    {
+        return 0;
+    }
+    
+    uint8_t * value= mPending[mHead & (mSize-1)];
+    mHead++;
+    
+    return value;
+}
