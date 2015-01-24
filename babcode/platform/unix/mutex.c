@@ -27,9 +27,19 @@
 
 #include "../../include/babcode.h"
 
+static pthread_mutexattr_t mutexAttr;
+static bool                mutexAttrInit = false;
+
 void mutexInit(Mutex * m)
 {
-    pthread_mutex_init(m, NULL);
+    if (mutexAttrInit==false)
+    {
+        pthread_mutexattr_init(&mutexAttr);
+        pthread_mutexattr_settype(&mutexAttr, PTHREAD_MUTEX_RECURSIVE);
+        mutexAttrInit = true;
+    }
+    
+    pthread_mutex_init(m, &mutexAttr);
 }
 
 void mutexLock(Mutex * m)
