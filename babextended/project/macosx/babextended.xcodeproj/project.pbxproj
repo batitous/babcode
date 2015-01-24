@@ -165,6 +165,7 @@
 		F42D0DE81A6D0C5200FF8421 /* fsm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fsm.cpp; path = ../../source/fsm.cpp; sourceTree = "<group>"; };
 		F42D0DEA1A6D0CF700FF8421 /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vector.h; path = ../../include/vector.h; sourceTree = "<group>"; };
 		F42D0E221A6D0DC600FF8421 /* libbabextended.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextended.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4CC96221A73A80E003F43BB /* queueimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queueimpl.h; path = ../../include/queueimpl.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +212,7 @@
 				F42D0D811A6D09F400FF8421 /* babextended.h */,
 				F42D0DE71A6D0C3C00FF8421 /* fsm.h */,
 				F42D0D821A6D0A2C00FF8421 /* queue.h */,
+				F4CC96221A73A80E003F43BB /* queueimpl.h */,
 				F42D0D851A6D0A9E00FF8421 /* synchronizer.h */,
 				F402C6F21A6FB9FC002F6DE4 /* udpconnection.h */,
 				F42D0DEA1A6D0CF700FF8421 /* vector.h */,

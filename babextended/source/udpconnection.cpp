@@ -173,9 +173,9 @@ int32_t UdpConnection::send(const void * data, uint32_t size)
     
     mLocalSequence++;
     
-    memcpy( &packet[CONNECTION_HEADER_SIZE], data, size );
+    memcpy( &packet[UDP_CONNECTION_HEADER_SIZE], data, size );
     
-    result = socketSend(&mSock, &mRemote, packet, size + CONNECTION_HEADER_SIZE );
+    result = socketSend(&mSock, &mRemote, packet, size + UDP_CONNECTION_HEADER_SIZE );
     
     return result;
 }
@@ -189,13 +189,13 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
     unsigned int ackBitmap;
     unsigned char * packet = mBuffer;
     
-    int bytes_read = socketReceive(&mSock, &mSender, packet, size + CONNECTION_HEADER_SIZE );
+    int bytes_read = socketReceive(&mSock, &mSender, packet, size + UDP_CONNECTION_HEADER_SIZE );
     if ( bytes_read <= 0 )
     {
         return bytes_read;
     }
     
-    if ( bytes_read <= CONNECTION_HEADER_SIZE )
+    if ( bytes_read <= UDP_CONNECTION_HEADER_SIZE )
     {
         LOG_ERR2("Not enough bytes for header", bytes_read);
         return 0;
@@ -265,9 +265,9 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
     }
     
     
-    memcpy( data, &packet[CONNECTION_HEADER_SIZE], bytes_read - CONNECTION_HEADER_SIZE );
+    memcpy( data, &packet[UDP_CONNECTION_HEADER_SIZE], bytes_read - UDP_CONNECTION_HEADER_SIZE );
     
-    return (bytes_read-CONNECTION_HEADER_SIZE);
+    return (bytes_read-UDP_CONNECTION_HEADER_SIZE);
 }
 
 

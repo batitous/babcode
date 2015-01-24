@@ -9,12 +9,15 @@
 #ifndef babextended_udpconnection_h
 #define babextended_udpconnection_h
 
+#include <semaphore.h>
 
-#define UDP_CONNECTION_PACKET_SIZE_MAX      (UDP_CONNECTION_PACKET_DATA_MAX+CONNECTION_HEADER_SIZE)        /**< Size of UDP packet */
-#define CONNECTION_HEADER_SIZE              20          /**< Size of connection header */
+
+#define UDP_CONNECTION_HEADER_SIZE          20          /**< Size of connection header */
 #define UDP_CONNECTION_PACKET_DATA_MAX      1024        /**< Size of connection payload */
+#define UDP_CONNECTION_PACKET_SIZE_MAX      (UDP_CONNECTION_PACKET_DATA_MAX+UDP_CONNECTION_HEADER_SIZE)        /**< Size of UDP packet */
 #define SEQUENCE_MAX                        0xFFFFFFFF
 #define ACK_MAX                             32          /**< Number of ack maximum we can check */
+
 
 
 /** An UDP Connection object

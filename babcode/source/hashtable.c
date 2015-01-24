@@ -27,6 +27,7 @@
 
 #include "../include/babcode.h"
 
+#include <stdlib.h>
 #include <string.h>
 
 // code cames from https://github.com/preshing/CompareIntegerMaps, public domain.

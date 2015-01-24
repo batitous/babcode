@@ -1,4 +1,4 @@
-// Copyright (c) 2013, Baptiste Burles
+// Copyright (c) 2015, Baptiste Burles
 //
 // All rights reserved.
 //
@@ -25,50 +25,74 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#include "../include/babcode.h"
+#ifndef babextended_queueimpl_h
+#define babextended_queueimpl_h
 
-#include <stdlib.h>
 
 
-#define DEFAULT_CAPACITY    32
-#define CAPACITY_INCREMENT  2
-
-void arrayInit(Array *a)
+template <typename T>
+Queue<T>::Queue(T* buffer, uint32_t size)
 {
-    a->size = 0;
-    a->capacity = DEFAULT_CAPACITY;
-    a->array = (unsigned long *)malloc(a->capacity*sizeof(unsigned long));
+    mHead = 0;
+    mTail = 0;
+    mSize = size;
+    mPending = buffer;
 }
 
-void arrayFree(Array *a)
+template <typename T>
+void Queue<T>::reset()
 {
-    free(a->array);
-    a->array = 0;
-    a->size = 0;
+    mHead = 0;
+    mTail = 0;
 }
 
-void arrayAppend(Array *a, unsigned long element)
+template <typename T>
+uint32_t Queue<T>::elementNumber()
 {
-    if (a->size == a->capacity)
+    return mTail - mHead;
+}
+
+template <typename T>
+bool Queue<T>::write(T value)
+{
+    uint32_t size = mSize-1;
+    if ( ((mTail+1) & (size)) == ((mHead) & (size)) )
     {
-        a->capacity = a->capacity * CAPACITY_INCREMENT;
-        a->array = (unsigned long *)realloc( a->array, a->capacity*sizeof(unsigned long));
+        return false;
     }
     
-    a->array[a->size] = element;
-    a->size++;
+    mPending[mTail & (size)] = value;
+    mTail++;
+    
+    return true;
 }
 
-void arrayRemove(Array *a, unsigned long element)
+template <typename T>
+bool Queue<T>::read(T* value)
 {
-    unsigned long i;
-    
-    for (i=0; i < a->size; i++)
+    if (mHead == mTail)
     {
-        if (a->array[i] == element)
-        {
-            a->array[i] = 0;
-        }
+        return false;
     }
     
+    *value= mPending[mHead & (mSize-1)];
+    mHead++;
+    
+    return true;
 }
+
+template <typename T>
+void Queue<T>::read(T *array, uint32_t want)
+{
+    T * ptr = array;
+    uint32_t size = mSize -1;
+    for(uint32_t i=0;i<want;i++)
+    {
+        *ptr = mPending[mHead & (size)];
+        ptr++;
+        mHead++;
+    }
+}
+
+
+#endif
