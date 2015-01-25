@@ -39,7 +39,7 @@ public:
      *
      * @param socket
      */
-    void startWithSocket(Socket* socket);
+    void startWithSocket(const Socket* socket);
    
     
     /** Start the local connection on the specified port

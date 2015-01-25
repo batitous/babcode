@@ -47,7 +47,7 @@ void Queue<T>::reset()
 }
 
 template <typename T>
-uint32_t Queue<T>::elementNumber()
+uint32_t Queue<T>::elementNumber() const
 {
     return mTail - mHead;
 }

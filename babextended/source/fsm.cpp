@@ -76,7 +76,7 @@ void Fsm::update()
     }
 }
 
-bool Fsm::isInState(int state)
+bool Fsm::isInState(int state) const
 {
     if (mCurrent == state)
     {
@@ -86,7 +86,7 @@ bool Fsm::isInState(int state)
     return false;
 }
 
-bool Fsm::isStateInitialized(void)
+bool Fsm::isStateInitialized(void) const
 {
     return mInit;
 }

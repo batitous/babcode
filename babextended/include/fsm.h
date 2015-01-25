@@ -59,14 +59,14 @@ public:
      * @param state         State to test
      * @return True if we are in the state, else false
      */
-    bool isInState(int state);
+    bool isInState(int state) const;
     
     
     /** Is the current state initialized ?
      *
      * @return True if the current state is initialized, else false
      */
-    bool isStateInitialized(void);
+    bool isStateInitialized(void) const;
     
 protected:
     /** Set the FSM to a new state

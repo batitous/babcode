@@ -59,7 +59,7 @@ void ByteArrayQueue::reset()
     mTail = 0;
 }
 
-uint32_t ByteArrayQueue::elementNumber()
+uint32_t ByteArrayQueue::elementNumber() const
 {
     return mTail - mHead;
 }

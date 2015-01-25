@@ -55,7 +55,7 @@ public:
      * @brief Get number of element in queue
      * @return
      */
-    uint32_t elementNumber();
+    uint32_t elementNumber() const;
     
     
     /**

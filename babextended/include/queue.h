@@ -54,7 +54,7 @@ public:
      * @brief Get number of element in queue
      * @return
      */
-    uint32_t elementNumber();
+    uint32_t elementNumber() const;
     
     
     /**
@@ -94,21 +94,21 @@ private:
 
 template Queue<uint8_t>::Queue(uint8_t * buffer, uint32_t size);
 template void Queue<uint8_t>::reset();
-template uint32_t Queue<uint8_t>::elementNumber();
+template uint32_t Queue<uint8_t>::elementNumber() const;
 template bool Queue<uint8_t>::write(uint8_t value);
 template bool Queue<uint8_t>::read(uint8_t* value);
 template void Queue<uint8_t>::read(uint8_t *array, uint32_t want);
 
 template Queue<uint16_t>::Queue(uint16_t * buffer, uint32_t size);
 template void Queue<uint16_t>::reset();
-template uint32_t Queue<uint16_t>::elementNumber();
+template uint32_t Queue<uint16_t>::elementNumber() const;
 template bool Queue<uint16_t>::write(uint16_t value);
 template bool Queue<uint16_t>::read(uint16_t* value);
 template void Queue<uint16_t>::read(uint16_t *array, uint32_t want);
 
 template Queue<uint32_t>::Queue(uint32_t * buffer, uint32_t size);
 template void Queue<uint32_t>::reset();
-template uint32_t Queue<uint32_t>::elementNumber();
+template uint32_t Queue<uint32_t>::elementNumber() const;
 template bool Queue<uint32_t>::write(uint32_t value);
 template bool Queue<uint32_t>::read(uint32_t* value);
 template void Queue<uint32_t>::read(uint32_t *array, uint32_t want);

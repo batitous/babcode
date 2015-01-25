@@ -21,7 +21,7 @@ UdpConnection::UdpConnection(uint32_t id)
     mBuffer = new uint8_t[UDP_CONNECTION_PACKET_SIZE_MAX];
 }
 
-void UdpConnection::startWithSocket(Socket *s)
+void UdpConnection::startWithSocket(const Socket *s)
 {
     mSock.handle = s->handle;
     mSock.port = s->port;
