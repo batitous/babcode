@@ -107,7 +107,8 @@ public:
     int32_t receive(void * data, uint32_t size);
     
     
-    
+    /** Wait something on the connection, then receive
+     */
     int32_t waitAndReceive(void * data, uint32_t size);
     
     
@@ -119,7 +120,12 @@ public:
      */
     const IpAddress & getIpReceiver();
     
+    /** Get the time between 2 send's call (Warning: received by the remote !)
+     */
     uint32_t getSenderTime();
+    
+    /** Get the time between 2 receive's call
+     */
     uint32_t getReceiverTime();
     
     
