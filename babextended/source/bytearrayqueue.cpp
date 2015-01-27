@@ -38,7 +38,7 @@ ByteArrayQueue::ByteArrayQueue(uint32_t queueSize, uint32_t arraySize)
     mArraySize = arraySize;
     mPending = new uint8_t*[mSize];
     
-    for (int i=0 ; i < mSize; i++)
+    for (uint32_t i=0 ; i < mSize; i++)
     {
         mPending[i] = new uint8_t[mArraySize];
     }
@@ -46,7 +46,7 @@ ByteArrayQueue::ByteArrayQueue(uint32_t queueSize, uint32_t arraySize)
 
 ByteArrayQueue::~ByteArrayQueue()
 {
-    for (int i=0 ; i < mSize ; i++)
+    for (uint32_t i=0 ; i < mSize ; i++)
     {
         delete mPending[i];
     }
