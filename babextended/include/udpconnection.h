@@ -122,11 +122,11 @@ public:
     
     /** Get the time between 2 send's call (Warning: received by the remote !)
      */
-    uint32_t getSenderTime();
+    uint32_t getTimeOfSender();
     
     /** Get the time between 2 receive's call
      */
-    uint32_t getReceiverTime();
+    uint32_t getTimeBetweenReceiveCall();
     
     
 private:

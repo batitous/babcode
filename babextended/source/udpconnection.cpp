@@ -106,12 +106,12 @@ const IpAddress & UdpConnection::getIpReceiver()
     return mSender;
 }
 
-uint32_t UdpConnection::getSenderTime()
+uint32_t UdpConnection::getTimeOfSender()
 {
     return mSenderDeltaTime;
 }
 
-uint32_t UdpConnection::getReceiverTime()
+uint32_t UdpConnection::getTimeBetweenReceiveCall()
 {
     return mReceiverDeltaTime;
 }
