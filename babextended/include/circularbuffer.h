@@ -25,21 +25,32 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef babextended_babextended_h
-#define babextended_babextended_h
+#ifndef babextended_circularbuffer_h
+#define babextended_circularbuffer_h
 
 
-#include "../../babcode/include/babcode.h"
-
-#include "bytearrayqueue.h"
-#include "circularbuffer.h"
-#include "queue.h"
-#include "synchronizer.h"
-#include "fsm.h"
-#include "vector.h"
-#include "udpconnection.h"
-
-
-
+class CircularBuffer
+{
+public:
+    CircularBuffer(uint32_t size, uint32_t numberOfReadByte, uint32_t numberOfWriteByte);
+    ~CircularBuffer();
+    
+    void write(const uint8_t * input, uint32_t size);
+    
+    void write(const uint8_t * input );
+    
+    bool read(uint8_t * output);
+    
+    
+private:
+    uint32_t    mRead;
+    uint32_t    mWrite;
+    
+    uint32_t    mWriteSize;
+    uint32_t    mReadSize;
+    
+    uint8_t *   mBuffer;
+    uint32_t    mBufferSize;
+};
 
 #endif
