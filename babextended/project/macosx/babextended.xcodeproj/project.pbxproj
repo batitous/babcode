@@ -11,6 +11,7 @@
 		F402C6F51A6FBD81002F6DE4 /* udpconnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F402C6F31A6FBAC7002F6DE4 /* udpconnection.cpp */; };
 		F42B03C01A7E2E0C00B788F1 /* circularbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42B03BF1A7E2E0C00B788F1 /* circularbuffer.cpp */; };
 		F42B03C11A7E2F9D00B788F1 /* circularbuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42B03BF1A7E2E0C00B788F1 /* circularbuffer.cpp */; };
+		F42B03C61A7F760600B788F1 /* Makefile in Sources */ = {isa = PBXBuildFile; fileRef = F42B03C31A7F760600B788F1 /* Makefile */; };
 		F42D0D841A6D0A4500FF8421 /* bytearrayqueue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */; };
 		F42D0D871A6D0AB700FF8421 /* synchronizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D861A6D0AB700FF8421 /* synchronizer.cpp */; };
 		F42D0D9A1A6D0B0A00FF8421 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D891A6D0B0A00FF8421 /* array.c */; };
@@ -114,6 +115,9 @@
 		F402C6F31A6FBAC7002F6DE4 /* udpconnection.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = udpconnection.cpp; path = ../../source/udpconnection.cpp; sourceTree = "<group>"; };
 		F42B03BE1A7E2DBC00B788F1 /* circularbuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = circularbuffer.h; path = ../../include/circularbuffer.h; sourceTree = "<group>"; };
 		F42B03BF1A7E2E0C00B788F1 /* circularbuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = circularbuffer.cpp; path = ../../source/circularbuffer.cpp; sourceTree = "<group>"; };
+		F42B03C31A7F760600B788F1 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = ../linux/Makefile; sourceTree = "<group>"; };
+		F42B03C41A7F760600B788F1 /* Makefile.armv7 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.armv7; path = ../linux/Makefile.armv7; sourceTree = "<group>"; };
+		F42B03C51A7F760600B788F1 /* Makefile.pi */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Makefile.pi; path = ../linux/Makefile.pi; sourceTree = "<group>"; };
 		F42D0D781A6D09B000FF8421 /* libbabextendedd.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextendedd.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		F42D0D811A6D09F400FF8421 /* babextended.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = babextended.h; path = ../../include/babextended.h; sourceTree = "<group>"; };
 		F42D0D821A6D0A2C00FF8421 /* queue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queue.h; path = ../../include/queue.h; sourceTree = "<group>"; };
@@ -191,9 +195,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F42B03C21A7F75F300B788F1 /* Makefile-Linux */ = {
+			isa = PBXGroup;
+			children = (
+				F42B03C31A7F760600B788F1 /* Makefile */,
+				F42B03C41A7F760600B788F1 /* Makefile.armv7 */,
+				F42B03C51A7F760600B788F1 /* Makefile.pi */,
+			);
+			name = "Makefile-Linux";
+			sourceTree = "<group>";
+		};
 		F42D0D6F1A6D09B000FF8421 = {
 			isa = PBXGroup;
 			children = (
+				F42B03C21A7F75F300B788F1 /* Makefile-Linux */,
 				F42D0D7F1A6D09D200FF8421 /* Include */,
 				F42D0D881A6D0AE100FF8421 /* Source-C */,
 				F42D0D801A6D09DC00FF8421 /* Source */,
@@ -481,6 +496,7 @@
 				F42D0DBE1A6D0B5600FF8421 /* uart_unix.c in Sources */,
 				F42D0DA51A6D0B0A00FF8421 /* random.c in Sources */,
 				F42D0D841A6D0A4500FF8421 /* bytearrayqueue.cpp in Sources */,
+				F42B03C61A7F760600B788F1 /* Makefile in Sources */,
 				F42D0D871A6D0AB700FF8421 /* synchronizer.cpp in Sources */,
 				F42D0DBA1A6D0B5600FF8421 /* conditionvar.c in Sources */,
 			);
