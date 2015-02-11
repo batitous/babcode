@@ -239,12 +239,6 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
     
     mReceiverLastTime = last;
     
-    // todo state listen and check address between sender and address ?
-    
-    // si server mode, alors verifier address sender
-    // si client mode, mettre comme 'Connected'
-    
-    
     
     // read the remote packet number and check if this number is more recent than the current
     remote = (unsigned int)read32bitsFromBuffer(packet+4);
@@ -285,7 +279,6 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
         
         //LOG("error: Receive ack %d local %d, too old !\n", ack, mLocalSequence);
     }
-    
     
     memcpy( data, &packet[UDP_CONNECTION_HEADER_SIZE], bytes_read - UDP_CONNECTION_HEADER_SIZE );
     

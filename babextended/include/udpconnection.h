@@ -81,7 +81,9 @@ public:
     void connect(const IpAddress * remoteAddr);
     
     
-    /** Send a large array of bytes : The array will be segmented
+    /** Send a large array of bytes.
+     *
+     * Warning: The array will be segmented and not reassembled on the receiver side !
      *
      * @param data
      * @param size      Size of data
@@ -136,7 +138,7 @@ private:
     uint32_t    mProtocolId;        /**< protocol identifier */
     bool        mIsOpen;            /**< is this connection open ? */
     uint8_t *   mBuffer;            /**< temporary buffer */
-    uint32_t    mLocalSequence;     /**< local sequence number */
+    uint32_t    mLocalSequence;     /**< local packet number */
     uint32_t    mLocalAcks[ACK_MAX]; /**< ack received for my packet send */
     uint32_t    mRemoteSequence;    /**< remote sequence number: last packet number received (more recent) */
     uint32_t    mRemoteAcks[ACK_MAX]; /**< ack of the last packets received */
