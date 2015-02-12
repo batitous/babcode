@@ -51,6 +51,7 @@ void UdpConnection::startWithSocket(const Socket *s)
         mLocalSequence = 0;
         mSendDeltaTime = 0;
         mReceiverLastTime = 0;
+        mReceiverDeltaTime = 0;
         
         for(int i=0;i<ACK_MAX;i++)
         {
@@ -73,6 +74,7 @@ int32_t UdpConnection::start(uint16_t port)
         mLocalSequence = 0;
         mSendDeltaTime = 0;
         mReceiverLastTime = 0;
+        mReceiverDeltaTime = 0;
         
         for(i=0;i<ACK_MAX;i++)
         {
