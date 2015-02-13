@@ -25,21 +25,42 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef babextended_babextended_h
-#define babextended_babextended_h
+#ifndef babextended_log_h
+#define babextended_log_h
 
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-#include "../../babcode/include/babcode.h"
+class Log
+{
+public:
+    Log();
+    ~Log();
+    
+    static Log * global();
+    
+    void start(const char * filename, bool output);
+    void stop();
+    
+    void error(const char fmt[], ...);
+    
+    void info(const char fmt[], ...);
+    
+private:
+    FILE *              mFile;
+    ByteArrayQueue *    mQueue;
+    Thread              mThread;
+    bool                mThreadRun;
+    bool                mPrintOnOutput;
+    
+    static Log *        defaultLog;
 
-#include "bytearrayqueue.h"
-#include "circularbuffer.h"
-#include "queue.h"
-#include "synchronizer.h"
-#include "fsm.h"
-#include "vector.h"
-#include "udpconnection.h"
-#include "log.h"
-
-
+    void addInfo(const char fmt[], va_list args);
+    void addError(const char fmt[], va_list args);
+    void privateThreadRunner(void);
+    
+    static void * privateThreadStarter(void *);
+};
 
 #endif
