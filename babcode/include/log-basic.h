@@ -32,6 +32,7 @@
 extern "C" {
 #endif
 
+
 extern void logOpen(const char *filename);
 
 extern void logClose(void);

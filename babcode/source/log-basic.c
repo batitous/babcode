@@ -49,6 +49,11 @@ static void log_add(const char fmt[], va_list args)
     fflush(global_log_file);
 }
 
+void logSetStream(FILE * file)
+{
+    global_log_file = file;
+}
+
 void logOpen(const char * filename)
 {
     global_log_file = fopen(filename,"w+");

@@ -46,7 +46,7 @@
 
 
 #include "types.h"
-#include "log.h"
+#include "log-basic.h"
 #include "utils.h"
 #include "hashtable.h"
 #include "conversion.h"

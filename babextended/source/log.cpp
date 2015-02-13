@@ -32,7 +32,13 @@
 #define BUFFER_SIZE         2048
 #define LOG_FREQUENCY_HZ    30
 
-
+#ifdef __cplusplus
+extern "C" {
+#endif
+    extern void logSetStream(FILE * file);
+#ifdef __cplusplus
+}
+#endif
 
 Log * Log::defaultLog = new Log();
 
@@ -60,6 +66,9 @@ void Log::start(const char * filename, bool output)
     {
         return;
     }
+    
+    // link old log from babcode to the new log
+    logSetStream(mFile);
     
     mQueue = new ByteArrayQueue(128, BUFFER_SIZE);
     

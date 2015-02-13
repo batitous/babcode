@@ -22,7 +22,7 @@
 		F42D0D9D1A6D0B0A00FF8421 /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8C1A6D0B0A00FF8421 /* crc.c */; };
 		F42D0D9E1A6D0B0A00FF8421 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */; };
 		F42D0D9F1A6D0B0A00FF8421 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8E1A6D0B0A00FF8421 /* list.c */; };
-		F42D0DA01A6D0B0A00FF8421 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8F1A6D0B0A00FF8421 /* log.c */; };
+		F42D0DA01A6D0B0A00FF8421 /* log-basic.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8F1A6D0B0A00FF8421 /* log-basic.c */; };
 		F42D0DA11A6D0B0A00FF8421 /* networkstack-options.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D901A6D0B0A00FF8421 /* networkstack-options.c */; };
 		F42D0DA21A6D0B0A00FF8421 /* networkstack-private.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */; };
 		F42D0DA31A6D0B0A00FF8421 /* networkstack-tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D921A6D0B0A00FF8421 /* networkstack-tcp.c */; };
@@ -50,7 +50,7 @@
 		F42D0DD91A6D0BE500FF8421 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC61A6D0BE500FF8421 /* file.h */; };
 		F42D0DDA1A6D0BE500FF8421 /* hashtable.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC71A6D0BE500FF8421 /* hashtable.h */; };
 		F42D0DDB1A6D0BE500FF8421 /* list.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC81A6D0BE500FF8421 /* list.h */; };
-		F42D0DDC1A6D0BE500FF8421 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC91A6D0BE500FF8421 /* log.h */; };
+		F42D0DDC1A6D0BE500FF8421 /* log-basic.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC91A6D0BE500FF8421 /* log-basic.h */; };
 		F42D0DDD1A6D0BE500FF8421 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCA1A6D0BE500FF8421 /* mutex.h */; };
 		F42D0DDE1A6D0BE500FF8421 /* networkstack.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCB1A6D0BE500FF8421 /* networkstack.h */; };
 		F42D0DDF1A6D0BE500FF8421 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCC1A6D0BE500FF8421 /* random.h */; };
@@ -64,7 +64,7 @@
 		F42D0DE91A6D0C5200FF8421 /* fsm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DE81A6D0C5200FF8421 /* fsm.cpp */; };
 		F42D0DED1A6D0DC600FF8421 /* utils_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DAF1A6D0B3800FF8421 /* utils_osx.c */; };
 		F42D0DEE1A6D0DC600FF8421 /* str.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D961A6D0B0A00FF8421 /* str.c */; };
-		F42D0DEF1A6D0DC600FF8421 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8F1A6D0B0A00FF8421 /* log.c */; };
+		F42D0DEF1A6D0DC600FF8421 /* log-basic.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8F1A6D0B0A00FF8421 /* log-basic.c */; };
 		F42D0DF01A6D0DC600FF8421 /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB61A6D0B5600FF8421 /* mutex.c */; };
 		F42D0DF11A6D0DC600FF8421 /* networkstack-udp.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D931A6D0B0A00FF8421 /* networkstack-udp.c */; };
 		F42D0DF21A6D0DC600FF8421 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D991A6D0B0A00FF8421 /* utils.c */; };
@@ -104,7 +104,7 @@
 		F42D0E161A6D0DC600FF8421 /* utils.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD21A6D0BE500FF8421 /* utils.h */; };
 		F42D0E171A6D0DC600FF8421 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCC1A6D0BE500FF8421 /* random.h */; };
 		F42D0E181A6D0DC600FF8421 /* hashtable.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC71A6D0BE500FF8421 /* hashtable.h */; };
-		F42D0E191A6D0DC600FF8421 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC91A6D0BE500FF8421 /* log.h */; };
+		F42D0E191A6D0DC600FF8421 /* log-basic.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC91A6D0BE500FF8421 /* log-basic.h */; };
 		F42D0E1A1A6D0DC600FF8421 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCE1A6D0BE500FF8421 /* thread.h */; };
 		F42D0E1B1A6D0DC600FF8421 /* uart.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DD11A6D0BE500FF8421 /* uart.h */; };
 		F42D0E1C1A6D0DC600FF8421 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC61A6D0BE500FF8421 /* file.h */; };
@@ -134,7 +134,7 @@
 		F42D0D8C1A6D0B0A00FF8421 /* crc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crc.c; path = ../../../babcode/source/crc.c; sourceTree = "<group>"; };
 		F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hashtable.c; path = ../../../babcode/source/hashtable.c; sourceTree = "<group>"; };
 		F42D0D8E1A6D0B0A00FF8421 /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../babcode/source/list.c; sourceTree = "<group>"; };
-		F42D0D8F1A6D0B0A00FF8421 /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = log.c; path = ../../../babcode/source/log.c; sourceTree = "<group>"; };
+		F42D0D8F1A6D0B0A00FF8421 /* log-basic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "log-basic.c"; path = "../../../babcode/source/log-basic.c"; sourceTree = "<group>"; };
 		F42D0D901A6D0B0A00FF8421 /* networkstack-options.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-options.c"; path = "../../../babcode/source/networkstack-options.c"; sourceTree = "<group>"; };
 		F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "networkstack-private.h"; path = "../../../babcode/source/networkstack-private.h"; sourceTree = "<group>"; };
 		F42D0D921A6D0B0A00FF8421 /* networkstack-tcp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-tcp.c"; path = "../../../babcode/source/networkstack-tcp.c"; sourceTree = "<group>"; };
@@ -162,7 +162,7 @@
 		F42D0DC61A6D0BE500FF8421 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = file.h; path = ../../../babcode/include/file.h; sourceTree = "<group>"; };
 		F42D0DC71A6D0BE500FF8421 /* hashtable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hashtable.h; path = ../../../babcode/include/hashtable.h; sourceTree = "<group>"; };
 		F42D0DC81A6D0BE500FF8421 /* list.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = list.h; path = ../../../babcode/include/list.h; sourceTree = "<group>"; };
-		F42D0DC91A6D0BE500FF8421 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = log.h; path = ../../../babcode/include/log.h; sourceTree = "<group>"; };
+		F42D0DC91A6D0BE500FF8421 /* log-basic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "log-basic.h"; path = "../../../babcode/include/log-basic.h"; sourceTree = "<group>"; };
 		F42D0DCA1A6D0BE500FF8421 /* mutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mutex.h; path = ../../../babcode/include/mutex.h; sourceTree = "<group>"; };
 		F42D0DCB1A6D0BE500FF8421 /* networkstack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = networkstack.h; path = ../../../babcode/include/networkstack.h; sourceTree = "<group>"; };
 		F42D0DCC1A6D0BE500FF8421 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = ../../../babcode/include/random.h; sourceTree = "<group>"; };
@@ -279,7 +279,7 @@
 				F42D0D8C1A6D0B0A00FF8421 /* crc.c */,
 				F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */,
 				F42D0D8E1A6D0B0A00FF8421 /* list.c */,
-				F42D0D8F1A6D0B0A00FF8421 /* log.c */,
+				F42D0D8F1A6D0B0A00FF8421 /* log-basic.c */,
 				F42D0D901A6D0B0A00FF8421 /* networkstack-options.c */,
 				F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */,
 				F42D0D921A6D0B0A00FF8421 /* networkstack-tcp.c */,
@@ -328,7 +328,7 @@
 				F42D0DC61A6D0BE500FF8421 /* file.h */,
 				F42D0DC71A6D0BE500FF8421 /* hashtable.h */,
 				F42D0DC81A6D0BE500FF8421 /* list.h */,
-				F42D0DC91A6D0BE500FF8421 /* log.h */,
+				F42D0DC91A6D0BE500FF8421 /* log-basic.h */,
 				F42D0DCA1A6D0BE500FF8421 /* mutex.h */,
 				F42D0DCB1A6D0BE500FF8421 /* networkstack.h */,
 				F42D0DCC1A6D0BE500FF8421 /* random.h */,
@@ -364,7 +364,7 @@
 				F42D0DE51A6D0BE500FF8421 /* utils.h in Headers */,
 				F42D0DDF1A6D0BE500FF8421 /* random.h in Headers */,
 				F42D0DDA1A6D0BE500FF8421 /* hashtable.h in Headers */,
-				F42D0DDC1A6D0BE500FF8421 /* log.h in Headers */,
+				F42D0DDC1A6D0BE500FF8421 /* log-basic.h in Headers */,
 				F42D0DE11A6D0BE500FF8421 /* thread.h in Headers */,
 				F42D0DE41A6D0BE500FF8421 /* uart.h in Headers */,
 				F42D0DD91A6D0BE500FF8421 /* file.h in Headers */,
@@ -391,7 +391,7 @@
 				F42D0E161A6D0DC600FF8421 /* utils.h in Headers */,
 				F42D0E171A6D0DC600FF8421 /* random.h in Headers */,
 				F42D0E181A6D0DC600FF8421 /* hashtable.h in Headers */,
-				F42D0E191A6D0DC600FF8421 /* log.h in Headers */,
+				F42D0E191A6D0DC600FF8421 /* log-basic.h in Headers */,
 				F42D0E1A1A6D0DC600FF8421 /* thread.h in Headers */,
 				F42D0E1B1A6D0DC600FF8421 /* uart.h in Headers */,
 				F42D0E1C1A6D0DC600FF8421 /* file.h in Headers */,
@@ -476,7 +476,7 @@
 			files = (
 				F42D0DB21A6D0B3800FF8421 /* utils_osx.c in Sources */,
 				F42D0DA71A6D0B0A00FF8421 /* str.c in Sources */,
-				F42D0DA01A6D0B0A00FF8421 /* log.c in Sources */,
+				F42D0DA01A6D0B0A00FF8421 /* log-basic.c in Sources */,
 				F42D0DBC1A6D0B5600FF8421 /* mutex.c in Sources */,
 				F42D0DA41A6D0B0A00FF8421 /* networkstack-udp.c in Sources */,
 				F42D0DAA1A6D0B0A00FF8421 /* utils.c in Sources */,
@@ -518,7 +518,7 @@
 				F402C6F51A6FBD81002F6DE4 /* udpconnection.cpp in Sources */,
 				F42D0DED1A6D0DC600FF8421 /* utils_osx.c in Sources */,
 				F42D0DEE1A6D0DC600FF8421 /* str.c in Sources */,
-				F42D0DEF1A6D0DC600FF8421 /* log.c in Sources */,
+				F42D0DEF1A6D0DC600FF8421 /* log-basic.c in Sources */,
 				F42D0DF01A6D0DC600FF8421 /* mutex.c in Sources */,
 				F42D0DF11A6D0DC600FF8421 /* networkstack-udp.c in Sources */,
 				F42D0DF21A6D0DC600FF8421 /* utils.c in Sources */,
