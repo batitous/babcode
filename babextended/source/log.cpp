@@ -32,13 +32,18 @@
 #define BUFFER_SIZE         2048
 #define LOG_FREQUENCY_HZ    30
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#if PLATFORM==PLATFORM_MAC
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
+        extern void logSetStream(FILE * file);
+    #ifdef __cplusplus
+    }
+    #endif
+#else
     extern void logSetStream(FILE * file);
-#ifdef __cplusplus
-}
 #endif
+
 
 Log * Log::defaultLog = new Log();
 
@@ -50,7 +55,7 @@ Log *Log::global()
 
 Log::Log()
 {
-    
+    mutexInit(&mMutex);
 }
 
 Log::~Log()
@@ -94,9 +99,14 @@ void Log::addError(const char fmt[], va_list args)
     char buffer[BUFFER_SIZE];
     
     int prefix = snprintf(buffer, BUFFER_SIZE, "[%8.3f] [ERROR] ", getTicks()/1000.0);
-    int size = vsnprintf(buffer+prefix, BUFFER_SIZE - prefix,fmt,args);
     
-    mQueue->write((uint8_t *)buffer, size+prefix);
+    int size = vsnprintf(buffer+prefix, BUFFER_SIZE - prefix,fmt,args);
+    if (size > 0 && size < BUFFER_SIZE)
+    {
+        mutexLock(&mMutex);
+        mQueue->write((uint8_t *)buffer, size+prefix);
+        mutexUnlock(&mMutex);
+    }
 }
 
 
@@ -107,7 +117,12 @@ void Log::addInfo(const char fmt[], va_list args)
     int prefix = snprintf(buffer, BUFFER_SIZE, "[%8.3f] [INFO] ", getTicks()/1000.0);
     int size = vsnprintf(buffer+prefix, BUFFER_SIZE - prefix,fmt,args);
     
-    mQueue->write((uint8_t *)buffer, size+prefix);
+    if (size > 0 && size < BUFFER_SIZE)
+    {
+        mutexLock(&mMutex);
+        mQueue->write((uint8_t *)buffer, size+prefix);
+        mutexUnlock(&mMutex);
+    }
 }
 
 void Log::error(const char fmt[], ...)
@@ -145,14 +160,18 @@ void Log::privateThreadRunner(void)
         while (buffer!=0)
         {
             int size = (int)strlen((char *)buffer);
-            fwrite(buffer, size, 1, mFile);
-            
-            if (mPrintOnOutput==true)
+            if (size < BUFFER_SIZE)
             {
-                printf("%s", buffer);
+                fwrite(buffer, size, 1, mFile);
+            
+                if (mPrintOnOutput==true)
+                {
+                    printf("%s", buffer);
+                }
+            
+                writeSomething = true;
             }
             
-            writeSomething = true;
             buffer = mQueue->read();
         }
         

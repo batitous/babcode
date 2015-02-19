@@ -53,6 +53,7 @@ private:
     Thread              mThread;
     bool                mThreadRun;
     bool                mPrintOnOutput;
+    Mutex               mMutex;
     
     static Log *        defaultLog;
 

@@ -6,12 +6,12 @@
 EXE=./libbabextended-linux-armv7.a
 
 # File source list: Add your source!
-SRC_FILES=array.c bytestream.c conversion.c hashtable.c list.c log.c random.c str.c time.c timer.c utils.c
+SRC_FILES=array.c bytestream.c conversion.c hashtable.c list.c log-basic.c random.c str.c time.c timer.c utils.c
 SRC_FILES+= networkstack-udp.c networkstack-tcp.c networkstack-options.c	
 SRC_FILES+= file.c thread.c mutex.c conditionvar.c wait.c
 SRC_FILES+= uart.c uart_unix.c networkstack_linux.c crc.c
 
-SRC_CPP_FILES= fsm.cpp synchronizer.cpp udpconnection.cpp bytearrayqueue.cpp circularbuffer.cpp
+SRC_CPP_FILES= fsm.cpp synchronizer.cpp udpconnection.cpp bytearrayqueue.cpp circularbuffer.cpp log.cpp
 
 # Temporary repertory
 BUILD_PATH=build/
