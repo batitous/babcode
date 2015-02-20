@@ -98,13 +98,17 @@ void Log::addError(const char fmt[], va_list args)
 {
     char buffer[BUFFER_SIZE];
     
-    int prefix = snprintf(buffer, BUFFER_SIZE, "[%8.3f] [ERROR] ", getTicks()/1000.0);
+    memset(buffer, 0, BUFFER_SIZE);
     
+    int prefix = snprintf(buffer, BUFFER_SIZE, "[%8.3f] [ERROR] ", getTicks()/1000.0);
     int size = vsnprintf(buffer+prefix, BUFFER_SIZE - prefix,fmt,args);
-    if (size > 0 && size < BUFFER_SIZE)
+    
+    int total = size+prefix;
+    
+    if (size > 0 && total < BUFFER_SIZE)
     {
         mutexLock(&mMutex);
-        mQueue->write((uint8_t *)buffer, size+prefix);
+        mQueue->write((uint8_t *)buffer, BUFFER_SIZE);
         mutexUnlock(&mMutex);
     }
 }
@@ -114,13 +118,17 @@ void Log::addInfo(const char fmt[], va_list args)
 {
     char buffer[BUFFER_SIZE];
     
+    memset(buffer, 0, BUFFER_SIZE);
+    
     int prefix = snprintf(buffer, BUFFER_SIZE, "[%8.3f] [INFO] ", getTicks()/1000.0);
     int size = vsnprintf(buffer+prefix, BUFFER_SIZE - prefix,fmt,args);
     
-    if (size > 0 && size < BUFFER_SIZE)
+    int total = size+prefix;
+    
+    if (size > 0 && total < BUFFER_SIZE)
     {
         mutexLock(&mMutex);
-        mQueue->write((uint8_t *)buffer, size+prefix);
+        mQueue->write((uint8_t *)buffer, BUFFER_SIZE);
         mutexUnlock(&mMutex);
     }
 }
@@ -156,10 +164,13 @@ void Log::privateThreadRunner(void)
         
         writeSomething = false;
         
+        mutexLock(&mMutex);
         buffer = mQueue->read();
+        mutexUnlock(&mMutex);
+        
         while (buffer!=0)
         {
-            int size = (int)strlen((char *)buffer);
+            int size = (int)strnlen((char *)buffer, BUFFER_SIZE);
             if (size < BUFFER_SIZE)
             {
                 fwrite(buffer, size, 1, mFile);
@@ -172,7 +183,9 @@ void Log::privateThreadRunner(void)
                 writeSomething = true;
             }
             
+            mutexLock(&mMutex);
             buffer = mQueue->read();
+            mutexUnlock(&mMutex);
         }
         
         
