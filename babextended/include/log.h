@@ -32,20 +32,39 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+
+/** A simple log class
+ *
+ */
 class Log
 {
 public:
     Log();
     ~Log();
     
+    /** @brief Get the global log object
+     */
     static Log * global();
-    
+
+    /** @brief Start the logging output to the specified file
+     * @param filename      File where store the log output
+     * @param output        Enable or disable the log on screen output
+     */
     void start(const char * filename, bool output);
+    
+    /** @brief Stop the logging output
+     */
     void stop();
     
+    /** @brief Log error
+     */
     void error(const char fmt[], ...);
     
+    /** @brief Log information
+     */
     void info(const char fmt[], ...);
+    
     
 private:
     FILE *              mFile;

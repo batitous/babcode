@@ -63,9 +63,9 @@ Log::~Log()
     
 }
 
-void Log::start(const char * filename, bool output)
+void Log::start(const char * filename, bool enableOutput)
 {
-    mPrintOnOutput = output;
+    mPrintOnOutput = enableOutput;
     mFile = fopen(filename,"w+");
     if (mFile==NULL)
     {

@@ -29,16 +29,45 @@
 #define babextended_circularbuffer_h
 
 
+/** A circular byte buffer
+ *
+ */
 class CircularBuffer
 {
 public:
+    /** @brief Create a new circular buffer object
+     *
+     * @param size              Size of the internal buffer
+     * @param numberOfReadByte  Number of bytes to read when call the read method
+     * @param numberOfWriteByte Number of bytes to write when call the write method
+     */
     CircularBuffer(uint32_t size, uint32_t numberOfReadByte, uint32_t numberOfWriteByte);
     ~CircularBuffer();
     
+    /** @brief Write raw bytes into the circular buffer
+     *
+     * @param input     Byte array to write
+     * @param size      Size of array
+     */
     void write(const uint8_t * input, uint32_t size);
     
+    /** @brief Write raw bytes into the circular buffer
+     *
+     * @param input     Byte array to write
+     */
     void write(const uint8_t * input );
     
+    /** @brief Read raw bytes from the circular buffer
+     * @param output    Array where write the read bytes
+     * @param size      Number of bytes to read
+     * @return true if we can read the number of bytes requested, else false
+     */
+    bool read(uint8_t * output, uint32_t size);
+    
+    /** @brief Read raw bytes from the circular buffer.
+     * @param output    Array where write the read bytes
+     * @return false if we can't read enough bytes.
+     */
     bool read(uint8_t * output);
     
     

@@ -75,7 +75,12 @@ void CircularBuffer::write(const uint8_t * input )
 
 bool CircularBuffer::read(uint8_t * output)
 {
-    
+    return read(output, mReadSize);
+}
+
+
+bool CircularBuffer::read(uint8_t * output, uint32_t size)
+{
     uint32_t oki = 0;
     if (mRead < mWrite)
     {
@@ -88,13 +93,13 @@ bool CircularBuffer::read(uint8_t * output)
     
     //        printf("mRead %d mWrite %d\n", mRead, mWrite);
     
-    if (oki >= mReadSize)
+    if (oki >= size)
     {
-        if ( (mRead+mReadSize) < mBufferSize)
+        if ( (mRead+size) < mBufferSize)
         {
-            memcpy(output, &mBuffer[mRead], mReadSize);
+            memcpy(output, &mBuffer[mRead], size);
             
-            mRead = mRead + mReadSize;
+            mRead = mRead + size;
         }
         else
         {
@@ -102,9 +107,9 @@ bool CircularBuffer::read(uint8_t * output)
             
             memcpy(output, &mBuffer[mRead], byteToCopy);
             
-            memcpy(output + byteToCopy, &mBuffer[0], mReadSize - byteToCopy);
+            memcpy(output + byteToCopy, &mBuffer[0], size - byteToCopy);
             
-            mRead = mReadSize - byteToCopy;
+            mRead = size - byteToCopy;
         }
         
         return true;
