@@ -6,6 +6,22 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		F42A5DE01A9F6511007900D7 /* babcode */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F42A5DE11A9F6511007900D7 /* Build configuration list for PBXAggregateTarget "babcode" */;
+			buildPhases = (
+				F42A5DE81A9F6529007900D7 /* ShellScript */,
+			);
+			dependencies = (
+				F42A5DE71A9F6519007900D7 /* PBXTargetDependency */,
+				F42A5DE51A9F6517007900D7 /* PBXTargetDependency */,
+			);
+			name = babcode;
+			productName = babcode;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		C5168A18172AB66300C96B59 /* str.c in Sources */ = {isa = PBXBuildFile; fileRef = C5168A17172AB66300C96B59 /* str.c */; };
 		C5168A1A172AB75B00C96B59 /* str.h in Headers */ = {isa = PBXBuildFile; fileRef = C5168A19172AB75B00C96B59 /* str.h */; };
@@ -13,12 +29,39 @@
 		C596404E1737F517008AAC57 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = C596404D1737F517008AAC57 /* list.c */; };
 		C5CB5724177B082F003125AA /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = C5CB5723177B082F003125AA /* timer.c */; };
 		E44C27B8178ED7AA0031BC79 /* bytestream.c in Sources */ = {isa = PBXBuildFile; fileRef = E44C27B7178ED7A50031BC79 /* bytestream.c */; };
+		F42A5D781A9F61E0007900D7 /* log-basic.c in Sources */ = {isa = PBXBuildFile; fileRef = F42A5D771A9F61E0007900D7 /* log-basic.c */; };
+		F42A5D7A1A9F61EC007900D7 /* log-basic.h in Headers */ = {isa = PBXBuildFile; fileRef = F42A5D791A9F61EC007900D7 /* log-basic.h */; };
+		F42A5DC61A9F634A007900D7 /* networkstack_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A81715ADAC00D316B9 /* networkstack_osx.c */; };
+		F42A5DC71A9F634A007900D7 /* uart.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A671171407D900D316B9 /* uart.c */; };
+		F42A5DC81A9F634A007900D7 /* utils_osx.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A672171407D900D316B9 /* utils_osx.c */; };
+		F42A5DC91A9F6354007900D7 /* log-basic.c in Sources */ = {isa = PBXBuildFile; fileRef = F42A5D771A9F61E0007900D7 /* log-basic.c */; };
+		F42A5DCA1A9F6354007900D7 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = F4567180184DEB7B0043A32C /* array.c */; };
+		F42A5DCB1A9F6354007900D7 /* bytestream.c in Sources */ = {isa = PBXBuildFile; fileRef = E44C27B7178ED7A50031BC79 /* bytestream.c */; };
+		F42A5DCC1A9F6354007900D7 /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67B171407F300D316B9 /* conversion.c */; };
+		F42A5DCD1A9F6354007900D7 /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = F443FEFF19D95C1A0032005C /* crc.c */; };
+		F42A5DCE1A9F6354007900D7 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6AF17182AF600D316B9 /* hashtable.c */; };
+		F42A5DCF1A9F6354007900D7 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = C596404D1737F517008AAC57 /* list.c */; };
+		F42A5DD01A9F6354007900D7 /* networkstack-options.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69917143FC500D316B9 /* networkstack-options.c */; };
+		F42A5DD11A9F6354007900D7 /* networkstack-private.h in Sources */ = {isa = PBXBuildFile; fileRef = F485A69B171440AA00D316B9 /* networkstack-private.h */; };
+		F42A5DD21A9F6354007900D7 /* networkstack-tcp.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A69717141CBD00D316B9 /* networkstack-tcp.c */; };
+		F42A5DD31A9F6354007900D7 /* networkstack-udp.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6941714164C00D316B9 /* networkstack-udp.c */; };
+		F42A5DD41A9F6354007900D7 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67D171407F300D316B9 /* random.c */; };
+		F42A5DD51A9F6354007900D7 /* randomLfsr.c in Sources */ = {isa = PBXBuildFile; fileRef = F49191A419D5953300725C3A /* randomLfsr.c */; };
+		F42A5DD61A9F6354007900D7 /* str.c in Sources */ = {isa = PBXBuildFile; fileRef = C5168A17172AB66300C96B59 /* str.c */; };
+		F42A5DD71A9F6354007900D7 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67E171407F300D316B9 /* time.c */; };
+		F42A5DD81A9F6354007900D7 /* timer.c in Sources */ = {isa = PBXBuildFile; fileRef = C5CB5723177B082F003125AA /* timer.c */; };
+		F42A5DD91A9F6354007900D7 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67F171407F300D316B9 /* utils.c */; };
+		F42A5DDA1A9F635D007900D7 /* file.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A675171407E600D316B9 /* file.c */; };
+		F42A5DDB1A9F635D007900D7 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A676171407E600D316B9 /* thread.c */; };
+		F42A5DDC1A9F635D007900D7 /* mutex.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A68E17140E5A00D316B9 /* mutex.c */; };
+		F42A5DDD1A9F635D007900D7 /* conditionvar.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A0171560E000D316B9 /* conditionvar.c */; };
+		F42A5DDE1A9F635D007900D7 /* uart_unix.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6A51715A6F600D316B9 /* uart_unix.c */; };
+		F42A5DDF1A9F635D007900D7 /* wait.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A677171407E600D316B9 /* wait.c */; };
 		F443FF0019D95C1A0032005C /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = F443FEFF19D95C1A0032005C /* crc.c */; };
 		F4567181184DEB7B0043A32C /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = F4567180184DEB7B0043A32C /* array.c */; };
 		F485A665171407BE00D316B9 /* babcode.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65B171407BE00D316B9 /* babcode.h */; };
 		F485A666171407BE00D316B9 /* conversion.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65C171407BE00D316B9 /* conversion.h */; };
 		F485A667171407BE00D316B9 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65D171407BE00D316B9 /* file.h */; };
-		F485A668171407BE00D316B9 /* log.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65E171407BE00D316B9 /* log.h */; };
 		F485A669171407BE00D316B9 /* random.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A65F171407BE00D316B9 /* random.h */; };
 		F485A66A171407BE00D316B9 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A660171407BE00D316B9 /* thread.h */; };
 		F485A66B171407BE00D316B9 /* types.h in Headers */ = {isa = PBXBuildFile; fileRef = F485A661171407BE00D316B9 /* types.h */; };
@@ -31,7 +74,6 @@
 		F485A679171407E600D316B9 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A676171407E600D316B9 /* thread.c */; };
 		F485A67A171407E600D316B9 /* wait.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A677171407E600D316B9 /* wait.c */; };
 		F485A680171407F300D316B9 /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67B171407F300D316B9 /* conversion.c */; };
-		F485A681171407F300D316B9 /* log.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67C171407F300D316B9 /* log.c */; };
 		F485A682171407F300D316B9 /* random.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67D171407F300D316B9 /* random.c */; };
 		F485A683171407F300D316B9 /* time.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67E171407F300D316B9 /* time.c */; };
 		F485A684171407F300D316B9 /* utils.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A67F171407F300D316B9 /* utils.c */; };
@@ -47,6 +89,35 @@
 		F485A6B017182AF600D316B9 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F485A6AF17182AF600D316B9 /* hashtable.c */; };
 		F49191A519D5953300725C3A /* randomLfsr.c in Sources */ = {isa = PBXBuildFile; fileRef = F49191A419D5953300725C3A /* randomLfsr.c */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F42A5DE41A9F6517007900D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F485A64A1714078C00D316B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F485A6511714078C00D316B9;
+			remoteInfo = "babcode-macosx";
+		};
+		F42A5DE61A9F6519007900D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F485A64A1714078C00D316B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F42A5DAD1A9F62A6007900D7;
+			remoteInfo = "bacode-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F42A5DAC1A9F62A6007900D7 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C5168A17172AB66300C96B59 /* str.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = str.c; path = ../../source/str.c; sourceTree = "<group>"; };
@@ -66,6 +137,9 @@
 		E4095463172A71E50008BA47 /* uart.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = uart.c; path = ../../platform/linux/uart.c; sourceTree = "<group>"; };
 		E44C27B6178ED78D0031BC79 /* bytestream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bytestream.h; path = ../../include/bytestream.h; sourceTree = "<group>"; };
 		E44C27B7178ED7A50031BC79 /* bytestream.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = bytestream.c; path = ../../source/bytestream.c; sourceTree = "<group>"; };
+		F42A5D771A9F61E0007900D7 /* log-basic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "log-basic.c"; path = "../../source/log-basic.c"; sourceTree = "<group>"; };
+		F42A5D791A9F61EC007900D7 /* log-basic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "log-basic.h"; path = "../../include/log-basic.h"; sourceTree = "<group>"; };
+		F42A5DAE1A9F62A6007900D7 /* libbacode-ios.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libbacode-ios.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F443FEFF19D95C1A0032005C /* crc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crc.c; path = ../../source/crc.c; sourceTree = "<group>"; };
 		F456717F184DEB0A0043A32C /* array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = array.h; path = ../../include/array.h; sourceTree = "<group>"; };
 		F4567180184DEB7B0043A32C /* array.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = array.c; path = ../../source/array.c; sourceTree = "<group>"; };
@@ -73,7 +147,6 @@
 		F485A65B171407BE00D316B9 /* babcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = babcode.h; path = ../../include/babcode.h; sourceTree = "<group>"; };
 		F485A65C171407BE00D316B9 /* conversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = conversion.h; path = ../../include/conversion.h; sourceTree = "<group>"; };
 		F485A65D171407BE00D316B9 /* file.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = file.h; path = ../../include/file.h; sourceTree = "<group>"; };
-		F485A65E171407BE00D316B9 /* log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = log.h; path = ../../include/log.h; sourceTree = "<group>"; };
 		F485A65F171407BE00D316B9 /* random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = random.h; path = ../../include/random.h; sourceTree = "<group>"; };
 		F485A660171407BE00D316B9 /* thread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = thread.h; path = ../../include/thread.h; sourceTree = "<group>"; };
 		F485A661171407BE00D316B9 /* types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = types.h; path = ../../include/types.h; sourceTree = "<group>"; };
@@ -86,7 +159,6 @@
 		F485A676171407E600D316B9 /* thread.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = thread.c; path = ../../platform/unix/thread.c; sourceTree = "<group>"; };
 		F485A677171407E600D316B9 /* wait.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = wait.c; path = ../../platform/unix/wait.c; sourceTree = "<group>"; };
 		F485A67B171407F300D316B9 /* conversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = conversion.c; path = ../../source/conversion.c; sourceTree = "<group>"; };
-		F485A67C171407F300D316B9 /* log.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = log.c; path = ../../source/log.c; sourceTree = "<group>"; };
 		F485A67D171407F300D316B9 /* random.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = random.c; path = ../../source/random.c; sourceTree = "<group>"; };
 		F485A67E171407F300D316B9 /* time.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = time.c; path = ../../source/time.c; sourceTree = "<group>"; };
 		F485A67F171407F300D316B9 /* utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = utils.c; path = ../../source/utils.c; sourceTree = "<group>"; };
@@ -107,6 +179,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		F42A5DAB1A9F62A6007900D7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F485A64F1714078C00D316B9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -144,8 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				F485A65A171407AF00D316B9 /* Include */,
-				F485A6531714078C00D316B9 /* Products */,
 				F485A659171407A800D316B9 /* Source */,
+				F485A6531714078C00D316B9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -153,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				F485A6521714078C00D316B9 /* libbabcode-macosx.a */,
+				F42A5DAE1A9F62A6007900D7 /* libbacode-ios.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,27 +240,27 @@
 		F485A659171407A800D316B9 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F485A670171407CB00D316B9 /* OSX */,
+				E4095461172A71D50008BA47 /* Linux */,
+				F485A66F171407C200D316B9 /* Unix */,
+				E4095459172A71B00008BA47 /* Win32 */,
+				F42A5D771A9F61E0007900D7 /* log-basic.c */,
 				F4567180184DEB7B0043A32C /* array.c */,
 				E44C27B7178ED7A50031BC79 /* bytestream.c */,
 				F485A67B171407F300D316B9 /* conversion.c */,
 				F443FEFF19D95C1A0032005C /* crc.c */,
 				F485A6AF17182AF600D316B9 /* hashtable.c */,
-				E4095461172A71D50008BA47 /* Linux */,
 				C596404D1737F517008AAC57 /* list.c */,
-				F485A67C171407F300D316B9 /* log.c */,
 				F485A69917143FC500D316B9 /* networkstack-options.c */,
 				F485A69B171440AA00D316B9 /* networkstack-private.h */,
 				F485A69717141CBD00D316B9 /* networkstack-tcp.c */,
 				F485A6941714164C00D316B9 /* networkstack-udp.c */,
-				F485A670171407CB00D316B9 /* OSX */,
 				F485A67D171407F300D316B9 /* random.c */,
 				F49191A419D5953300725C3A /* randomLfsr.c */,
 				C5168A17172AB66300C96B59 /* str.c */,
 				F485A67E171407F300D316B9 /* time.c */,
 				C5CB5723177B082F003125AA /* timer.c */,
-				F485A66F171407C200D316B9 /* Unix */,
 				F485A67F171407F300D316B9 /* utils.c */,
-				E4095459172A71B00008BA47 /* Win32 */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -188,6 +268,7 @@
 		F485A65A171407AF00D316B9 /* Include */ = {
 			isa = PBXGroup;
 			children = (
+				F42A5D791A9F61EC007900D7 /* log-basic.h */,
 				F456717F184DEB0A0043A32C /* array.h */,
 				F485A65B171407BE00D316B9 /* babcode.h */,
 				E44C27B6178ED78D0031BC79 /* bytestream.h */,
@@ -196,7 +277,6 @@
 				F485A65D171407BE00D316B9 /* file.h */,
 				F485A6AD17182AED00D316B9 /* hashtable.h */,
 				C596404B1737F488008AAC57 /* list.h */,
-				F485A65E171407BE00D316B9 /* log.h */,
 				F485A68D17140D2C00D316B9 /* mutex.h */,
 				F485A6921714164000D316B9 /* networkstack.h */,
 				F485A65F171407BE00D316B9 /* random.h */,
@@ -243,8 +323,8 @@
 			files = (
 				F485A665171407BE00D316B9 /* babcode.h in Headers */,
 				F485A666171407BE00D316B9 /* conversion.h in Headers */,
+				F42A5D7A1A9F61EC007900D7 /* log-basic.h in Headers */,
 				F485A667171407BE00D316B9 /* file.h in Headers */,
-				F485A668171407BE00D316B9 /* log.h in Headers */,
 				F485A669171407BE00D316B9 /* random.h in Headers */,
 				F485A66A171407BE00D316B9 /* thread.h in Headers */,
 				F485A66B171407BE00D316B9 /* types.h in Headers */,
@@ -261,6 +341,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		F42A5DAD1A9F62A6007900D7 /* babcode-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F42A5DBF1A9F62A6007900D7 /* Build configuration list for PBXNativeTarget "babcode-ios" */;
+			buildPhases = (
+				F42A5DAA1A9F62A6007900D7 /* Sources */,
+				F42A5DAB1A9F62A6007900D7 /* Frameworks */,
+				F42A5DAC1A9F62A6007900D7 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "babcode-ios";
+			productName = "bacode-ios";
+			productReference = F42A5DAE1A9F62A6007900D7 /* libbacode-ios.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		F485A6511714078C00D316B9 /* babcode-macosx */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F485A6561714078C00D316B9 /* Build configuration list for PBXNativeTarget "babcode-macosx" */;
@@ -286,6 +383,14 @@
 			attributes = {
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = Baptiste;
+				TargetAttributes = {
+					F42A5DAD1A9F62A6007900D7 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					F42A5DE01A9F6511007900D7 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
 			};
 			buildConfigurationList = F485A64D1714078C00D316B9 /* Build configuration list for PBXProject "babcode-macosx" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -300,11 +405,62 @@
 			projectRoot = "";
 			targets = (
 				F485A6511714078C00D316B9 /* babcode-macosx */,
+				F42A5DAD1A9F62A6007900D7 /* babcode-ios */,
+				F42A5DE01A9F6511007900D7 /* babcode */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		F42A5DE81A9F6529007900D7 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "libtool -static -o ./Build/Products/libbabcode.a ./Build/Products/Release/libbabcode-macosx.a ./Build/Products/Release-iphoneos/libbabcode-ios.a";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		F42A5DAA1A9F62A6007900D7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F42A5DDA1A9F635D007900D7 /* file.c in Sources */,
+				F42A5DDB1A9F635D007900D7 /* thread.c in Sources */,
+				F42A5DDC1A9F635D007900D7 /* mutex.c in Sources */,
+				F42A5DDD1A9F635D007900D7 /* conditionvar.c in Sources */,
+				F42A5DDE1A9F635D007900D7 /* uart_unix.c in Sources */,
+				F42A5DDF1A9F635D007900D7 /* wait.c in Sources */,
+				F42A5DC91A9F6354007900D7 /* log-basic.c in Sources */,
+				F42A5DCA1A9F6354007900D7 /* array.c in Sources */,
+				F42A5DCB1A9F6354007900D7 /* bytestream.c in Sources */,
+				F42A5DCC1A9F6354007900D7 /* conversion.c in Sources */,
+				F42A5DCD1A9F6354007900D7 /* crc.c in Sources */,
+				F42A5DCE1A9F6354007900D7 /* hashtable.c in Sources */,
+				F42A5DCF1A9F6354007900D7 /* list.c in Sources */,
+				F42A5DD01A9F6354007900D7 /* networkstack-options.c in Sources */,
+				F42A5DD11A9F6354007900D7 /* networkstack-private.h in Sources */,
+				F42A5DD21A9F6354007900D7 /* networkstack-tcp.c in Sources */,
+				F42A5DD31A9F6354007900D7 /* networkstack-udp.c in Sources */,
+				F42A5DD41A9F6354007900D7 /* random.c in Sources */,
+				F42A5DD51A9F6354007900D7 /* randomLfsr.c in Sources */,
+				F42A5DD61A9F6354007900D7 /* str.c in Sources */,
+				F42A5DD71A9F6354007900D7 /* time.c in Sources */,
+				F42A5DD81A9F6354007900D7 /* timer.c in Sources */,
+				F42A5DD91A9F6354007900D7 /* utils.c in Sources */,
+				F42A5DC61A9F634A007900D7 /* networkstack_osx.c in Sources */,
+				F42A5DC71A9F634A007900D7 /* uart.c in Sources */,
+				F42A5DC81A9F634A007900D7 /* utils_osx.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F485A64E1714078C00D316B9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -319,12 +475,12 @@
 				F485A67A171407E600D316B9 /* wait.c in Sources */,
 				F485A680171407F300D316B9 /* conversion.c in Sources */,
 				F443FF0019D95C1A0032005C /* crc.c in Sources */,
-				F485A681171407F300D316B9 /* log.c in Sources */,
 				F485A682171407F300D316B9 /* random.c in Sources */,
 				F485A683171407F300D316B9 /* time.c in Sources */,
 				F485A684171407F300D316B9 /* utils.c in Sources */,
 				F485A68F17140E5A00D316B9 /* mutex.c in Sources */,
 				F485A6951714164C00D316B9 /* networkstack-udp.c in Sources */,
+				F42A5D781A9F61E0007900D7 /* log-basic.c in Sources */,
 				F485A69817141CBD00D316B9 /* networkstack-tcp.c in Sources */,
 				F485A69A17143FC500D316B9 /* networkstack-options.c in Sources */,
 				F485A6A1171560E000D316B9 /* conditionvar.c in Sources */,
@@ -339,7 +495,86 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		F42A5DE51A9F6517007900D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F485A6511714078C00D316B9 /* babcode-macosx */;
+			targetProxy = F42A5DE41A9F6517007900D7 /* PBXContainerItemProxy */;
+		};
+		F42A5DE71A9F6519007900D7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F42A5DAD1A9F62A6007900D7 /* babcode-ios */;
+			targetProxy = F42A5DE61A9F6519007900D7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		F42A5DC01A9F62A6007900D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F42A5DC11A9F62A6007900D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F42A5DE21A9F6511007900D7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F42A5DE31A9F6511007900D7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F485A6541714078C00D316B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -419,6 +654,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F42A5DBF1A9F62A6007900D7 /* Build configuration list for PBXNativeTarget "babcode-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F42A5DC01A9F62A6007900D7 /* Debug */,
+				F42A5DC11A9F62A6007900D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F42A5DE11A9F6511007900D7 /* Build configuration list for PBXAggregateTarget "babcode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F42A5DE21A9F6511007900D7 /* Debug */,
+				F42A5DE31A9F6511007900D7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F485A64D1714078C00D316B9 /* Build configuration list for PBXProject "babcode-macosx" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
