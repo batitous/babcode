@@ -25,88 +25,11 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef babextended_callback_h
-#define babextended_callback_h
+#include "../../babcode/include/babcode.h"
+#include "../include/callback.h"
 
 
-/** An interface to a callback
- */
-class Callback
+CallbackStatic * createCallbackFromStatic( void (*staticFunction)(void) );
 {
-public:
-    virtual ~Callback() {}
-   
-    /** @brief Execute the callback
-     */
-    virtual void call() = 0;
-};
-
-
-/** A callback to a static C function
- */
-class CallbackStatic : public Callback
-{
-public:
-    CallbackStatic( void (*staticFunction)() )
-    {
-        mCallback = staticFunction;
-    }
-    
-    void call()
-    {
-        mCallback();
-    }
-    
-private:
-    void (*mCallback)();
-};
-
-
-/** A callback to a C++ object's method
- */
-template< class T >
-class CallbackBindClass : public Callback
-{
-public:
-    CallbackBindClass( T * object, void (T::*method)() )
-    {
-        mObject = object;
-        mMethod = method;
-    }
-    
-    void call() {
-        (mObject->*mMethod)();
-    }
-    
-    
-private:
-    T *     mObject;
-    void    (T::*mMethod)();
-};
-
-
-/** Create a new callback object from a static C function
- *
- * @param staticFunction    Pointer to a function
- * @return A new callback object
- */
-extern CallbackStatic * createCallbackFromStatic( void (*staticFunction)(void) );
-
-
-/** Create a new callback object from a class's method
- *
- * Test t;
- * Callback callback = createCallback(t, &Test::testCallback);
- *
- * @param object    The object
- * @param method    Function of the object
- * @return A new callback object
- */
-template < class T >
-CallbackBindClass<T> * createCallback( T * object, void (T::*method)(void) )
-{
-    return new CallbackBindClass<T>( object, method );
+    return new CallbackStatic(staticFunction);
 }
-
-
-#endif

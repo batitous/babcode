@@ -25,88 +25,90 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef babextended_callback_h
-#define babextended_callback_h
+#ifndef babextended_vectorimpl_h
+#define babextended_vectorimpl_h
 
-
-/** An interface to a callback
- */
-class Callback
+template<typename Data>
+Vector<Data>::Vector()
 {
-public:
-    virtual ~Callback() {}
-   
-    /** @brief Execute the callback
-     */
-    virtual void call() = 0;
-};
-
-
-/** A callback to a static C function
- */
-class CallbackStatic : public Callback
-{
-public:
-    CallbackStatic( void (*staticFunction)() )
-    {
-        mCallback = staticFunction;
-    }
-    
-    void call()
-    {
-        mCallback();
-    }
-    
-private:
-    void (*mCallback)();
-};
-
-
-/** A callback to a C++ object's method
- */
-template< class T >
-class CallbackBindClass : public Callback
-{
-public:
-    CallbackBindClass( T * object, void (T::*method)() )
-    {
-        mObject = object;
-        mMethod = method;
-    }
-    
-    void call() {
-        (mObject->*mMethod)();
-    }
-    
-    
-private:
-    T *     mObject;
-    void    (T::*mMethod)();
-};
-
-
-/** Create a new callback object from a static C function
- *
- * @param staticFunction    Pointer to a function
- * @return A new callback object
- */
-extern CallbackStatic * createCallbackFromStatic( void (*staticFunction)(void) );
-
-
-/** Create a new callback object from a class's method
- *
- * Test t;
- * Callback callback = createCallback(t, &Test::testCallback);
- *
- * @param object    The object
- * @param method    Function of the object
- * @return A new callback object
- */
-template < class T >
-CallbackBindClass<T> * createCallback( T * object, void (T::*method)(void) )
-{
-    return new CallbackBindClass<T>( object, method );
+    mSize = 0;
+    mCapacity = 0;
+    mData = 0;
 }
 
+template<typename Data>
+Vector<Data>::Vector(Vector const &other) : mSize(other.mSize), mCapacity(other.mCapacity), mData(0)
+{
+    mData = new Data[mCapacity];
+    //        mData = (Data *)malloc(d_capacity*sizeof(Data));
+    
+    memcpy(mData, other.mData, mSize*sizeof(Data));
+}
+
+template<typename Data>
+Vector<Data>::~Vector()
+{
+    delete mData;
+}
+
+template<typename Data>
+Vector<Data> & Vector<Data>::operator=(Vector const &other)
+{
+    delete mData;
+    mSize = other.mSize;
+    mCapacity = other.mCapacity;
+    //mData = (Data *)malloc(d_capacity*sizeof(Data));
+    
+    mData = new Data[mCapacity];
+    
+    memcpy(mData, other.mData, mSize*sizeof(Data));
+    
+    return *this;
+}
+
+
+template<typename Data>
+void Vector<Data>::push(Data const &x)
+{
+    if (mCapacity == mSize)
+    {
+        resize();
+    }
+    mData[mSize++] = x;
+}
+
+template<typename Data>
+size_t Vector<Data>::size() const
+{
+    return mSize;
+}
+
+template<typename Data>
+Data const & Vector<Data>::operator[](size_t idx) const
+{
+    return mData[idx];
+}
+
+template<typename Data>
+Data & Vector<Data>::operator[](size_t idx)
+{
+    return mData[idx];
+}
+
+template<typename Data>
+void Vector<Data>::resize()
+{
+    mCapacity = mCapacity ? mCapacity*2 : 1;
+    
+    //        Data *newdata = (Data *)malloc(d_capacity*sizeof(Data));
+    
+    Data * newdata = new Data[mCapacity];
+    
+    memcpy(newdata, mData, mSize * sizeof(Data));
+    
+    delete mData;
+    
+    mData = newdata;
+}
 
 #endif

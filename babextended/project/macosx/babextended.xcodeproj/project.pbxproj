@@ -110,6 +110,7 @@
 		F42D0E1C1A6D0DC600FF8421 /* file.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DC61A6D0BE500FF8421 /* file.h */; };
 		F42D0E1D1A6D0DC600FF8421 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCF1A6D0BE500FF8421 /* timer.h */; };
 		F42D0E1E1A6D0DC600FF8421 /* networkstack-private.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */; };
+		F454B7BE1AAF5B4200D36A0A /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F454B7BD1AAF5B4200D36A0A /* callback.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -177,6 +178,8 @@
 		F42D0DE81A6D0C5200FF8421 /* fsm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = fsm.cpp; path = ../../source/fsm.cpp; sourceTree = "<group>"; };
 		F42D0DEA1A6D0CF700FF8421 /* vector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vector.h; path = ../../include/vector.h; sourceTree = "<group>"; };
 		F42D0E221A6D0DC600FF8421 /* libbabextended.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libbabextended.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		F454B7BD1AAF5B4200D36A0A /* callback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = callback.cpp; path = ../../source/callback.cpp; sourceTree = "<group>"; };
+		F454B7BF1AAF5BC300D36A0A /* vectorimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vectorimpl.h; path = ../../include/vectorimpl.h; sourceTree = "<group>"; };
 		F47E5A991AA610EE003FF696 /* callback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = callback.h; path = ../../include/callback.h; sourceTree = "<group>"; };
 		F4CC96221A73A80E003F43BB /* queueimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queueimpl.h; path = ../../include/queueimpl.h; sourceTree = "<group>"; };
 		F4CC96231A73AD1E003F43BB /* bytearrayqueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bytearrayqueue.h; path = ../../include/bytearrayqueue.h; sourceTree = "<group>"; };
@@ -245,6 +248,7 @@
 				F42D0D851A6D0A9E00FF8421 /* synchronizer.h */,
 				F402C6F21A6FB9FC002F6DE4 /* udpconnection.h */,
 				F42D0DEA1A6D0CF700FF8421 /* vector.h */,
+				F454B7BF1AAF5BC300D36A0A /* vectorimpl.h */,
 			);
 			name = Include;
 			sourceTree = "<group>";
@@ -253,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */,
+				F454B7BD1AAF5B4200D36A0A /* callback.cpp */,
 				F42B03BF1A7E2E0C00B788F1 /* circularbuffer.cpp */,
 				F42D0DE81A6D0C5200FF8421 /* fsm.cpp */,
 				F4288AF41A8E0628003B12AE /* log.cpp */,
@@ -445,7 +450,7 @@
 		F42D0D701A6D09B000FF8421 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = Evotion;
 				TargetAttributes = {
 					F42D0D771A6D09B000FF8421 = {
@@ -497,6 +502,7 @@
 				F42D0D9F1A6D0B0A00FF8421 /* list.c in Sources */,
 				F42D0D9C1A6D0B0A00FF8421 /* conversion.c in Sources */,
 				F42D0DBD1A6D0B5600FF8421 /* thread.c in Sources */,
+				F454B7BE1AAF5B4200D36A0A /* callback.cpp in Sources */,
 				F42D0DA61A6D0B0A00FF8421 /* randomLfsr.c in Sources */,
 				F42B03C01A7E2E0C00B788F1 /* circularbuffer.cpp in Sources */,
 				F42D0DB11A6D0B3800FF8421 /* uart.c in Sources */,
@@ -629,6 +635,7 @@
 		F42D0D7D1A6D09B000FF8421 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -637,6 +644,7 @@
 		F42D0D7E1A6D09B000FF8421 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -645,6 +653,7 @@
 		F42D0E201A6D0DC600FF8421 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = babextended;
 			};
@@ -653,6 +662,7 @@
 		F42D0E211A6D0DC600FF8421 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				EXECUTABLE_PREFIX = lib;
 				PRODUCT_NAME = babextended;
 			};
