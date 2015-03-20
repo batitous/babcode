@@ -29,6 +29,9 @@
 #define babextended_callback_h
 
 
+//code taken from Quake3 code base. License: GPL
+
+
 /** An interface to a callback
  */
 class Callback
