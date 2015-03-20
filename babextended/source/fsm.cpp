@@ -26,47 +26,83 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "../../babcode/include/babcode.h"
+#include "../include/callback.h"
 #include "../include/fsm.h"
+
+
+struct PrivateFsmState
+{
+    PrivateFsmState(Callback * init, Callback * call)
+    {
+        initCallback = init;
+        callback = call;
+    }
+    
+    Callback * initCallback;
+    Callback * callback;
+};
+
 
 Fsm::Fsm()
 {
+    hashTableInit(&mStates, 32);
+    
     mInit = false;
     mCurrent = 0;
     mOld = 0;
-    mCall = 0;
-    mInitCall = 0;
+    mCallback = 0;
+    mInitCallback = 0;
 }
 
-void Fsm::set(int newstate, FsmCallback call, FsmCallback init)
+void Fsm::addState(uint32_t stateId, Callback * callback)
 {
-    mCurrent = newstate;
-    mCall = call;
-    mInitCall = init;
+    addStateWithInit(stateId, callback, 0);
 }
 
-void Fsm::init(int state, FsmCallback call, FsmCallback init)
+void Fsm::addStateWithInit(uint32_t stateId, Callback * callback, Callback * initCallback)
 {
-    this->set(state, call, init);
+    PrivateFsmState * newState = new PrivateFsmState(initCallback, callback);
+    hashTableInsert(&mStates, stateId, newState );
+}
+
+bool Fsm::setState(uint32_t newstate)
+{
+    PrivateFsmState * state = (PrivateFsmState *)hashTableLookup(&mStates, newstate);
+    if (state!=0)
+    {
+        mCurrent = newstate;
+        mCallback = state->callback;
+        mInitCallback = state->initCallback;
+        return true;
+    }
     
-    mInit = true;
-    mOld = mCurrent;
+    return false;
+}
+
+void Fsm::initState(uint32_t newstate)
+{
+    if (this->setState(newstate)==true)
+    {
+        mInit = true;
+        mOld = mCurrent;
+    }
 }
 
 void Fsm::update()
 {
     if (mInit == true)
     {
-        if (mInitCall != 0)
+        if (mInitCallback != 0)
         {
-            (this->*mInitCall)();
+            mInitCallback->call();
         }
         
         mInit = false;
     }
     
-    if (mCall != 0)
+    if (mCallback != 0)
     {
-        (this->*mCall)();
+        mCallback->call();
     }
     
     if (mCurrent != mOld)

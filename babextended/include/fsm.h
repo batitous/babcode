@@ -35,20 +35,31 @@
 class Fsm
 {
 public:
-    
-    typedef void (Fsm::*FsmCallback)(void);
-    
     Fsm();
     
-    /** Initialize the finite state machine
+    /** Add a state with callback to the finite state machine
+     *
+     * @param stateId   State identifier (MUST NOT BE 0)
+     * @param callback  State's callack
+     */
+    void addState(uint32_t stateId, Callback * callback);
+    
+    /** Add a state with callback and initializer to the finite state machine
+     *
+     * @param stateId   State identifier (MUST NOT BE 0)
+     * @param callback  State's callback
+     * @param initCallback State's initializer
+     */
+    void addStateWithInit(uint32_t stateId, Callback * callback, Callback * initCallback);
+    
+    
+    /** Initialize the finite state machine to a new state
      *
      * Use this functions when you are outside this fsm
      *
      * @param state         New state
-     * @param call          State function
-     * @param first         State initialization function
      */
-    void init(int state, FsmCallback call, FsmCallback init);
+    void initState(uint32_t newstate);
     
     /** Run the finite state machine
      */
@@ -69,22 +80,23 @@ public:
     bool isStateInitialized(void) const;
     
 protected:
-    /** Set the FSM to a new state
+    /** Set the finite state machine to a new state
      *
      * Use this function when you are inside a state of THIS fsm
      *
      * @param newstate      New state
-     * @param call          State function
-     * @param first         State initialization function
+     * @return False if state don't exists
      */
-    void set(int newstate, FsmCallback call, FsmCallback init);
+    bool setState(uint32_t newstate);
     
     
-    int mCurrent;           /**< Current state of the automate */
-    int mOld;               /**< Previous state */
-    bool mInit;             /**< Init the state */
-    FsmCallback mInitCall;  /**< Initializer's code */
-    FsmCallback mCall;      /**< Updater's code */
+    HashTable   mStates;    /**< State's table */
+    
+    uint32_t    mCurrent;   /**< Current state of the automate */
+    uint32_t    mOld;       /**< Previous state */
+    bool        mInit;      /**< Init the state */
+    Callback *  mCallback;  /**< Initializer's code */
+    Callback *  mInitCallback; /**< Updater's code */
 };
 
 #endif
