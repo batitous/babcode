@@ -39,8 +39,8 @@ Vector<Data>::Vector()
 template<typename Data>
 Vector<Data>::Vector(Vector const &other) : mSize(other.mSize), mCapacity(other.mCapacity), mData(0)
 {
-    mData = new Data[mCapacity];
-    //        mData = (Data *)malloc(d_capacity*sizeof(Data));
+//    mData = new Data[mCapacity];
+    mData = (Data *)malloc(mCapacity*sizeof(Data));
     
     memcpy(mData, other.mData, mSize*sizeof(Data));
 }
@@ -57,9 +57,8 @@ Vector<Data> & Vector<Data>::operator=(Vector const &other)
     delete mData;
     mSize = other.mSize;
     mCapacity = other.mCapacity;
-    //mData = (Data *)malloc(d_capacity*sizeof(Data));
-    
-    mData = new Data[mCapacity];
+
+    mData = (Data *)malloc(mCapacity*sizeof(Data));
     
     memcpy(mData, other.mData, mSize*sizeof(Data));
     
@@ -106,13 +105,13 @@ void Vector<Data>::resize()
 {
     mCapacity = mCapacity ? mCapacity*2 : 1;
     
-    //        Data *newdata = (Data *)malloc(d_capacity*sizeof(Data));
+    Data *newdata = (Data *)malloc(mCapacity*sizeof(Data));
     
-    Data * newdata = new Data[mCapacity];
-    
-    memcpy(newdata, mData, mSize * sizeof(Data));
-    
-    delete mData;
+    if (mData!=0)
+    {
+        memcpy(newdata, mData, mSize * sizeof(Data));
+        delete mData;
+    }
     
     mData = newdata;
 }
