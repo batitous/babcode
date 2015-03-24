@@ -40,7 +40,8 @@
 #include "vector.h"
 #include "udpconnection.h"
 #include "log.h"
-
+#include "cJSON.h"
+#include "jsontranslator.h"
 
 
 #endif

@@ -111,6 +111,8 @@
 		F42D0E1D1A6D0DC600FF8421 /* timer.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0DCF1A6D0BE500FF8421 /* timer.h */; };
 		F42D0E1E1A6D0DC600FF8421 /* networkstack-private.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */; };
 		F454B7BE1AAF5B4200D36A0A /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F454B7BD1AAF5B4200D36A0A /* callback.cpp */; };
+		F4B27C511AC17AAF00F4AD27 /* cJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = F4B27C501AC17AAF00F4AD27 /* cJSON.h */; };
+		F4B27C531AC17AC200F4AD27 /* cJSON.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4B27C521AC17AC200F4AD27 /* cJSON.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -181,6 +183,10 @@
 		F454B7BD1AAF5B4200D36A0A /* callback.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = callback.cpp; path = ../../source/callback.cpp; sourceTree = "<group>"; };
 		F454B7BF1AAF5BC300D36A0A /* vectorimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vectorimpl.h; path = ../../include/vectorimpl.h; sourceTree = "<group>"; };
 		F47E5A991AA610EE003FF696 /* callback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = callback.h; path = ../../include/callback.h; sourceTree = "<group>"; };
+		F4B27C501AC17AAF00F4AD27 /* cJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cJSON.h; path = ../../include/cJSON.h; sourceTree = "<group>"; };
+		F4B27C521AC17AC200F4AD27 /* cJSON.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = cJSON.cpp; path = ../../source/cJSON.cpp; sourceTree = "<group>"; };
+		F4B27C541AC17BBE00F4AD27 /* jsontranslator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jsontranslator.h; path = ../../include/jsontranslator.h; sourceTree = "<group>"; };
+		F4B27C551AC17C0700F4AD27 /* jsontranslatorimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jsontranslatorimpl.h; path = ../../include/jsontranslatorimpl.h; sourceTree = "<group>"; };
 		F4CC96221A73A80E003F43BB /* queueimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queueimpl.h; path = ../../include/queueimpl.h; sourceTree = "<group>"; };
 		F4CC96231A73AD1E003F43BB /* bytearrayqueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bytearrayqueue.h; path = ../../include/bytearrayqueue.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -241,7 +247,10 @@
 				F4CC96231A73AD1E003F43BB /* bytearrayqueue.h */,
 				F47E5A991AA610EE003FF696 /* callback.h */,
 				F42B03BE1A7E2DBC00B788F1 /* circularbuffer.h */,
+				F4B27C501AC17AAF00F4AD27 /* cJSON.h */,
 				F42D0DE71A6D0C3C00FF8421 /* fsm.h */,
+				F4B27C541AC17BBE00F4AD27 /* jsontranslator.h */,
+				F4B27C551AC17C0700F4AD27 /* jsontranslatorimpl.h */,
 				F4288AF31A8E0578003B12AE /* log.h */,
 				F42D0D821A6D0A2C00FF8421 /* queue.h */,
 				F4CC96221A73A80E003F43BB /* queueimpl.h */,
@@ -256,6 +265,7 @@
 		F42D0D801A6D09DC00FF8421 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				F4B27C521AC17AC200F4AD27 /* cJSON.cpp */,
 				F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */,
 				F454B7BD1AAF5B4200D36A0A /* callback.cpp */,
 				F42B03BF1A7E2E0C00B788F1 /* circularbuffer.cpp */,
@@ -369,6 +379,7 @@
 				F42D0DDB1A6D0BE500FF8421 /* list.h in Headers */,
 				F42D0DD61A6D0BE500FF8421 /* bytestream.h in Headers */,
 				F42D0DE51A6D0BE500FF8421 /* utils.h in Headers */,
+				F4B27C511AC17AAF00F4AD27 /* cJSON.h in Headers */,
 				F42D0DDF1A6D0BE500FF8421 /* random.h in Headers */,
 				F42D0DDA1A6D0BE500FF8421 /* hashtable.h in Headers */,
 				F42D0DDC1A6D0BE500FF8421 /* log-basic.h in Headers */,
@@ -482,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F42D0DB21A6D0B3800FF8421 /* utils_osx.c in Sources */,
+				F4B27C531AC17AC200F4AD27 /* cJSON.cpp in Sources */,
 				F42D0DA71A6D0B0A00FF8421 /* str.c in Sources */,
 				F42D0DA01A6D0B0A00FF8421 /* log-basic.c in Sources */,
 				F42D0DBC1A6D0B5600FF8421 /* mutex.c in Sources */,
