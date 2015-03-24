@@ -50,8 +50,10 @@ public:
     
     size_t size() const;
     
-    Data const &operator[](size_t idx) const;
+    Data &get(size_t idx);
     
+    
+    Data const &operator[](size_t idx) const;
     Data &operator[](size_t idx);
     
 private:

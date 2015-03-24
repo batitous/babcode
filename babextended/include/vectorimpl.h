@@ -84,6 +84,12 @@ size_t Vector<Data>::size() const
 }
 
 template<typename Data>
+Data &Vector<Data>::get(size_t idx)
+{
+    return mData[idx];
+}
+
+template<typename Data>
 Data const & Vector<Data>::operator[](size_t idx) const
 {
     return mData[idx];
