@@ -55,6 +55,7 @@ Log *Log::global()
 
 Log::Log()
 {
+    mQueue = new ByteArrayQueue(128, BUFFER_SIZE);
     mutexInit(&mMutex);
 }
 
@@ -75,12 +76,8 @@ void Log::start(const char * filename, bool enableOutput)
     // link old log from babcode to the new log
     logSetStream(mFile);
     
-    mQueue = new ByteArrayQueue(128, BUFFER_SIZE);
-    
-    
     mThreadRun = true;
     threadInit(&mThread, privateThreadStarter, this);
-    
 }
 
 void Log::stop()
