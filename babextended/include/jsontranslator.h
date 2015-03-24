@@ -35,12 +35,14 @@
  *
  * How to use it:
  *
- * JsonTranslator<YourClass> * jsonLoader = new JsonTranslator<YourClass>();
- * jsonLoader->add("slope", &YourClass::aMember);
- * jsonLoader->add("release", &YourClass::anotherMember);
+ * JsonTranslator<YourClass> * jsonYourClass = new JsonTranslator<YourClass>();
+ * jsonYourClass->add("slope", &YourClass::aMember);
+ * jsonYourClass->add("release", &YourClass::anotherMember);
+ *
+ * Then, load your object from a JSON file :
  *
  * YourClass myClass;
- * jsonLoader->loadFromFile(path-to-json-file, myClass);
+ * jsonYourClass->loadFromFile(path-to-json-file, myClass);
  *
  * After that, your object is loaded from the json file.
  *
@@ -60,8 +62,11 @@ public:
     typedef Vector<float> T::*FloatArrayMember;
     typedef Vector<std::string> T::*StringArrayMember;
     
+    // Create a new object with JSON root
     JsonTranslator();
-    JsonTranslator(const char * name);
+    
+    // Create a new object with this JSON item name
+    JsonTranslator(const char * jsonItemName);
     
     ~JsonTranslator();
     
@@ -70,8 +75,13 @@ public:
     void add(const char* name, IntMember member);
     void add(const char* name, FloatMember member);
     
+    // Load a single value from JSON
     bool loadFromFile(const char * filename, T & values);
     bool loadFromBuffer(char * buffer, T & values);
+
+    // Load an array of values from JSON
+    bool loadArrayFromBuffer(char * buffer, Vector<T> & values);
+    bool loadArrayFromFile(const char * filename, Vector<T> & values);
     
 private:
     template <class Type>
@@ -92,6 +102,14 @@ private:
     Vector<DataObject<IntMember> *> *   mInts;
     Vector<DataObject<FloatMember> *> * mFloats;
     Vector<DataObject<StringMember> *> * mStrings;
+    
+    
+    // de la merde si il faut charger des gros trucs...
+    
+    void loadIntMembers(cJSON* item, T & object);
+    void loadBoolMembers(cJSON* item, T & object);
+    void loadFloatMembers(cJSON* item, T & object);
+    void loadStringMembers(cJSON* item, T & object);
     
 };
 

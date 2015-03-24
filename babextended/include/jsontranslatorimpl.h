@@ -80,7 +80,6 @@ void JsonTranslator<T>::add(const char* name, FloatMember member)
     mInts->push(b);
 }
 
-
 template <class T>
 bool JsonTranslator<T>::loadFromBuffer(char * buffer, T & values)
 {
@@ -97,49 +96,69 @@ bool JsonTranslator<T>::loadFromBuffer(char * buffer, T & values)
         jsonObject= cJSON_GetObjectItem(root, mJsonName.c_str());
     }
     
-    for(size_t i=0; i < mInts->size(); i++)
+    loadIntMembers(jsonObject, values);
+    loadBoolMembers(jsonObject, values);
+    loadFloatMembers(jsonObject, values);
+    loadStringMembers(jsonObject, values);
+    
+    cJSON_Delete(root);
+    
+    return true;
+}
+
+template <class T>
+bool JsonTranslator<T>::loadArrayFromBuffer(char * buffer, Vector<T> & values)
+{
+    cJSON *root = cJSON_Parse(buffer);
+    if (root==0)
     {
-        DataObject<IntMember> * data = mInts->get(i);
-        
-        int32_t value = cJSON_GetObjectItem(jsonObject, data->name.c_str())->valueint;
-        
-        IntMember addr = data->address;
-        values.*addr = value;
+        Log::global()->error("failed to parse json buffer !\n");
+        return false;
     }
     
-    for(size_t i=0; i < mBooleans->size(); i++)
+    cJSON* jsonObject = root;
+    if (mJsonName.empty()==false)
     {
-        DataObject<BoolMember> * data = mBooleans->get(i);
-        
-        int32_t value = cJSON_GetObjectItem(jsonObject, data->name.c_str())->valueint;
-        
-        BoolMember addr = data->address;
-        values.*addr = value;
+        jsonObject= cJSON_GetObjectItem(root, mJsonName.c_str());
     }
     
-    for(size_t i=0; i < mFloats->size(); i++)
-    {
-        DataObject<FloatMember> * data = mFloats->get(i);
-        
-        float value = cJSON_GetObjectItem(jsonObject, data->name.c_str())->valuedouble;
-        
-        FloatMember addr = data->address;
-        values.*addr = value;
-    }
     
-    for(size_t i=0; i < mStrings->size(); i++)
+    for (int i = 0 ; i < cJSON_GetArraySize(jsonObject) ; i++)
     {
-        DataObject<StringMember> * data = mStrings->get(i);
+        T object;
+        cJSON * subitem = cJSON_GetArrayItem(jsonObject, i);
         
-        std::string value = cJSON_GetObjectItem(jsonObject, data->name.c_str())->valuestring;
+        loadIntMembers(subitem, object);
+        loadBoolMembers(subitem, object);
+        loadFloatMembers(subitem, object);
+        loadStringMembers(subitem, object);
         
-        StringMember addr = data->address;
-        values.*addr = value;
+        values.push(object);
     }
     
     cJSON_Delete(root);
     
     return true;
+}
+
+template <class T>
+bool JsonTranslator<T>::loadArrayFromFile(const char * filename, Vector<T> & values)
+{
+    uint32_t inputLen;
+    char * input;
+    
+    input = (char *)fileRead(filename, &inputLen);
+    if (input==0)
+    {
+        Log::global()->error("failed to open %s\n", filename);
+        return false;
+    }
+    
+    bool result = loadArrayFromBuffer(input, values);
+    
+    delete input;
+    
+    return result;
 }
 
 template <class T>
@@ -161,5 +180,78 @@ bool JsonTranslator<T>::loadFromFile(const char * filename, T & values)
     
     return result;
 }
+
+template <class T>
+void JsonTranslator<T>::loadIntMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mInts->size(); i++)
+    {
+        DataObject<IntMember> * data = mInts->get(i);
+        
+        cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
+        if (internalItem!=0)
+        {
+            int32_t value = internalItem->valueint;
+        
+            IntMember addr = data->address;
+            object.*addr = value;
+        }
+    }
+}
+
+template <class T>
+void JsonTranslator<T>::loadBoolMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mBooleans->size(); i++)
+    {
+        DataObject<BoolMember> * data = mBooleans->get(i);
+        
+        cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
+        if (internalItem!=0)
+        {
+            bool value = (bool)internalItem->valueint;
+        
+            BoolMember addr = data->address;
+            object.*addr = value;
+        }
+    }
+}
+
+template <class T>
+void JsonTranslator<T>::loadFloatMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mFloats->size(); i++)
+    {
+        DataObject<FloatMember> * data = mFloats->get(i);
+        
+        cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
+        if (internalItem!=0)
+        {
+            float value = (float)internalItem->valuedouble;
+        
+            FloatMember addr = data->address;
+            object.*addr = value;
+        }
+    }
+}
+
+template <class T>
+void JsonTranslator<T>::loadStringMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mStrings->size(); i++)
+    {
+        DataObject<StringMember> * data = mStrings->get(i);
+        
+        cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
+        if (internalItem!=0)
+        {
+            std::string value = internalItem->valuestring;
+        
+            StringMember addr = data->address;
+            object.*addr = value;
+        }
+    }
+}
+
 
 #endif
