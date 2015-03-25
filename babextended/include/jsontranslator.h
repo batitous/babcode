@@ -31,6 +31,38 @@
 
 #include <iostream>
 
+
+/** Json writer object
+ *
+ */
+class JsonWriter
+{
+public:
+    
+    cJSON * root;
+    
+    JsonWriter()
+    {
+        root = 0;
+    }
+    
+    // Begin the object serialization
+    void begin()
+    {
+        root = cJSON_CreateObject();
+    }
+    
+    // End the serialization and get the json buffer
+    char * end()
+    {
+        char * jsonOutput = cJSON_Print(root);
+        cJSON_Delete(root);
+        
+        return jsonOutput;
+    }
+};
+
+
 /** Json translator object
  *
  * How to use it:
@@ -41,10 +73,19 @@
  *
  * Then, load your object from a JSON file :
  *
- * YourClass myClass;
- * jsonYourClass->loadFromFile(path-to-json-file, myClass);
+ * YourClass myObject;
+ * jsonYourClass->loadFromFile(path-to-json-file, myObject);
  *
  * After that, your object is loaded from the json file.
+ *
+ * How to save:
+ * JsonWrite writer;
+ * writer.begin();
+ * jsonYourClass->save(writer, myObject);
+ * char * json = writer.end();
+ *
+ * Then you can write to disk or send the json buffer.
+ *
  *
  */
 template <class T>
@@ -77,11 +118,15 @@ public:
     
     // Load a single value from JSON
     bool loadFromFile(const char * filename, T & values);
-    bool loadFromBuffer(char * buffer, T & values);
+    bool loadFromBuffer(const char * buffer, T & values);
 
     // Load an array of values from JSON
-    bool loadArrayFromBuffer(char * buffer, Vector<T> & values);
+    bool loadArrayFromBuffer(const char * buffer, Vector<T> & values);
     bool loadArrayFromFile(const char * filename, Vector<T> & values);
+    
+    // Save value to a json write object
+    void save(JsonWriter & state, T & values);
+    void saveArray(JsonWriter & state, Vector<T> & values);
     
 private:
     template <class Type>
@@ -110,6 +155,12 @@ private:
     void loadBoolMembers(cJSON* item, T & object);
     void loadFloatMembers(cJSON* item, T & object);
     void loadStringMembers(cJSON* item, T & object);
+    
+    
+    void saveIntMembers(cJSON* item, T & object);
+    void saveBoolMembers(cJSON* item, T & object);
+    void saveFloatMembers(cJSON* item, T & object);
+    void saveStringMembers(cJSON* item, T & object);
     
 };
 

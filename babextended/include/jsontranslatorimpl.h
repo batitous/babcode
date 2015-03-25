@@ -81,7 +81,7 @@ void JsonTranslator<T>::add(const char* name, FloatMember member)
 }
 
 template <class T>
-bool JsonTranslator<T>::loadFromBuffer(char * buffer, T & values)
+bool JsonTranslator<T>::loadFromBuffer(const char * buffer, T & values)
 {
     cJSON *root = cJSON_Parse(buffer);
     if (root==0)
@@ -107,7 +107,7 @@ bool JsonTranslator<T>::loadFromBuffer(char * buffer, T & values)
 }
 
 template <class T>
-bool JsonTranslator<T>::loadArrayFromBuffer(char * buffer, Vector<T> & values)
+bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, Vector<T> & values)
 {
     cJSON *root = cJSON_Parse(buffer);
     if (root==0)
@@ -182,6 +182,52 @@ bool JsonTranslator<T>::loadFromFile(const char * filename, T & values)
 }
 
 template <class T>
+void JsonTranslator<T>::save(JsonWriter & state, T & values)
+{
+    cJSON* subItem = state.root;
+    if (mJsonName.empty()==false)
+    {
+        subItem = cJSON_CreateObject();
+        cJSON_AddItemToObject(state.root, mJsonName.c_str(), subItem );
+    }
+    
+    saveIntMembers(subItem, values);
+    saveBoolMembers(subItem, values);
+    saveFloatMembers(subItem, values);
+    saveStringMembers(subItem, values);
+    
+}
+
+template <class T>
+void JsonTranslator<T>::saveArray(JsonWriter & state, Vector<T> & values)
+{
+    cJSON* subItem = state.root;
+    
+    if (mJsonName.empty()==false)
+    {
+        subItem = cJSON_CreateArray();
+        cJSON_AddItemToObject(state.root, mJsonName.c_str(), subItem );
+    }
+    
+    
+    for (int i = 0 ; i < values.size() ; i++)
+    {
+        T object = values[i];
+        
+        cJSON* arrayItem = cJSON_CreateObject();
+        cJSON_AddItemToArray(subItem, arrayItem);
+        
+        saveIntMembers(arrayItem, object);
+        saveBoolMembers(arrayItem, object);
+        saveFloatMembers(arrayItem, object);
+        saveStringMembers(arrayItem, object);
+        
+    }
+    
+    
+}
+
+template <class T>
 void JsonTranslator<T>::loadIntMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mInts->size(); i++)
@@ -245,7 +291,7 @@ void JsonTranslator<T>::loadStringMembers(cJSON* item, T & object)
         cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
         if (internalItem!=0)
         {
-            std::string value = internalItem->valuestring;
+            std::string value(internalItem->valuestring);
         
             StringMember addr = data->address;
             object.*addr = value;
@@ -253,5 +299,58 @@ void JsonTranslator<T>::loadStringMembers(cJSON* item, T & object)
     }
 }
 
+template <class T>
+void JsonTranslator<T>::saveIntMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mInts->size(); i++)
+    {
+        DataObject<IntMember> * data = mInts->get(i);
+        
+        IntMember addr = data->address;
+        int32_t value = object.*addr;
+        
+        cJSON_AddItemToObject(item, data->name.c_str(), cJSON_CreateNumber(value));
+    }
+}
+
+template <class T>
+void JsonTranslator<T>::saveBoolMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mBooleans->size(); i++)
+    {
+        DataObject<BoolMember> * data = mBooleans->get(i);
+        
+        BoolMember addr = data->address;
+        int32_t value = object.*addr;
+        cJSON_AddItemToObject(item, data->name.c_str(), cJSON_CreateBool(value));
+    }
+}
+
+template <class T>
+void JsonTranslator<T>::saveFloatMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mFloats->size(); i++)
+    {
+        DataObject<FloatMember> * data = mFloats->get(i);
+        
+        FloatMember addr = data->address;
+        float value = object.*addr;
+        cJSON_AddItemToObject(item, data->name.c_str(), cJSON_CreateNumber(value));
+    }
+}
+
+template <class T>
+void JsonTranslator<T>::saveStringMembers(cJSON* item, T & object)
+{
+    for(size_t i=0; i < mStrings->size(); i++)
+    {
+        DataObject<StringMember> * data = mStrings->get(i);
+        
+        StringMember addr = data->address;
+        std::string value = object.*addr;
+        
+        cJSON_AddItemToObject(item, data->name.c_str(), cJSON_CreateString(value.c_str()));
+    }
+}
 
 #endif
