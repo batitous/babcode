@@ -28,6 +28,9 @@
 #ifndef babextended_vectorimpl_h
 #define babextended_vectorimpl_h
 
+#include <stdlib.h>
+
+
 template<typename Data>
 Vector<Data>::Vector()
 {

@@ -28,6 +28,9 @@
 #ifndef babextended_jsontranslatorimpl_h
 #define babextended_jsontranslatorimpl_h
 
+#include <stdlib.h>
+
+
 template <class T>
 JsonTranslator<T>::JsonTranslator()
 {
