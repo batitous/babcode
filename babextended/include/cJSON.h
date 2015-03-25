@@ -24,8 +24,7 @@
 #define cJSON__h
 
 #ifdef __cplusplus
-extern "C"
-{
+extern "C" {
 #endif
 
 /* cJSON Types: */

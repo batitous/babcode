@@ -29,8 +29,13 @@
 #define babextended_jsontranslatorimpl_h
 
 template <class T>
-JsonTranslator<T>::JsonTranslator() : JsonTranslator("")
+JsonTranslator<T>::JsonTranslator()
 {
+    mJsonName = "";
+    mBooleans = new Vector<DataObject<BoolMember> *>;
+    mInts = new Vector<DataObject<IntMember> *>;
+    mFloats = new Vector<DataObject<FloatMember> *>;
+    mStrings = new Vector<DataObject<StringMember> *>;
 }
 
 template <class T>

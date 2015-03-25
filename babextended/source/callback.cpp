@@ -29,7 +29,7 @@
 #include "../include/callback.h"
 
 
-CallbackStatic * createCallbackFromStatic( void (*staticFunction)(void) );
+CallbackStatic * createCallbackFromStatic( void (*staticFunction)(void) )
 {
     return new CallbackStatic(staticFunction);
 }
