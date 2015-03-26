@@ -37,7 +37,7 @@
 #include "synchronizer.h"
 #include "callback.h"
 #include "fsm.h"
-#include "vector.h"
+//#include "vector.h"
 #include "udpconnection.h"
 #include "log.h"
 #include "cJSON.h"

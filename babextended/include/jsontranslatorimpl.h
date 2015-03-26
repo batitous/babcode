@@ -34,21 +34,21 @@
 template <class T>
 JsonTranslator<T>::JsonTranslator()
 {
-    mJsonName = "";
-    mBooleans = new Vector<DataObject<BoolMember> *>;
-    mInts = new Vector<DataObject<IntMember> *>;
-    mFloats = new Vector<DataObject<FloatMember> *>;
-    mStrings = new Vector<DataObject<StringMember> *>;
+    mJsonName = new std::string("");
+    mBooleans = new std::vector<DataObject<BoolMember> *>;
+    mInts = new std::vector<DataObject<IntMember> *>;
+    mFloats = new std::vector<DataObject<FloatMember> *>;
+    mStrings = new std::vector<DataObject<StringMember> *>;
 }
 
 template <class T>
 JsonTranslator<T>::JsonTranslator(const char * name)
 {
-    mJsonName = name;
-    mBooleans = new Vector<DataObject<BoolMember> *>;
-    mInts = new Vector<DataObject<IntMember> *>;
-    mFloats = new Vector<DataObject<FloatMember> *>;
-    mStrings = new Vector<DataObject<StringMember> *>;
+    mJsonName = new std::string(name);
+    mBooleans = new std::vector<DataObject<BoolMember> *>;
+    mInts = new std::vector<DataObject<IntMember> *>;
+    mFloats = new std::vector<DataObject<FloatMember> *>;
+    mStrings = new std::vector<DataObject<StringMember> *>;
 }
 
 template <class T>
@@ -64,28 +64,28 @@ template <class T>
 void JsonTranslator<T>::add(const char* name, StringMember member)
 {
     DataObject<StringMember> * b = new DataObject<StringMember>(name, member);
-    mStrings->push(b);
+    mStrings->push_back(b);
 }
 
 template <class T>
 void JsonTranslator<T>::add(const char* name, BoolMember member)
 {
     DataObject<BoolMember> * b = new DataObject<BoolMember>(name, member);
-    mBooleans->push(b);
+    mBooleans->push_back(b);
 }
 
 template <class T>
 void JsonTranslator<T>::add(const char* name, IntMember member)
 {
     DataObject<IntMember> * b = new DataObject<IntMember>(name, member);
-    mInts->push(b);
+    mInts->push_back(b);
 }
 
 template <class T>
 void JsonTranslator<T>::add(const char* name, FloatMember member)
 {
     DataObject<FloatMember> * b = new DataObject<FloatMember>(name, member);
-    mFloats->push(b);
+    mFloats->push_back(b);
 }
 
 template <class T>
@@ -99,9 +99,9 @@ bool JsonTranslator<T>::loadFromBuffer(const char * buffer, T & values)
     }
     
     cJSON* jsonObject = root;
-    if (mJsonName.empty()==false)
+    if (mJsonName->empty()==false)
     {
-        jsonObject= cJSON_GetObjectItem(root, mJsonName.c_str());
+        jsonObject= cJSON_GetObjectItem(root, mJsonName->c_str());
     }
     
     loadIntMembers(jsonObject, values);
@@ -115,7 +115,7 @@ bool JsonTranslator<T>::loadFromBuffer(const char * buffer, T & values)
 }
 
 template <class T>
-bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, Vector<T> & values)
+bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, std::vector<T> & values)
 {
     cJSON *root = cJSON_Parse(buffer);
     if (root==0)
@@ -125,9 +125,9 @@ bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, Vector<T> & val
     }
     
     cJSON* jsonObject = root;
-    if (mJsonName.empty()==false)
+    if (mJsonName->empty()==false)
     {
-        jsonObject= cJSON_GetObjectItem(root, mJsonName.c_str());
+        jsonObject = cJSON_GetObjectItem(root, mJsonName->c_str());
     }
     
     
@@ -141,7 +141,7 @@ bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, Vector<T> & val
         loadFloatMembers(subitem, object);
         loadStringMembers(subitem, object);
         
-        values.push(object);
+        values.push_back(object);
     }
     
     cJSON_Delete(root);
@@ -150,7 +150,7 @@ bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, Vector<T> & val
 }
 
 template <class T>
-bool JsonTranslator<T>::loadArrayFromFile(const char * filename, Vector<T> & values)
+bool JsonTranslator<T>::loadArrayFromFile(const char * filename, std::vector<T> & values)
 {
     uint32_t inputLen;
     char * input;
@@ -193,10 +193,10 @@ template <class T>
 void JsonTranslator<T>::save(JsonWriter & state, T & values)
 {
     cJSON* subItem = state.root;
-    if (mJsonName.empty()==false)
+    if (mJsonName->empty()==false)
     {
         subItem = cJSON_CreateObject();
-        cJSON_AddItemToObject(state.root, mJsonName.c_str(), subItem );
+        cJSON_AddItemToObject(state.root, mJsonName->c_str(), subItem );
     }
     
     saveIntMembers(subItem, values);
@@ -207,14 +207,14 @@ void JsonTranslator<T>::save(JsonWriter & state, T & values)
 }
 
 template <class T>
-void JsonTranslator<T>::saveArray(JsonWriter & state, Vector<T> & values)
+void JsonTranslator<T>::saveArray(JsonWriter & state, std::vector<T> & values)
 {
     cJSON* subItem = state.root;
     
-    if (mJsonName.empty()==false)
+    if (mJsonName->empty()==false)
     {
         subItem = cJSON_CreateArray();
-        cJSON_AddItemToObject(state.root, mJsonName.c_str(), subItem );
+        cJSON_AddItemToObject(state.root, mJsonName->c_str(), subItem );
     }
     
     
@@ -240,7 +240,7 @@ void JsonTranslator<T>::loadIntMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mInts->size(); i++)
     {
-        DataObject<IntMember> * data = mInts->get(i);
+        DataObject<IntMember> * data = mInts->at(i);
         
         cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
         if (internalItem!=0)
@@ -258,7 +258,7 @@ void JsonTranslator<T>::loadBoolMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mBooleans->size(); i++)
     {
-        DataObject<BoolMember> * data = mBooleans->get(i);
+        DataObject<BoolMember> * data = mBooleans->at(i);
         
         cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
         if (internalItem!=0)
@@ -276,7 +276,7 @@ void JsonTranslator<T>::loadFloatMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mFloats->size(); i++)
     {
-        DataObject<FloatMember> * data = mFloats->get(i);
+        DataObject<FloatMember> * data = mFloats->at(i);
         
         cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
         if (internalItem!=0)
@@ -294,29 +294,21 @@ void JsonTranslator<T>::loadStringMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mStrings->size(); i++)
     {
-        DataObject<StringMember> * data = mStrings->get(i);
+        DataObject<StringMember> * data = mStrings->at(i);
         
-        std::string * value;
+        std::string value = "";
         
         cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
         if (internalItem!=0)
         {
             if (internalItem->valuestring!=0)
             {
-                value = new std::string(internalItem->valuestring);
+                value.assign(internalItem->valuestring);
             }
-            else
-            {
-                value = new std::string("");
-            }
-        }
-        else
-        {
-            value = new std::string("");
         }
         
         StringMember addr = data->address;
-        object.*addr = *value;
+        object.*addr = value;
     }
 }
 
@@ -325,7 +317,7 @@ void JsonTranslator<T>::saveIntMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mInts->size(); i++)
     {
-        DataObject<IntMember> * data = mInts->get(i);
+        DataObject<IntMember> * data = mInts->at(i);
         
         IntMember addr = data->address;
         int32_t value = object.*addr;
@@ -339,7 +331,7 @@ void JsonTranslator<T>::saveBoolMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mBooleans->size(); i++)
     {
-        DataObject<BoolMember> * data = mBooleans->get(i);
+        DataObject<BoolMember> * data = mBooleans->at(i);
         
         BoolMember addr = data->address;
         int32_t value = object.*addr;
@@ -352,7 +344,7 @@ void JsonTranslator<T>::saveFloatMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mFloats->size(); i++)
     {
-        DataObject<FloatMember> * data = mFloats->get(i);
+        DataObject<FloatMember> * data = mFloats->at(i);
         
         FloatMember addr = data->address;
         float value = object.*addr;
@@ -365,7 +357,7 @@ void JsonTranslator<T>::saveStringMembers(cJSON* item, T & object)
 {
     for(size_t i=0; i < mStrings->size(); i++)
     {
-        DataObject<StringMember> * data = mStrings->get(i);
+        DataObject<StringMember> * data = mStrings->at(i);
         
         StringMember addr = data->address;
         std::string value = object.*addr;

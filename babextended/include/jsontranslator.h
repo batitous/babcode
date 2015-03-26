@@ -30,7 +30,7 @@
 
 
 #include <iostream>
-
+#include <vector> 
 
 /** Json writer object
  *
@@ -98,10 +98,10 @@ public:
     typedef std::string T::*StringMember;
     
     
-    typedef Vector<bool> T::*BoolArrayMember;
-    typedef Vector<int> T::*IntArrayMember;
-    typedef Vector<float> T::*FloatArrayMember;
-    typedef Vector<std::string> T::*StringArrayMember;
+    typedef std::vector<bool> T::*BoolArrayMember;
+    typedef std::vector<int> T::*IntArrayMember;
+    typedef std::vector<float> T::*FloatArrayMember;
+    typedef std::vector<std::string> T::*StringArrayMember;
     
     // Create a new object with JSON root
     JsonTranslator();
@@ -121,12 +121,12 @@ public:
     bool loadFromBuffer(const char * buffer, T & values);
 
     // Load an array of values from JSON
-    bool loadArrayFromBuffer(const char * buffer, Vector<T> & values);
-    bool loadArrayFromFile(const char * filename, Vector<T> & values);
+    bool loadArrayFromBuffer(const char * buffer, std::vector<T> & values);
+    bool loadArrayFromFile(const char * filename, std::vector<T> & values);
     
     // Save value to a json write object
     void save(JsonWriter & state, T & values);
-    void saveArray(JsonWriter & state, Vector<T> & values);
+    void saveArray(JsonWriter & state, std::vector<T> & values);
     
 private:
     template <class Type>
@@ -142,11 +142,11 @@ private:
         }
     };
     
-    std::string                         mJsonName;
-    Vector<DataObject<BoolMember> *> *  mBooleans;
-    Vector<DataObject<IntMember> *> *   mInts;
-    Vector<DataObject<FloatMember> *> * mFloats;
-    Vector<DataObject<StringMember> *> * mStrings;
+    std::string *                           mJsonName;
+    std::vector<DataObject<BoolMember> *> * mBooleans;
+    std::vector<DataObject<IntMember> *> *  mInts;
+    std::vector<DataObject<FloatMember> *> * mFloats;
+    std::vector<DataObject<StringMember> *> * mStrings;
     
     
     // de la merde si il faut charger des gros trucs...

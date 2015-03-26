@@ -113,7 +113,7 @@ void Vector<Data>::resize()
     if (mData!=0)
     {
         memcpy(newdata, mData, mSize * sizeof(Data));
-        delete mData;
+        free(mData);
     }
     
     mData = newdata;
