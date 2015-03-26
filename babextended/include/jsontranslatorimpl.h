@@ -85,7 +85,7 @@ template <class T>
 void JsonTranslator<T>::add(const char* name, FloatMember member)
 {
     DataObject<FloatMember> * b = new DataObject<FloatMember>(name, member);
-    mInts->push(b);
+    mFloats->push(b);
 }
 
 template <class T>
@@ -296,14 +296,27 @@ void JsonTranslator<T>::loadStringMembers(cJSON* item, T & object)
     {
         DataObject<StringMember> * data = mStrings->get(i);
         
+        std::string * value;
+        
         cJSON * internalItem = cJSON_GetObjectItem(item, data->name.c_str());
         if (internalItem!=0)
         {
-            std::string value(internalItem->valuestring);
-        
-            StringMember addr = data->address;
-            object.*addr = value;
+            if (internalItem->valuestring!=0)
+            {
+                value = new std::string(internalItem->valuestring);
+            }
+            else
+            {
+                value = new std::string("");
+            }
         }
+        else
+        {
+            value = new std::string("");
+        }
+        
+        StringMember addr = data->address;
+        object.*addr = *value;
     }
 }
 
