@@ -112,9 +112,8 @@
 		F42D0E1E1A6D0DC600FF8421 /* networkstack-private.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */; };
 		F454B7BE1AAF5B4200D36A0A /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F454B7BD1AAF5B4200D36A0A /* callback.cpp */; };
 		F4B27C511AC17AAF00F4AD27 /* cJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = F4B27C501AC17AAF00F4AD27 /* cJSON.h */; };
-		F4B27C531AC17AC200F4AD27 /* cJSON.c in Sources */ = {isa = PBXBuildFile; fileRef = F4B27C521AC17AC200F4AD27 /* cJSON.c */; };
-		F4B27C561AC2D24B00F4AD27 /* cJSON.c in Sources */ = {isa = PBXBuildFile; fileRef = F4B27C521AC17AC200F4AD27 /* cJSON.c */; };
 		F4B27C571AC2D24B00F4AD27 /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F454B7BD1AAF5B4200D36A0A /* callback.cpp */; };
+		F4FDAA2F1AC5CE4E0091CAA1 /* cJSON.c in Sources */ = {isa = PBXBuildFile; fileRef = F4FDAA2E1AC5CE4E0091CAA1 /* cJSON.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,12 +185,12 @@
 		F454B7BF1AAF5BC300D36A0A /* vectorimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = vectorimpl.h; path = ../../include/vectorimpl.h; sourceTree = "<group>"; };
 		F47E5A991AA610EE003FF696 /* callback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = callback.h; path = ../../include/callback.h; sourceTree = "<group>"; };
 		F4B27C501AC17AAF00F4AD27 /* cJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = cJSON.h; path = ../../include/cJSON.h; sourceTree = "<group>"; };
-		F4B27C521AC17AC200F4AD27 /* cJSON.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cJSON.c; path = ../../source/cJSON.c; sourceTree = "<group>"; };
 		F4B27C541AC17BBE00F4AD27 /* jsontranslator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jsontranslator.h; path = ../../include/jsontranslator.h; sourceTree = "<group>"; };
 		F4B27C551AC17C0700F4AD27 /* jsontranslatorimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = jsontranslatorimpl.h; path = ../../include/jsontranslatorimpl.h; sourceTree = "<group>"; };
 		F4CC96221A73A80E003F43BB /* queueimpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = queueimpl.h; path = ../../include/queueimpl.h; sourceTree = "<group>"; };
 		F4CC96231A73AD1E003F43BB /* bytearrayqueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = bytearrayqueue.h; path = ../../include/bytearrayqueue.h; sourceTree = "<group>"; };
 		F4FDAA2D1AC5B2E50091CAA1 /* subjectobserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = subjectobserver.h; path = ../../include/subjectobserver.h; sourceTree = "<group>"; };
+		F4FDAA2E1AC5CE4E0091CAA1 /* cJSON.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cJSON.c; path = ../../../babcode/source/cJSON.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,7 +268,6 @@
 		F42D0D801A6D09DC00FF8421 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				F4B27C521AC17AC200F4AD27 /* cJSON.c */,
 				F42D0D831A6D0A4500FF8421 /* bytearrayqueue.cpp */,
 				F454B7BD1AAF5B4200D36A0A /* callback.cpp */,
 				F42B03BF1A7E2E0C00B788F1 /* circularbuffer.cpp */,
@@ -294,6 +292,7 @@
 		F42D0DAB1A6D0B1100FF8421 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F4FDAA2E1AC5CE4E0091CAA1 /* cJSON.c */,
 				F42D0D891A6D0B0A00FF8421 /* array.c */,
 				F42D0D8A1A6D0B0A00FF8421 /* bytestream.c */,
 				F42D0D8B1A6D0B0A00FF8421 /* conversion.c */,
@@ -497,7 +496,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F42D0DB21A6D0B3800FF8421 /* utils_osx.c in Sources */,
-				F4B27C531AC17AC200F4AD27 /* cJSON.c in Sources */,
 				F42D0DA71A6D0B0A00FF8421 /* str.c in Sources */,
 				F42D0DA01A6D0B0A00FF8421 /* log-basic.c in Sources */,
 				F42D0DBC1A6D0B5600FF8421 /* mutex.c in Sources */,
@@ -530,6 +528,7 @@
 				F42B03C61A7F760600B788F1 /* Makefile in Sources */,
 				F42D0D871A6D0AB700FF8421 /* synchronizer.cpp in Sources */,
 				F42D0DBA1A6D0B5600FF8421 /* conditionvar.c in Sources */,
+				F4FDAA2F1AC5CE4E0091CAA1 /* cJSON.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,7 +536,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F4B27C561AC2D24B00F4AD27 /* cJSON.c in Sources */,
 				F4B27C571AC2D24B00F4AD27 /* callback.cpp in Sources */,
 				F4288AF61A8E0A69003B12AE /* log.cpp in Sources */,
 				F42B03C11A7E2F9D00B788F1 /* circularbuffer.cpp in Sources */,

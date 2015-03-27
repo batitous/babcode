@@ -70,7 +70,7 @@ public:
      * @param state         State to test
      * @return True if we are in the state, else false
      */
-    bool isInState(int state) const;
+    bool isInState(uint32_t state) const;
     
     
     /** Is the current state initialized ?

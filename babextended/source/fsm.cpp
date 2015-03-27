@@ -112,7 +112,7 @@ void Fsm::update()
     }
 }
 
-bool Fsm::isInState(int state) const
+bool Fsm::isInState(uint32_t state) const
 {
     if (mCurrent == state)
     {
