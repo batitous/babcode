@@ -25,24 +25,52 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-#ifndef babextended_babextended_h
-#define babextended_babextended_h
+#ifndef babextended_subjectobserver_h
+#define babextended_subjectobserver_h
 
-
-#include "../../babcode/include/babcode.h"
-
-#include "bytearrayqueue.h"
-#include "circularbuffer.h"
-#include "queue.h"
-#include "synchronizer.h"
-#include "callback.h"
-#include "fsm.h"
-//#include "vector.h"
-#include "udpconnection.h"
-#include "log.h"
-#include "cJSON.h"
-#include "jsontranslator.h"
-#include "subjectobserver.h"
+/** A really simple subject / observer event system
+ *
+ * How to use it:
+ *
+ * Subject aVeryImportantSubject;
+ *
+ * YourClass object1;
+ * AnotherClass object2;
+ *
+ * aVeryImportantSubject(createCallback(&object1, &YourClass::method));
+ * aVeryImportantSubject(createCallback(&object2, &AnotherClass::aRandomMethod));
+ *
+ * Then, notify objects about an very important subject event :
+ *
+ * aVeryImportantSubject.notify();
+ *
+ *
+ */
+class Subject
+{
+public:
+    Subject()
+    {
+    }
+    
+    void addObserver(Callback * c)
+    {
+        mObservers.push_back(c);
+    }
+    
+    
+    void notify()
+    {
+        for (int i=0; i < mObservers.size(); i++)
+        {
+            mObservers[i]->call();
+        }
+    }
+    
+    
+private:
+    std::vector<Callback *>  mObservers;
+};
 
 
 #endif
