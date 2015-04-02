@@ -108,6 +108,16 @@ public:
      */
     int32_t receive(void * data, uint32_t size);
     
+    /** Receive bytes from the remote connection
+     *
+     * Bytes are not copied to you: the function give you directly a pointer on it
+     *
+     * @param data      Pointer to an address of the incoming bytes.
+     * @param size      Maximum size, MUST BE LOWER THAN 1024 bytes
+     * @param Size of data received, else error code
+     */
+    int32_t receiveNoCopy(void **data, uint32_t size);
+    
     
     /** Wait something on the connection, then receive
      */
@@ -137,7 +147,8 @@ private:
     IpAddress   mSender;            /**< last address received from sender */
     uint32_t    mProtocolId;        /**< protocol identifier */
     bool        mIsOpen;            /**< is this connection open ? */
-    uint8_t *   mBuffer;            /**< temporary buffer */
+    uint8_t *   mRcvBuffer;         /**< temporary receive buffer */
+    uint8_t *   mSendBuffer;        /**< temporary sendder buffer */
     uint32_t    mLocalSequence;     /**< local packet number */
     uint32_t    mLocalAcks[ACK_MAX]; /**< ack received for my packet send */
     uint32_t    mRemoteSequence;    /**< remote sequence number: last packet number received (more recent) */
@@ -147,6 +158,9 @@ private:
     uint32_t    mReceiverDeltaTime; /**< Time between 2 receive */
     uint32_t    mReceiverLastTime;
     fd_set      mReadSocketDescriptor;/**< wait selector */
+    
+    
+    int32_t receiveDataFromRemote(uint32_t size);
     
     int isSequenceMoreRecent(unsigned int s1, unsigned int s2);
     unsigned int buildAckBitmap(unsigned int * acks);

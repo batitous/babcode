@@ -37,7 +37,8 @@ UdpConnection::UdpConnection(uint32_t id)
 {
     mIsOpen = false;
     mProtocolId = id;
-    mBuffer = new uint8_t[UDP_CONNECTION_PACKET_SIZE_MAX];
+    mRcvBuffer = new uint8_t[UDP_CONNECTION_PACKET_SIZE_MAX];
+    mSendBuffer = new uint8_t[UDP_CONNECTION_PACKET_SIZE_MAX];
 }
 
 void UdpConnection::startWithSocket(const Socket *s)
@@ -162,7 +163,7 @@ int32_t UdpConnection::send(const void * data, uint32_t size)
     uint32_t last;
     uint32_t delta = 0;
     int result;
-    unsigned char * packet = mBuffer;
+    unsigned char * packet = mSendBuffer;
     
     if (size>UDP_CONNECTION_PACKET_DATA_MAX)
     {
@@ -203,14 +204,14 @@ int32_t UdpConnection::send(const void * data, uint32_t size)
     return result;
 }
 
-int32_t UdpConnection::receive(void * data, uint32_t size)
+int32_t UdpConnection::receiveDataFromRemote(uint32_t size)
 {
     unsigned int index;
     unsigned int id;
     unsigned int remote;
     unsigned int ack;
     unsigned int ackBitmap;
-    unsigned char * packet = mBuffer;
+    unsigned char * packet = mRcvBuffer;
     
     int bytes_read = socketReceive(&mSock, &mSender, packet, size + UDP_CONNECTION_HEADER_SIZE );
     if ( bytes_read <= 0 )
@@ -282,9 +283,33 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
         //LOG("error: Receive ack %d local %d, too old !\n", ack, mLocalSequence);
     }
     
-    memcpy( data, &packet[UDP_CONNECTION_HEADER_SIZE], bytes_read - UDP_CONNECTION_HEADER_SIZE );
+    return (bytes_read - UDP_CONNECTION_HEADER_SIZE);
+}
+
+int32_t UdpConnection::receiveNoCopy(void **data, uint32_t size)
+{
+    int32_t result = receiveDataFromRemote(size);
+    if (result <= 0)
+    {
+        return result;
+    }
     
-    return (bytes_read-UDP_CONNECTION_HEADER_SIZE);
+    *data = &mRcvBuffer[UDP_CONNECTION_HEADER_SIZE];
+    
+    return result;
+}
+
+int32_t UdpConnection::receive(void * data, uint32_t size)
+{
+    int32_t result = receiveDataFromRemote(size);
+    if (result <= 0)
+    {
+        return result;
+    }
+    
+    memcpy( data, &mRcvBuffer[UDP_CONNECTION_HEADER_SIZE], result );
+    
+    return result;
 }
 
 
