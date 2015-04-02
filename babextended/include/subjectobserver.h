@@ -37,8 +37,8 @@
  * YourClass object1;
  * AnotherClass object2;
  *
- * aVeryImportantSubject(createCallback(&object1, &YourClass::method));
- * aVeryImportantSubject(createCallback(&object2, &AnotherClass::aRandomMethod));
+ * aVeryImportantSubject.addObserver(createCallback(&object1, &YourClass::method));
+ * aVeryImportantSubject.addObserver(createCallback(&object2, &AnotherClass::aRandomMethod));
  *
  * Then, notify objects about an very important subject event :
  *

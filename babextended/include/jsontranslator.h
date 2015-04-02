@@ -29,7 +29,7 @@
 #define babextended_jsontranslator_h
 
 
-#include <iostream>
+#include <string>
 #include <vector> 
 
 /** Json writer object

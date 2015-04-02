@@ -114,6 +114,7 @@
 		F4B27C511AC17AAF00F4AD27 /* cJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = F4B27C501AC17AAF00F4AD27 /* cJSON.h */; };
 		F4B27C571AC2D24B00F4AD27 /* callback.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F454B7BD1AAF5B4200D36A0A /* callback.cpp */; };
 		F4FDAA2F1AC5CE4E0091CAA1 /* cJSON.c in Sources */ = {isa = PBXBuildFile; fileRef = F4FDAA2E1AC5CE4E0091CAA1 /* cJSON.c */; };
+		F4FDAA301AC93F330091CAA1 /* cJSON.c in Sources */ = {isa = PBXBuildFile; fileRef = F4FDAA2E1AC5CE4E0091CAA1 /* cJSON.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -536,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4FDAA301AC93F330091CAA1 /* cJSON.c in Sources */,
 				F4B27C571AC2D24B00F4AD27 /* callback.cpp in Sources */,
 				F4288AF61A8E0A69003B12AE /* log.cpp in Sources */,
 				F42B03C11A7E2F9D00B788F1 /* circularbuffer.cpp in Sources */,
