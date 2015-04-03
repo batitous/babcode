@@ -119,9 +119,11 @@ public:
     int32_t receiveNoCopy(void **data, uint32_t size);
     
     
-    /** Wait something on the connection, then receive
+    /** Wait some data on the connection, blocking calls.
+     *
+     * @return true if data are available on the connection
      */
-    int32_t waitAndReceive(void * data, uint32_t size);
+    bool waitSomeData();
     
     
     /** Get the local socket object

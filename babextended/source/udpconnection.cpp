@@ -313,7 +313,7 @@ int32_t UdpConnection::receive(void * data, uint32_t size)
 }
 
 
-int32_t UdpConnection::waitAndReceive(void * data, uint32_t size)
+bool UdpConnection::waitSomeData()
 {
     int max_sd;
     int s;
@@ -333,15 +333,15 @@ int32_t UdpConnection::waitAndReceive(void * data, uint32_t size)
     if ((activity < 0) && (errno!=EINTR))
     {
         LOG_ERR1("error: on select");
-        return 0;
+        return false;
     }
     
     if (FD_ISSET(mSock.handle, &mReadSocketDescriptor))
     {
-        return receive(data, size);
+        return true;
     }
     
-    return 0;
+    return false;
 }
 
 int UdpConnection::isSequenceMoreRecent(unsigned int s1, unsigned int s2)
