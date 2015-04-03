@@ -37,7 +37,7 @@ PATH_TO_GCC=
 GCC_COMPILER=$(PATH_TO_GCC)g++
 
 # Compiler options
-COMPILER_OPTION=-O2 -Wall -march=armv7 -mfpu=vfp -mfloat-abi=hard
+COMPILER_OPTION=-O2 -Wall -march=armv7-a -mfpu=neon -mfloat-abi=hard
 
 
 # Archiver 
