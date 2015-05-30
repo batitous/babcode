@@ -26,6 +26,7 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include "../include/babcode.h"
+#include "../include/timer.h"
 
 static void * timerThread(Timer * t)
 {

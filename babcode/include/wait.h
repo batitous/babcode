@@ -56,6 +56,7 @@ extern void getTime(Time *t);
 // Get ticks in millisecond that have elapsed since the program was started.
 extern uint32_t getTicks(void);
 
+extern void waitUs(uint32_t usecs);
 extern void waitMs(uint32_t milliseconds);
     
 #ifdef __cplusplus

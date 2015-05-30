@@ -58,6 +58,11 @@ uint32_t getTicks(void)
     return (unsigned int)((tv.tv_sec-beginsec)*1000+tv.tv_usec/1000);
 }
 
+void waitUs(uint32_t usecs)
+{
+    usleep(usecs);
+}
+
 void waitMs(uint32_t msecs )
 {
 	usleep(msecs*1000);
