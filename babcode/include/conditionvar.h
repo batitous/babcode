@@ -54,6 +54,8 @@ extern void conditionVarWait(ConditionVar * cv, Mutex * m);
     
 extern void conditionVarSignal(ConditionVar * cv);
     
+extern void conditionVarBroadcast(ConditionVar * cv);
+    
 extern void conditionVarDelete(ConditionVar * cv);
     
 #ifdef __cplusplus

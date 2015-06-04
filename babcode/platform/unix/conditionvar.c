@@ -43,6 +43,11 @@ void conditionVarSignal(ConditionVar * cv)
     pthread_cond_signal(cv);
 }
 
+void conditionVarBroadcast(ConditionVar * cv)
+{
+    pthread_cond_broadcast(cv);
+}
+
 void conditionVarDelete(ConditionVar * cv)
 {
     pthread_cond_destroy(cv);
