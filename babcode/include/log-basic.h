@@ -39,7 +39,7 @@ extern void logClose(void);
 
 extern void logError (const char fmt[], ...);
 
-#define LOG(...)        logError(__VA_ARGS__);
+#define LOG_BASIC(...)        logError(__VA_ARGS__);
 
 #define LOG_ERR1(str)	logError("error in %s at %4d : %s\n",(char *)__FILE__ ,  __LINE__, str)
 #define LOG_ERR2(str,id) logError("error in %s at %4d : %s %d\n",(char *)__FILE__ ,  __LINE__, str,id)

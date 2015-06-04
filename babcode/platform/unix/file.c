@@ -53,14 +53,14 @@ uint32_t fileWrite(const char *filename, uint8_t *buffer, uint32_t size )
 	file = open( filename, O_WRONLY | O_CREAT | O_TRUNC, mode );
 	if( file == -1 )
 	{
-		LOG("error: open file %s !\n", filename);
+		LOG_BASIC("error: open file %s !\n", filename);
 		return FILE_OPEN_ERROR ;
 	}
 
 	result = (uint32_t)write(file,  buffer, size);
 	if( result != size )
 	{
-		LOG("error: write (%d writed instead of %ld).\n",result,size);
+		LOG_BASIC("error: write (%d writed instead of %ld).\n",result,size);
 		return FILE_IO_ERROR;
 	}
 
@@ -100,7 +100,7 @@ uint8_t *fileMmapRead(const char *filename, uint32_t *len)
     fileDescriptor = open( filename, O_RDONLY, 0 );
     if( fileDescriptor < 0 )
     {
-        LOG("error: open file %s\n", filename );
+        LOG_BASIC("error: open file %s\n", filename );
         return NULL;
     }
     else
@@ -116,7 +116,7 @@ uint8_t *fileMmapRead(const char *filename, uint32_t *len)
             ptr = (uint8_t *)mmap(NULL,statInfo.st_size,PROT_READ,MAP_SHARED,fileDescriptor,0);
             if( ptr == MAP_FAILED )
             {
-                LOG("error: mmap file %s\n", filename );
+                LOG_BASIC("error: mmap file %s\n", filename );
                 return NULL;
             }
             else
@@ -143,7 +143,7 @@ uint8_t *fileRead( const char *filename, uint32_t *len )
 	file = open(filename,O_RDONLY);
 	if( file == -1 )
 	{
-		LOG("error: open file %s\n", filename );
+		LOG_BASIC("error: open file %s\n", filename );
 		return NULL ;
 	}
 
@@ -182,7 +182,7 @@ uint8_t *fileReadAtIndex( const char *filename, uint32_t index, uint32_t *len_to
 	f = open( filename , O_RDONLY);
 	if( f == -1 )
 	{
-		LOG("error: open file %s!\n",filename);
+		LOG_BASIC("error: open file %s!\n",filename);
 		return NULL ;
 	}
 
