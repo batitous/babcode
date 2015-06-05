@@ -49,6 +49,42 @@ void threadJoin( Thread *t )
 
 }
 
+bool threadSetPriority( Thread * t, ThreadPriority p)
+{
+    int current_policy;
+    struct sched_param current_param;
+    int ans;
+    if (pthread_getschedparam( *t , &current_policy, &current_param))
+    {
+        return false;
+    }
+    
+    switch(p)
+    {
+        case THREAD_PRIORITY_REALTIME:
+            current_policy = SCHED_RR;
+            break;
+        case THREAD_PRIORITY_HIGH:
+            current_policy = SCHED_RR;
+            break;
+        case THREAD_PRIORITY_NORMAL:
+            current_policy = SCHED_OTHER;
+            break;
+    }
+    
+    current_param.sched_priority = current_policy;
+    if ( (ans = pthread_setschedparam( *t, current_policy, &current_param)) )
+    {
+        return false;
+    }
+    return  true;
+}
+
+bool threadTerminate( Thread * t )
+{
+    return pthread_cancel( *t )==0? true: false;
+}
+
 void threadExit( void )
 {
 	 pthread_exit(0);

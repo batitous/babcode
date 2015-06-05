@@ -48,6 +48,13 @@ extern "C" {
 #   include <pthread.h>
 
 	typedef pthread_t Thread;
+    
+    typedef enum _thread_priority_
+    {
+        THREAD_PRIORITY_NORMAL = 0,
+        THREAD_PRIORITY_HIGH = 1,
+        THREAD_PRIORITY_REALTIME = 2
+    } ThreadPriority;
 	
 #endif
 
@@ -55,6 +62,10 @@ extern void threadInit( Thread * t, void *(* func)(void *), void *param );
 
 extern void threadJoin( Thread * t );
 
+extern bool threadSetPriority( Thread * t, ThreadPriority p);
+    
+extern bool threadTerminate( Thread * t );
+    
 extern void threadExit( void );
 
 #ifdef __cplusplus
