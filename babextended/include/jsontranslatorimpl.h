@@ -94,7 +94,7 @@ bool JsonTranslator<T>::loadFromBuffer(const char * buffer, T & values)
     cJSON *root = cJSON_Parse(buffer);
     if (root==0)
     {
-        Log::global()->error("failed to parse json buffer !\n");
+//        Log::global()->error("failed to parse json buffer !\n");
         return false;
     }
     
@@ -120,7 +120,7 @@ bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, std::vector<T> 
     cJSON *root = cJSON_Parse(buffer);
     if (root==0)
     {
-        Log::global()->error("failed to parse json buffer !\n");
+//        Log::global()->error("failed to parse json buffer !\n");
         return false;
     }
     
@@ -158,7 +158,7 @@ bool JsonTranslator<T>::loadArrayFromFile(const char * filename, std::vector<T> 
     input = (char *)fileRead(filename, &inputLen);
     if (input==0)
     {
-        Log::global()->error("failed to open %s\n", filename);
+//        Log::global()->error("failed to open %s\n", filename);
         return false;
     }
     
@@ -178,7 +178,7 @@ bool JsonTranslator<T>::loadFromFile(const char * filename, T & values)
     input = (char *)fileRead(filename, &inputLen);
     if (input==0)
     {
-        Log::global()->error("failed to open %s\n", filename);
+//        Log::global()->error("failed to open %s\n", filename);
         return false;
     }
     
