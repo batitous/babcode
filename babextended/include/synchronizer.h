@@ -45,6 +45,7 @@ public:
      * @brief Wake up !
      */
     void wakeup();
+    void wakeupAll();
     
 private:
     int32_t         mShared;    /**< shared value between the reader and writer */

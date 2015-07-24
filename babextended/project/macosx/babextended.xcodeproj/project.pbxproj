@@ -21,7 +21,6 @@
 		F42D0D9C1A6D0B0A00FF8421 /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8B1A6D0B0A00FF8421 /* conversion.c */; };
 		F42D0D9D1A6D0B0A00FF8421 /* crc.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8C1A6D0B0A00FF8421 /* crc.c */; };
 		F42D0D9E1A6D0B0A00FF8421 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */; };
-		F42D0D9F1A6D0B0A00FF8421 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8E1A6D0B0A00FF8421 /* list.c */; };
 		F42D0DA01A6D0B0A00FF8421 /* log-basic.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8F1A6D0B0A00FF8421 /* log-basic.c */; };
 		F42D0DA11A6D0B0A00FF8421 /* networkstack-options.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D901A6D0B0A00FF8421 /* networkstack-options.c */; };
 		F42D0DA21A6D0B0A00FF8421 /* networkstack-private.h in Headers */ = {isa = PBXBuildFile; fileRef = F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */; };
@@ -79,7 +78,6 @@
 		F42D0DFB1A6D0DC600FF8421 /* fsm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DE81A6D0C5200FF8421 /* fsm.cpp */; };
 		F42D0DFC1A6D0DC600FF8421 /* array.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D891A6D0B0A00FF8421 /* array.c */; };
 		F42D0DFD1A6D0DC600FF8421 /* hashtable.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */; };
-		F42D0DFE1A6D0DC600FF8421 /* list.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8E1A6D0B0A00FF8421 /* list.c */; };
 		F42D0DFF1A6D0DC600FF8421 /* conversion.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D8B1A6D0B0A00FF8421 /* conversion.c */; };
 		F42D0E001A6D0DC600FF8421 /* thread.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0DB71A6D0B5600FF8421 /* thread.c */; };
 		F42D0E011A6D0DC600FF8421 /* randomLfsr.c in Sources */ = {isa = PBXBuildFile; fileRef = F42D0D951A6D0B0A00FF8421 /* randomLfsr.c */; };
@@ -138,7 +136,6 @@
 		F42D0D8B1A6D0B0A00FF8421 /* conversion.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = conversion.c; path = ../../../babcode/source/conversion.c; sourceTree = "<group>"; };
 		F42D0D8C1A6D0B0A00FF8421 /* crc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = crc.c; path = ../../../babcode/source/crc.c; sourceTree = "<group>"; };
 		F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = hashtable.c; path = ../../../babcode/source/hashtable.c; sourceTree = "<group>"; };
-		F42D0D8E1A6D0B0A00FF8421 /* list.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = list.c; path = ../../../babcode/source/list.c; sourceTree = "<group>"; };
 		F42D0D8F1A6D0B0A00FF8421 /* log-basic.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "log-basic.c"; path = "../../../babcode/source/log-basic.c"; sourceTree = "<group>"; };
 		F42D0D901A6D0B0A00FF8421 /* networkstack-options.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "networkstack-options.c"; path = "../../../babcode/source/networkstack-options.c"; sourceTree = "<group>"; };
 		F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "networkstack-private.h"; path = "../../../babcode/source/networkstack-private.h"; sourceTree = "<group>"; };
@@ -299,7 +296,6 @@
 				F42D0D8B1A6D0B0A00FF8421 /* conversion.c */,
 				F42D0D8C1A6D0B0A00FF8421 /* crc.c */,
 				F42D0D8D1A6D0B0A00FF8421 /* hashtable.c */,
-				F42D0D8E1A6D0B0A00FF8421 /* list.c */,
 				F42D0D8F1A6D0B0A00FF8421 /* log-basic.c */,
 				F42D0D901A6D0B0A00FF8421 /* networkstack-options.c */,
 				F42D0D911A6D0B0A00FF8421 /* networkstack-private.h */,
@@ -514,7 +510,6 @@
 				F42D0DE91A6D0C5200FF8421 /* fsm.cpp in Sources */,
 				F42D0D9A1A6D0B0A00FF8421 /* array.c in Sources */,
 				F42D0D9E1A6D0B0A00FF8421 /* hashtable.c in Sources */,
-				F42D0D9F1A6D0B0A00FF8421 /* list.c in Sources */,
 				F42D0D9C1A6D0B0A00FF8421 /* conversion.c in Sources */,
 				F42D0DBD1A6D0B5600FF8421 /* thread.c in Sources */,
 				F454B7BE1AAF5B4200D36A0A /* callback.cpp in Sources */,
@@ -559,7 +554,6 @@
 				F42D0DFB1A6D0DC600FF8421 /* fsm.cpp in Sources */,
 				F42D0DFC1A6D0DC600FF8421 /* array.c in Sources */,
 				F42D0DFD1A6D0DC600FF8421 /* hashtable.c in Sources */,
-				F42D0DFE1A6D0DC600FF8421 /* list.c in Sources */,
 				F42D0DFF1A6D0DC600FF8421 /* conversion.c in Sources */,
 				F42D0E001A6D0DC600FF8421 /* thread.c in Sources */,
 				F42D0E011A6D0DC600FF8421 /* randomLfsr.c in Sources */,

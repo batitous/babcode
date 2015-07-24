@@ -55,3 +55,11 @@ void Synchronizer::wakeup()
     conditionVarSignal(&mCondition);
     mutexUnlock(&mMutex);
 }
+
+void Synchronizer::wakeupAll()
+{
+    mutexLock(&mMutex);
+    mShared = 1;
+    conditionVarBroadcast(&mCondition);
+    mutexUnlock(&mMutex);
+}
