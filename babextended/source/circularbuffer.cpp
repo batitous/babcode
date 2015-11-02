@@ -50,6 +50,26 @@ CircularBuffer::~CircularBuffer()
 
 void CircularBuffer::write(const uint8_t * input, uint32_t size)
 {
+    /*uint32_t oki = 0;
+    if (c->mRead == c->mWrite)
+    {
+        oki = c->mBufferSize;
+    }
+    else if (c->mWrite < c->mRead )
+    {
+        oki = c->mRead - c->mWrite;
+    }
+    else
+    {
+        oki = c->mBufferSize - c->mWrite + c->mRead;
+    }
+    
+    if (oki < size)
+    {
+        return 0;
+    }
+    */
+    
     if ( (mWrite+size) < mBufferSize)
     {
         memcpy(&mBuffer[mWrite], input, size);

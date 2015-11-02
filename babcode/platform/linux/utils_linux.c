@@ -28,6 +28,12 @@
 #include "../../include/babcode.h"
 
 
+#include <stdlib.h>
+#include <limits.h>
+#include <unistd.h>
+#include <string.h>
+#include <stdio.h>
+
 uint32_t getExecutablePath(char * buff, uint32_t buffSize)
 {
     int i;

@@ -52,7 +52,7 @@ uint32_t initUART(Uart * uart, const char *tty_name, uint32_t baudrate)
 	
     if (fd_uart < 0)
     {
-        LOG("failed to open uart %s!\n",tty_name);
+        LOG_BASIC("failed to open uart %s!\n",tty_name);
         return UART_OPEN_FAILED;
     }
 		
