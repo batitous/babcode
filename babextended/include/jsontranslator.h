@@ -121,6 +121,7 @@ public:
     bool loadFromBuffer(const char * buffer, T & values);
 
     // Load an array of values from JSON
+    bool loadStringFromBuffer(const char * buffer, std::vector<std::string> & values);
     bool loadArrayFromBuffer(const char * buffer, std::vector<T> & values);
     bool loadArrayFromFile(const char * filename, std::vector<T> & values);
     

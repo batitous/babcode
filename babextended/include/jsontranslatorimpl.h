@@ -115,6 +115,39 @@ bool JsonTranslator<T>::loadFromBuffer(const char * buffer, T & values)
 }
 
 template <class T>
+bool JsonTranslator<T>::loadStringFromBuffer(const char * buffer, std::vector<std::string> & values)
+{
+    cJSON *root = cJSON_Parse(buffer);
+    if (root==0)
+    {
+//        printf("loadStringFromBuffer failed to parse json buffer !\n");
+        return false;
+    }
+    
+    cJSON* jsonObject = root;
+    if (mJsonName->empty()==false)
+    {
+        jsonObject = cJSON_GetObjectItem(root, mJsonName->c_str());
+    }
+    
+//    printf("loadStringFromBuffer %d\n", cJSON_GetArraySize(jsonObject) );
+    
+    for (int i = 0 ; i < cJSON_GetArraySize(jsonObject) ; i++)
+    {
+        std::string object;
+        cJSON * subitem = cJSON_GetArrayItem(jsonObject, i);
+        
+        object.assign(subitem->valuestring);
+        
+        values.push_back(object);
+    }
+    
+    cJSON_Delete(root);
+    
+    return true;
+}
+
+template <class T>
 bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, std::vector<T> & values)
 {
     cJSON *root = cJSON_Parse(buffer);
@@ -130,11 +163,12 @@ bool JsonTranslator<T>::loadArrayFromBuffer(const char * buffer, std::vector<T> 
         jsonObject = cJSON_GetObjectItem(root, mJsonName->c_str());
     }
     
-    
     for (int i = 0 ; i < cJSON_GetArraySize(jsonObject) ; i++)
     {
         T object;
         cJSON * subitem = cJSON_GetArrayItem(jsonObject, i);
+        
+        
         
         loadIntMembers(subitem, object);
         loadBoolMembers(subitem, object);
